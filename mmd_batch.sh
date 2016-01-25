@@ -1,5 +1,6 @@
 #!/bin/bash    
-cd /Users/lutz/Documents/data/FrontpageWebs/Content/LH_Home
+#cd /Users/lutz/Documents/data/FrontpageWebs/Content/LH_Home
+cd /Users/lutz/Documents/data/web/hendri54.github.io/
 echo "MMD batch conversion"
 
 mmd *.mmd
