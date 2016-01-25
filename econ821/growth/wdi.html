@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link type="text/css" rel="stylesheet" href="http://www.lhendricks.org/css/avenir-white.css"/>
+	<meta name="author" content="Lutz Hendricks"/>
+	<meta name="affiliation" content="http://www.unc.edu"/>
+<a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org"><span
+style="font-weight: bold;">Lutz Hendricks - UNC - Department of
+Economics</span></a><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript"  
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+
+<h1 id="worlddevelopmentindicators">World Development Indicators</h1>
+
+<p>A collection of cross country data on</p>
+
+<ul>
+<li><p>gdp and its components</p></li>
+<li><p>employment</p></li>
+<li><p>demographics</p></li>
+<li><p>education</p></li>
+<li><p>government finances</p></li>
+<li><p>and much more</p></li>
+</ul>
+
+<h1 id="gettingthedata">Getting the Data</h1>
+
+<p>One typically downloads one variable at a time from <a href="http://databank.worldbank.org/">here</a>.</p>
+
+<p>The best format is probably xls.</p>
+
+<p>One gets a file with years as columns.</p>
+
+<h2 id="gettingthedataintomatlab">Getting the Data Into Matlab</h2>
+
+<p>Replace the column headers for the years with something that makes a valid variable name (e.g. x1970).</p>
+
+<p>Run through <a href="www.stattransfer.com">Stat/Transfer</a> to obtain a Matlab dataset.</p>
+
+<p>Load the file into matlab. Convert the data portion of the matrix into a matrix by [year, country].</p>
+
+<p>Country indicators are World Bank WITS codes (essentially the same as ISO codes).</p>
+
+<h1 id="matlabcode">Matlab Code</h1>
+
+<h3 id="directories">Directories</h3>
+
+<p>wdiDir: base</p>
+
+<ul>
+<li><p>progDir: programs</p></li>
+<li><p>matDir: generated <code>mat</code> files</p></li>
+<li><p>outDir: tables and figures</p></li>
+<li><p>dataDir: raw data</p></li>
+</ul>
+
+<h3 id="programs">Programs</h3>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Program</th>
+	<th style="text-align:left;">Purpose</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;">go_wdi821</td>
+	<td style="text-align:left;">startup</td>
+</tr>
+<tr>
+	<td style="text-align:left;">init_wdi821</td>
+	<td style="text-align:left;">startup tasks; put dir on path</td>
+</tr>
+<tr>
+	<td style="text-align:left;">const_wdi821</td>
+	<td style="text-align:left;">define constants</td>
+</tr>
+<tr>
+	<td style="text-align:left;">run_all_wdi821</td>
+	<td style="text-align:left;">run everything in sequence</td>
+</tr>
+<tr>
+	<td style="text-align:left;">country_list_wdi821</td>
+	<td style="text-align:left;">make list of country codes / names</td>
+</tr>
+<tr>
+	<td style="text-align:left;">make_vars_wdi821</td>
+	<td style="text-align:left;">make variables by [year,country]</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="exercises">Exercises</h1>
+
+<ol>
+<li>Construct GDP per worker (i.e. per employed person) in constant international dollars.
+
+<ol>
+<li>Save it as a Matlab matrix by [country, year].</li>
+<li>How does it compare with PWT data?</li>
+</ol></li>
+<li><p>Plot the fraction of self-employed workers against GDP per capita in constant international dollars. For the year 2000.
+What do you find?</p></li>
+<li><p>Download a variable from the WDI web site and import it into Matlab.</p></li>
+</ol>
+
+<hr />
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link type="text/css" rel="stylesheet" href="http://www.lhendricks.org/css/avenir-white.css"/>
+	<meta name="author" content="Lutz Hendricks"/>
+<a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org/econ821/econ821.html"><span
+style="font-weight: bold;">Econ821</span></a>  --  <a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org"><span
+style="font-weight: bold;">Lutz Hendricks  --  UNC  --  Department of
+Economics</span></a>
+	<meta name="affiliation" content="http://www.unc.edu"/>
+	<meta name="classterm" content="Spring 2016"/>
+</head>
+<body>
+
+<h1 id="pwt:matlabcode">PWT: Matlab Code</h1>
+
+<h2 id="directorystructure:">Directory structure:</h2>
+
+<p><code>baseDir</code>: </p>
+
+<ul>
+<li><p><code>outDir</code>: figures and tables</p></li>
+<li><p><code>matDir</code>: generated <code>mat</code> files</p></li>
+<li><p><code>dataDir</code>: original data files</p></li>
+<li><p><code>progDir</code>: program files</p></li>
+</ul>
+
+<h2 id="programs">Programs</h2>
+
+<p>The code is entirely general purpose (not specific to the course).</p>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<thead>
+<tr>
+	<th style="text-align:left;">Program</th>
+	<th style="text-align:left;">Purpose</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+	<td style="text-align:left;">go_pwt8</td>
+	<td style="text-align:left;">startup; add dir to path</td>
+</tr>
+<tr>
+	<td style="text-align:left;">const_pwt8</td>
+	<td style="text-align:left;">set constants</td>
+</tr>
+<tr>
+	<td style="text-align:left;">run_all_pwt8</td>
+	<td style="text-align:left;">runs everything in sequence</td>
+</tr>
+<tr>
+	<td style="text-align:left;">import_pwt8</td>
+	<td style="text-align:left;">imports stata file into matlab</td>
+</tr>
+<tr>
+	<td style="text-align:left;">var_load_yc_pwt8</td>
+	<td style="text-align:left;">loads one variable by [Country,year]</td>
+</tr>
+<tr>
+	<td style="text-align:left;">country_list_pwt8</td>
+	<td style="text-align:left;">makes list of countries and years</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="basicsteps">Basic Steps</h3>
+
+<ol>
+<li><p>Download Stata file.</p></li>
+<li><p>Make Stata file into a matlab <code>dataset</code> using <a href="https://www.stattransfer.com/">Stat/Transfer</a></p></li>
+<li><p><code>import_pwt8</code>: break the Stata file into individual variables and save them as matlab matrices, indexed by [year, country]</p></li>
+<li><p><code>var_load_yc_pwt8</code>: loads one variable for a given set of years and countries</p></li>
+</ol>
+
+<h1 id="exercises">Exercises</h1>
+
+<ol>
+<li><p>Write code that imports the stata file (<code>import_pwt8</code>)</p></li>
+<li><p>Write <code>var_load_yc_pwt8</code></p></li>
+<li><p>Plot the density of real output per worker in 2000 (<code>rgdp_density_growth821</code>).</p></li>
+<li><p>Plot the price of consumption against real gdp per worker for the year 2000.</p>
+
+<p>What do you find?</p></li>
+</ol>
+
+</body>
+</html>

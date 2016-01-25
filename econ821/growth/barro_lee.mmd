@@ -1,0 +1,30 @@
+{{../econ821_header.txt}}
+
+
+# Barro-Lee Schooling Data #
+
+The standard dataset for working with cross-country schooling data.
+
+Covers educational attainment by [year, country, age group, sex].
+
+How is this constructed?
+
+* mainly from household surveys
+* since there are not many surveys for most countries, there is a lot of interpolation
+
+# Getting the Data #
+
+Download Stata files from the [Barro-Lee web site](http://www.barrolee.com/).
+
+Each row is a country / year.
+
+Each column is a variable.
+
+Each file is one sex.
+
+## Importing Into Matlab ##
+
+Make the Stata file into a Matlab `dataset` using Stat/Transfer.
+
+Write a function `var_load_yc_bl2013` that extracts one variable for a given set of years and countries.
+

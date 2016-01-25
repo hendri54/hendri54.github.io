@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link type="text/css" rel="stylesheet" href="http://www.lhendricks.org/css/avenir-white.css"/>
+	<meta name="author" content="Lutz Hendricks"/>
+	<meta name="affiliation" content="http://www.unc.edu"/>
+<a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org"><span
+style="font-weight: bold;">Lutz Hendricks - UNC - Department of
+Economics</span></a><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript"  
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+
+<h1 id="matlab:introduction">Matlab: Introduction</h1>
+
+<h1 id="installationandconfiguration">Installation and Configuration</h1>
+
+<p>Instructions for installation from <a href="http://software.sites.unc.edu/software/">ITS</a></p>
+
+<h3 id="userinterface">User Interface</h3>
+
+<p>The Matlab window has a bunch of sub-windows.</p>
+
+<p>Of these I only keep 3:</p>
+
+<ol>
+<li><p>file browser: shows files in current directory</p></li>
+<li><p>command window: here you can type commands for interactive calculations</p></li>
+<li><p>editor: here you edit program files</p></li>
+</ol>
+
+<blockquote>
+<p>Tip: undock the editor, so it sits in its own window.</p>
+</blockquote>
+
+<h3 id="configuration">Configuration</h3>
+
+<p>Options can be set in <code>preferences</code> as usual (keyboard shortcuts, colors, etc).</p>
+
+<p>Options can also be defined in <code>startup.m</code> in the home directory. This is where you want to put any code that should run every time Matlab starts.</p>
+
+<p>You also need a startup file for each project, so that Matlab can find your code. </p>
+
+<h1 id="keyfeaturesofmatlab">Key Features of Matlab</h1>
+
+<p>Matlab is a mathematical programming language.</p>
+
+<p>Matlab is <em>interpreted</em> (or just-in-time compiled, as opposed to compiled).</p>
+
+<p>This means that it can be used interactively by typing commands at the prompt <code>&gt;&gt;</code> in the command window.</p>
+
+<p>But most of your code will be written to program files (matlab <code>functions</code>).</p>
+
+<p>Functions can be run from the command prompt.</p>
+
+<p>Commands are either built-in or written by the user. Every command is a stored in an M-file.</p>
+
+<p>If you type <code>sum([1,2,3])</code> at the command prompt, Matlab will look for <code>sum.m</code> and run it. How does Matlab know where to look? It uses the Matlab <a href="matlab_functions.html#Mpath">Path</a></p>
+
+<h2 id="matlabpros">Matlab Pros</h2>
+
+<p>It is easy to learn and use.</p>
+
+<ul>
+<li>The main reason is that Matlab is <em>dynamically typed</em>. That is, a variable can change type as it is modified.</li>
+<li>Arguments are passed to functions without declaring their types.</li>
+</ul>
+
+<p>Matlab has a large standard library.</p>
+
+<ul>
+<li>But there is little (high quality) user contributed code.</li>
+</ul>
+
+<h2 id="matlabcons">Matlab Cons</h2>
+
+<p>Relative to compiled languages (such as <code>C</code>) and relative to typed languages (such as <a href="www.julialang.org">Julia</a>), Matlab is slow.</p>
+
+<p>Because the types of function arguments are not checked (unless the user does so), &#8220;interesting&#8221; errors arise.</p>
+
+<h1 id="interactivematlab">Interactive Matlab</h1>
+
+<p>In the command window, type your commands at the <code>&gt;&gt;</code> prompt.</p>
+
+<p>Matlab returns the answers on the screen.</p>
+
+<h4 id="example">Example</h4>
+
+<pre><code>date
+ans =
+26-Jul-2015
+</code></pre>
+
+<p>Typing date at the command prompt executes the built-in <code>date</code> command.</p>
+
+<blockquote>
+<p>Tip: When you write your own programs, make sure all names are <em>unique</em>. If you write a function called <code>date</code>, there will be trouble.</p>
+</blockquote>
+
+<p><code>date</code> returns a string containing the date.</p>
+
+<p>Its return value is shown on the screen after <code>ans =</code>.</p>
+
+<p>To get rid of the <code>ans =</code> part, we could use <code>disp(date)</code>.</p>
+
+<h4 id="example">Example</h4>
+
+<pre><code>dateString = date;
+disp(dateString);
+26-Jul-2015
+</code></pre>
+
+<blockquote>
+<p>Note: Matlab displays the result of any command, unless the command is ended with <code>;</code>.
+If you ever see a lot of numbers appearing on the screen &#8220;out of nowhere,&#8221; you probably forgot the <code>;</code> at the end of a line.</p>
+</blockquote>
+
+<h2 id="doingmath">Doing Math</h2>
+
+<p>Matlab has built-in operators for common math operations: </p>
+
+<pre><code class="matlab">a = 2; b = 7;
+disp(b*a);
+14
+
+y = b ^ a;
+disp(y);
+49
+</code></pre>
+
+<p>Built-in functions:</p>
+
+<pre><code class="matlab">&gt;&gt; sin([1,2])
+ans =
+    0.8415    0.9093
+</code></pre>
+
+<p>A neat feature: most functions work on <em>arrays</em> of inputs. One command returns the <code>sin</code> values for many numbers in one fell swoop.</p>
+
+<h1 id="gettinghelp">Getting Help</h1>
+
+<p>To find out more about a particular command, type </p>
+
+<pre><code>help [command name]
+</code></pre>
+
+<p>To find a command for a given task, use the Matlab help system.</p>
+
+<h3 id="matlabtutorials">Matlab tutorials</h3>
+
+<p><a href="http://econphd.econwiki.com/notes.htm">EconPhd</a></p>
+
+<p><a href="http://www.mathworks.com/academia/student_center/tutorials/launchpad.html?s_cid=global_nav">Mathworks</a></p>
+
+<p><a href="https://github.com/vhf/free-programming-books/blob/master/free-programming-books.md#matlab">List of free Matlab books</a></p>
+
+<h1 id="additionaltopics">Additional topics</h1>
+
+<p><a href="matlab_datatypes.html">Data types</a></p>
+
+<p><a href="matlab_functions.html">Functions</a></p>
+
+<p><a href="matlab_editing.html">Editing and debugging</a></p>
+
+<p><a href="matlab_plots.html">Matlab graphics</a></p>
+
+<p><a href="matlab_oddities.html">Matlab oddities</a></p>
+
+<p><a href="programming.html">General notes on programming</a></p>
+
+<hr />
+
+</body>
+</html>

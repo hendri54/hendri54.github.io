@@ -1,0 +1,11 @@
+CSS:	http://www.lhendricks.org/github.css
+Author:	Lutz Hendricks
+HTML header: <a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org/econ821/econ821.html"><span
+style="font-weight: bold;">Econ821</span></a>  --  <a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org"><span
+style="font-weight: bold;">Lutz Hendricks  --  UNC  --  Department of
+Economics</span></a>
+Affiliation: http://www.unc.edu
+
+
+
+

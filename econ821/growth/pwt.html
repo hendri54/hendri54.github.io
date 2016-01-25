@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link type="text/css" rel="stylesheet" href="http://www.lhendricks.org/css/avenir-white.css"/>
+	<meta name="author" content="Lutz Hendricks"/>
+<a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org/econ821/econ821.html"><span
+style="font-weight: bold;">Econ821</span></a>  --  <a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org"><span
+style="font-weight: bold;">Lutz Hendricks  --  UNC  --  Department of
+Economics</span></a>
+	<meta name="affiliation" content="http://www.unc.edu"/>
+	<meta name="classterm" content="Spring 2016"/>
+</head>
+<body>
+
+<h1 id="thepennworldtables">The Penn World Tables</h1>
+
+<p>The PWT&#8217;s main purpose is to construct panel data for GDP and its components in <strong>constant international prices</strong>.</p>
+
+<h2 id="background">Background</h2>
+
+<p>National Accounts report GDP and its components in local currency units (LCU).</p>
+
+<p>We could use exchange rates to make these figures into dollars.</p>
+
+<p>The data would then imply that people in low income countries are shockingly poor, not just very poor.</p>
+
+<p>This would be misleading because <strong>prices are systematically lower</strong> in low income countries.</p>
+
+<p>To compare living standards across countries (and over time), it is necessary to deflate GDP with the local price of a <strong>consistent bundle</strong> of goods.</p>
+
+<h3 id="howisthisdone">How Is This Done?</h3>
+
+<p>The ICP collects data on local prices every several years (<strong>benchmark years</strong>).</p>
+
+<p>Between benchmark years, prices are interpolated. </p>
+
+<p>Even though there is no theoretically &#8220;best&#8221; price index, there is a substantial theory of how to construct price indices. </p>
+
+<p>The PWT does this and reports <strong>GDP in international prices</strong>.</p>
+
+<p>This comes in 2 flavors:</p>
+
+<ul>
+<li><em>RGDPE</em>: to compare living standards (think: deflated by the consumer price index)</li>
+<li><em>RGDPO</em>: to compare productive capacity (think: deflated by a producer price index)</li>
+</ul>
+
+<h2 id="obtainingthedata">Obtaining the data</h2>
+
+<p>The data can be downloaded <a href="http://www.rug.nl/research/ggdc/data/penn-world-table">here</a>.</p>
+
+<p>I recommend downloading the <strong>Stata file</strong> and converting into a <a href="http://www.mathworks.com/help/stats/dataset.html">matlab dataset</a> using <a href="https://www.stattransfer.com/">Stat/Transfer</a>.</p>
+
+<p>Format of the Stata file:</p>
+
+<ul>
+<li><p>each row is a country / year combination</p></li>
+<li><p>countries are identified by their <a href="http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html">ISO codes</a>. These are 3 letter abbreviations.</p></li>
+<li><p>each column is a variable (except for the first 4 columns which are country / year info)</p></li>
+</ul>
+
+<p>Since Mathworks plans to phase out datasets, it would make sense to then convert the whole thing into a Matlab <code>table</code> using <a href="http://www.mathworks.com/help/stats/dataset2table.html">dataset2table</a>.</p>
+
+<p>It would now make sense to make each variable into an array indexed by [country, year]. </p>
+
+<ul>
+<li><p>Fortunately, someone has already done this, so you can download the result from the PWT web site.</p></li>
+<li><p>Unfortunately, that file contains errors (as of 2014-Dec). So you cannot use it!</p></li>
+</ul>
+
+<h2 id="variables">Variables</h2>
+
+<p>Since the definitions are hard to find, I copied them from the xls file.</p>
+
+<h3 id="identifiervariables">Identifier Variables</h3>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<tbody>
+<tr>
+	<td style="text-align:left;">countrycode</td>
+	<td style="text-align:left;">3-letter ISO country code</td>
+</tr>
+<tr>
+	<td style="text-align:left;">country</td>
+	<td style="text-align:left;">Country name</td>
+</tr>
+<tr>
+	<td style="text-align:left;">currency_unit</td>
+	<td style="text-align:left;">Currency unit</td>
+</tr>
+<tr>
+	<td style="text-align:left;">year</td>
+	<td style="text-align:left;">Year</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="realgdpemploymentandpopulationlevels">Real GDP, Employment and Population Levels</h3>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<tbody>
+<tr>
+	<td style="text-align:left;">rgdpe</td>
+	<td style="text-align:left;">Expenditure-side real GDP at chained PPPs (in mil. 2005US$)</td>
+</tr>
+<tr>
+	<td style="text-align:left;">rgdpo</td>
+	<td style="text-align:left;">Output-side real GDP at chained PPPs (in mil. 2005US$)</td>
+</tr>
+<tr>
+	<td style="text-align:left;">pop</td>
+	<td style="text-align:left;">Population (in millions)</td>
+</tr>
+<tr>
+	<td style="text-align:left;">emp</td>
+	<td style="text-align:left;">Number of persons engaged (in millions)</td>
+</tr>
+<tr>
+	<td style="text-align:left;">avh</td>
+	<td style="text-align:left;">Average annual hours worked by persons engaged</td>
+</tr>
+<tr>
+	<td style="text-align:left;">hc</td>
+	<td style="text-align:left;">Index of human capital per person, based on years of schooling (Barro/Lee, 2012) and returns to education (Psacharopoulos, 1994)</td>
+</tr>
+</tbody>
+</table>
+
+<p>Output per worker in international prices = RGDPE / EMP.</p>
+
+<h3 id="currentpricegdpcapitalandtfp">Current Price GDP, Capital and TFP</h3>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<tbody>
+<tr>
+	<td style="text-align:left;">cgdpe</td>
+	<td style="text-align:left;">Expenditure-side real GDP at current PPPs (in mil. 2005US$)</td>
+</tr>
+<tr>
+	<td style="text-align:left;">cgdpo</td>
+	<td style="text-align:left;">Output-side real GDP at current PPPs (in mil. 2005US$)</td>
+</tr>
+<tr>
+	<td style="text-align:left;">ck</td>
+	<td style="text-align:left;">Capital stock at current PPPs (in mil. 2005US$)</td>
+</tr>
+<tr>
+	<td style="text-align:left;">ctfp</td>
+	<td style="text-align:left;">TFP level at current PPPs (USA=1)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="nationalaccounts-basedvariables">National Accounts-Based Variables</h3>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<tbody>
+<tr>
+	<td style="text-align:left;">rgdpna</td>
+	<td style="text-align:left;">Real GDP at constant 2005 national prices (in mil. 2005US$)</td>
+</tr>
+<tr>
+	<td style="text-align:left;">rkna</td>
+	<td style="text-align:left;">Capital stock at constant 2005 national prices (in mil. 2005US$)</td>
+</tr>
+<tr>
+	<td style="text-align:left;">rtfpna</td>
+	<td style="text-align:left;">TFP at constant national prices (2005=1)</td>
+</tr>
+<tr>
+	<td style="text-align:left;">labsh</td>
+	<td style="text-align:left;">Share of labour compensation in GDP at current national prices</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="exchangeratesandgdppricelevels">Exchange Rates and GDP Price Levels</h3>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<tbody>
+<tr>
+	<td style="text-align:left;">xr</td>
+	<td style="text-align:left;">Exchange rate, national currency/USD (market+estimated)</td>
+</tr>
+<tr>
+	<td style="text-align:left;">pl_gdpe</td>
+	<td style="text-align:left;">Price level of CGDPe (PPP/XR), price level of USA GDPo in 2005=1</td>
+</tr>
+<tr>
+	<td style="text-align:left;">pl_gdpo</td>
+	<td style="text-align:left;">Price level of CGDPo (PPP/XR), price level of USA GDPo in 2005=1</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="datainformationvariables">Data Information Variables</h3>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<tbody>
+<tr>
+	<td style="text-align:left;">i_cig</td>
+	<td style="text-align:left;">0/1/2: relative price data for consumption, investment and government is extrapolated (0), benchmark (1) or interpolated (2)</td>
+</tr>
+<tr>
+	<td style="text-align:left;">i_xm</td>
+	<td style="text-align:left;">0/1/2: relative price data for exports and imports is extrapolated (0), benchmark (1) or interpolated (2)</td>
+</tr>
+<tr>
+	<td style="text-align:left;">i_xr</td>
+	<td style="text-align:left;">0/1: the exchange rate is market-based (0) or estimated (1)</td>
+</tr>
+<tr>
+	<td style="text-align:left;">i_outlier</td>
+	<td style="text-align:left;">0/1: the observation on pl_gdpe or pl_gdpo is not an outlier (0) or an outlier (1)</td>
+</tr>
+<tr>
+	<td style="text-align:left;">cor_exp</td>
+	<td style="text-align:left;">Correlation between expenditure shares of the country and the US (benchmark observations only</td>
+</tr>
+<tr>
+	<td style="text-align:left;">statcap</td>
+	<td style="text-align:left;">Statistical capacity indicator (source: World Bank, developing countries only)</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="sharesincgdpo">Shares in CGDPo</h3>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<tbody>
+<tr>
+	<td style="text-align:left;">csh_c</td>
+	<td style="text-align:left;">Share of household consumption at current PPPs</td>
+</tr>
+<tr>
+	<td style="text-align:left;">csh_i</td>
+	<td style="text-align:left;">Share of gross capital formation at current PPPs</td>
+</tr>
+<tr>
+	<td style="text-align:left;">csh_g</td>
+	<td style="text-align:left;">Share of government consumption at current PPPs</td>
+</tr>
+<tr>
+	<td style="text-align:left;">csh_x</td>
+	<td style="text-align:left;">Share of merchandise exports at current PPPs</td>
+</tr>
+<tr>
+	<td style="text-align:left;">csh_m</td>
+	<td style="text-align:left;">Share of merchandise imports at current PPPs</td>
+</tr>
+<tr>
+	<td style="text-align:left;">csh_r</td>
+	<td style="text-align:left;">Share of residual trade and GDP statistical discrepancy at current PPPs</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="pricelevelsexpenditurecategoriesandcapital">Price Levels, Expenditure Categories and Capital</h3>
+
+<table>
+<colgroup>
+<col style="text-align:left;"/>
+<col style="text-align:left;"/>
+</colgroup>
+
+<tbody>
+<tr>
+	<td style="text-align:left;">pl_c</td>
+	<td style="text-align:left;">Price level of household consumption, price level of USA GDPo in 2005=1</td>
+</tr>
+<tr>
+	<td style="text-align:left;">pl_i</td>
+	<td style="text-align:left;">Price level of capital formation, price level of USA GDPo in 2005=1</td>
+</tr>
+<tr>
+	<td style="text-align:left;">pl_g</td>
+	<td style="text-align:left;">Price level of government consumption, price level of USA GDPo in 2005=1</td>
+</tr>
+<tr>
+	<td style="text-align:left;">pl_x</td>
+	<td style="text-align:left;">Price level of exports, price level of USA GDPo in 2005=1</td>
+</tr>
+<tr>
+	<td style="text-align:left;">pl_m</td>
+	<td style="text-align:left;">Price level of imports, price level of USA GDPo in 2005=1</td>
+</tr>
+<tr>
+	<td style="text-align:left;">pl_k</td>
+	<td style="text-align:left;">Price level of the capital stock, price level of USA in 2005=1</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html><head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="GENERATOR" content="Microsoft FrontPage 12.0"><title>Computing at UNC</title>
+
+
+<link rel="stylesheet" type="text/css" href="../Styles1.css"><!--mstheme-->
+
+<link rel="stylesheet" type="text/css" href="../_themes/ice/ice1011.css"><meta name="Microsoft Theme" content="ice 1011, default">
+<meta name="Microsoft Border" content="t, default">
+<style type="text/css">
+.style1 {
+	text-align: left;
+}
+</style></head><body><table dir="ltr" border="0" cellpadding="0" cellspacing="0" width="100%"><tbody><tr><!--msnavigation--><td valign="top">
+      <table style="text-align: left; width: 100%; background-color: rgb(204, 204, 204); color: white;" border="0" cellpadding="2" cellspacing="2">
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><small style="font-weight: bold;"><a style="color: white;" href="../index.htm">Lutz Hendricks</a>. <a href="slides_rs.pdf">UNC</a>. Department of Economics</small></td>
+    </tr>
+  </tbody>
+      </table>
+
+<div align="center">
+
+      <h1>Computing at UNC</h1>
+      <div style="text-align: left;">
+      <h1>Kure</h1>
+Place progs in home dir <br>
+      <ul>
+        <li>/nas02/home/l/h/lhendri/.matlab/R2013a/[prog folder] </li>
+        <li>Otherwise they get erased in periodic file cleanup. </li>
+      </ul>
+      <br>
+Write your code so that the data are placed in the right folder (different on unix cluster vs local machine).<br>
+      <ul>
+        <li>fileparts can be used to figure out the base directory on each computer without having to hand-code it.</li>
+        <li>Place data into largefs folder. Files get deleted every 3 weeks.</li>
+      </ul>
+      <br>
+Write a matlab function that does the computations and can be called from the command line.<br>
+      <br>
+Command syntax:<br>
+      <ul>
+        <li>bsub -n 8 -R "span[hosts=1]" matlab -nodisplay -nosplash -r "run_batch_so1('fminsearch',1,1,7)" -logfile set7.out</li>
+        <li>-n 8 : requests 8 cores - the max matlab can handle</li>
+        <li>run_batch_so1 is my command file</li>
+      </ul>
+      <br>
+Kure jobs crash regularly. It is important to make sure the
+optimization algorithm can hot-start (resume after a crash using a
+saved history).<br>
+      <br>
+Saving files:<br>
+      <ul>
+        <li>Matlab cannot save large / complex files. It crashes. Only save the minimum optimization history needed to hot-start.</li>
+        <li>When using parallel algorithms, make sure different
+instances do not try to read / write the same file at the same time. A
+simple semaphore approach is easily implemented (each instance locks
+the file it wants to access by writing a file, e.g. "lock07_param.mat"
+indicates that instance 7 has locked the file param.mat).<br>
+        </li>
+      </ul>
+      </div>
+      <br>
+</div></td></tr><!--msnavigation--></tbody></table></body></html>

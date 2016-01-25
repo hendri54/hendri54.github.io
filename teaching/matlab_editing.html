@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link type="text/css" rel="stylesheet" href="http://www.lhendricks.org/css/avenir-white.css"/>
+	<meta name="author" content="Lutz Hendricks"/>
+	<meta name="affiliation" content="http://www.unc.edu"/>
+<a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org"><span
+style="font-weight: bold;">Lutz Hendricks - UNC - Department of
+Economics</span></a><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript"  
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+
+<h1 id="matlab:editinganddebugging">Matlab: Editing and Debugging</h1>
+
+<h1 id="theeditor">The Editor</h1>
+
+<p>Matlab has a built-in editor.
+Benefit: Integration with the command processor.
+When a crash occurs, you can inspect variables in the editor.</p>
+
+<h3 id="editortips">Editor Tips</h3>
+
+<p>Cell mode</p>
+
+<ul>
+<li>Start a line with <code>%%</code> and it becomes a collapsible <code>cell</code>. That makes moving around the editor easier.</li>
+</ul>
+
+<p>Comments</p>
+
+<ul>
+<li><p>Use <strong>lots</strong> of comments to make your code readable.</p></li>
+<li><p>Block comments are enclosed with <code>%{...%}</code></p></li>
+</ul>
+
+<p>Mlint</p>
+
+<ul>
+<li>highlights questionable syntax or errors</li>
+</ul>
+
+<h1 id="debugging">Debugging</h1>
+
+<p>Debugging means locating program errors.</p>
+
+<h4 id="keyboardcommand">keyboard command</h4>
+
+<p>A useful command for debugging is <code>keyboard</code>.
+It halts program execution and returns the user to the command line.
+Any commands can then be executed as if the program itself contained those commands.
+In particular, one can inspect the values of all local variables.
+Setting <strong>break points</strong> has a similar effect.</p>
+
+<h4 id="debuggingmode">Debugging mode</h4>
+
+<p>Matlab can switch to a debugging mode that allows the user to inspect the
+state of a program when it crashes.
+To switch on debugging mode, type <code>dbstop error</code>
+To end debugging mode type <code>dbclear all</code></p>
+
+<p>When a program crashes, it is halted and the command prompt is activated.
+The effect is exactly the same as placing a <code>keyboard</code> statement at the point where the program crashed.
+To end debugging, type <code>dbquit</code>
+This stops the program.</p>
+
+<h3 id="tips">Tips</h3>
+
+<p>Write <strong>test functions</strong> for every sub-routine you write.
+Never assume that a new program will run correctly.</p>
+
+<p>Embed <strong>self-test code</strong> in your programs. </p>
+
+<h4 id="checkeverythingyoucan.">Check everything you can.</h4>
+
+<ul>
+<li>Is the number of input arguments correct?</li>
+<li>Are the input arguments of the right type and dimension?</li>
+<li>Are they in admissible ranges?</li>
+<li>Are intermediate results admissible?</li>
+<li>Are the output arguments acceptable?</li>
+</ul>
+
+<p>By checking all the time, errors are spotted as early as possible which makes them much easier to fix.</p>
+
+<p>See <code>validateattributes</code> for an easy way of implementing all of this.</p>
+
+<hr />
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link type="text/css" rel="stylesheet" href="http://www.lhendricks.org/css/avenir-white.css"/>
+	<meta name="author" content="Lutz Hendricks"/>
+	<meta name="affiliation" content="http://www.unc.edu"/>
+<a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org"><span
+style="font-weight: bold;">Lutz Hendricks - UNC - Department of
+Economics</span></a><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript"  
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+
+<h1 id="thoughtsonhoweconomistscanavoidreinventingthewheel">Thoughts on How Economists Can Avoid Reinventing the Wheel</h1>
+
+<h3 id="theproblem">The Problem</h3>
+
+<p>In writing research papers, economists solve the same problems over and over again.</p>
+
+<p><strong>Code Examples</strong></p>
+
+<ul>
+<li>Drawing joint Normal random variables with fixed standard deviations (e.g. agents&#8217; endowments).</li>
+<li>Coding common production functions (nested CES).</li>
+</ul>
+
+<p><strong>Data Examples</strong></p>
+
+<ul>
+<li>Constructing individual histories of earnings / schooling using NLSY / PSID data.</li>
+<li>Consistently constructing measures of schooling / earnings across year in CPS / Census / ACS data.</li>
+</ul>
+
+<p>The list is endless.</p>
+
+<h3 id="thesolution">The Solution</h3>
+
+<p>Consider what other disciplines do.</p>
+
+<p>People who work on numerical math have access to a set of trusted code libraries (BLAS, NLopt, &#8230;).</p>
+
+<p>There is a mechanism through which users can contribute to code (<a href="github.com">github</a>) or discuss it (e.g., <a href="stackexchange.com">stackexchange</a>).</p>
+
+<p>Consider the development of the <a href="julialang.org">Julia language</a>. </p>
+
+<ul>
+<li>All the code libraries live on <a href="github.com">github</a>.</li>
+<li>The major packages are moderated by groups who take responsibility for the code&#8217;s correctness.</li>
+<li>All code comes with automated tests.</li>
+</ul>
+
+<p>The result: Much of the time when users ask questions on how to solve a problem in <code>Julia</code>, someone will simply point to an existing library.</p>
+
+<p>Economics needs a similar setup for code and for data.</p>
+
+<p>Instead of creating the same variables over and over again from each of the major datasets, there should be a place where the construction of such variables can be discussed and where code for constructing variables can be posted (and trusted).</p>
+
+<h3 id="theorganizationalproblem">The Organizational Problem</h3>
+
+<p>Why does this not happen?<a href="#fn:1" id="fnref:1" title="see footnote" class="footnote">[1]</a></p>
+
+<p>Because there is no payoff for individuals to run such an effort.</p>
+
+<p>Can this problem be solved?</p>
+
+<p>As a small first step, I have started to post reusable code I wrote at <a href="https://github.com/hendri54">github</a>.</p>
+
+<hr />
+
+<div class="footnotes">
+<hr />
+<ol>
+
+<li id="fn:1">
+<p>A partial exception is <a href="quant-econ.net">QuantEcon</a>, which is organized by Sargent and Stacchurski. But it is not an <em>open</em> repository. <a href="#fnref:1" title="return to article" class="reversefootnote">&#160;&#8617;</a></p>
+</li>
+
+</ol>
+</div>
+
+
+</body>
+</html>

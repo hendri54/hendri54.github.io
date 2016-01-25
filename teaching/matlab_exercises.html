@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link type="text/css" rel="stylesheet" href="http://www.lhendricks.org/css/avenir-white.css"/>
+	<meta name="author" content="Lutz Hendricks"/>
+	<meta name="affiliation" content="http://www.unc.edu"/>
+<a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org"><span
+style="font-weight: bold;">Lutz Hendricks - UNC - Department of
+Economics</span></a><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript"  
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+
+<h1 id="matlabexercises">Matlab Exercises</h1>
+
+<p>Try the exercises at <a href="www.http://quant-econ.net">Quantitative Economics</a>.</p>
+
+<p>Some of the code for these exercises is in the <code>examples</code> folder.</p>
+
+<h2 id="readthematlabdocumentationonthefollowingsubjects:">Read the Matlab documentation on the following subjects:</h2>
+
+<ul>
+<li><p>Data types: matrices, strings, structures.</p></li>
+<li><p>Indexing to access matrix elements.</p></li>
+<li><p>Operators: <code>*,.*,/,./</code></p></li>
+<li><p>String handling: <code>sprintf</code></p></li>
+<li><p>Loops: while, for.</p></li>
+<li><p>Functions: input/output arguments, global/local variables.</p></li>
+<li><p>Optimization: fzero, fsolve, optimset.</p></li>
+<li><p>Graphics: plot.</p></li>
+</ul>
+
+<h2 id="gettingstarted">Getting Started</h2>
+
+<ol>
+<li><p>Compute the mean and standard deviation for weighted data</p>
+
+<p>Input: data and weights (matrices)</p>
+
+<p>Output: mean and standard deviation for each column</p>
+
+<p>My solution: <code>stats_lh.std_w</code></p></li>
+<li><p>Compute the cdf for weighted data.</p>
+
+<p>Input: data and weights</p>
+
+<p>Output: cumulative percentiles and their values</p>
+
+<p>My solution: <code>distrib_lh.cdf_weighted</code></p></li>
+<li><p>Compute points at the percentile distribution for weighted data (e.g. median)</p>
+
+<p>My solution: <code>distrib_lh.pcnt_weighted</code></p></li>
+</ol>
+
+<h2 id="rootfinding">Root finding</h2>
+
+<p>Write a Matlab program that numerically finds the solution of </p>
+
+<p><span class="math">\( f\left(x,a\right) =x^{2}-a=0 \)</span> for <span class="math">\(x\geq 0 \)</span></p>
+
+<ul>
+<li><p>Write the deviation function <span class="math">\( f(x) \)</span></p></li>
+<li><p>Plot <span class="math">\( f(x) \)</span> for <span class="math">\( x \in [0,4] \)</span> .</p></li>
+<li><p>Find the solution for <span class="math">\( a = 4 \)</span> using <code>fzero</code>.</p></li>
+<li><p>Find the solution for <span class="math">\( a = 4 \)</span> using <code>fsolve</code>.</p></li>
+</ul>
+
+<p>Try other algorithms, such as <code>fminsearch</code> for fun.</p>
+
+<h2 id="growthmodel">Growth Model</h2>
+
+<p>Consider a growth model given by the Bellman equation</p>
+
+<p><span class="math">\(V(k) = \max u(c) + \beta V(f(k) - c) \)</span></p>
+
+<p>Solve the growth model by value function iteration.</p>
+
+<p>Steps:</p>
+
+<ol>
+<li>Set up a grid for <span class="math">\(k \)</span>.</li>
+<li>Start from an arbitrary guess <span class="math">\( V_{0}(k) \)</span>.</li>
+<li>Iterate over the Bellman operator until <span class="math">\( V \)</span> converges.</li>
+</ol>
+
+<p>Along the way, plot the value functions to show how they converge to the true one. Like this:</p>
+
+<figure>
+<img src="figures/growth_value_iter.png" alt="GrowthValueIter" id="growthvalueiter" title="Value function iteration" style="height:400px;" />
+<figcaption>GrowthValueIter</figcaption>
+</figure>
+
+<p>See <a href="http://quant-econ.net/jl/dp_intro.html">QuantEcon</a>.</p>
+
+<h2 id="usefulexercisesfromquantecon">Useful exercises from <a href="http://quant-econ.net">QuantEcon</a></h2>
+
+<ol>
+<li><p>Draw discrete random numbers</p>
+
+<p>Given: probability of each state</p>
+
+<p>My solution: <code>random_lh.rand_discrete</code></p></li>
+<li><p>Simulate a Markov Chain</p>
+
+<p>See <a href="http://quant-econ.net/jl/finite_markov.html">QuantEcon</a> for the setup and Julia code.</p>
+
+<p>Also compute the stationary distribution</p>
+
+<p>My solution: <code>markov_lh.markov_sim</code></p>
+
+<p>Also try their Exercise 1 (illustrate the central limit theorem).</p></li>
+<li><p><a href="http://quant-econ.net/jl/finite_markov.html#exercise-3">Approximate an AR1 with a Markov chain</a> from QuantEcon.</p>
+
+<p>Do this at home by simply &#8220;translating&#8221; the Julia code into Matlab.</p>
+
+<p>You will see that the syntax is very similar.</p>
+
+<p>My solution: <code>+ar1_lh/tauchen</code></p></li>
+<li><p>Simulate random variables to illustrate the Law of Large Numbers and the Central Limit Theorem.</p>
+
+<p>See <a href="http://quant-econ.net/jl/lln_clt.html">QuantEcon</a> for the setup and Julia code.</p>
+
+<p>My solution: <code>matlab_examples/clt_illustrate</code></p></li>
+</ol>
+
+<hr />
+
+</body>
+</html>

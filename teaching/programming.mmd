@@ -1,0 +1,202 @@
+{{../markdown_header.txt}}
+
+#Programming: Notes on Writing Code
+
+-----------------------------
+
+# General Concepts #
+
+## Structured Programming ##
+
+Break down a process into chunks.
+
+Package each chunk into a separate function.
+
+A key idea: aside from an explicitly specified set of inputs and outputs, the function is independent of the rest of the world (*encapsulation*).
+
+Write your code [*top down by stepwise refinement*](http://www.eecs.wsu.edu/~cs150/tdd.htm)
+
+* Start with an outline of the steps.
+* For each step:
+	* if it's trivial: write it out in *pseudo code*.
+	* it it's not: write another outline for that step
+* Finally, translate the pseudo code into code.
+
+Each function should be *short* and perform exactly *one task*.
+
+## Write reusable code
+
+* Write each function to be sufficiently general, so it can be reused in other projects.
+* Over time, you will accumulate a library of code that can be used over and over.
+* Example: Write code that produces marginal products, average costs, etc for a CES production function.
+
+#Notes on Writing Code
+
+Read a good book on best practices in programming.
+
+1.  I see a lot of very poorly written code that is impossible to understand and not robust. Do yourself a favor and save a lot of time down the road by learning to how write quality code.
+2.  A book I like is "Writing Solid Code."
+
+##Some rules:
+
+1.  No literals as in "x=zeros([5,3])" or for "i1 = 1 : 57". It's not robust and hard to read.
+2.  No global variables.
+3.  Don't worry about speed. Worry about robustness and transparency.
+4.  Unique names: I suffix all functions I write with a project code (e.g. var_load_sc.m, var_save_sc.m, etc). It avoids naming conflicts with other projects.
+5.  Your code should contain lots of self-testing code. Most code is so fast that the loss of speed is irrelevant. If it is relevant, have a  switch that globally switches test code on and off.
+6.  Avoid using reserved words, in particular "i" as an index.
+
+## Style matters
+
+This point is hard to overstate. It is extremely important to write code that is easy to understand and easy to maintain. 
+
+In practice, you often revisit programs months or years after they were written. They need to be well documented and well structured.
+
+The programs needed to solve a stochastic OLG model have thousands of lines of code. 
+The only way to understand something this complex is to break it into logical, self-contained pieces (a function that solves the household problem, another that solves the firm problem, etc.).
+
+One example of how important this is: 
+
+Air traffic control centers still operate with hardware from the 1970s. The reason is that nobody understands the software well enough to port it to new hardware. 
+
+The FAA has already spent billions of dollars on unsuccessful attempts to rewrite this mess.
+
+Another example is the Space Shuttle, which runs (now "ran") on hardware from the 1960s. The reason is again that the software engineers can no longer understand the existing code.
+
+There are many books on good programming style. One that I like is *Writing Solid Code* by Steve Maguire. Read it!
+
+## Avoid literals
+
+Your code should rarely use specific values for any object. When you refer to an object, do so by its name. 
+
+For example, create variables to hold directory names and constants. The reason is that code is otherwise hard to change and maintain. 
+
+Imagine you set some parameter `sigma=2`, but refer to it as `2` in your code instead of `sigma`. If you decide to try `sigma = 3`, you need to locate and change every occurrence of `sigma` in your code. It's a mess. 
+
+The Golden Rule is: Every literal must have a name. Its value is defined in one place only.
+
+Related to this: do not hard-code *functional forms*. 
+
+If you want to compute the marginal product of capital, write a function for it. Otherwise, if you want to switch from Cobb-Douglas to CES, you have to rewrite all your programs.
+
+## Self-Test Code ##
+
+Your code should test itself automatically and periodically.
+
+Embed error catching code everywhere (`validateattributes`).
+
+Catching bugs early makes them easier to find.
+
+A trick to prevent your code from getting slowed down by self-testing:
+
+* add a debugging switch as an input argument to each function (I call it `dbg`).
+
+* if `dbg` is 0: go for speed and turn off self-testing
+
+* if `dbg > 10`, run all self-test code
+
+The process is then:
+
+1. Write code. Make sure it runs (correct syntax).
+
+2. Make sure it is correct (run all self-test code -- slow)
+
+3. When you are confident that your code is good, set `dbg = 0` and go for speed
+
+4. But every now and then, randomly switch `dbg` on so that self tests are run (little cost in terms of run time; a lot of gain in terms of confidence in your code).
+
+## Optimization
+
+Optimization refers to program modifications that speed up execution.
+
+> Think before you optimize!
+
+Most code runs so fast that optimization is simply a waste of time. 
+
+Also: Beware of your intuition about where the program spends most of its time.
+
+Here is an example: Consider the function that solves a stochastic OLG model. 
+
+It turns out that it spends 80% of its time running the Matlab interpolation function `interp1`! 
+
+There is little point optimizing the rest of the code.
+
+To find out what makes your program slow, run the Matlab **Profiler** (help profile).
+
+Some of Matlab's built-in functions are extremely slow. 
+
+Two examples are `interp1` and `sub2ind`. 
+
+It is easy to write replacements that run ten times faster.
+
+## Common mistakes
+
+### Passing arguments in the wrong order.
+
+Matlab does not check the types of arguments. 
+
+Often functions have lots of input arguments. 
+
+It is easy to confuse the order and write `myfun(b,a)` instead of `myfun(a,b)`. 
+
+To avoid this: check that inputs have admissible values.
+
+### Passing too few arguments.
+
+Matlab permits to omit input or output arguments when calling a function. 
+
+It is useful to check that the number of input arguments is as expected
+using `nargin}.
+
+### Reusing variable names.
+
+Matlab does not permit explicit declaration of variables. It is therefore
+easy to use a variable name twice without noticing.
+
+### Indexing problems.
+
+It is easy to make mistakes when extracting elements from matrices. This is
+especially true for code that wraps a loop into a single line of code. 
+
+For example, this is easy to read:
+
+````
+for ix = 1 : nx
+  zV(ix) = xV(ix+2) + yV(nx + 2 - ix);
+end
+````
+
+This is the same thing, more compact but harder to read:
+
+	zV = xV(3 : nx+2) + yV(nx+1 : -1 : 2);
+
+>Tip: Write out code explicitly. Once it works, one can still make it faster
+(if that is even worthwhile).
+
+Another common indexing mistake is to use too few arguments. For example:
+
+	x = rand([3,4]); y = x(3);
+
+This should produce a syntax error, but it does not. Instead, it flattens x
+into a vector and then takes the 3rd element.
+
+#Material for Economists
+
+[Quantitative Economics](http://quant-econ.net/index.html) by Sargent and Stachursky
+
+* a really nice collection of lectures and exercises that covers both programming and the economics of the material (in Julia and Python)
+
+[Tony Smith: Tips for quantitative work in economics](http://aida.wss.yale.edu/smith/econ561a/compute6.pdf)
+
+## Matlab Material ##
+
+1.  [Mathworks style guidelines](http://www.mathworks.com/matlabcentral/linkexchange/links/1100-matlab-programming-style-guidelines)
+2.  [Datatool style guidelines](http://www.datatool.com/downloads/matlab_style_guidelines.pdf)
+3.  Johnson: Elements of Matlab Style (Book)
+4.  [Good Matlab Practices](http://www.mathworks.com/matlabcentral/fileexchange/2371)
+5.  [Best practices for scientific computing](http://www.plosbiology.org/article/info%3Adoi%2F10.1371%2Fjournal.pbio.1001745#s2)
+
+# Material Not for Economists #
+
+1. [Lifehacker: teach yourself how to code](http://lifehacker.com/top-10-ways-to-teach-yourself-to-code-1684250889)
+                    

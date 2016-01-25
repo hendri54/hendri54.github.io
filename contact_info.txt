@@ -1,0 +1,22 @@
+<table style= border="0" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td>
+      <b>Lutz Hendricks</b>
+      <br>Associate Professor
+      <br>UNC at Chapel Hill
+      <br>Department of Economics
+      <br>6C Gardner Hall, CB 3305
+      <br>Chapel Hill, NC 27599-3305&nbsp;
+</td>
+<td>
+	lutz at lhendricks.org
+	<br>Office: (919) 966-5328
+	<br>Cell: (919) 886-6885&nbsp;
+</td>
+<td>
+<img alt="" style="border: 0px solid ; width: 103px; height: 134px;" src="images/LH_Web.jpg">
+</td>
+</tr>
+</tbody>
+</table>

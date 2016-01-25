@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link type="text/css" rel="stylesheet" href="http://www.lhendricks.org/css/avenir-white.css"/>
+	<meta name="author" content="Lutz Hendricks"/>
+<a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org/econ821/econ821.html"><span
+style="font-weight: bold;">Econ821</span></a>  --  <a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org"><span
+style="font-weight: bold;">Lutz Hendricks  --  UNC  --  Department of
+Economics</span></a>
+	<meta name="affiliation" content="http://www.unc.edu"/>
+	<meta name="classterm" content="Spring 2016"/>
+</head>
+<body>
+
+<h1 id="barro-leeschoolingdata">Barro-Lee Schooling Data</h1>
+
+<p>The standard dataset for working with cross-country schooling data.</p>
+
+<p>Covers educational attainment by [year, country, age group, sex].</p>
+
+<p>How is this constructed?</p>
+
+<ul>
+<li>mainly from household surveys</li>
+<li>since there are not many surveys for most countries, there is a lot of interpolation</li>
+</ul>
+
+<h1 id="gettingthedata">Getting the Data</h1>
+
+<p>Download Stata files from the <a href="http://www.barrolee.com/">Barro-Lee web site</a>.</p>
+
+<p>Each row is a country / year.</p>
+
+<p>Each column is a variable.</p>
+
+<p>Each file is one sex.</p>
+
+<h2 id="importingintomatlab">Importing Into Matlab</h2>
+
+<p>Make the Stata file into a Matlab <code>dataset</code> using Stat/Transfer.</p>
+
+<p>Write a function <code>var_load_yc_bl2013</code> that extracts one variable for a given set of years and countries.</p>
+
+</body>
+</html>

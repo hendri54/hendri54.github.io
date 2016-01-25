@@ -1,0 +1,48 @@
+{{../econ821_header.txt}}
+
+# PWT: Matlab Code #
+
+## Directory structure:
+
+`baseDir`: 
+
+* `outDir`: figures and tables
+
+* `matDir`: generated `mat` files
+
+* `dataDir`: original data files
+
+* `progDir`: program files
+
+## Programs ##
+
+The code is entirely general purpose (not specific to the course).
+
+| Program	| Purpose	|  
+|  ------	| ------	|  
+| go_pwt8	| startup; add dir to path	|  
+| const_pwt8	| set constants	|  
+| run_all_pwt8	| runs everything in sequence  
+| import_pwt8	| imports stata file into matlab	|  
+| var_load_yc_pwt8	| loads one variable by [Country,year]  
+| country_list_pwt8	| makes list of countries and years	|  
+
+### Basic Steps ###
+
+1. Download Stata file.
+
+2. Make Stata file into a matlab `dataset` using [Stat/Transfer](https://www.stattransfer.com/)
+
+3. `import_pwt8`: break the Stata file into individual variables and save them as matlab matrices, indexed by [year, country]
+
+4. `var_load_yc_pwt8`: loads one variable for a given set of years and countries
+
+# Exercises #
+
+1. Write code that imports the stata file (`import_pwt8`)
+2. Write `var_load_yc_pwt8`
+2. Plot the density of real output per worker in 2000 (`rgdp_density_growth821`).
+1. Plot the price of consumption against real gdp per worker for the year 2000.
+
+	What do you find?
+

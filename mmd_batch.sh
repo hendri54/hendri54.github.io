@@ -1,0 +1,31 @@
+#!/bin/bash    
+cd /Users/lutz/Documents/data/FrontpageWebs/Content/LH_Home
+echo "MMD batch conversion"
+
+mmd *.mmd
+
+cd research
+mmd *.mmd
+cd ..
+
+cd econ720
+mmd *.mmd
+cd ..
+
+cd econ520
+mmd *.mmd
+cd ..
+
+cd econ821
+mmd *.mmd
+
+cd growth
+mmd *.mmd
+
+cd /Users/lutz/Documents/data/FrontpageWebs/Content/LH_Home
+
+mmd teaching/*.mmd
+
+mmd thoughts/*.mmd
+
+cd /Users/lutz/Documents/data/FrontpageWebs/Content/LH_Home

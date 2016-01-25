@@ -1,0 +1,119 @@
+{{../markdown_header.txt}}
+
+# Matlab Exercises
+
+Try the exercises at [Quantitative Economics](www.http://quant-econ.net).
+
+Some of the code for these exercises is in the `examples` folder.
+
+## Read the Matlab documentation on the following subjects:
+
+* Data types: matrices, strings, structures.
+
+* Indexing to access matrix elements.
+
+* Operators: `*,.*,/,./`
+
+* String handling: `sprintf`
+
+* Loops: while, for.
+
+* Functions: input/output arguments, global/local variables.
+
+* Optimization: fzero, fsolve, optimset.
+
+* Graphics: plot.
+
+## Getting Started ##
+
+1. Compute the mean and standard deviation for weighted data
+
+	Input: data and weights (matrices)
+
+	Output: mean and standard deviation for each column
+
+	My solution: `stats_lh.std_w`
+	
+1. Compute the cdf for weighted data.
+
+	Input: data and weights
+	
+	Output: cumulative percentiles and their values
+	
+	My solution: `distrib_lh.cdf_weighted`
+
+1. Compute points at the percentile distribution for weighted data (e.g. median)
+
+	My solution: `distrib_lh.pcnt_weighted`
+
+## Root finding
+
+Write a Matlab program that numerically finds the solution of 
+
+\\( f\left(x,a\right) =x^{2}-a=0 \\) for \\(x\geq 0 \\)
+
+* Write the deviation function \\( f(x) \\)
+
+* Plot \\( f(x) \\) for \\( x \in [0,4] \\) .
+
+* Find the solution for \\( a = 4 \\) using `fzero`.
+
+* Find the solution for \\( a = 4 \\) using `fsolve`.
+
+Try other algorithms, such as `fminsearch`  for fun.
+
+## Growth Model ##
+
+Consider a growth model given by the Bellman equation
+
+\\(V(k) = \max u(c) + \beta V(f(k) - c) \\)
+
+Solve the growth model by value function iteration.
+
+Steps:
+
+1. Set up a grid for \\(k \\).
+2. Start from an arbitrary guess \\( V_{0}(k) \\).
+3. Iterate over the Bellman operator until \\( V \\) converges.
+
+Along the way, plot the value functions to show how they converge to the true one. Like this:
+
+![GrowthValueIter][]
+
+[GrowthValueIter]: figures/growth_value_iter.png "Value function iteration" height=400px
+
+See [QuantEcon](http://quant-econ.net/jl/dp_intro.html).
+
+## Useful exercises from [QuantEcon](http://quant-econ.net)
+
+1. Draw discrete random numbers
+
+	Given: probability of each state
+
+	My solution: `random_lh.rand_discrete`
+
+1. Simulate a Markov Chain
+
+	See [QuantEcon](http://quant-econ.net/jl/finite_markov.html) for the setup and Julia code.
+
+	Also compute the stationary distribution
+
+	My solution: `markov_lh.markov_sim`
+
+	Also try their Exercise 1 (illustrate the central limit theorem).
+
+2. [Approximate an AR1 with a Markov chain](http://quant-econ.net/jl/finite_markov.html#exercise-3) from QuantEcon.
+
+	Do this at home by simply "translating" the Julia code into Matlab.
+
+	You will see that the syntax is very similar.
+
+	My solution: `+ar1_lh/tauchen`
+	
+2. Simulate random variables to illustrate the Law of Large Numbers and the Central Limit Theorem.
+
+	See [QuantEcon](http://quant-econ.net/jl/lln_clt.html) for the setup and Julia code.
+	
+	My solution: `matlab_examples/clt_illustrate`
+
+------------------------

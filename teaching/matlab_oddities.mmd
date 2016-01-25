@@ -1,0 +1,57 @@
+{{../markdown_header.txt}}
+
+# Matlab Oddities and Pitfalls
+
+### Matrix Indexing
+
+Matlab is perfectly fine with invalid matrix indices.
+
+The following code should produce a syntax error:
+	
+	```matlab
+	x =
+	     1     2     3
+	     4     5     6
+	
+	>> x(5)
+	ans =
+	     3
+	```
+
+This is a very common source of bugs.
+
+### Load and Save
+
+The `load` command is insane. It writes variables to the workspace that cannot be seen in the code. Always use load as a function as in `m = load(filename)`.
+
+Even then `load` is insane. To retrieve the contents of `m`  you need to know its name. Example:
+
+	```matlab
+	x = 10;
+	save('test.mat', 'x');
+	m = load('test.mat');
+	disp(m.x);
+	10
+	```
+
+It's best to write a wrapper for `load` and `save` so that `load2('test.mat')` returns `10` instead of `m`.
+
+### Numeric Precision
+
+Matlab "downgrades" numeric precision to the lowest common denominator in calculations.
+
+```matlab
+x=ones([1,1], 'uint8'); y = 1.2345;
+>> z=x/y;
+>> disp(z)
+    1
+>> class(z)
+ans =
+uint8
+```
+
+One solution: convert everything to `double` as soon as you load it.
+
+Always check that intermediate results are still `double` (using `validateattributes`).
+
+---------

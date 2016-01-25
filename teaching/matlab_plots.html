@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link type="text/css" rel="stylesheet" href="http://www.lhendricks.org/css/avenir-white.css"/>
+	<meta name="author" content="Lutz Hendricks"/>
+	<meta name="affiliation" content="http://www.unc.edu"/>
+<a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org"><span
+style="font-weight: bold;">Lutz Hendricks - UNC - Department of
+Economics</span></a><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript"  
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+
+<h1 id="plottinginmatlab">Plotting in Matlab</h1>
+
+<p>Matlab contains a large number of functions that plot data in 2D and 3D.</p>
+
+<p>The most important is <code>plot</code>.</p>
+
+<h3 id="example:plottingawhitenoiseprocess">Example: Plotting a white noise process</h3>
+
+<pre><code class="matlab">% Seed the random number generator. For reproducability
+rng(21);
+% Draw iid normal random variables
+xV = randn([100,1]);
+
+% Line plot
+%   'b-' specifies a blue solid line
+%   fh is a file handle. It can be used to set plot options
+fh = plot(xV, 'b-');
+
+% Formatting
+xlabel('Time')
+ylabel('White noise')
+</code></pre>
+
+<p>The result: a poorly formatted figure (saved here by hand as <code>png</code>):</p>
+
+<figure>
+<img src="figures/white_noise.png" alt="figWhiteNoise" id="figwhitenoise" title="White noise" style="height:400px;" />
+<figcaption>figWhiteNoise</figcaption>
+</figure>
+
+<h1 id="savingplots">Saving Plots</h1>
+
+<p>Now for the bad news: Generating reasonably formatted plots in Matlab is surprisingly hard.</p>
+
+<p>The only reasonable way of doing so uses <a href="http://www.mathworks.com/matlabcentral/fileexchange/23629-export-fig">Export_fig</a>.</p>
+
+<p>Even then it is complicated&#8230;</p>
+
+<hr />
+
+</body>
+</html>

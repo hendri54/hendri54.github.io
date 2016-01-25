@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link type="text/css" rel="stylesheet" href="http://www.lhendricks.org/css/avenir-white.css"/>
+	<meta name="author" content="Lutz Hendricks"/>
+	<meta name="affiliation" content="http://www.unc.edu"/>
+<a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org"><span
+style="font-weight: bold;">Lutz Hendricks - UNC - Department of
+Economics</span></a><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript"  
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+
+<h1 id="matlab:functionsandscripts">Matlab: Functions and Scripts</h1>
+
+<p><strong>Scripts</strong> are simply collections of commands that are run as if they were typed at the command prompt.</p>
+
+<ul>
+<li>They are rarely used b/c their contents is not <em>encapsulated</em>.</li>
+</ul>
+
+<p><strong>Functions</strong> are similar to scripts with one crucial difference:</p>
+
+<ul>
+<li>All variables inside a function are <strong>private</strong>.</li>
+<li>Other functions cannot see the variables inside a function (<em>encapsulation</em>).</li>
+<li>Any variable a function should know must be passed to it as an input argument.</li>
+<li>Any variable to be retained after the function finishes must be passd out of it as a return argument.</li>
+</ul>
+
+<blockquote>
+<p>Always use functions, never scripts!</p>
+</blockquote>
+
+<p>An important principle of structured programming: </p>
+
+<blockquote>
+<p><strong>Package a well-defined task into a function with a simple interface.</strong></p>
+</blockquote>
+
+<p>Even built-in Matlab commands are often written in Matlab.</p>
+
+<p>Try <code>open sub2ind</code>. You get to see (and you can modify) the source code for the built-in <code>sub2ind</code> command (<code>sub2ind.m</code>).</p>
+
+<p>Now try <code>open zeros</code>. This opens <code>zeros.m</code>. </p>
+
+<ul>
+<li><p>you get an m-file that is blank except for comments</p></li>
+<li><p>this means: <code>zeros</code> is not written in Matlab (it&#8217;s truly built-in)</p></li>
+</ul>
+
+<h2 id="mpath">The Matlab Path</h2>
+
+<p>Matlab commands are stored in text files with the extension &#8216;&#8216;m&#8217;&#8217;. </p>
+
+<p>When the user issues a command, such as <code>m = zeros([3,4]))</code>, Matlab searches
+for a matching m-file, in this case <code>zeros.m</code> and runs it. </p>
+
+<p>It does not matter whether <code>zeros</code> is a built-in command or an m-file written by a user.</p>
+
+<p>Where Matlab looks is defined by the <code>matlab path</code>.</p>
+
+<p>This is a list of directories that Matlab goes through when it looks for functions.
+In case you wonder, this is done as a <code>cell array</code> of strings.</p>
+
+<p>You can see what&#8217;s on the path by typing <code>path</code>.</p>
+
+<p>You add directories to the path with <code>addpath</code>.</p>
+
+<p>In addition, Matlab searches the current directory (the one shown in the file browser).</p>
+
+<p>Therefore, every time you write new code, you need to put the directories on the <code>path</code> before the code can be called.</p>
+
+<p>There is no way to allow one function to access some code without changing the <code>path</code> globally. This differs from other languages. It makes it hard to organize code.</p>
+
+<p>Every project therefore needs a startup routine that adds its directory to the Matlab path.
+Or its program files need to be placed in the current working directory.</p>
+
+<h2 id="organizingcode">Organizing Code</h2>
+
+<p>When you write new commands, you need to make sure Matlab can find them.
+This is best accomplished in two ways:</p>
+
+<ol>
+<li><p>For files that belong to the one particular project, place them in a project directory.
+Then switch the current directory to that directory using <code>cd</code>.</p>
+
+<p>Or put the directory on the <code>path</code> </p></li>
+<li><p>For files that are <strong>shared</strong> between several projects, place them in a special directory (<code>blah/shared</code>).
+Place this directory on the path: <code>addpath('blah/shared')</code> .</p></li>
+</ol>
+
+<p>Over time you will write many general purpose routines that should be stored in this <code>shared</code> directory.</p>
+
+<h4 id="nameconflicts">Name Conflicts</h4>
+
+<p>Now you run into a problem: <strong>name conflicts</strong>.</p>
+
+<p>Each time you write a new function, you need to make sure that there is no other function with the same name.</p>
+
+<p>There are 2 ways of ensuring this:</p>
+
+<ol>
+<li><p>Suffixes: For each project, invent a suffix and append it to every function name.</p>
+
+<p>Such as <code>plot_821.m</code></p></li>
+<li><p>Packages: If you place an m-file into a directory that starts with <code>+</code>, let&#8217;s say <code>+plot_821</code>, you can access it like this: <code>plot_821.plot(x)</code>.</p>
+
+<p>For this to work, the parent dir of <code>+plot_821</code> must be on the <code>path</code>. </p></li>
+</ol>
+
+<h2 id="exampleofafunction">Example of a Function</h2>
+
+<p>Imagine we want to compute the sum of 3 variables.</p>
+
+<p>Type the following code in a text editor: </p>
+
+<pre><code class="matlab">function xSum = sum3(x1, x2, x3);
+% This function sums 3 variables
+sum1 = x1 + x2;
+xSum = sum1 + x3;
+end
+</code></pre>
+
+<p>Save it as <code>sum3.m</code> in a directory Matlab knows to find.</p>
+
+<p>Row 1 defines the name of the function, its input arguments and its output arguments.</p>
+
+<p>Row 2 is a comment starting with %. Matlab ignores it.</p>
+
+<p>Rows 3 and 4 contain the commands to be executed.</p>
+
+<p>To run <code>sum3.m</code>:
+At the command prompt type </p>
+
+<pre><code>sum3(1, 2, 3)
+ans =
+6
+</code></pre>
+
+<p>To illustrate that the variables inside sum3.m are private, try typing sum1 at the command prompt. The result: </p>
+
+<pre><code>??? Undefined function or variable 'sum1'.
+</code></pre>
+
+<p>Matlab complains that variable sum1 does not exist.</p>
+
+<p>sum1 was visible inside of sum3.m, but not outside of it.</p>
+
+<h2 id="moreonprivatevariables">More on Private Variables</h2>
+
+<p>Variables inside of sum3.m are also not visible in functions called from within sum3.m</p>
+
+<p><strong>Example</strong></p>
+
+<p>Modify sum3.m to read: </p>
+
+<pre><code>function xSum = sum3(x1, x2, x3);
+    sum1 = x1 + x2;
+    sum3sub;
+    xSum = sum1 + x3;
+end
+</code></pre>
+
+<p>Then create the function: </p>
+
+<pre><code>function sum3sub
+    disp(sum1)
+end
+</code></pre>
+
+<p>Running sum3.m results in an error: sum1 is not found.</p>
+
+<h2 id="globalvariables">Global Variables</h2>
+
+<p>To make a variable visible from anywhere, define it as a global (in sum3.m and sum3sub.m): </p>
+
+<pre><code>global sum1;
+</code></pre>
+
+<p>Now running sum3.m does not yield an error message.</p>
+
+<blockquote>
+<p>Remark: Avoid globals where possible. </p>
+
+<p>A function should be a self-contained unit with a clear interface to the outside world (via its input and output arguments). </p>
+
+<p>Globals create confusion.</p>
+</blockquote>
+
+<h2 id="passingbyvalue">Passing by Value</h2>
+
+<p>In Matlab, all function arguments are passed <strong>by value</strong>.</p>
+
+<p>That means, Matlab creates a copy of the variable and passes it to the function.</p>
+
+<p>However, Matlab is smart enough not to create a copy when the function does not change the variable (&#8220;copy on change&#8221;).</p>
+
+<p>Still, this can be very inefficient. If you pass a gigantic array to a function and change one element inside the function, the entire array needs to be copied. </p>
+
+<p>There is no way of passing by reference.</p>
+
+<h1 id="examples">Examples</h1>
+
+<h2 id="example:cobb-douglasproductionfunction">Example: Cobb-Douglas production function</h2>
+
+<p>This is a general purpose <a href="https://github.com/hendri54/shared/blob/master/%2BeconLH/cobb_douglas.m">Cobb-Douglas function</a></p>
+
+<p>Notable features:</p>
+
+<ul>
+<li><p>block comment describing inputs and outputs</p>
+
+<p>this is all the rest of the world needs to know about the function</p></li>
+<li><p>a unique name</p></li>
+<li><p>self-test code governed by debugging switch <code>dbg</code></p></li>
+</ul>
+
+<h2 id="example:findingthezeroofafunction">Example: Finding the Zero of a Function</h2>
+
+<p>Task: Find the solution to the equation <span class="math">\(f(x)=\ln(x)-5=0 \)</span>.</p>
+
+<p>Set up a function that returns the deviation f(x)</p>
+
+<pre><code>function dev = dev1_821(x);
+dev = log(x) - 5;
+end
+</code></pre>
+
+<p>Use the built-in function <a href="http://www.mathworks.com/help/matlab/ref/fzero.html"><code>fzero</code></a> to search for the solution: </p>
+
+<pre><code>fzero('dev1_821', [0.1 100])
+ans =
+7.3891
+</code></pre>
+
+<h1 id="example:twoperiodhousehold">Example: Two period household</h1>
+
+<p>Household solves <span class="math">\(\max u\left(c,g\right)\)</span></p>
+
+<p>subject to <span class="math">\(y=c+s \)</span> and <span class="math">\(g=z+sR\)</span></p>
+
+<p>A solution: <span class="math">\(c,g,s\)</span></p>
+
+<p>that solve 2 budget constraints and Euler equation</p>
+
+<p><span class="math">\(u_{c}=u_{g} R \)</span></p>
+
+<p>Assume <span class="math">\(u\left(c,g\right)=\frac{c^{1-\sigma}}{1-\sigma}+\beta\frac{g^{1-\sigma}}{1-\sigma} \)</span></p>
+
+<h3 id="pseudocode">Pseudo code</h3>
+
+<p>This is not a trivial program to write. So we break it down into trivial steps.</p>
+
+<p>See <a href="programming.html">Tips on programming</a></p>
+
+<p>We design top-down.</p>
+
+<h4 id="level1:">Level 1:</h4>
+
+<p>Task: Find optimal <span class="math">\(c\)</span>.</p>
+
+<ol>
+<li>Set parameters. Set up a grid of values for c</li>
+<li>For each c: Calculate deviation from Euler equation.</li>
+<li>Find the c with the smallest deviation.</li>
+</ol>
+
+<blockquote>
+<p>Note: Usually one would not restrict <span class="math">\(c\)</span> to lie on a grid.</p>
+</blockquote>
+
+<h4 id="level2:">Level 2:</h4>
+
+<p>Task: Calculate deviation from Euler equation.</p>
+
+<p>Given: guess for <span class="math">\(c\)</span>, parameter values</p>
+
+<ol>
+<li>Use budget constraints to calculate <span class="math">\(s,g\)</span></li>
+<li>Return deviation: <span class="math">\( dev=u_{c}-u_{g}R \)</span></li>
+</ol>
+
+<h4 id="level3:">Level 3:</h4>
+
+<p>Utility function.</p>
+
+<ul>
+<li>Return <span class="math">\(u_{c} \)</span> and <span class="math">\(u_{g} \)</span></li>
+<li>for given <span class="math">\(c,g\)</span> and parameters.</li>
+</ul>
+
+<h3 id="code">Code</h3>
+
+<p>We write the code bottom up.</p>
+
+<p>Utility function:
+Allow matrix inputs (cM, gM).
+Parameters as arguments. </p>
+
+<pre><code class="matlab">function [ucM, ugM] = ces_util_x1(cM, gM, bb, sig);
+% CES marginal utility when young, old
+    uM = (cM .^ (1-sig) + bb .* gM .^ (1-sig)) ./ (1-sig);
+    ucM = (1-sig) .* uM ./ cM;
+    ugM = (1-sig) .* uM ./ gM;
+end
+</code></pre>
+
+<p>Deviation function:</p>
+
+<pre><code class="matlab">function dev = ee_dev_x1(c, y, z, R, bb, sig);
+% EE deviation
+% Get s, g from budget constraints
+    s = y - c;
+    g = z + R .* s;
+    if g &lt;= 0
+        % c not feasible
+        dev = 1e8;
+    else
+        [uc, ug] = ces_util_x1(c, g, bb, sig);
+        dev = uc - ug .* R;
+    end
+end
+</code></pre>
+
+<p>Main routine:</p>
+
+<pre><code class="matlab">function hh_x1(y, z, R, bb, sig)
+% Solve 2 period hh problem
+    % Set up range of c values
+    ng = 50;
+    cGridV = linspace(0, y, ng);
+    % Calculate deviation for each grid point
+    devV = zeros(1,ng);
+    for ig = 1 : ng
+        devV(ig) = ee_dev_x1(cGridV(ig),y,z,R,bb,sig);
+    end
+    % Pick the smallest deviation
+    [devMin, idxMin] = min(abs(devV));
+    disp(sprintf('c = %f   Dev = %f', cGridV(idxMin), devMin));
+end
+</code></pre>
+
+<hr />
+
+</body>
+</html>

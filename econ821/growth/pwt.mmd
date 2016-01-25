@@ -1,0 +1,140 @@
+{{../econ821_header.txt}}
+
+
+# The Penn World Tables
+
+The PWT's main purpose is to construct panel data for GDP and its components in **constant international prices**.
+
+## Background
+
+National Accounts report GDP and its components in local currency units (LCU).
+
+We could use exchange rates to make these figures into dollars.
+
+The data would then imply that people in low income countries are shockingly poor, not just very poor.
+
+This would be misleading because **prices are systematically lower** in low income countries.
+
+To compare living standards across countries (and over time), it is necessary to deflate GDP with the local price of a **consistent bundle** of goods.
+
+### How Is This Done? ###
+
+The ICP collects data on local prices every several years (**benchmark years**).
+
+Between benchmark years, prices are interpolated.  
+
+Even though there is no theoretically "best" price index, there is a substantial theory of how to construct price indices. 
+
+The PWT does this and reports **GDP in international prices**.
+
+This comes in 2 flavors:
+
+* *RGDPE*: to compare living standards (think: deflated by the consumer price index)
+* *RGDPO*: to compare productive capacity (think: deflated by a producer price index)
+
+
+## Obtaining the data
+
+The data can be downloaded [here](http://www.rug.nl/research/ggdc/data/penn-world-table).
+
+I recommend downloading the **Stata file** and converting into a [matlab dataset](http://www.mathworks.com/help/stats/dataset.html) using [Stat/Transfer](https://www.stattransfer.com/).
+
+Format of the Stata file:
+
+* each row is a country / year combination
+
+* countries are identified by their [ISO codes](http://userpage.chemie.fu-berlin.de/diverse/doc/ISO_3166.html). These are 3 letter abbreviations.
+
+* each column is a variable (except for the first 4 columns which are country / year info)
+
+Since Mathworks plans to phase out datasets, it would make sense to then convert the whole thing into a Matlab `table` using [dataset2table](http://www.mathworks.com/help/stats/dataset2table.html).
+
+
+It would now make sense to make each variable into an array indexed by [country, year]. 
+
+* Fortunately, someone has already done this, so you can download the result from the PWT web site.
+
+* Unfortunately, that file contains errors (as of 2014-Dec). So you cannot use it!
+
+## Variables
+
+Since the definitions are hard to find, I copied them from the xls file.
+
+### Identifier Variables ###
+
+| --------| ----------	|	  
+| countrycode|3-letter ISO country code	|  
+| country|Country name	|  
+| currency_unit|Currency unit	|  
+| year|Year	|  
+	
+### Real GDP, Employment and Population Levels	 ###
+
+| ------	| ------	|  
+| rgdpe	| Expenditure-side real GDP at chained PPPs (in mil. 2005US$)	|  
+| rgdpo	| Output-side real GDP at chained PPPs (in mil. 2005US$)	|  
+| pop	| Population (in millions)	|  
+| emp	| Number of persons engaged (in millions)	|  
+| avh	| Average annual hours worked by persons engaged	|  
+| hc	| Index of human capital per person, based on years of schooling (Barro/Lee, 2012) and returns to education (Psacharopoulos, 1994)|  
+
+Output per worker in international prices = RGDPE / EMP.
+	
+### Current Price GDP, Capital and TFP	 ###
+
+|  ------	| ------	|  
+|  cgdpe	| Expenditure-side real GDP at current PPPs (in mil. 2005US$)	|  
+| cgdpo	| Output-side real GDP at current PPPs (in mil. 2005US$)	|  
+| ck	|Capital stock at current PPPs (in mil. 2005US$)	|  
+| ctfp	| TFP level at current PPPs (USA=1)	|  
+
+	
+### National Accounts-Based Variables	 ###
+
+| ------	| ------	|  
+| rgdpna	| Real GDP at constant 2005 national prices (in mil. 2005US$)	|  
+| rkna	| Capital stock at constant 2005 national prices (in mil. 2005US$)	|  
+| rtfpna	| TFP at constant national prices (2005=1)	|  
+| labsh	| Share of labour compensation in GDP at current national prices	|  
+
+### Exchange Rates and GDP Price Levels	 ###
+
+| ------ | ------- |
+| xr	|Exchange rate, national currency/USD (market+estimated)|   
+| pl_gdpe	| Price level of CGDPe (PPP/XR), price level of USA GDPo in 2005=1|  
+| pl_gdpo	| Price level of CGDPo (PPP/XR),  price level of USA GDPo in 2005=1|  
+
+	
+### Data Information Variables ###
+
+| ----- | ------- |
+| i_cig| 0/1/2: relative price data for consumption, investment and government is extrapolated (0), benchmark (1) or interpolated (2) |  
+| i_xm| 0/1/2: relative price data for exports and imports is extrapolated (0), benchmark (1) or interpolated (2) |
+| i_xr| 0/1: the exchange rate is market-based (0) or estimated (1) |  
+| i_outlier| 0/1: the observation on pl_gdpe or pl_gdpo is not an outlier (0) or an outlier (1) |  
+| cor_exp | Correlation between expenditure shares of the country and the US (benchmark observations only |  
+| statcap | Statistical capacity indicator (source: World Bank, developing countries only) |  
+	
+	
+### Shares in CGDPo	 ###
+
+| -------	| -------	|  
+| csh_c	|Share of household consumption at current PPPs	|  
+| csh_i	|Share of gross capital formation at current PPPs	|  
+| csh_g	| Share of government consumption at current PPPs	|  
+| csh_x	|Share of merchandise exports at current PPPs	|  
+| csh_m	| Share of merchandise imports at current PPPs	|  
+| csh_r	| Share of residual trade and GDP statistical discrepancy at current PPPs	|  
+	
+### Price Levels, Expenditure Categories and Capital	 ###
+
+| ------	| ------|
+| pl_c	| Price level of household consumption,  price level of USA GDPo in 2005=1	|  
+| pl_i	| Price level of capital formation,  price level of USA GDPo in 2005=1|  
+| pl_g	| Price level of government consumption,  price level of USA GDPo in 2005=1	|  
+| pl_x	| Price level of exports, price level of USA GDPo in 2005=1|  
+| pl_m	| Price level of imports, price level of USA GDPo in 2005=1	|  
+| pl_k	| Price level of the capital stock, price level of USA in 2005=1	|  
+
+
+----------------------

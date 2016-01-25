@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link type="text/css" rel="stylesheet" href="http://www.lhendricks.org/css/avenir-white.css"/>
+	<meta name="author" content="Lutz Hendricks"/>
+	<meta name="affiliation" content="http://www.unc.edu"/>
+<a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org"><span
+style="font-weight: bold;">Lutz Hendricks - UNC - Department of
+Economics</span></a><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript"  
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+
+<h1 id="programming:notesonwritingcode">Programming: Notes on Writing Code</h1>
+
+<hr />
+
+<h1 id="generalconcepts">General Concepts</h1>
+
+<h2 id="structuredprogramming">Structured Programming</h2>
+
+<p>Break down a process into chunks.</p>
+
+<p>Package each chunk into a separate function.</p>
+
+<p>A key idea: aside from an explicitly specified set of inputs and outputs, the function is independent of the rest of the world (<em>encapsulation</em>).</p>
+
+<p>Write your code <a href="http://www.eecs.wsu.edu/~cs150/tdd.htm"><em>top down by stepwise refinement</em></a></p>
+
+<ul>
+<li>Start with an outline of the steps.</li>
+<li>For each step:
+
+<ul>
+<li>if it&#8217;s trivial: write it out in <em>pseudo code</em>.</li>
+<li>it it&#8217;s not: write another outline for that step</li>
+</ul></li>
+<li>Finally, translate the pseudo code into code.</li>
+</ul>
+
+<p>Each function should be <em>short</em> and perform exactly <em>one task</em>.</p>
+
+<h2 id="writereusablecode">Write reusable code</h2>
+
+<ul>
+<li>Write each function to be sufficiently general, so it can be reused in other projects.</li>
+<li>Over time, you will accumulate a library of code that can be used over and over.</li>
+<li>Example: Write code that produces marginal products, average costs, etc for a CES production function.</li>
+</ul>
+
+<h1 id="notesonwritingcode">Notes on Writing Code</h1>
+
+<p>Read a good book on best practices in programming.</p>
+
+<ol>
+<li>I see a lot of very poorly written code that is impossible to understand and not robust. Do yourself a favor and save a lot of time down the road by learning to how write quality code.</li>
+<li>A book I like is &#8220;Writing Solid Code.&#8221;</li>
+</ol>
+
+<h2 id="somerules:">Some rules:</h2>
+
+<ol>
+<li>No literals as in &#8220;x=zeros([5,3])&#8221; or for &#8220;i1 = 1 : 57&#8221;. It&#8217;s not robust and hard to read.</li>
+<li>No global variables.</li>
+<li>Don&#8217;t worry about speed. Worry about robustness and transparency.</li>
+<li>Unique names: I suffix all functions I write with a project code (e.g. var_load_sc.m, var_save_sc.m, etc). It avoids naming conflicts with other projects.</li>
+<li>Your code should contain lots of self-testing code. Most code is so fast that the loss of speed is irrelevant. If it is relevant, have a  switch that globally switches test code on and off.</li>
+<li>Avoid using reserved words, in particular &#8220;i&#8221; as an index.</li>
+</ol>
+
+<h2 id="stylematters">Style matters</h2>
+
+<p>This point is hard to overstate. It is extremely important to write code that is easy to understand and easy to maintain. </p>
+
+<p>In practice, you often revisit programs months or years after they were written. They need to be well documented and well structured.</p>
+
+<p>The programs needed to solve a stochastic OLG model have thousands of lines of code.
+The only way to understand something this complex is to break it into logical, self-contained pieces (a function that solves the household problem, another that solves the firm problem, etc.).</p>
+
+<p>One example of how important this is: </p>
+
+<p>Air traffic control centers still operate with hardware from the 1970s. The reason is that nobody understands the software well enough to port it to new hardware. </p>
+
+<p>The FAA has already spent billions of dollars on unsuccessful attempts to rewrite this mess.</p>
+
+<p>Another example is the Space Shuttle, which runs (now &#8220;ran&#8221;) on hardware from the 1960s. The reason is again that the software engineers can no longer understand the existing code.</p>
+
+<p>There are many books on good programming style. One that I like is <em>Writing Solid Code</em> by Steve Maguire. Read it!</p>
+
+<h2 id="avoidliterals">Avoid literals</h2>
+
+<p>Your code should rarely use specific values for any object. When you refer to an object, do so by its name. </p>
+
+<p>For example, create variables to hold directory names and constants. The reason is that code is otherwise hard to change and maintain. </p>
+
+<p>Imagine you set some parameter <code>sigma=2</code>, but refer to it as <code>2</code> in your code instead of <code>sigma</code>. If you decide to try <code>sigma = 3</code>, you need to locate and change every occurrence of <code>sigma</code> in your code. It&#8217;s a mess. </p>
+
+<p>The Golden Rule is: Every literal must have a name. Its value is defined in one place only.</p>
+
+<p>Related to this: do not hard-code <em>functional forms</em>. </p>
+
+<p>If you want to compute the marginal product of capital, write a function for it. Otherwise, if you want to switch from Cobb-Douglas to CES, you have to rewrite all your programs.</p>
+
+<h2 id="self-testcode">Self-Test Code</h2>
+
+<p>Your code should test itself automatically and periodically.</p>
+
+<p>Embed error catching code everywhere (<code>validateattributes</code>).</p>
+
+<p>Catching bugs early makes them easier to find.</p>
+
+<p>A trick to prevent your code from getting slowed down by self-testing:</p>
+
+<ul>
+<li><p>add a debugging switch as an input argument to each function (I call it <code>dbg</code>).</p></li>
+<li><p>if <code>dbg</code> is 0: go for speed and turn off self-testing</p></li>
+<li><p>if <code>dbg &gt; 10</code>, run all self-test code</p></li>
+</ul>
+
+<p>The process is then:</p>
+
+<ol>
+<li><p>Write code. Make sure it runs (correct syntax).</p></li>
+<li><p>Make sure it is correct (run all self-test code &#8211; slow)</p></li>
+<li><p>When you are confident that your code is good, set <code>dbg = 0</code> and go for speed</p></li>
+<li><p>But every now and then, randomly switch <code>dbg</code> on so that self tests are run (little cost in terms of run time; a lot of gain in terms of confidence in your code).</p></li>
+</ol>
+
+<h2 id="optimization">Optimization</h2>
+
+<p>Optimization refers to program modifications that speed up execution.</p>
+
+<blockquote>
+<p>Think before you optimize!</p>
+</blockquote>
+
+<p>Most code runs so fast that optimization is simply a waste of time. </p>
+
+<p>Also: Beware of your intuition about where the program spends most of its time.</p>
+
+<p>Here is an example: Consider the function that solves a stochastic OLG model. </p>
+
+<p>It turns out that it spends 80% of its time running the Matlab interpolation function <code>interp1</code>! </p>
+
+<p>There is little point optimizing the rest of the code.</p>
+
+<p>To find out what makes your program slow, run the Matlab <strong>Profiler</strong> (help profile).</p>
+
+<p>Some of Matlab&#8217;s built-in functions are extremely slow. </p>
+
+<p>Two examples are <code>interp1</code> and <code>sub2ind</code>. </p>
+
+<p>It is easy to write replacements that run ten times faster.</p>
+
+<h2 id="commonmistakes">Common mistakes</h2>
+
+<h3 id="passingargumentsinthewrongorder.">Passing arguments in the wrong order.</h3>
+
+<p>Matlab does not check the types of arguments. </p>
+
+<p>Often functions have lots of input arguments. </p>
+
+<p>It is easy to confuse the order and write <code>myfun(b,a)</code> instead of <code>myfun(a,b)</code>. </p>
+
+<p>To avoid this: check that inputs have admissible values.</p>
+
+<h3 id="passingtoofewarguments.">Passing too few arguments.</h3>
+
+<p>Matlab permits to omit input or output arguments when calling a function. </p>
+
+<p>It is useful to check that the number of input arguments is as expected
+using `nargin}.</p>
+
+<h3 id="reusingvariablenames.">Reusing variable names.</h3>
+
+<p>Matlab does not permit explicit declaration of variables. It is therefore
+easy to use a variable name twice without noticing.</p>
+
+<h3 id="indexingproblems.">Indexing problems.</h3>
+
+<p>It is easy to make mistakes when extracting elements from matrices. This is
+especially true for code that wraps a loop into a single line of code. </p>
+
+<p>For example, this is easy to read:</p>
+
+<pre><code>for ix = 1 : nx
+  zV(ix) = xV(ix+2) + yV(nx + 2 - ix);
+end
+</code></pre>
+
+<p>This is the same thing, more compact but harder to read:</p>
+
+<pre><code>zV = xV(3 : nx+2) + yV(nx+1 : -1 : 2);
+</code></pre>
+
+<blockquote>
+<p>Tip: Write out code explicitly. Once it works, one can still make it faster
+(if that is even worthwhile).</p>
+</blockquote>
+
+<p>Another common indexing mistake is to use too few arguments. For example:</p>
+
+<pre><code>x = rand([3,4]); y = x(3);
+</code></pre>
+
+<p>This should produce a syntax error, but it does not. Instead, it flattens x
+into a vector and then takes the 3rd element.</p>
+
+<h1 id="materialforeconomists">Material for Economists</h1>
+
+<p><a href="http://quant-econ.net/index.html">Quantitative Economics</a> by Sargent and Stachursky</p>
+
+<ul>
+<li>a really nice collection of lectures and exercises that covers both programming and the economics of the material (in Julia and Python)</li>
+</ul>
+
+<p><a href="http://aida.wss.yale.edu/smith/econ561a/compute6.pdf">Tony Smith: Tips for quantitative work in economics</a></p>
+
+<h2 id="matlabmaterial">Matlab Material</h2>
+
+<ol>
+<li><a href="http://www.mathworks.com/matlabcentral/linkexchange/links/1100-matlab-programming-style-guidelines">Mathworks style guidelines</a></li>
+<li><a href="http://www.datatool.com/downloads/matlab_style_guidelines.pdf">Datatool style guidelines</a></li>
+<li>Johnson: Elements of Matlab Style (Book)</li>
+<li><a href="http://www.mathworks.com/matlabcentral/fileexchange/2371">Good Matlab Practices</a></li>
+<li><a href="http://www.plosbiology.org/article/info%3Adoi%2F10.1371%2Fjournal.pbio.1001745#s2">Best practices for scientific computing</a></li>
+</ol>
+
+<h1 id="materialnotforeconomists">Material Not for Economists</h1>
+
+<ol>
+<li><a href="http://lifehacker.com/top-10-ways-to-teach-yourself-to-code-1684250889">Lifehacker: teach yourself how to code</a></li>
+</ol>
+
+</body>
+</html>

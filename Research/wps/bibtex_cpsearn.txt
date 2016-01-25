@@ -1,0 +1,5 @@
+@unpublished{LH_cps,
+    Author = {Lutz Hendricks},
+    Note = {Mimeo. University of North Carolina.},
+    Title = {Constructing Age-earnings Profiles From CPS Data},
+    Year = {2015}}

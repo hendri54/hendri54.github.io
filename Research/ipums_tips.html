@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html><head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <meta content="text/html;charset=ISO-8859-1" http-equiv="Content-Type">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <meta name="GENERATOR" content="Microsoft FrontPage 12.0"><title>Ipums tips</title>
+  
+
+  
+  
+  <link rel="stylesheet" type="text/css" href="../Styles1.css">
+
+  
+  <style>
+<!--
+.ms-grid8-main { border-left-style: none; border-right: .75pt solid navy; 
+               border-top: .75pt solid navy; border-bottom: .75pt solid navy; 
+               background-color: white }
+.ms-grid8-tl { font-weight: bold; color: white; border-left: .75pt solid navy; 
+               border-right-style: none; border-top-style: none; 
+               border-bottom: .75pt solid navy; background-color: navy }
+.ms-grid8-left { font-weight: normal; color: black; border-left: .75pt solid navy; 
+               border-right-style: none; border-top-style: none; 
+               border-bottom: .75pt solid navy; background-color: white }
+.ms-grid8-top { font-weight: bold; color: white; border-left: .75pt solid navy; 
+               border-right-style: none; border-top-style: none; 
+               border-bottom: .75pt solid navy; background-color: navy }
+.ms-grid8-even { font-weight: normal; color: black; border-left: .75pt solid navy; 
+               border-right-style: none; border-top-style: none; 
+               border-bottom: .75pt solid navy; background-color: white }
+.style1 {
+	margin-left: 40px;
+}
+.style3 {
+	border: 1px solid #C0C0C0;
+}
+-->
+  </style><!--mstheme-->
+  
+  <link href="../_themes/ice/ice1011.css" rel="stylesheet" type="text/css">
+
+  
+  <meta content="ice 1011, default" name="Microsoft Theme">
+
+  
+  <meta content="t, default" name="Microsoft Border"></head><body stylesrc="../index.htm">
+<br>
+<table style="text-align: left; width: 800px; background-color: rgb(204, 204, 204); color: white;" border="0" cellpadding="2" cellspacing="2">
+
+
+  <tbody>
+    <tr>
+      <td style="vertical-align: top;"><small style="font-weight: bold;"><a style="color: white;" href="../index.htm">Lutz Hendricks</a>. UNC. Department of Economics</small></td>
+    </tr>
+  </tbody>
+      
+</table>
+
+<table style="width: 800px;" dir="ltr" border="0" cellpadding="0" cellspacing="0">
+
+  <tbody>
+    <tr>
+<!--msnavigation--><td valign="top">
+      <h1>Tips for Using IPUMS (USA or International) Files</h1>
+This describes my method for working with IPUMS data. Other methods may work just as well.<br>
+      <h2>Importi<span class="ms-homepagetitle"></span>ng Data</h2>
+      
+      <ol>
+        <li>Make a list of the variables you need. Always include household and person number, so that each person is uniquely identified.</li>
+        <li>I usually leave filtering observations for later. This way, the data can be reused for other projects.<br>
+        </li>
+
+        <li>Create an extract (see IPUMS website). Download it. The
+extract comes as an undelimited text file with SAS and SPSS programs to
+load it.</li>
+        <li>Modify the SPSS (or SAS) program so it can load the file
+(change the path to the "dat" file in the first line). Run the program
+to load the file into SPSS. <br>
+        </li>
+        <li>Write a program that breaks the file into variables. For
+each variable you need a SAVE TRANSLATE statement. Now you have a set
+of files such age "age.txt" One for each variable. Each row is a person.</li>
+      </ol>
+      
+      <h2>
+Filter and Import into Matlab</h2>
+      <ol>
+        <li>In Matlab: Loop over the variables and import each into a "mat" file. This is simply a load/save operation.</li>
+        <li>Start with variables used for preliminary filtering. Create
+a variable that is 1 for persons passing the filter and 0 otherwise. <br>
+        </li>
+        <li>Then loop over all variables and import those passing the filter. Save them as numbered variables. <br>
+        </li>
+        <li>Write a recode function for each variable. At least you want consistent missing value and topcoding codes.</li>
+      </ol>
+      <h2>Constructing summary variables</h2>
+      <ol>
+        <li>I find it helpful to construct a multi-dimensional matrix
+that contains everything I need later in finely disaggregated cells.
+For example: If I want to compute schooling by country I might create a
+matrix (one for each country/year sample) indexed by [school level,
+age, sex, industry] that contains the number of observations, the total
+mass (weight) in each cell, perhaps other characteristics that I might
+use such as mean log wages.</li>
+        <li>Once I have that matrix, I never need to touch individual
+level data. For example, if I want to compute [fraction of persons with
+a college degree outside of agriculture between the ages of 18 and 65],
+all I need to do is average over the cells with the right [age, sex,
+industry] values. It's fast and easy. Plus it ensures that all summary
+stats are computed from the same universe of individuals.<br>
+        </li>
+      </ol>
+
+Tip: Read a book on good programming practices before you start. I like "Writing Solid Code."<br>
+      <br>
+
+
+
+      </td>
+    </tr>
+<!--msnavigation-->
+  </tbody>
+</table>
+
+</body></html>
