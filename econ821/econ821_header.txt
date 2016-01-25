@@ -1,4 +1,4 @@
-CSS:	http://www.lhendricks.org/css/avenir-white.css
+CSS:	http://hendri54.github.io/css/avenir-white.css
 Author:	Lutz Hendricks
 HTML header: <a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org/econ821/econ821.html"><span
 style="font-weight: bold;">Econ821</span></a>  --  <a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org"><span
