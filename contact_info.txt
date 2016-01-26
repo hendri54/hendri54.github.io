@@ -10,9 +10,8 @@
       <br>Chapel Hill, NC 27599-3305&nbsp;
 </td>
 <td>
-	lutz at lhendricks.org
-	<br>Office: (919) 966-5328
-	<br>Cell: (919) 886-6885&nbsp;
+	hendricks.lutz <> gmail.com
+	<br>Office: (919) 966-5328&nbsp;
 </td>
 <td>
 <img alt="" style="border: 0px solid ; width: 103px; height: 134px;" src="images/LH_Web.jpg">
