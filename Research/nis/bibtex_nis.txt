@@ -1,0 +1,7 @@
+@unpublished{LHnis,
+	Author = {Lutz Hendricks and Todd Schoellman},
+	Date-Added = {2016-02-05 13:16:03 +0000},
+	Date-Modified = {2016-02-05 13:20:28 +0000},
+	Note = {Mimeo. University of North Carolina.},
+	Title = {Human Capital and Development Accounting: New Evidence From Immigrant Earnings},
+	Year = {2016}}

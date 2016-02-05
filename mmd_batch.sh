@@ -23,10 +23,10 @@ mmd *.mmd
 cd growth
 mmd *.mmd
 
-cd /Users/lutz/Documents/data/FrontpageWebs/Content/LH_Home
+cd /Users/lutz/Documents/data/web/hendri54.github.io/
 
 mmd teaching/*.mmd
 
 mmd thoughts/*.mmd
 
-cd /Users/lutz/Documents/data/FrontpageWebs/Content/LH_Home
+cd /Users/lutz/Documents/data/web/hendri54.github.io/
