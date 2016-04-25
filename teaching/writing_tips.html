@@ -17,6 +17,10 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
 <h1 id="tipsforwritingapaper">Tips for Writing a Paper</h1>
 
+<p>For some exceptionally well written papers, take a look at the work of Richard Rogerson.</p>
+
+<h3 id="structureofthepresentation">Structure of the presentation</h3>
+
 <p>Separate the presentation of what you do from the discussion of why you do it. Brief comments mixed in with the model presentation are ok. Long discussions make it hard to follow what you actually do.</p>
 
 <p>Separate the presentation of the model from the derivation of its implications. It is very confusing to read a paper that mixes assumptions with results. First present the model. Define equilibrium. Then derive properties of the equilibrium.</p>
@@ -33,7 +37,30 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
 <p>Only once these have been stated is it acceptable to talk about equilibrium properties or agents&#8217; problems. Next, describe the agents&#8217; problems, and define an equilibrium.</p>
 
-<p>For some exceptionally well written papers, take a look at the work of Richard Rogerson.</p>
+<h3 id="theprocessofwriting">The process of writing</h3>
+
+<p><strong>Nice wording comes last</strong></p>
+
+<ul>
+<li>First decide on what you want to write. Just write that down. Focus on structure. Ignore wording and formatting.</li>
+<li>Only when everything is in place does it make sense to worry about construcing nice sentences.</li>
+</ul>
+
+<p>A little trick: When you are unsure about notation, define latex commands for the mathematical symbols.</p>
+
+<ul>
+<li>Example: <code>\newcommand{\capShare}{\alpha}</code>. Then <code>y = A k^\capShare</code>.</li>
+</ul>
+
+<p>Avoid literals in your text.</p>
+
+<ul>
+<li>Let your code write a latex preamble with statments like <code>\newcommand{\meanWage}{7.53}</code>.</li>
+<li>Then in the text: &#8220;the mean wage in the sample is $\meanWage&#8221;.</li>
+<li>That way, you don&#8217;t have to manually update the numbers in the text. It&#8217;s more robust.</li>
+</ul>
+
+<hr />
 
 </body>
 </html>

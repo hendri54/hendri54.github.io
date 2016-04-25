@@ -1,6 +1,10 @@
 {{../markdown_header.txt}}
 
-# Tips for Writing a Paper
+# Tips for Writing a Paper #
+
+For some exceptionally well written papers, take a look at the work of Richard Rogerson.
+
+### Structure of the presentation
 
 Separate the presentation of what you do from the discussion of why you do it. Brief comments mixed in with the model presentation are ok. Long discussions make it hard to follow what you actually do.
 
@@ -16,4 +20,21 @@ There is a standard structure for presenting a model:
 
 Only once these have been stated is it acceptable to talk about equilibrium properties or agents' problems. Next, describe the agents' problems, and define an equilibrium.
 
-For some exceptionally well written papers, take a look at the work of Richard Rogerson.
+### The process of writing
+
+**Nice wording comes last**
+
+* First decide on what you want to write. Just write that down. Focus on structure. Ignore wording and formatting.
+* Only when everything is in place does it make sense to worry about construcing nice sentences.
+
+A little trick: When you are unsure about notation, define latex commands for the mathematical symbols.
+
+* Example: `\newcommand{\capShare}{\alpha}`. Then `y = A k^\capShare`.
+
+Avoid literals in your text.
+
+* Let your code write a latex preamble with statments like `\newcommand{\meanWage}{7.53}`.
+* Then in the text: "the mean wage in the sample is \$\meanWage".
+* That way, you don't have to manually update the numbers in the text. It's more robust.
+
+--------
