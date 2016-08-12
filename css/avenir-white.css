@@ -100,8 +100,8 @@ pre > code {
 }
 
 th, td {
-    border-right: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
+	padding: 10px;
+   border-bottom: 1px solid #ddd;
 }
 
 #ws { background-color: #f8f8f8; }
