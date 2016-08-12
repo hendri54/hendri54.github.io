@@ -13,15 +13,15 @@ cd econ720
 mmd *.mmd
 cd ..
 
-cd econ520
+cd econ920
 mmd *.mmd
 cd ..
 
-cd econ821
-mmd *.mmd
+#cd econ821
+#mmd *.mmd
 
-cd growth
-mmd *.mmd
+#cd growth
+#mmd *.mmd
 
 cd /Users/lutz/Documents/data/web/hendri54.github.io/
 

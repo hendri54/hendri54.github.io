@@ -99,6 +99,10 @@ pre > code {
 	padding: 0;
 }
 
+th, td {
+    border-bottom: 1px solid #ddd;
+}
+
 #ws { background-color: #f8f8f8; }
 
 .send { color:#77bb77; }
