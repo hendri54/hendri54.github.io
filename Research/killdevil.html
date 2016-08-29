@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link type="text/css" rel="stylesheet" href="http://hendri54.github.io/css/avenir-white.css"/>
+	<meta name="author" content="Lutz Hendricks"/>
+	<meta name="affiliation" content="http://www.unc.edu"/>
+<a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org"><span
+style="font-weight: bold;">Lutz Hendricks - UNC - Department of
+Economics</span></a><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript"  
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+
+<h1 id="usingkilldevilatunc">Using Killdevil at UNC</h1>
+
+<p>It is easiest to replicate the local directory structure on <code>killdevil</code>. Then running files on the cluster just requires a change in the base directory that all other directories hang off.</p>
+
+<p>Write your code so that the data are placed in the right folder (different on unix cluster vs local machine).</p>
+
+<p>Write a matlab function that does the computations and can be called from the command line.</p>
+
+<p>Command syntax:
+bsub -n 8 -R &#8220;span[hosts=1]&#8221; matlab -nodisplay -nosplash -r &#8220;run_batch_so1(&#8216;fminsearch&#8217;,1,1,7)&#8221; -logfile set7.out
+-n 8 : requests 8 cores - the max matlab can handle</p>
+
+<p><code>run_batch_so1</code> is my command file in this example.</p>
+
+<p>Kure jobs crash regularly. It is important to make sure the optimization algorithm can hot-start (resume after a crash using a saved history).</p>
+
+<h2 id="matlabissues">Matlab Issues</h2>
+
+<p>Matlab is stuck in 2013 on all of UNC&#8217;s unix clusters (as of 2016-Aug). It is therefore basically no longer usable.</p>
+
+<p>Saving files:</p>
+
+<ul>
+<li>Matlab cannot save large / complex files. It crashes. Only save the minimum optimization history needed to hot-start.</li>
+<li>When using parallel algorithms, make sure different instances do not try to read / write the same file at the same time. A simple semaphore approach is easily implemented (each instance locks the file it wants to access by writing a file, e.g. &#8220;lock07_param.mat&#8221; indicates that instance 7 has locked the file param.mat).</li>
+</ul>
+
+<h2 id="uploadingfiles">Uploading Files</h2>
+
+<p>It is easiest to mount the <code>killdevil</code> home directory as a drive. Then use <code>rsync</code> to upload and download files.</p>
+
+<hr />
+
+</body>
+</html>
