@@ -1,4 +1,15 @@
 function class_schedule_720
+%{
+Change
+   avoid topics; they are unnecessary
+   simply have entries that can be
+      - headings
+      - SubTopics
+      - exams
+   each item should have a duration, possibly a fixed date
+   the other items are squeezed in between
+   should be possible to mark all dates up to a fixed date as taken (easier to handle ex post)
+%}
 
 year1 = 2016;
 
@@ -49,10 +60,16 @@ i1 = 0;
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Model](olg/OLG_SL.pdf)'});
+
 i1 = i1 + 1;
+if 0
+   answerStr = '[answers](olg/OLG_PSA.pdf)';
+else
+   answerStr = '[answers][inactive]';
+end
 topicV{i1} = markdownLH.SubTopic({'[Dynamics and steady state](olg/olg_analysis_sl.pdf)', ...
    '[solution for example][inactive]', ...
-   '[PS1](olg/OLG_PS.pdf) due Sep-7', '[answers][inactive]'});
+   '[PS1](olg/OLG_PS.pdf) due Sep-7', answerStr});
 
 % * Sep-2 (Fri): Recitation, OLG examples
 % i1 = i1 + 1;
@@ -62,9 +79,15 @@ topicV{i1} = markdownLH.SubTopic({'[Efficiency and Social Security](olg/OLG_SS_S
    '[RQ](olg/OLG_RQ.pdf) (review questions, not to be handed in)'});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Bequests](olg/OLG_Bequest_SL.pdf)'},  [],  'sameDate');
+
 i1 = i1 + 1;
+if 0
+   answerStr = '[answers](olg/OLG_Money_PSA.pdf)';
+else
+   answerStr = '[answers][inactive]';
+end
 topicV{i1} = markdownLH.SubTopic({'[Money in OLG models](olg/OLG_Money_SL.pdf)', ...
-   '[PS2](olg/OLG_Money_PS.pdf) due TBA', '[answers][inactive]'});
+   '[PS2](olg/OLG_Money_PS.pdf) due TBA', answerStr});
 
 iTopic = iTopic + 1;
 topicListV{iTopic} = markdownLH.Topic('Overlapping Generations [OLG Models]', topicV(1 : i1), classDateV);
