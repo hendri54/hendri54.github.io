@@ -105,32 +105,19 @@ topicV{i1} = markdownLH.SubTopic({'[The growth model](ih1/IH1_SL.pdf)'});
 % * Sep-16 (Fri): Recitation: PS 2
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Dynamic programming](ih1/ih1_dp_sl.pdf)'});
-
 i1 = i1 + 1;
-if 0
-   answerStr = '[answers](ih1/IH1_PSA.pdf)';
-else
-   answerStr = ' ';
-end
 topicV{i1} = markdownLH.SubTopic({'[Competitive equilibrium](ih1/ih1_equil_sl.pdf)', ...
-	'[RQ](ih1/IH1_RQ.pdf)', '[PS3](ih1/IH1_PS.pdf)',  answerStr});
+	'[RQ](ih1/IH1_RQ.pdf)', '[PS3](ih1/IH1_PS.pdf)', '[answers][inactive]'});
 % * Sep-23 (Fri): Recitation - dynamic programming and growth model examples
-
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Dynamic programming theorems](ih1/DP_SL.pdf)', ...
    '[Notes on Dynamic Programming](ih1/Dp_ln.pdf)'});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Example: Asset pricing](ih1/IH1_Asset_SL.pdf)', ...
    '[RQ](ih1/ih1_asset_rq.pdf)'},  [],  'sameDate');
-
 i1 = i1 + 1;
-if 0
-   answerStr = '[answers](ih1/CIA_PSA.pdf)';
-else
-   answerStr = ' ';
-end
 topicV{i1} = markdownLH.SubTopic({'[Cash in advance models](ih1/CIA_SL.pdf)', ...
-   '[RQ](ih1/CIA_RQ.pdf)',    '[PS4](ih1/CIA_PS.pdf)',   answerStr});
+   '[RQ](ih1/CIA_RQ.pdf)',    '[PS4](ih1/CIA_PS.pdf)',   '[answers][inactive]'});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Two sector models](ih1/TwoSec_SL.pdf)', ...
    '[RQ](ih1/TwoSec_RQ.pdf)'});
@@ -156,15 +143,9 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Optimal control](ih2/OptControl_SL.pdf)'});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[The growth model](ih2/Ramsey_SL.pdf)'});
-
 i1 = i1 + 1;
-if 0
-   answerStr = '[answers](ih2/IH2_PSA.pdf)';
-else
-   answerStr = ' ';
-end
 topicV{i1} = markdownLH.SubTopic({'[Dynamics and phase diagrams](ih2/PhaseDiagrams_SL.pdf)', ...
-   '[RQ](ih2/IH2_RQ.pdf)',    '[PS5](ih2/IH2_PS.pdf), due TBA',   answerStr});
+   '[RQ](ih2/IH2_RQ.pdf)',    '[PS5](ih2/IH2_PS.pdf)',   '[answers][inactive]'});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Money in the utility function](ih2/miu_sl.pdf)'});
 i1 = i1 + 1;
@@ -192,15 +173,9 @@ topicV{i1} = markdownLH.SubTopic({'[R&D driven growth](growth/RandD_SL.pdf)'});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Increasing varieties](growth/Varieties_SL.pdf)', ...
    '[RQ](growth/RandD_RQ.pdf)'});
-
 i1 = i1 + 1;
-if 0
-   answerStr = '[answers](growth/RandD_PSA.pdf)';
-else
-   answerStr = ' ';
-end
 topicV{i1} = markdownLH.SubTopic({'[Knowledge spillovers and scale effects](growth/ScaleEffects_SL.pdf)', ...
-   '[PS6](growth/RandD_PS.pdf), due TBA',    answerStr});
+   '[PS6](growth/RandD_PS.pdf)',    '[answers][inactive]'});
 % * : Recitation (examples)
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Quality ladders](growth/Schumpeter_SL.pdf)'});
@@ -222,16 +197,10 @@ topicV{i1} = markdownLH.SubTopic({'[Stochastic optimization](stochastic/Stochast
 % iTopic = iTopic + 1; topicListV{iTopic} = markdownLH.Topic('Recitation: '});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Asset pricing](stochastic/AssetTheory_SL.pdf)'},  [],  'sameDate');
-
 i1 = i1 + 1;
-if 0
-   answerStr = '[answers](stochastic/Asset_PSA.pdf)';
-else
-   answerStr = ' ';
-end
 topicV{i1} = markdownLH.SubTopic({'[Extensions](stochastic/asset_extensions_sl.pdf)', ...
    '[RQ](stochastic/Asset_RQ.pdf)', ...
-   '[PS7](stochastic/Asset_PS.pdf), due TBA',   answerStr});
+   '[PS7](stochastic/Asset_PS.pdf)',   '[Answers][inactive]'});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Stochastic growth model](stochastic/Stoch_Growth_SL.pdf)', ...
    '[RQ](stochastic/Stoch_Growth_RQ.pdf)'});
