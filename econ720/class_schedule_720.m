@@ -87,7 +87,7 @@ else
    answerStr = ' ';
 end
 topicV{i1} = markdownLH.SubTopic({'[Money in OLG models](olg/OLG_Money_SL.pdf)', ...
-   '[PS2](olg/OLG_Money_PS.pdf) due Sep-14', answerStr});
+   '[PS2](olg/OLG_Money_PS.pdf) due Sep-21', answerStr});
 
 iTopic = iTopic + 1;
 topicListV{iTopic} = markdownLH.Topic('Overlapping Generations [OLG Models]', topicV(1 : i1), classDateV);
