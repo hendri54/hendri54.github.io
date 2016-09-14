@@ -65,11 +65,11 @@ i1 = i1 + 1;
 if 1
    answerStr = '[answers](olg/OLG_PSA.pdf)';
 else
-   answerStr = ' ';
+   answerStr = 'due Sep-7';
 end
 topicV{i1} = markdownLH.SubTopic({'[Dynamics and steady state](olg/olg_analysis_sl.pdf)', ...
    '[solution for example][inactive]', ...
-   '[PS1](olg/OLG_PS.pdf) due Sep-7', answerStr});
+   '[PS1](olg/OLG_PS.pdf)', answerStr});
 
 % * Sep-2 (Fri): Recitation, OLG examples
 % i1 = i1 + 1;
@@ -84,10 +84,10 @@ i1 = i1 + 1;
 if 0
    answerStr = '[answers](olg/OLG_Money_PSA.pdf)';
 else
-   answerStr = ' ';
+   answerStr = 'due Sep-21';
 end
 topicV{i1} = markdownLH.SubTopic({'[Money in OLG models](olg/OLG_Money_SL.pdf)', ...
-   '[PS2](olg/OLG_Money_PS.pdf) due Sep-21', answerStr});
+   '[PS2](olg/OLG_Money_PS.pdf)', answerStr});
 
 iTopic = iTopic + 1;
 topicListV{iTopic} = markdownLH.Topic('Overlapping Generations [OLG Models]', topicV(1 : i1), classDateV);
@@ -110,7 +110,7 @@ i1 = i1 + 1;
 if 0
    answerStr = '[answers](ih1/IH1_PSA.pdf)';
 else
-   answerStr = ' ';
+   answerStr = 'due Sep-28';
 end
 topicV{i1} = markdownLH.SubTopic({'[Competitive equilibrium](ih1/ih1_equil_sl.pdf)', ...
 	'[RQ](ih1/IH1_RQ.pdf)', '[PS3](ih1/IH1_PS.pdf)',  answerStr});
@@ -127,7 +127,7 @@ i1 = i1 + 1;
 if 0
    answerStr = '[answers](ih1/CIA_PSA.pdf)';
 else
-   answerStr = ' ';
+   answerStr = 'due Oct-5';
 end
 topicV{i1} = markdownLH.SubTopic({'[Cash in advance models](ih1/CIA_SL.pdf)', ...
    '[RQ](ih1/CIA_RQ.pdf)',    '[PS4](ih1/CIA_PS.pdf)',   answerStr});
@@ -161,10 +161,10 @@ i1 = i1 + 1;
 if 0
    answerStr = '[answers](ih2/IH2_PSA.pdf)';
 else
-   answerStr = ' ';
+   answerStr = 'due Oct-26';
 end
 topicV{i1} = markdownLH.SubTopic({'[Dynamics and phase diagrams](ih2/PhaseDiagrams_SL.pdf)', ...
-   '[RQ](ih2/IH2_RQ.pdf)',    '[PS5](ih2/IH2_PS.pdf), due TBA',   answerStr});
+   '[RQ](ih2/IH2_RQ.pdf)',    '[PS5](ih2/IH2_PS.pdf)',   answerStr});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Money in the utility function](ih2/miu_sl.pdf)'});
 i1 = i1 + 1;
@@ -197,10 +197,10 @@ i1 = i1 + 1;
 if 0
    answerStr = '[answers](growth/RandD_PSA.pdf)';
 else
-   answerStr = ' ';
+   answerStr = 'due Nov-21';
 end
 topicV{i1} = markdownLH.SubTopic({'[Knowledge spillovers and scale effects](growth/ScaleEffects_SL.pdf)', ...
-   '[PS6](growth/RandD_PS.pdf), due TBA',    answerStr});
+   '[PS6](growth/RandD_PS.pdf)',    answerStr});
 % * : Recitation (examples)
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Quality ladders](growth/Schumpeter_SL.pdf)'});
@@ -227,11 +227,11 @@ i1 = i1 + 1;
 if 0
    answerStr = '[answers](stochastic/Asset_PSA.pdf)';
 else
-   answerStr = ' ';
+   answerStr = 'due Dec-5';
 end
 topicV{i1} = markdownLH.SubTopic({'[Extensions](stochastic/asset_extensions_sl.pdf)', ...
    '[RQ](stochastic/Asset_RQ.pdf)', ...
-   '[PS7](stochastic/Asset_PS.pdf), due TBA',   answerStr});
+   '[PS7](stochastic/Asset_PS.pdf)',   answerStr});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Stochastic growth model](stochastic/Stoch_Growth_SL.pdf)', ...
    '[RQ](stochastic/Stoch_Growth_RQ.pdf)'});
@@ -244,7 +244,6 @@ topicV{i1} = markdownLH.SubTopic({'Incomplete markets: ', ...
    '[Krusell and Smith](stochastic/Krusell_Smith_SL.pdf)'});
 % * : Recitation
 
-%[assetpsa]: stochastic/Asset_PSA.pdf
 
 iTopic = iTopic + 1;
 topicListV{iTopic} = markdownLH.Topic('Stochastic Growth', topicV(1 : i1), classDateV);
