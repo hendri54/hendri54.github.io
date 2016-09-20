@@ -113,7 +113,7 @@ else
    answerStr = 'due Sep-28';
 end
 topicV{i1} = markdownLH.SubTopic({'[Competitive equilibrium](ih1/ih1_equil_sl.pdf)', ...
-	'[RQ](ih1/IH1_RQ.pdf)', '[PS3](ih1/IH1_PS.pdf)',  answerStr});
+	'[RQ](ih1/IH1_RQ.pdf)', '[PS3](ih1/IH1_PS.pdf)',  answerStr}, [], 'sameDate');
 % * Sep-23 (Fri): Recitation - dynamic programming and growth model examples
 
 i1 = i1 + 1;
@@ -131,6 +131,7 @@ else
 end
 topicV{i1} = markdownLH.SubTopic({'[Cash in advance models](ih1/CIA_SL.pdf)', ...
    '[RQ](ih1/CIA_RQ.pdf)',    '[PS4](ih1/CIA_PS.pdf)',   answerStr});
+
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Two sector models](ih1/TwoSec_SL.pdf)', ...
    '[RQ](ih1/TwoSec_RQ.pdf)'});
