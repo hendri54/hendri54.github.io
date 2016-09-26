@@ -81,7 +81,7 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Bequests](olg/OLG_Bequest_SL.pdf)'},  [],  'sameDate');
 
 i1 = i1 + 1;
-if 0
+if 01
    answerStr = '[answers](olg/OLG_Money_PSA.pdf)';
 else
    answerStr = 'due Sep-21';
@@ -154,7 +154,8 @@ i1 = 0;
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Solow model](ih2/solow_SL.pdf)'});
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Optimal control](ih2/OptControl_SL.pdf)'});
+topicV{i1} = markdownLH.SubTopic({'[Optimal control](ih2/OptControl_SL.pdf)'},  [],  'sameDate');
+
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[The growth model](ih2/Ramsey_SL.pdf)'});
 
