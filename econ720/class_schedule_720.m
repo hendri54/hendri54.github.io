@@ -110,7 +110,7 @@ i1 = i1 + 1;
 if 0
    answerStr = '[answers](ih1/IH1_PSA.pdf)';
 else
-   answerStr = 'due Sep-28';
+   answerStr = 'due Sep-30';
 end
 topicV{i1} = markdownLH.SubTopic({'[Competitive equilibrium](ih1/ih1_equil_sl.pdf)', ...
 	'[RQ](ih1/IH1_RQ.pdf)', '[PS3](ih1/IH1_PS.pdf)',  answerStr}, [], 'sameDate');
