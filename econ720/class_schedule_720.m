@@ -166,7 +166,7 @@ else
    answerStr = 'due Oct-19';
 end
 topicV{i1} = markdownLH.SubTopic({'[Dynamics and phase diagrams](ih2/PhaseDiagrams_SL.pdf)', ...
-   '[RQ](ih2/IH2_RQ.pdf)',    '[PS5](ih2/IH2_PS.pdf)',   answerStr});
+   '[RQ](ih2/IH2_RQ.pdf)',    '[PS5](ih2/IH2_PS.pdf)',   answerStr},  [],  'sameDate');
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Money in the utility function](ih2/miu_sl.pdf)'});
 i1 = i1 + 1;
