@@ -163,7 +163,7 @@ i1 = i1 + 1;
 if 0
    answerStr = '[answers](ih2/IH2_PSA.pdf)';
 else
-   answerStr = 'due Oct-26';
+   answerStr = 'due Oct-19';
 end
 topicV{i1} = markdownLH.SubTopic({'[Dynamics and phase diagrams](ih2/PhaseDiagrams_SL.pdf)', ...
    '[RQ](ih2/IH2_RQ.pdf)',    '[PS5](ih2/IH2_PS.pdf)',   answerStr});
