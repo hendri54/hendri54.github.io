@@ -32,7 +32,7 @@ topicV = cell(5,1);
 i1 = 0;
 
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: TBA'}, datetime(year1, 10, 17));
+topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: up to phase diagrams'}, datetime(year1, 10, 17));
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Labor day'},  datetime(year1, 9, 5));
 i1 = i1 + 1;   
@@ -107,7 +107,7 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Dynamic programming](ih1/ih1_dp_sl.pdf)'});
 
 i1 = i1 + 1;
-if 0
+if 01
    answerStr = '[answers](ih1/IH1_PSA.pdf)';
 else
    answerStr = 'due Sep-30';
@@ -124,7 +124,7 @@ topicV{i1} = markdownLH.SubTopic({'[Example: Asset pricing](ih1/IH1_Asset_SL.pdf
    '[RQ](ih1/ih1_asset_rq.pdf)'},  [],  'sameDate');
 
 i1 = i1 + 1;
-if 0
+if 01
    answerStr = '[answers](ih1/CIA_PSA.pdf)';
 else
    answerStr = 'due Oct-5';
