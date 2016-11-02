@@ -160,7 +160,7 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[The growth model](ih2/Ramsey_SL.pdf)'});
 
 i1 = i1 + 1;
-if 0
+if 01
    answerStr = '[answers](ih2/IH2_PSA.pdf)';
 else
    answerStr = 'due Oct-19';
@@ -199,13 +199,13 @@ i1 = i1 + 1;
 if 0
    answerStr = '[answers](growth/RandD_PSA.pdf)';
 else
-   answerStr = 'due Nov-21';
+   answerStr = 'due Nov-9';
 end
 topicV{i1} = markdownLH.SubTopic({'[Knowledge spillovers and scale effects](growth/ScaleEffects_SL.pdf)', ...
    '[PS6](growth/RandD_PS.pdf)',    answerStr});
 % * : Recitation (examples)
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Quality ladders](growth/Schumpeter_SL.pdf)'});
+topicV{i1} = markdownLH.SubTopic({'[Quality ladders](growth/Schumpeter_SL.pdf)'},  [],  'sameDate');
 
 %[randpsa]: growth/RandD_PSA.pdf
 
@@ -229,7 +229,7 @@ i1 = i1 + 1;
 if 0
    answerStr = '[answers](stochastic/Asset_PSA.pdf)';
 else
-   answerStr = 'due Dec-5';
+   answerStr = 'due Nov-16';
 end
 topicV{i1} = markdownLH.SubTopic({'[Extensions](stochastic/asset_extensions_sl.pdf)', ...
    '[RQ](stochastic/Asset_RQ.pdf)', ...
