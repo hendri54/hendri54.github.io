@@ -207,6 +207,9 @@ topicV{i1} = markdownLH.SubTopic({'[Knowledge spillovers and scale effects](grow
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Quality ladders](growth/Schumpeter_SL.pdf)'},  [],  'sameDate');
 
+i1 = i1 + 1;
+topicV{i1} = markdownLH.SubTopic({'[Quality ladders with firm dynamics](growth/Schumpeter2_SL.pdf)'});
+
 %[randpsa]: growth/RandD_PSA.pdf
 
 iTopic = iTopic + 1;
@@ -219,8 +222,10 @@ topicV = cell(10, 1);
 i1 = 0;
 
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Stochastic optimization](stochastic/Stochastic_SL.pdf)', ...
-	'[Dynamic programming](stochastic/theorems_sl.pdf) -- we will not talk about this in class. Think of it as a simple user guide to the results that are out there.'});
+topicV{i1} = markdownLH.SubTopic({'[Stochastic optimization](stochastic/Stochastic_SL.pdf)'});
+i1 = i1 + 1;
+topicV{i1} = markdownLH.SubTopic({'[Dynamic programming](stochastic/theorems_sl.pdf) -- we will not talk about this in class. Think of it as a simple user guide to the results that are out there.'}, ...
+   [],  'sameDate');
 % iTopic = iTopic + 1; topicListV{iTopic} = markdownLH.Topic('Recitation: '});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Asset pricing](stochastic/AssetTheory_SL.pdf)'},  [],  'sameDate');
