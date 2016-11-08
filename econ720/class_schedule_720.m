@@ -234,7 +234,7 @@ i1 = i1 + 1;
 if 0
    answerStr = '[answers](stochastic/Asset_PSA.pdf)';
 else
-   answerStr = 'due Nov-16';
+   answerStr = 'due Nov-21';
 end
 topicV{i1} = markdownLH.SubTopic({'[Extensions](stochastic/asset_extensions_sl.pdf)', ...
    '[RQ](stochastic/Asset_RQ.pdf)', ...
