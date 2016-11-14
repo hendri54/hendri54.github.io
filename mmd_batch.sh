@@ -17,6 +17,10 @@ cd econ920
 mmd *.mmd
 cd ..
 
+cd private
+mmd *.mmd
+cd ..
+
 #cd econ821
 #mmd *.mmd
 
