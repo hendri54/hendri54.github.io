@@ -248,7 +248,7 @@ topicV{i1} = markdownLH.SubTopic({'[Bewley model](stochastic/Bewley_SL.pdf)'});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Incomplete markets: ', ...
    '[Huggett 1996](stochastic/huggett96_sl.pdf)', ...
-   '[Krusell and Smith](stochastic/Krusell_Smith_SL.pdf)'});
+   '[Krusell and Smith](stochastic/Krusell_Smith_SL.pdf)'},  [],  'sameDate');
 % * : Recitation
 
 
@@ -283,9 +283,12 @@ i1 = 0;
 
 %* : Recitation
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Limited commitment](contracts/Contract1_SL.pdf)', ...
-	'[Asymmetric information](contracts/Contract2_SL.pdf)', ...
+topicV{i1} = markdownLH.SubTopic({'[Limited commitment](contracts/Contract1_SL.pdf)'});
+
+i1 = i1 + 1;
+topicV{i1} = markdownLH.SubTopic({'[Asymmetric information](contracts/Contract2_SL.pdf)', ...
    '[RQ](contracts/Contracts_RQ.pdf)' });
+
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Last class -- examples and Q&A'}, datetime(year1, 12, 7));
 
