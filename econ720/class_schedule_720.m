@@ -35,7 +35,7 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: up to phase diagrams'}, datetime(year1, 10, 17));
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Labor day'},  datetime(year1, 9, 5));
-i1 = i1 + 1;   
+i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Thanksgiving'}, datetime(year1, 11, 23));
 
 iTopic = iTopic + 1;
@@ -258,7 +258,7 @@ topicListV{iTopic} = markdownLH.Topic('Stochastic Growth', topicV(1 : i1), class
 
 %% Search / matching
 
- 
+
 
 topicV = cell(10, 1);
 i1 = 0;
@@ -286,11 +286,11 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Limited commitment](contracts/Contract1_SL.pdf)'});
 
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Asymmetric information](contracts/Contract2_SL.pdf)', ...
+topicV{i1} = markdownLH.SubTopic({'Last class',  '[Asymmetric information](contracts/Contract2_SL.pdf)', ...
    '[RQ](contracts/Contracts_RQ.pdf)' });
 
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Last class -- examples and Q&A'}, datetime(year1, 12, 7));
+%i1 = i1 + 1;
+%topicV{i1} = markdownLH.SubTopic({'Last class -- examples and Q&A'}, datetime(year1, 12, 7));
 
 %* Unemployment insurance
 
@@ -300,7 +300,7 @@ topicListV{iTopic} = markdownLH.Topic('Contracts', topicV(1 : i1), classDateV);
 
 
 
-%% Write 
+%% Write
 
 cS = markdownLH.ClassSchedule(classDateV, topicListV);
 
