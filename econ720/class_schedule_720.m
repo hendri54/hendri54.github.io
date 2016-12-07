@@ -287,6 +287,7 @@ topicV{i1} = markdownLH.SubTopic({'[Limited commitment](contracts/Contract1_SL.p
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Last class',  '[Asymmetric information](contracts/Contract2_SL.pdf)', ...
+   '[Incentives](contracts/Contract3_SL.pdf)',  ...
    '[RQ](contracts/Contracts_RQ.pdf)' });
 
 %i1 = i1 + 1;
