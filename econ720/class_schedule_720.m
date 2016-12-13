@@ -231,7 +231,7 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Asset pricing](stochastic/AssetTheory_SL.pdf)'},  [],  'sameDate');
 
 i1 = i1 + 1;
-if 0
+if 01
    answerStr = '[answers](stochastic/Asset_PSA.pdf)';
 else
    answerStr = 'due Nov-21';
