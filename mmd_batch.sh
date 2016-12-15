@@ -9,6 +9,10 @@ cd research
 mmd *.mmd
 cd ..
 
+cd econ520
+mmd *.mmd
+cd ..
+
 cd econ720
 mmd *.mmd
 cd ..
