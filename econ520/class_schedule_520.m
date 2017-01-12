@@ -20,7 +20,7 @@ iTopic = 0;
 %% Class dates
 
 startDate = datetime(year1, 1, 11);
-endDate = datetime(year1, 4, 28);
+endDate = datetime(year1, 4, 27);
 weekDayV = {'Tuesday', 'Thursday'};
 cdS = markdownLH.ClassDates(startDate, endDate, weekDayV);
 classDateV = cdS.date_list;
@@ -39,6 +39,8 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Spring break'},  datetime(year1, 3, 14));
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Spring break'},  datetime(year1, 3, 16));
+i1 = i1 + 1;
+topicV{i1} = markdownLH.SubTopic({'Last class'},  endDate);
 
 iTopic = iTopic + 1;
 topicListV{iTopic} = markdownLH.Topic('Special dates', topicV(1 : i1), classDateV);
