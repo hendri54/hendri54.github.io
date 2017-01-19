@@ -61,7 +61,10 @@ i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[Methods for identifying causes and effects](growth/causes_SL.pdf)'});
 
 i1 = i1 + 1;
-topicV{i1} =  markdownLH.SubTopic({'[The Role of Capital](growth/Capital_SL.pdf), [PP](growth/Capital_RQ.pdf)'});
+topicV{i1} =  markdownLH.SubTopic({'[The Role of Capital](growth/Capital_SL.pdf)',  '[PP](growth/Capital_RQ.pdf)'});
+
+i1 = i1 + 1;
+topicV{i1} =  markdownLH.SubTopic({'[The Role of Capital, part 2](growth/Capital2_SL.pdf)'});
 
 i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[Solow model](growth/Solow_SL.pdf)',  '[PP](growth/Solow_RQ.pdf)'});
