@@ -67,7 +67,9 @@ i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[The Role of Capital, part 2](growth/Capital2_SL.pdf)'});
 
 i1 = i1 + 1;
-topicV{i1} =  markdownLH.SubTopic({'[Solow model](growth/Solow_SL.pdf)',  '[PP](growth/Solow_RQ.pdf)'});
+topicV{i1} =  markdownLH.SubTopic({'[Solow model](growth/Solow_SL.pdf)',  ...
+   '[Solow diagram](growth/solow_diagram_sl.pdf)',  ...
+   '[PP](growth/Solow_RQ.pdf)'});
 
 i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[Solow Applications](growth/Solow_Applications_SL.pdf)', ...
