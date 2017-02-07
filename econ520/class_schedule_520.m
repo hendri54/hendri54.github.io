@@ -88,7 +88,10 @@ i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[Growth and ideas](growth/Ideas_SL.pdf)'});
 
 i1 = i1 + 1;
-topicV{i1} =  markdownLH.SubTopic({'[Romer model](growth/RandD_SL.pdf), [PP](growth/RandD_RQ.pdf)'});
+topicV{i1} =  markdownLH.SubTopic({'[Romer model](growth/RandD_SL.pdf)', '[PP](growth/RandD_RQ.pdf)'});
+
+i1 = i1 + 1;
+topicV{i1} =  markdownLH.SubTopic({'[Policy implications](growth/romer_implications_SL.pdf)'}, [], 'sameDate');
 
 i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'Digression: [Rising income inequality](inequality/Inequality_SL.pdf)'});
