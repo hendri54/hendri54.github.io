@@ -66,6 +66,7 @@ topicV{i1} =  markdownLH.SubTopic({'[The Role of Capital](growth/Capital_SL.pdf)
 i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[The Role of Capital, part 2](growth/Capital2_SL.pdf)'});
 
+% Solow
 i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[Solow model](growth/Solow_SL.pdf)'});
 
@@ -78,12 +79,13 @@ topicV{i1} =  markdownLH.SubTopic({'[Solow Applications](growth/Solow_Applicatio
    '[Part 2](growth/Solow_Applications2_SL.pdf)'});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({...
-   'Discussion: [How to prevent the end of economic growth](https://www.scientificamerican.com/article/how-to-prevent-the-end-of-economic-growth/)'}, ...
-   [], 'sameDate');
+   'Discussion: [How to prevent the end of economic growth](https://www.scientificamerican.com/article/how-to-prevent-the-end-of-economic-growth/)'});
 
+% Institutions
 i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[Institutions](growth/Institutions_SL.pdf), [PP](growth/Institutions_RQ.pdf)'});
 
+% R&D
 i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[Growth and ideas](growth/Ideas_SL.pdf)'});
 
@@ -93,6 +95,7 @@ topicV{i1} =  markdownLH.SubTopic({'[Romer model](growth/RandD_SL.pdf)', '[PP](g
 i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[Policy implications](growth/romer_implications_SL.pdf)'}, [], 'sameDate');
 
+% Inequality
 i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'Digression: [Rising income inequality](inequality/Inequality_SL.pdf)'});
 
