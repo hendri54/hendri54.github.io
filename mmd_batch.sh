@@ -13,11 +13,15 @@ cd econ520
 mmd *.mmd
 cd ..
 
-cd econ720
+#cd econ720
+#mmd *.mmd
+#cd ..
+
+cd econ920
 mmd *.mmd
 cd ..
 
-cd econ920
+cd honors
 mmd *.mmd
 cd ..
 
