@@ -166,6 +166,9 @@ i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[Trade deficits](open/TradeDeficit_SL.pdf)', '[PP](open/TradeDeficit_RQ.pdf)'});
 
 i1 = i1 + 1;
+topicV{i1} =  markdownLH.SubTopic({'Trade deficits (continued)'});
+
+i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[IS-LM model](open/islm_open_sl.pdf)', '[PP](open/is_lm_open_rq.pdf)'});
 
 i1 = i1 + 1;
