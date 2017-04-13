@@ -178,7 +178,8 @@ i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[IS-LM fixed exchange rate](open/islm_fixed_sl.pdf)'});
 
 i1 = i1 + 1;
-topicV{i1} =  markdownLH.SubTopic({'[AS-AD model](open/asad_open_sl.pdf)', '[PP](open/as_ad_open_rq.pdf)'});
+topicV{i1} =  markdownLH.SubTopic({'[AS-AD model](open/asad_open_sl.pdf)', ...
+   '[Policy analysis](open/asad_policy_sl.pdf)',  '[PP](open/as_ad_open_rq.pdf)'});
 
 i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[Costs and benefits of international trade](open/trade_sl.pdf)'});
