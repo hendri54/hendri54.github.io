@@ -40,7 +40,7 @@ topicV{i1} = markdownLH.SubTopic({'Spring break'},  datetime(year1, 3, 14));
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Spring break'},  datetime(year1, 3, 16));
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Last class'},  endDate);
+topicV{i1} = markdownLH.SubTopic({'No class'},  datetime(year1, 4, 20));
 
 iTopic = iTopic + 1;
 topicListV{iTopic} = markdownLH.Topic('Special dates', topicV(1 : i1), classDateV);
@@ -220,8 +220,12 @@ topicV{i1} =  markdownLH.SubTopic({'Model synthesis: [SL](expectations/model_sum
 
 % Apr-26: Last class: Review. All questions answered.
 
+i1 = i1 + 1;
+topicV{i1} = markdownLH.SubTopic({'Last class'});
+
 iTopic = iTopic + 1;
 topicListV{iTopic} = markdownLH.Topic('Expectations', topicV(1 : i1), classDateV);
+
 
 
 
