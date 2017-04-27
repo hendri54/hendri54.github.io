@@ -203,8 +203,8 @@ i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[Expectations and policy](expectations/policy_sl.pdf)', ...
    '[PP](expectations/policy_rq.pdf)'});
 
-i1 = i1 + 1;
-topicV{i1} =  markdownLH.SubTopic({'[Budget deficits](policy/fiscal_sl.pdf)',  '[PP](policy/fiscal_rq.pdf)'});
+% i1 = i1 + 1;
+% topicV{i1} =  markdownLH.SubTopic({'[Budget deficits](policy/fiscal_sl.pdf)',  '[PP](policy/fiscal_rq.pdf)'});
 
 i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'Model synthesis: [SL](expectations/model_summary_sl.pdf)'});
