@@ -5,32 +5,29 @@ echo "MMD batch conversion"
 
 mmd *.mmd
 
-cd research
-mmd *.mmd
-cd ..
+mmd research/*.mmd
 
-cd econ520
-mmd *.mmd
-cd ..
+#cd econ520
+#mmd econ520/*.mmd
+#cd ..
 
 #cd econ720
+mmd econ720/*.mmd
+#cd ..
+
+#cd econ920
 #mmd *.mmd
 #cd ..
 
-cd econ920
-mmd *.mmd
-cd ..
+#cd honors
+mmd honors/*.mmd
+#cd ..
 
-cd honors
-mmd *.mmd
-cd ..
+#cd private
+mmd private/*.mmd
+#cd ..
 
-cd private
-mmd *.mmd
-cd ..
-
-#cd econ821
-#mmd *.mmd
+#mmd econ821/*.mmd
 
 #cd growth
 #mmd *.mmd
