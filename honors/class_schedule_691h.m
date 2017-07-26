@@ -48,7 +48,15 @@ topicListV{iTopic} = markdownLH.Topic('Special dates', topicV(1 : i1), classDate
 topicV = cell(20, 1);
 i1 = 0;
 
-for ix = 1 : 29
+i1 = i1 + 1;
+topicV{i1} =  markdownLH.SubTopic({'[Syllabus](syllabus691h.html)',  '[Finding a topic](finding_topic.html)',  ...
+   '[Finding an advisor](finding_advisor.html)',   '[Useful links](links.html)'});
+
+i1 = i1 + 1;
+topicV{i1} =  markdownLH.SubTopic({'[Writing a literature review](lit_review.html)',  ...
+   '[Reading papers](how_to_read.html)'});
+   
+for ix = 1 : 27
    i1 = i1 + 1;
    topicV{i1} =  markdownLH.SubTopic({'TBD'});
 end
@@ -77,6 +85,7 @@ topicListV{iTopic} = markdownLH.Topic('Wrap up', topicV(1 : i1), classDateV);
 
 cS = markdownLH.ClassSchedule(classDateV, topicListV(1 : iTopic));
 
+% For this class, it is best to hand edit schedule (b/c of class presentations)
 cS.write('schedule691h_auto.mmd');
 
 
