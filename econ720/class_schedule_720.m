@@ -11,7 +11,7 @@ Change
    should be possible to mark all dates up to a fixed date as taken (easier to handle ex post)
 %}
 
-year1 = 2016;
+year1 = 2017;
 
 topicListV = cell(10, 1);
 iTopic = 0;
@@ -19,9 +19,9 @@ iTopic = 0;
 
 %% Class dates
 
-startDate = datetime(year1, 8, 24);
-endDate = datetime(year1, 12, 7);
-weekDayV = {'Monday', 'Wednesday'};
+startDate = datetime(year1, 8, 22);
+endDate = datetime(year1, 12, 6);
+weekDayV = {'Tuesday', 'Thursday'};
 cdS = markdownLH.ClassDates(startDate, endDate, weekDayV);
 classDateV = cdS.date_list;
 
@@ -32,9 +32,11 @@ topicV = cell(5,1);
 i1 = 0;
 
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: up to phase diagrams'}, datetime(year1, 10, 17));
+topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: TBA'}, datetime(year1, 10, 10));
+% i1 = i1 + 1;
+% topicV{i1} = markdownLH.SubTopic({'Labor day'},  datetime(year1, 9, 5));
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Labor day'},  datetime(year1, 9, 5));
+topicV{i1} = markdownLH.SubTopic({'Fall break'}, datetime(year1, 10, 19));
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Thanksgiving'}, datetime(year1, 11, 23));
 
@@ -62,10 +64,10 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Model](olg/OLG_SL.pdf)'});
 
 i1 = i1 + 1;
-if 1
+if false
    answerStr = '[answers](olg/OLG_PSA.pdf)';
 else
-   answerStr = 'due Sep-7';
+   answerStr = 'due TBA';
 end
 topicV{i1} = markdownLH.SubTopic({'[Dynamics and steady state](olg/olg_analysis_sl.pdf)', ...
    '[solution for example][inactive]', ...
@@ -81,10 +83,10 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Bequests](olg/OLG_Bequest_SL.pdf)'},  [],  'sameDate');
 
 i1 = i1 + 1;
-if 01
+if 0
    answerStr = '[answers](olg/OLG_Money_PSA.pdf)';
 else
-   answerStr = 'due Sep-21';
+   answerStr = 'due TBA';
 end
 topicV{i1} = markdownLH.SubTopic({'[Money in OLG models](olg/OLG_Money_SL.pdf)', ...
    '[PS2](olg/OLG_Money_PS.pdf)', answerStr});
@@ -107,10 +109,10 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Dynamic programming](ih1/ih1_dp_sl.pdf)'});
 
 i1 = i1 + 1;
-if 01
+if 0
    answerStr = '[answers](ih1/IH1_PSA.pdf)';
 else
-   answerStr = 'due Sep-30';
+   answerStr = 'due TBA';
 end
 topicV{i1} = markdownLH.SubTopic({'[Competitive equilibrium](ih1/ih1_equil_sl.pdf)', ...
 	'[RQ](ih1/IH1_RQ.pdf)', '[PS3](ih1/IH1_PS.pdf)',  answerStr}, [], 'sameDate');
@@ -124,10 +126,10 @@ topicV{i1} = markdownLH.SubTopic({'[Example: Asset pricing](ih1/IH1_Asset_SL.pdf
    '[RQ](ih1/ih1_asset_rq.pdf)'},  [],  'sameDate');
 
 i1 = i1 + 1;
-if 01
+if 0
    answerStr = '[answers](ih1/CIA_PSA.pdf)';
 else
-   answerStr = 'due Oct-5';
+   answerStr = 'due TBA';
 end
 topicV{i1} = markdownLH.SubTopic({'[Cash in advance models](ih1/CIA_SL.pdf)', ...
    '[RQ](ih1/CIA_RQ.pdf)',    '[PS4](ih1/CIA_PS.pdf)',   answerStr});
@@ -160,10 +162,10 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[The growth model](ih2/Ramsey_SL.pdf)'});
 
 i1 = i1 + 1;
-if 01
+if 0
    answerStr = '[answers](ih2/IH2_PSA.pdf)';
 else
-   answerStr = 'due Oct-19';
+   answerStr = 'due TBA';
 end
 topicV{i1} = markdownLH.SubTopic({'[Dynamics and phase diagrams](ih2/PhaseDiagrams_SL.pdf)', ...
    '[RQ](ih2/IH2_RQ.pdf)',    '[PS5](ih2/IH2_PS.pdf)',   answerStr},  [],  'sameDate');
@@ -196,10 +198,10 @@ topicV{i1} = markdownLH.SubTopic({'[Increasing varieties](growth/Varieties_SL.pd
    '[RQ](growth/RandD_RQ.pdf)'});
 
 i1 = i1 + 1;
-if 1
+if 0
    answerStr = '[answers](growth/RandD_PSA.pdf)';
 else
-   answerStr = 'due Nov-9';
+   answerStr = 'due TBA';
 end
 topicV{i1} = markdownLH.SubTopic({'[Knowledge spillovers and scale effects](growth/ScaleEffects_SL.pdf)', ...
    '[PS6](growth/RandD_PS.pdf)',    answerStr});
@@ -231,10 +233,11 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Asset pricing](stochastic/AssetTheory_SL.pdf)'},  [],  'sameDate');
 
 i1 = i1 + 1;
-if 01
+dueStr = 'TBA';
+if isempty(dueStr)  &&  ~strcmpi(dueStr, 'TBA')
    answerStr = '[answers](stochastic/Asset_PSA.pdf)';
 else
-   answerStr = 'due Nov-21';
+   answerStr = ['due ', dueStr];
 end
 topicV{i1} = markdownLH.SubTopic({'[Extensions](stochastic/asset_extensions_sl.pdf)', ...
    '[RQ](stochastic/Asset_RQ.pdf)', ...
