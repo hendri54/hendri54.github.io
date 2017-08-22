@@ -4,13 +4,19 @@
 
 ## Data Steps ##
 
-1. Figure out the variables that you need.
-2. Download data, usually from some web site.
-3. Convert data into the format you want.
+1. Read the data documenation.
+	1. You need to know how the data are structured, who was surveyed, limitations of the data, etc.
+	2. Assignment: Browse through the documenation for the Current Population Survey (CPS) [here](https://cps.ipums.org/cps/documentation.shtml). Also look at the [sample design](https://cps.ipums.org/cps/samples.shtml).
+2. Figure out the variables that you need.
+	1. Make sure you read the codebooks, especially if the sample design is complicated.
+	2. You need to know in which context the questions were asked and who was asked.
+	3. Assignment: Browse through the [CPS codebooks](https://cps.ipums.org/cps/codebooks.shtml).
+3. Download data, usually from some web site.
+4. Convert data into the format you want.
 	1. Datasets usually come in odd formats, such as nondelimited ascii files. 
 	2. Stats packages, such as `Stata` can often read those files (data sources often provide programs for this).
 	3. [Stat/Transfer](http://www.stattransfer.com/) can convert between data formats. Especially useful if you want to work in a *real* programming language rather than a stats package.
-4. Show summary statistics and distributions for all variables.
+5. Show summary statistics and distributions for all variables.
 	1. Check for implausible values, outliers, odd distributions (e.g., we would expect a wage distribution to look roughly log-Normal).
 	2. Look at time series plots. Investigate any suspicious jumps.
 
