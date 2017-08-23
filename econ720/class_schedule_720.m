@@ -67,11 +67,15 @@ i1 = i1 + 1;
 if false
    answerStr = '[answers](olg/OLG_PSA.pdf)';
 else
-   answerStr = 'due TBA';
+   answerStr = 'due Sep-5';
+end
+if false
+   exampleStr = '[solution for example](OLG_example.pdf)';
+else
+   exampleStr = '';
 end
 topicV{i1} = markdownLH.SubTopic({'[Dynamics and steady state](olg/olg_analysis_sl.pdf)', ...
-   '[solution for example][inactive]', ...
-   '[PS1](olg/OLG_PS.pdf)', answerStr});
+   exampleStr,    '[PS1](olg/OLG_PS.pdf)', answerStr});
 
 % * Sep-2 (Fri): Recitation, OLG examples
 % i1 = i1 + 1;
