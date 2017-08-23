@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<link type="text/css" rel="stylesheet" href="http://hendri54.github.io/css/avenir-white.css"/>
+	<meta name="author" content="Lutz Hendricks"/>
+	<meta name="affiliation" content="http://www.unc.edu"/>
+<a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org"><span
+style="font-weight: bold;">Lutz Hendricks - UNC - Department of
+Economics</span></a><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
+<script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script type="text/javascript"  
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+
+<h1 id="cpsearningsstatistics">CPS Earnings Statistics</h1>
+
+<p>Purpose: Get students started with data handling.</p>
+
+<p>Goal: Using Current Population Survey data (from <a href="ipums.org">IPUMS</a>), construct measures of wage dispersion over time.</p>
+
+<h2 id="gettingthedata">Getting the data</h2>
+
+<p>I downloaded the data for you (from <a href="ipums.org">IPUMS</a>). </p>
+
+<p>A compressed file can be downloaded from <a href="https://dl.dropboxusercontent.com/u/5565125/cps_00014.dta.gz">here</a>. It contains:</p>
+
+<ol>
+<li>The data in <code>Stata</code> format (extension <code>dta</code>).</li>
+<li>Codebooks (extension <code>cbk.txt</code> or <code>xml</code>).</li>
+<li>Program files for reading the data using various stats packages (extensions <code>sps</code>, <code>sas</code>, <code>do</code>).</li>
+</ol>
+
+<h2 id="yourassignment">Your assignment</h2>
+
+<p>For each year:</p>
+
+<ol>
+<li><p>Construct measures of wage dispersion: standard deviation of log wages; 90/10, 90/50 and 50/10 ratios.</p>
+
+<ol>
+<li>also break this down by schooling (high school dropouts, high school graduates, college dropouts, college graduates)</li>
+<li>graph these results</li>
+</ol></li>
+<li><p>Estimate a <a href="https://en.wikipedia.org/wiki/Mincer_earnings_function">Mincer equation</a> using OLS. This involves regressing log wages on schooling dummies and a quartic in experience.</p></li>
+</ol>
+
+<p>Universe: Men, aged 30&#8211;60, who work full time (at least 30 weeks per year) for wages.</p>
+
+<p>Wage = earnings / weeks worked.</p>
+
+<h2 id="thingstothinkabout">Things to think about</h2>
+
+<ol>
+<li><p>The highest degree earned is not available in all years. </p>
+
+<p>How to assign people to school groups?</p>
+
+<p>The standard answer: years of schooling &lt; 12: high school dropout, = 12: high school graduate, 13&#8211;15: college dropout, 16+ college graduate.</p></li>
+<li><p>The coding of weeks worked changes over time.</p></li>
+<li><p>Earnings are top coded (you don&#8217;t have to deal with this complication for this exercise).</p></li>
+</ol>
+
+<hr />
+
+</body>
+</html>

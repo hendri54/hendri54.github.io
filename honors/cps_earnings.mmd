@@ -1,0 +1,45 @@
+{{../markdown_header.txt}}
+
+# CPS Earnings Statistics
+
+Purpose: Get students started with data handling.
+
+Goal: Using Current Population Survey data (from [IPUMS](ipums.org)), construct measures of wage dispersion over time.
+
+## Getting the data
+
+I downloaded the data for you (from [IPUMS](ipums.org)). 
+
+A compressed file can be downloaded from [here](https://dl.dropboxusercontent.com/u/5565125/cps_00014.dta.gz). It contains:
+
+1. The data in `Stata` format (extension `dta`).
+2. Codebooks (extension `cbk.txt` or `xml`).
+3. Program files for reading the data using various stats packages (extensions `sps`, `sas`, `do`).
+
+## Your assignment
+
+For each year:
+
+1. Construct measures of wage dispersion: standard deviation of log wages; 90/10, 90/50 and 50/10 ratios.
+
+	1. also break this down by schooling (high school dropouts, high school graduates, college dropouts, college graduates)
+	2. graph these results
+	
+2. Estimate a [Mincer equation](https://en.wikipedia.org/wiki/Mincer_earnings_function) using OLS. This involves regressing log wages on schooling dummies and a quartic in experience.
+
+Universe: Men, aged 30-60, who work full time (at least 30 weeks per year) for wages.
+
+Wage = earnings / weeks worked.
+
+## Things to think about
+
+1. The highest degree earned is not available in all years. 
+	
+	How to assign people to school groups?
+	
+	The standard answer: years of schooling < 12: high school dropout, = 12: high school graduate, 13-15: college dropout, 16+ college graduate.
+	
+2. The coding of weeks worked changes over time.
+3. Earnings are top coded (you don't have to deal with this complication for this exercise).
+
+-----------
