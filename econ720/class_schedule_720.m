@@ -91,7 +91,7 @@ i1 = i1 + 1;
 if 0
    answerStr = '[answers](olg/OLG_Money_PSA.pdf)';
 else
-   answerStr = 'due TBA';
+   answerStr = 'due Sep-12';
 end
 topicV{i1} = markdownLH.SubTopic({'[Money in OLG models](olg/OLG_Money_SL.pdf)', ...
    '[PS2](olg/OLG_Money_PS.pdf)', answerStr});
