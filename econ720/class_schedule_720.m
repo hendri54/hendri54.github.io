@@ -33,8 +33,8 @@ i1 = 0;
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: TBA'}, datetime(year1, 10, 10));
-% i1 = i1 + 1;
-% topicV{i1} = markdownLH.SubTopic({'Labor day'},  datetime(year1, 9, 5));
+i1 = i1 + 1;
+topicV{i1} = markdownLH.SubTopic({'No class (will schedule makeup class)'},  datetime(year1, 9, 21));
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Fall break'}, datetime(year1, 10, 19));
 i1 = i1 + 1;
