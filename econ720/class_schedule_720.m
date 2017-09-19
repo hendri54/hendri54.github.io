@@ -134,7 +134,7 @@ i1 = i1 + 1;
 if 0
    answerStr = '[answers](ih1/CIA_PSA.pdf)';
 else
-   answerStr = 'due Sep-26';
+   answerStr = 'due Oct-3';
 end
 topicV{i1} = markdownLH.SubTopic({'[Cash in advance models](ih1/CIA_SL.pdf)', ...
    '[RQ](ih1/CIA_RQ.pdf)',    '[PS4](ih1/CIA_PS.pdf)',   answerStr});
