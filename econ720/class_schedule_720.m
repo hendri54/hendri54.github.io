@@ -114,7 +114,7 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Dynamic programming](ih1/ih1_dp_sl.pdf)'});
 
 i1 = i1 + 1;
-if 0
+if 01
    answerStr = '[answers](ih1/IH1_PSA.pdf)';
 else
    answerStr = 'due Sep-19';
@@ -126,18 +126,19 @@ topicV{i1} = markdownLH.SubTopic({'[Competitive equilibrium](ih1/ih1_equil_sl.pd
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Dynamic programming theorems](ih1/DP_SL.pdf)', ...
    '[Notes on Dynamic Programming](ih1/Dp_ln.pdf)'});
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Example: Asset pricing](ih1/IH1_Asset_SL.pdf)', ...
-   '[RQ](ih1/ih1_asset_rq.pdf)'},  [],  'sameDate');
 
 i1 = i1 + 1;
 if 0
    answerStr = '[answers](ih1/CIA_PSA.pdf)';
 else
-   answerStr = 'due Oct-3';
+   answerStr = 'due Sep-26';
 end
 topicV{i1} = markdownLH.SubTopic({'[Cash in advance models](ih1/CIA_SL.pdf)', ...
-   '[RQ](ih1/CIA_RQ.pdf)',    '[PS4](ih1/CIA_PS.pdf)',   answerStr});
+   '[RQ](ih1/CIA_RQ.pdf)',    '[PS4](ih1/CIA_PS.pdf)',   answerStr},  [],  'sameDate');
+
+i1 = i1 + 1;
+topicV{i1} = markdownLH.SubTopic({'[Example: Asset pricing](ih1/IH1_Asset_SL.pdf)', ...
+   '[RQ](ih1/ih1_asset_rq.pdf)'});
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Two sector models](ih1/TwoSec_SL.pdf)', ...
