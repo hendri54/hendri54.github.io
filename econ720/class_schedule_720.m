@@ -163,7 +163,8 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Optimal control](ih2/OptControl_SL.pdf)'},  [],  'sameDate');
 
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[The growth model](ih2/Ramsey_SL.pdf)'});
+topicV{i1} = markdownLH.SubTopic({'[The growth model](ih2/Ramsey_SL.pdf)', ...
+   '[Competitive equilibrium](ih2/ih2_equil_sl.pdf'});
 
 i1 = i1 + 1;
 if 0
