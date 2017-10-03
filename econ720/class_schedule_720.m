@@ -163,21 +163,27 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Optimal control](ih2/OptControl_SL.pdf)'},  [],  'sameDate');
 
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[The growth model](ih2/Ramsey_SL.pdf)', ...
-   '[Competitive equilibrium](ih2/ih2_equil_sl.pdf)'});
-
+topicV{i1} = markdownLH.SubTopic({'[The growth model](ih2/Ramsey_SL.pdf)'});
+   
 i1 = i1 + 1;
+topicV{i1} = markdownLH.SubTopic({'[Competitive equilibrium](ih2/ih2_equil_sl.pdf)'});
+
 if 0
    answerStr = '[answers](ih2/IH2_PSA.pdf)';
 else
    answerStr = 'due TBA';
 end
+
+i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Dynamics and phase diagrams](ih2/PhaseDiagrams_SL.pdf)', ...
    '[RQ](ih2/IH2_RQ.pdf)',    '[PS5](ih2/IH2_PS.pdf)',   answerStr},  [],  'sameDate');
+
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Money in the utility function](ih2/miu_sl.pdf)'});
+
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Perpetual youth](ih2/PerpetualYouth_SL.pdf)'});
+
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Aggregation issues](ih2/Aggregation_SL.pdf)'});
 
