@@ -32,7 +32,7 @@ topicV = cell(5,1);
 i1 = 0;
 
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: TBA'}, datetime(year1, 10, 10));
+topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: up to (not including) phase diagrams.'}, datetime(year1, 10, 10));
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'No class (will schedule makeup class)'},  datetime(year1, 9, 21));
 i1 = i1 + 1;
