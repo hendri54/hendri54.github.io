@@ -171,7 +171,7 @@ topicV{i1} = markdownLH.SubTopic({'[Competitive equilibrium](ih2/ih2_equil_sl.pd
 if 0
    answerStr = '[answers](ih2/IH2_PSA.pdf)';
 else
-   answerStr = 'due TBA';
+   answerStr = 'due Oct-17';
 end
 
 i1 = i1 + 1;
