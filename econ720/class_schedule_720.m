@@ -168,7 +168,7 @@ topicV{i1} = markdownLH.SubTopic({'[The growth model](ih2/Ramsey_SL.pdf)'});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Competitive equilibrium](ih2/ih2_equil_sl.pdf)'});
 
-if 0
+if true
    answerStr = '[answers](ih2/IH2_PSA.pdf)';
 else
    answerStr = 'due Oct-17';
