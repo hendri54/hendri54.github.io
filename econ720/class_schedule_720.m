@@ -212,7 +212,7 @@ i1 = i1 + 1;
 if 0
    answerStr = '[answers](growth/RandD_PSA.pdf)';
 else
-   answerStr = 'due TBA';
+   answerStr = 'due Nov-14';
 end
 topicV{i1} = markdownLH.SubTopic({'[Knowledge spillovers and scale effects](growth/ScaleEffects_SL.pdf)', ...
    '[PS6](growth/RandD_PS.pdf)',    answerStr});
