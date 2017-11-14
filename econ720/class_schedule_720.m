@@ -244,7 +244,7 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Asset pricing](stochastic/AssetTheory_SL.pdf)'},  [],  'sameDate');
 
 i1 = i1 + 1;
-dueStr = 'TBA';
+dueStr = 'Nov-21';
 if isempty(dueStr)  &&  ~strcmpi(dueStr, 'TBA')
    answerStr = '[answers](stochastic/Asset_PSA.pdf)';
 else
