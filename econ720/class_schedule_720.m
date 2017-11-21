@@ -255,7 +255,7 @@ topicV{i1} = markdownLH.SubTopic({'[Extensions](stochastic/asset_extensions_sl.p
    '[PS7](stochastic/Asset_PS.pdf)',   answerStr});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Stochastic growth model](stochastic/Stoch_Growth_SL.pdf)', ...
-   '[RQ](stochastic/Stoch_Growth_RQ.pdf)'});
+   '[RQ](stochastic/Stoch_Growth_RQ.pdf)'},  [],  'sameDate');
 
 iTopic = iTopic + 1;
 topicListV{iTopic} = markdownLH.Topic('Stochastic Growth', topicV(1 : i1), classDateV);
@@ -276,7 +276,7 @@ topicV{i1} = markdownLH.SubTopic({'Wealth distribution: ', ...
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Stochastic aging](hetero/castaneda_sl.pdf)', ...
-   '[Self-employment](hetero/wealth_selfempl_sl.pdf)'});
+   '[Self-employment](hetero/wealth_selfempl_sl.pdf)'},  [],  'sameDate');
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Aggregate uncertainty: ', ...
