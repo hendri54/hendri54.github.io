@@ -275,12 +275,13 @@ topicV{i1} = markdownLH.SubTopic({'Wealth distribution: ', ...
    '[Motivation and baseline model](hetero/huggett1996_sl.pdf)'},  [],  'sameDate');
 
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Stochastic aging](hetero/castaneda_sl.pdf)'}, [], 'sameDate');
+topicV{i1} = markdownLH.SubTopic({'[Stochastic aging](hetero/castaneda_sl.pdf)', [], 'sameDate'});
    
    % '[Self-employment](hetero/wealth_selfempl_sl.pdf)'},  [],  'sameDate');
 
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Aggregate uncertainty: [Krusell and Smith](hetero/Krusell_Smith_SL.pdf)'});
+topicV{i1} = markdownLH.SubTopic({'
+   'Aggregate uncertainty: [Krusell and Smith](hetero/Krusell_Smith_SL.pdf)'});
 
 iTopic = iTopic + 1;
 topicListV{iTopic} = markdownLH.Topic('Heterogeneous Agents', topicV(1 : i1), classDateV);
