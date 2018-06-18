@@ -21,6 +21,7 @@ mmd econ720/*.mmd
 
 #cd honors
 mmd honors/*.mmd
+mmd honors/instructions/*.mmd
 #cd ..
 
 #cd private
