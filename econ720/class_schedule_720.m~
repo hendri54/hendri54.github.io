@@ -32,7 +32,7 @@ topicV = cell(5,1);
 i1 = 0;
 
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: TBA.'}, ...
+topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: up to (not including) phase diagrams.'}, ...
    datetime(year1, 10, 15));
 % i1 = i1 + 1;
 % topicV{i1} = markdownLH.SubTopic({'Fall break'}, datetime(year1, 10, 19));
@@ -113,10 +113,10 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Dynamic programming](ih1/ih1_dp_sl.pdf)'});
 
 i1 = i1 + 1;
-if false
+if 01
    answerStr = '[answers](ih1/IH1_PSA.pdf)';
 else
-   answerStr = 'due TBA';
+   answerStr = 'due Sep-19';
 end
 topicV{i1} = markdownLH.SubTopic({'[Competitive equilibrium](ih1/ih1_equil_sl.pdf)', ...
 	'[RQ](ih1/IH1_RQ.pdf)', '[PS3](ih1/IH1_PS.pdf)',  answerStr});    % , [], 'sameDate');
@@ -127,10 +127,10 @@ topicV{i1} = markdownLH.SubTopic({'[Dynamic programming theorems](ih1/DP_SL.pdf)
    '[Notes on Dynamic Programming](ih1/Dp_ln.pdf)'});
 
 i1 = i1 + 1;
-if false
+if 01
    answerStr = '[answers](ih1/CIA_PSA.pdf)';
 else
-   answerStr = 'due TBA';
+   answerStr = 'due Sep-26';
 end
 topicV{i1} = markdownLH.SubTopic({'[Cash in advance models](ih1/CIA_SL.pdf)', ...
    '[RQ](ih1/CIA_RQ.pdf)',    '[PS4](ih1/CIA_PS.pdf)',   answerStr},  [],  'sameDate');
@@ -167,10 +167,10 @@ topicV{i1} = markdownLH.SubTopic({'[The growth model](ih2/Ramsey_SL.pdf)'});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Competitive equilibrium](ih2/ih2_equil_sl.pdf)'});
 
-if false
+if true
    answerStr = '[answers](ih2/IH2_PSA.pdf)';
 else
-   answerStr = 'due TBA';
+   answerStr = 'due Oct-17';
 end
 
 i1 = i1 + 1;
@@ -208,10 +208,10 @@ topicV{i1} = markdownLH.SubTopic({'[Increasing varieties](growth/Varieties_SL.pd
    '[RQ](growth/RandD_RQ.pdf)'});
 
 i1 = i1 + 1;
-if false
+if 0
    answerStr = '[answers](growth/RandD_PSA.pdf)';
 else
-   answerStr = 'due TBA';
+   answerStr = 'due Nov-14';
 end
 topicV{i1} = markdownLH.SubTopic({'[Knowledge spillovers and scale effects](growth/ScaleEffects_SL.pdf)', ...
    '[PS6](growth/RandD_PS.pdf)',    answerStr});
@@ -243,7 +243,7 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Asset pricing](stochastic/AssetTheory_SL.pdf)'},  [],  'sameDate');
 
 i1 = i1 + 1;
-dueStr = 'TBA';
+dueStr = '';
 if isempty(dueStr)  &&  ~strcmpi(dueStr, 'TBA')
    answerStr = '[answers](stochastic/Asset_PSA.pdf)';
 else
