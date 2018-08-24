@@ -17,6 +17,24 @@ topicListV = cell(10, 1);
 iTopic = 0;
 
 
+%% Which problem sets have answers?
+
+answerOlg = false;
+dueOlg = 'Sep-5';
+answerOlgMoney = false;
+dueOlgMoney = 'Sep-17';
+answerIh1 = false;
+dueIh1 = 'Sep-24';
+answerCia = false;
+dueCia = 'Oct-1';
+answerIh2 = false;
+dueIh2 = 'Oct-15';
+answerRandD = false;
+dueRandD = 'Nov-12';
+answerAsset = false;
+dueAsset = 'Nov-19';
+
+
 %% Class dates
 
 startDate = datetime(year1, 8, 21);
@@ -34,8 +52,8 @@ i1 = 0;
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: TBA.'}, ...
    datetime(year1, 10, 15));
-% i1 = i1 + 1;
-% topicV{i1} = markdownLH.SubTopic({'Fall break'}, datetime(year1, 10, 19));
+i1 = i1 + 1;
+topicV{i1} = markdownLH.SubTopic({'Labor day'}, datetime(year1, 9, 3));
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Thanksgiving'}, datetime(year1, 11, 21));
 
@@ -56,6 +74,7 @@ topicListV{iTopic} = markdownLH.Topic('Modern Macro', topicV, classDateV);
 
 %% OLG
 
+
 topicV = cell(10, 1);
 i1 = 0;
 
@@ -63,10 +82,10 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Model](olg/OLG_SL.pdf)'});
 
 i1 = i1 + 1;
-if false
+if answerOlg
    answerStr = '[answers](olg/OLG_PSA.pdf)';
 else
-   answerStr = 'due TBA';
+   answerStr = ['due ', dueOlg];
 end
 if false
    % Final example with government bonds
@@ -87,10 +106,10 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Bequests](olg/OLG_Bequest_SL.pdf)'},  [],  'sameDate');
 
 i1 = i1 + 1;
-if false
+if answerOlgMoney
    answerStr = '[answers](olg/OLG_Money_PSA.pdf)';
 else
-   answerStr = 'due TBA';
+   answerStr = ['due ', dueOlgMoney];
 end
 topicV{i1} = markdownLH.SubTopic({'[Money in OLG models](olg/OLG_Money_SL.pdf)', ...
    '[PS2](olg/OLG_Money_PS.pdf)', answerStr});
@@ -113,10 +132,10 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Dynamic programming](ih1/ih1_dp_sl.pdf)'});
 
 i1 = i1 + 1;
-if false
+if answerIh1
    answerStr = '[answers](ih1/IH1_PSA.pdf)';
 else
-   answerStr = 'due TBA';
+   answerStr = ['due ', dueIh1];
 end
 topicV{i1} = markdownLH.SubTopic({'[Competitive equilibrium](ih1/ih1_equil_sl.pdf)', ...
 	'[RQ](ih1/IH1_RQ.pdf)', '[PS3](ih1/IH1_PS.pdf)',  answerStr});    % , [], 'sameDate');
@@ -127,10 +146,10 @@ topicV{i1} = markdownLH.SubTopic({'[Dynamic programming theorems](ih1/DP_SL.pdf)
    '[Notes on Dynamic Programming](ih1/Dp_ln.pdf)'});
 
 i1 = i1 + 1;
-if false
+if answerCia
    answerStr = '[answers](ih1/CIA_PSA.pdf)';
 else
-   answerStr = 'due TBA';
+   answerStr = ['due ', dueCia];
 end
 topicV{i1} = markdownLH.SubTopic({'[Cash in advance models](ih1/CIA_SL.pdf)', ...
    '[RQ](ih1/CIA_RQ.pdf)',    '[PS4](ih1/CIA_PS.pdf)',   answerStr},  [],  'sameDate');
@@ -167,10 +186,10 @@ topicV{i1} = markdownLH.SubTopic({'[The growth model](ih2/Ramsey_SL.pdf)'});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Competitive equilibrium](ih2/ih2_equil_sl.pdf)'});
 
-if false
+if answerIh2
    answerStr = '[answers](ih2/IH2_PSA.pdf)';
 else
-   answerStr = 'due TBA';
+   answerStr = ['due ', dueIh2];
 end
 
 i1 = i1 + 1;
@@ -208,10 +227,10 @@ topicV{i1} = markdownLH.SubTopic({'[Increasing varieties](growth/Varieties_SL.pd
    '[RQ](growth/RandD_RQ.pdf)'});
 
 i1 = i1 + 1;
-if false
+if answerRandD
    answerStr = '[answers](growth/RandD_PSA.pdf)';
 else
-   answerStr = 'due TBA';
+   answerStr = ['due ', dueRandD];
 end
 topicV{i1} = markdownLH.SubTopic({'[Knowledge spillovers and scale effects](growth/ScaleEffects_SL.pdf)', ...
    '[PS6](growth/RandD_PS.pdf)',    answerStr});
@@ -243,11 +262,10 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Asset pricing](stochastic/AssetTheory_SL.pdf)'},  [],  'sameDate');
 
 i1 = i1 + 1;
-dueStr = 'TBA';
-if isempty(dueStr)  &&  ~strcmpi(dueStr, 'TBA')
+if answerAsset
    answerStr = '[answers](stochastic/Asset_PSA.pdf)';
 else
-   answerStr = ['due ', dueStr];
+   answerStr = ['due ', dueAsset];
 end
 topicV{i1} = markdownLH.SubTopic({'[Extensions](stochastic/asset_extensions_sl.pdf)', ...
    '[RQ](stochastic/Asset_RQ.pdf)', ...
