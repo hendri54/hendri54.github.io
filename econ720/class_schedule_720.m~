@@ -20,7 +20,7 @@ iTopic = 0;
 %% Which problem sets have answers?
 
 answerOlg = false;
-dueOlg = 'Sep-10';
+dueOlg = 'Sep-12';
 answerOlgMoney = false;
 dueOlgMoney = 'Sep-17';
 answerIh1 = false;
@@ -97,7 +97,7 @@ if false
    % Final example with government bonds
    exampleStr = '[solution for example](OLG_example.pdf)';
 else
-   exampleStr = 'example (not yet active)';
+   exampleStr = '';
 end
 topicV{i1} = markdownLH.SubTopic({'[Dynamics and steady state](olg/olg_analysis_sl.pdf)', ...
    exampleStr,    '[PS1](olg/OLG_PS.pdf)', answerStr});
