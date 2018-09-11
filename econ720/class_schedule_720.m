@@ -19,7 +19,7 @@ iTopic = 0;
 
 %% Which problem sets have answers?
 
-answerOlg = false;
+answerOlg = true;
 dueOlg = 'Sep-10';
 answerOlgMoney = false;
 dueOlgMoney = 'Sep-24';
@@ -91,7 +91,7 @@ topicV{i1} = markdownLH.SubTopic({'[Model](olg/OLG_SL.pdf)'});
 
 i1 = i1 + 1;
 if answerOlg
-   answerStr = '[answers](olg/OLG_PSA.pdf)';
+   answerStr = '[answers](olg/OLG_PS-answers.pdf)';
 else
    answerStr = ['due ', dueOlg];
 end
@@ -115,7 +115,7 @@ topicV{i1} = markdownLH.SubTopic({'[Bequests](olg/OLG_Bequest_SL.pdf)'},  [],  '
 
 i1 = i1 + 1;
 if answerOlgMoney
-   answerStr = '[answers](olg/OLG_Money_PSA.pdf)';
+   answerStr = '[answers](olg/OLG_Money_PS-answers.pdf)';
 else
    answerStr = ['due ', dueOlgMoney];
 end
@@ -141,7 +141,7 @@ topicV{i1} = markdownLH.SubTopic({'[Dynamic programming](ih1/ih1_dp_sl.pdf)'});
 
 i1 = i1 + 1;
 if answerIh1
-   answerStr = '[answers](ih1/IH1_PSA.pdf)';
+   answerStr = '[answers](ih1/IH1_PS-answers.pdf)';
 else
    answerStr = ['due ', dueIh1];
 end
@@ -155,7 +155,7 @@ topicV{i1} = markdownLH.SubTopic({'[Dynamic programming theorems](ih1/DP_SL.pdf)
 
 i1 = i1 + 1;
 if answerCia
-   answerStr = '[answers](ih1/CIA_PSA.pdf)';
+   answerStr = '[answers](ih1/CIA_PS-answers.pdf)';
 else
    answerStr = ['due ', dueCia];
 end
@@ -195,7 +195,7 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Competitive equilibrium](ih2/ih2_equil_sl.pdf)'});
 
 if answerIh2
-   answerStr = '[answers](ih2/IH2_PSA.pdf)';
+   answerStr = '[answers](ih2/IH2_PS-answers.pdf)';
 else
    answerStr = ['due ', dueIh2];
 end
@@ -213,7 +213,7 @@ topicV{i1} = markdownLH.SubTopic({'[Perpetual youth](ih2/PerpetualYouth_SL.pdf)'
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Aggregation issues](ih2/Aggregation_SL.pdf)'});
 
-% [ih2psa]: ih2/IH2_PSA.pdf
+% [ih2psa]: ih2/IH2_PS-answers.pdf
 
 iTopic = iTopic + 1;
 topicListV{iTopic} = markdownLH.Topic('Infinite Horizon, Continuous Time Models [IH2]', topicV(1 : i1), classDateV);
@@ -236,7 +236,7 @@ topicV{i1} = markdownLH.SubTopic({'[Increasing varieties](growth/Varieties_SL.pd
 
 i1 = i1 + 1;
 if answerRandD
-   answerStr = '[answers](growth/RandD_PSA.pdf)';
+   answerStr = '[answers](growth/RandD_PS-answers.pdf)';
 else
    answerStr = ['due ', dueRandD];
 end
@@ -249,7 +249,7 @@ topicV{i1} = markdownLH.SubTopic({'[Quality ladders](growth/Schumpeter_SL.pdf)'}
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Quality ladders with firm dynamics](growth/Schumpeter2_SL.pdf)'});
 
-%[randpsa]: growth/RandD_PSA.pdf
+%[randpsa]: growth/RandD_PS-answers.pdf
 
 iTopic = iTopic + 1;
 topicListV{iTopic} = markdownLH.Topic('Endogenous Growth [Growth]', topicV(1 : i1), classDateV);
@@ -271,7 +271,7 @@ topicV{i1} = markdownLH.SubTopic({'[Asset pricing](stochastic/AssetTheory_SL.pdf
 
 i1 = i1 + 1;
 if answerAsset
-   answerStr = '[answers](stochastic/Asset_PSA.pdf)';
+   answerStr = '[answers](stochastic/Asset_PS-answers.pdf)';
 else
    answerStr = ['due ', dueAsset];
 end
