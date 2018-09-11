@@ -22,11 +22,11 @@ iTopic = 0;
 answerOlg = false;
 dueOlg = 'Sep-10';
 answerOlgMoney = false;
-dueOlgMoney = 'Sep-17';
+dueOlgMoney = 'Sep-24';
 answerIh1 = false;
-dueIh1 = 'Sep-24';
+dueIh1 = 'Oct-1';
 answerCia = false;
-dueCia = 'Oct-1';
+dueCia = 'Oct-8';
 answerIh2 = false;
 dueIh2 = 'Oct-15';
 answerRandD = false;
@@ -54,6 +54,8 @@ topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: TBA.'}, ...
    datetime(year1, 10, 15));
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Labor day'}, datetime(year1, 9, 3));
+i1 = i1 + 1;
+topicV{i1} = markdownLH.SubTopic({'Hurricane'}, datetime(year1, 9, 12));
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Thanksgiving'}, datetime(year1, 11, 21));
 
