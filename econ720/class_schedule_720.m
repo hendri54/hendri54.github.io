@@ -22,13 +22,13 @@ iTopic = 0;
 answerOlg = true;
 dueOlg = 'Sep-10';
 answerOlgMoney = false;
-dueOlgMoney = 'Sep-24';
+dueOlgMoney = 'Oct-1';
 answerIh1 = false;
-dueIh1 = 'Oct-1';
+dueIh1 = 'Oct-8';
 answerCia = false;
-dueCia = 'Oct-8';
+dueCia = 'Oct-15';
 answerIh2 = false;
-dueIh2 = 'Oct-15';
+dueIh2 = 'Oct-22';
 answerRandD = false;
 dueRandD = 'Nov-12';
 answerAsset = false;
@@ -56,6 +56,8 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Labor day'}, datetime(year1, 9, 3));
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Hurricane'}, datetime(year1, 9, 12));
+i1 = i1 + 1;
+topicV{i1} = markdownLH.SubTopic({'Hurricane'}, datetime(year1, 9, 17));
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Thanksgiving'}, datetime(year1, 11, 21));
 
@@ -103,10 +105,9 @@ else
 end
 topicV{i1} = markdownLH.SubTopic({'[Dynamics and steady state](olg/olg_analysis_sl.pdf)', ...
    exampleStr,    '[PS1](olg/OLG_PS.pdf)', answerStr});
+i1 = i1 + 1;
+topicV{i1} = markdownLH.SubTopic({'Dynamics and steady state, part 2'});
 
-% * Sep-2 (Fri): Recitation, OLG examples
-% i1 = i1 + 1;
-% topicV{i1} = markdownLH.SubTopic({'Labor day'}, datetime(year1,9,5));
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Efficiency and Social Security](olg/OLG_SS_SL.pdf)', ...
    '[RQ](olg/OLG_RQ.pdf) (review questions, not to be handed in)'});
