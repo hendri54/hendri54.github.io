@@ -112,7 +112,7 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Efficiency and Social Security](olg/OLG_SS_SL.pdf)', ...
    '[RQ](olg/OLG_RQ.pdf) (review questions, not to be handed in)'});
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Bequests](olg/OLG_Bequest_SL.pdf)'},  [],  'sameDate');
+topicV{i1} = markdownLH.SubTopic({'[Bequests](olg/OLG_Bequest_SL.pdf)'});
 
 i1 = i1 + 1;
 if answerOlgMoney
