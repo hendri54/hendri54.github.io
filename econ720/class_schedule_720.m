@@ -21,7 +21,7 @@ iTopic = 0;
 
 answerOlg = true;
 dueOlg = 'Sep-10';
-answerOlgMoney = false;
+answerOlgMoney = true;
 dueOlgMoney = 'Oct-1';
 answerIh1 = false;
 dueIh1 = 'Oct-8';
