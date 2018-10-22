@@ -1,5 +1,5 @@
-#LyX 2.3 created this file. For more info see http://www.lyx.org/
-\lyxformat 544
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
 \begin_document
 \begin_header
 \save_transient_properties true
@@ -38,8 +38,6 @@
 \font_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
-\use_microtype false
-\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -69,7 +67,6 @@
 \suppress_date false
 \justification true
 \use_refstyle 0
-\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -78,10 +75,7 @@
 \tocdepth 3
 \paragraph_separation skip
 \defskip smallskip
-\is_math_indent 0
-\math_numbering_side default
-\quotes_style english
-\dynamic_quotes 0
+\quotes_language english
 \papercolumns 1
 \papersides 1
 \paperpagestyle plain
@@ -1165,15 +1159,6 @@ Program Committee: 2019 North American Meetings of the Econometric Society.
 \begin_layout Standard
 Scientific Board: Turkish Economic Association's 6th International Conference
  (ICE-TEA 2018).
-\end_layout
-
-\begin_layout Section
-Service
-\end_layout
-
-\begin_layout Standard
-2018/19: Advisory committee.
- Ad hoc committee evaluating fixed term faculty reappointment.
 \end_layout
 
 \end_body

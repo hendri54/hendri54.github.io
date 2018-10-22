@@ -1,8 +1,9 @@
 @article{LHnis,
 	Author = {Lutz Hendricks and Todd Schoellman},
-	Date-Added = {2016-02-05 13:16:03 +0000},
-	Date-Modified = {2017-09-16 00:31:08 +0000},
 	Journal = {Quarterly Journal of Economics},
-	Note = {Accepted},
+	Number = {2},
+	Pages = {665-700},
 	Title = {Human Capital and Development Accounting: New Evidence From Immigrant Earnings},
-	Year = {2017}}
+	Volume = {133},
+	Year = {2018}}
+
