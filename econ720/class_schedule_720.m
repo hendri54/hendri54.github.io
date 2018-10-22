@@ -23,7 +23,7 @@ answerOlg = true;
 dueOlg = 'Sep-10';
 answerOlgMoney = true;
 dueOlgMoney = 'Oct-1';
-answerIh1 = false;
+answerIh1 = true;
 dueIh1 = 'Oct-15';
 answerCia = false;
 dueCia = 'Oct-22';
@@ -58,6 +58,8 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Hurricane'}, datetime(year1, 9, 12));
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Hurricane'}, datetime(year1, 9, 17));
+i1 = i1 + 1;
+topicV{i1} = markdownLH.SubTopic({'Make-up class will be scheduled.'}, datetime(year1, 10, 17));
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Thanksgiving'}, datetime(year1, 11, 21));
 
