@@ -25,14 +25,14 @@ answerOlgMoney = true;
 dueOlgMoney = 'Oct-1';
 answerIh1 = true;
 dueIh1 = 'Oct-15';
-answerCia = false;
+answerCia = true;
 dueCia = 'Oct-22';
 answerIh2 = false;
-dueIh2 = 'Oct-29';
+dueIh2 = 'Nov-12';
 answerRandD = false;
-dueRandD = 'Nov-12';
+dueRandD = 'TBA';
 answerAsset = false;
-dueAsset = 'Nov-19';
+dueAsset = 'TBA';
 
 
 %% Class dates
@@ -189,7 +189,7 @@ i1 = 0;
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Solow model](ih2/solow_SL.pdf)'});
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Optimal control](ih2/OptControl_SL.pdf)'},  [],  'sameDate');
+topicV{i1} = markdownLH.SubTopic({'[Optimal control](ih2/OptControl_SL.pdf)'});
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[The growth model](ih2/Ramsey_SL.pdf)'});
@@ -316,23 +316,22 @@ topicListV{iTopic} = markdownLH.Topic('Heterogeneous Agents', topicV(1 : i1), cl
 
 
 %% Search / matching
+if false
+   topicV = cell(10, 1);
+   i1 = 0;
+
+   i1 = i1 + 1;
+   topicV{i1} = markdownLH.SubTopic({'[McCall model](search/McCall_SL.pdf)'});
+   i1 = i1 + 1;
+   topicV{i1} = markdownLH.SubTopic({'[Mortenson-Pissarides](search/MortensonPissarides_SL.pdf)', ...
+      '[RQ](search/Search_RQ.pdf)'});
 
 
+   % Dec-2 (M): [Search models of money](search/Search_Money_SL.pdf)
 
-topicV = cell(10, 1);
-i1 = 0;
-
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[McCall model](search/McCall_SL.pdf)'});
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Mortenson-Pissarides](search/MortensonPissarides_SL.pdf)', ...
-	'[RQ](search/Search_RQ.pdf)'});
-
-
-% Dec-2 (M): [Search models of money](search/Search_Money_SL.pdf)
-
-iTopic = iTopic + 1;
-topicListV{iTopic} = markdownLH.Topic('Search and Matching [Search]', topicV(1 : i1), classDateV);
+   iTopic = iTopic + 1;
+   topicListV{iTopic} = markdownLH.Topic('Search and Matching [Search]', topicV(1 : i1), classDateV);
+end
 
 
 %% Contracts

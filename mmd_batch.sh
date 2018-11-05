@@ -26,6 +26,7 @@ mmd honors/instructions/*.mmd
 
 #cd private
 mmd private/*.mmd
+mmd private/light_rail/*.md
 #cd ..
 
 #mmd econ821/*.mmd
