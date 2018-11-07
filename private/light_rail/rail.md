@@ -5,6 +5,8 @@
 * 17 miles, $2.4b (!), 
 * projected 26,000 riders per day
 
+[Web site against the rail](https://stopthetrain.org/)
+
 ## Ridership
 
 The ridership estimate is absurd.
