@@ -31,6 +31,10 @@ Capital cost per rider:
 * interest cost per rider: $13
 * but it gets worse: construction takes 10 years. A 5 year gap between cost and revenue increases interest cost by nearly 30%. So we are at $16.60 per rider.
 
+This number will likely double because of cost overruns (about 100% on average) and it will double again b/c we will never achieve 27,000 riders per day. $50 per trip seems like a reasonable estimate.
+
+For comparison [City Lab](https://www.citylab.com/transportation/2018/01/why-its-so-expensive-to-build-urban-rail-in-the-us/551408/) estimates that light rail in the U.S. typically costs $100,000 per daily rider (just counting up front investment). In very dense cities (NYC), the cost can be as "low" as $25,000 per rider. 
+
 ## Revenue
 
 Charlotte Blue Line charges $2.20 per rider. At the projected 9.5m riders per year, total revenue is $21m. The annual interest cost of the project is $120m.
@@ -53,6 +57,16 @@ But this line of argument is a losing proposition. Everybody will just argue tha
 * cost: $462m (compared with estimate of $226m)
 * extension: 10 miles, cost $1.16b
 
+## Other Concerns
+
+[Light rail could disrupt downtown Durham](https://indyweek.com/news/durham/gotriangle-light-rail-downtown-durham-DPAC-american-tobacco-campus/)
+
+## Opportunities to comment
+
+NC DOT accepts comments via web form.
+
+* [Division 5 (Durham)](https://apps.ncdot.gov/ContactUS/Home/PostComment?Unit=STIPDiv5)
+* [Division 7 (Orange county)](https://apps.ncdot.gov/ContactUS/Home/PostComment?Unit=STIPDiv7)
 
 
 
