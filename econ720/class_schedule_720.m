@@ -215,7 +215,8 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Perpetual youth](ih2/PerpetualYouth_SL.pdf)'});
 
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Aggregation issues](ih2/Aggregation_SL.pdf)'});
+topicV{i1} = markdownLH.SubTopic({'[Aggregation issues](ih2/Aggregation_SL.pdf) (skipped this year)'}, ...
+   [],  'sameDate');
 
 % [ih2psa]: ih2/IH2_PS-answers.pdf
 
