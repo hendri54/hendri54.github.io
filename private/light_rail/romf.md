@@ -137,7 +137,7 @@ It is inappropriate that such large quantities of potentially explosive and toxi
 
 ## Light Rail Comments sent by Hendricks family
 
-Links to the forms we sent: [cost](fta_rail_comments/fta_cost.pdf), [location](fta_rail_comments/fta_location.pdf)
+Links to the forms we sent: [cost](fta_rail_comments/fta_cost.pdf), [location](fta_rail_comments/fta_location.pdf), [ridership](fta_rail_comments/fta_ridership.pdf)
 
 1.
 We object to the planned Durham/Chapel Hill Light Rail project on the grounds that it is economically absurd.
@@ -162,7 +162,13 @@ We object to the planned Durham/Chapel Hill Light Rail project on the grounds th
 For a light rail project, Durham/Chapel Hill pose a worst case scenario. The area has a far smaller population than comparable projects (about 330,000 persons). The proposed rail does not run through or connect major population centers. Instead, it connects UNC hospitals (but not Chapel Hill or UNC's main campus) with Durham and Duke University. Because the entire area is built up, rail construction is unusally expensive (GoTriangle projects $2.45b for an 18 mile track or $136m per mile).
 A useful comparison is Phoenix, AZ. Construction costs were less than half of GoTriangle's projection ($65m per mile). The rail line runs through an area with more than 10 times the population of Durham and Chapel Hill. It connects two major population centers (Tempe and ASU with Phoenix). There is enough space to build the rail away from residential areas. It makes sense to build rail in a location like Phoenix, but not in a location like Durham/Chapel Hill where it connects to mid-size towns, but excludes the major population center (Raleigh).
 
+3. 
+We object to the planned Durham/Chapel Hill Light Rail project on the grounds that it will likely attract far fewer riders than GoTriangle projects. This will make the rail system (estimated by GoTriangle to cost more than $130m per mile) economically non-viable.
+GoTriangle projects 24,000 riders per day or about 9m riders per year. The combined population of Durham and Chapel Hill is about 350,000.
+There are 42 light rail lines (including trolleys) in North America. All of them are located in far larger cities. Buffalo, NY may be the exception, but it attracts only 4.5m riders per year.
+Ridership levels similar to what GoTriangle projects for Durham/Chapel Hill are achieved by San Jose, CA (42 miles of track), Pittsburgh, PA (26 miles), Baltimore, MD (33 miles), New Orleans (22 miles; a tourist destination). All of these serve far larger populations than the proposed Durham/Chapel Hill line.
 
+Data from [wikipedia](https://en.wikipedia.org/wiki/List_of_North_American_light_rail_systems_by_ridership).
 
 
 ## Other ROMFs
