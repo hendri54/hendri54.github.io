@@ -47,6 +47,14 @@ Council Member Javiera Caballero (Javiera.Caballero@durhamnc.gov )
 
 Council Member Vernetta Alston (vernetta.alston@durhamnc.gov )
 
+## Contact info NC State House / Senate
+
+House District 30 (Maida Vale): [Marcia Morey](https://www.ncleg.net/gascripts/members/viewMember.pl?sChamber=H&nUserID=732), Marcia.Morey@ncleg.net
+
+Senate (Durham county): 
+
+* [Floyd B. McKissick](https://www.ncleg.net/gascripts/members/viewMember.pl?sChamber=S&nUserID=228), Floyd.McKissick@ncleg.net
+* [Mike Woodard](https://www.ncleg.net/gascripts/members/viewMember.pl?sChamber=S&nUserID=379), Mike.Woodard@ncleg.net
 
 # FTA Comments
 
