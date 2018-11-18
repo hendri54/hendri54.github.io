@@ -108,4 +108,12 @@ GoTriangle has not carried out a devaluation study.
 * situated in industrial area
 
 
+## Rail squeal
+
+Artile in the [NY Times](https://www.nytimes.com/2000/05/26/nyregion/screeching-won-t-come-halt-dangerous-noise-levels-persist-subway-system.html) about rail squeal. Noise of 56s at 112dB leads to hearing loss.
+
+[Noise levels of common equipment](webfiles.ehs.ufl.edu/noiselvl.pdf) (U of FL, with guidelines on how much exposure should be permitted.)
+
+Noise exposure limits from [National Institute of Environmental Health](https://www.niehs.nih.gov/health/assets/docs_f_o/hearing_protection_508.pdf); table 2-1. 100dB is allowed for 15 minutes a day.
+
 --------------
