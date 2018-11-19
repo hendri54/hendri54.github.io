@@ -61,10 +61,16 @@ Senate (Durham county):
 Send one form per complaint (the FTA counts complaints) to lightrail@gotriangle.org.
 CC the email to stanley.a.mitchell@dot.gov
 
-Stanley A. Mitchell
-Environmental Program Specialist
-Federal Transit Authority, Region IV
-230 Peachtree St. NW, Suite 1400
+Postal addresses are:
+
+GoTriangle  
+PO Box 13787  
+Research Triangle Park, NC 27709
+
+Stanley A. Mitchell  
+Environmental Program Specialist  
+Federal Transit Authority, Region IV  
+230 Peachtree St. NW, Suite 1400  
 Atlanta, GA 30303
 
 
