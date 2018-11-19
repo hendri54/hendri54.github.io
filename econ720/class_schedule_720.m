@@ -231,13 +231,15 @@ i1 = 0;
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Endogenous growth: AK model](growth/AK_SL.pdf)', ...
-   '[RQ](growth/AK_RQ.pdf)',  '[Phase diagram](growth/phase_diagram_sl.pdf)'});
+   '[RQ](growth/AK_RQ.pdf)',  '[Phase diagram](growth/phase_diagram_sl.pdf) (skipped this year)'});
 % * : Recitation: Midterm + examples
+
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[R&D driven growth](growth/RandD_SL.pdf)'});
+topicV{i1} = markdownLH.SubTopic({'[R&D driven growth](growth/RandD_SL.pdf)'}, [], 'sameDate');
+
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Increasing varieties](growth/Varieties_SL.pdf)', ...
-   '[RQ](growth/RandD_RQ.pdf)'});
+   '[RQ](growth/RandD_RQ.pdf)'}, [], 'sameDate');
 
 i1 = i1 + 1;
 if answerRandD
@@ -251,8 +253,8 @@ topicV{i1} = markdownLH.SubTopic({'[Knowledge spillovers and scale effects](grow
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Quality ladders](growth/Schumpeter_SL.pdf)'},  [],  'sameDate');
 
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Quality ladders with firm dynamics](growth/Schumpeter2_SL.pdf)'});
+% i1 = i1 + 1;
+% topicV{i1} = markdownLH.SubTopic({'[Quality ladders with firm dynamics](growth/Schumpeter2_SL.pdf)'});
 
 %[randpsa]: growth/RandD_PS-answers.pdf
 
