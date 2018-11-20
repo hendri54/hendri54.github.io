@@ -2,34 +2,10 @@
 
 # ROMF Location Opposition
 
-## Email sent by Hendricks family to Durham city council
+[Email sent by Hendricks family to state representatives and senators](romf_letter_to_representatives.html). (11/19/2018)
 
-Dear X:
+[Email sent by Hendricks family to Durham city council](romf_email_city_council.html)
 
-With this letter, we bring to your attention our objections against the proposed light rail maintenance facility (ROMF) to be located along Farrington Road in Durham.
-
-Our primary concern is noise. The Farrington site is directly adjacent to several residential communities. It is also very close to Creekside Elementary School (less than 1/4 mile away). It is highly unusual to locate an industrial facility in such a location. 
-
-The ROMF will be operated around the clock. Trains will start to leave the facility at 5am and return around midnight. Before departing, trains will test their bells or horns. This process will start at 5am and last for about one hour at a noise level of around 100 dBA. In addition, due to the shape of the site, trains need to navigate narrow turns when entering the ROMF which creates grinding noises of around 136 dBA, comparable to a jet airplane engine. This noise will occur throughout the day and night as trains are moved for maintenance. Even while the site is "at rest", it is expected to generate 99 dBA of noise due to generators etc.
-
-For any other source of noise, this would be entirely outside of the limits permitted by the City of Durham Code of Ordinances (Sec. 26-4 to 26-22). These prohibit sound levels exceeding 50 dBA outside the hours of 11pm to 8am. They also specifically prohibit the sounding of any horns, except in emergencies. DOE workplace regulations limit workers to no more than 15 minutes of 100 dBA noise exposure per day. The ROMF will generate this level of noise at 50 feet of distance around the clock.
-
-There are several additional concerns with the Farrington location.
-
-1. The ROMF stores large quantities of controlled substances. This includes 1,000 gallons of used oil (after residents were promised that no oil changes would take place on site). Some of these substances are explosive. Others are toxic. This is supposed to happen within 1/4 mile of Creekside Elementary School.
-2. The Farrington site contains wetlands which would be entirely destroyed. These wetlands help to control flooding of I-40 and surrounding areas.
-3. The site prevents the future widening of Farrington road, which is one of only two significant roads that connect US15/501 with NC54. The other road is Garrett which is already crowded.
-
-Moving the ROMF to the Leigh Village area adjacent to NC54 would sidestep these concerns. The area is adjacent to the planned light rail track and currently undeveloped. It would offer easy vehicle access via NC54 and I-40. 
-
-If the Farrington site is built against the objections of neighboring residents, these residents will need to be compensated for their loss of home values. We would expect that these claims will result in lawsuits against the city.
-
-We therefore urge you to vote against rezoning the Farrington site for industrial use.
-
-Sincerely,
-Margarita and Lutz Hendricks
-7 Cortona Dr
-Durham, NC 27707
 
 ## Contact info Durham City Council
 
@@ -49,12 +25,24 @@ Council Member Vernetta Alston (vernetta.alston@durhamnc.gov )
 
 ## Contact info NC State House / Senate
 
-House District 30 (Maida Vale): [Marcia Morey](https://www.ncleg.net/gascripts/members/viewMember.pl?sChamber=H&nUserID=732), Marcia.Morey@ncleg.net
+House District 30 (Maida Vale): [Marcia Morey](https://www.ncleg.net/gascripts/members/viewMember.pl?sChamber=H&nUserID=732), Marcia.Morey@ncleg.net, [web site](https://www.marciamorey.com/).
 
 Senate (Durham county): 
 
 * [Floyd B. McKissick](https://www.ncleg.net/gascripts/members/viewMember.pl?sChamber=S&nUserID=228), Floyd.McKissick@ncleg.net
 * [Mike Woodard](https://www.ncleg.net/gascripts/members/viewMember.pl?sChamber=S&nUserID=379), Mike.Woodard@ncleg.net
+
+## Press contacts
+
+[Herald Sun](https://www.heraldsun.com/news/local/counties/durham-county/article217397240.html), reporter [Dawn Baumgartner Vaughan](dvaughan@heraldsun.com)
+
+[WRAL](https://www.wral.com/durham-can-cover-58m-shortfall-for-durham-orange-light-rail-leaders-say/17799699/), reporter [Tyler Dukes](https://www.wral.com/rs/bio/13311372/?navkeyword=tyler+dukes)
+
+[News & Observer](https://www.newsobserver.com/news/local/counties/orange-county/article219419675.html), reporter [Tammy Grubb], notes that the cost born locally by Durham and Orange counties with be $1.8b.
+
+[Indy Week](https://indyweek.com/news/soapboxer/democracy-and-light-rail-dies-darkness/), reporter [Jeffrey Billman](https://indyweek.com/ContactUs)
+
+[WUNC](http://www.wunc.org/term/light-rail)
 
 # FTA Comments
 
@@ -197,6 +185,8 @@ Data from [wikipedia](https://en.wikipedia.org/wiki/List_of_North_American_light
 Artile in the [NY Times](https://www.nytimes.com/2000/05/26/nyregion/screeching-won-t-come-halt-dangerous-noise-levels-persist-subway-system.html) about rail squeal. Noise of 56s at 112dB leads to hearing loss.
 
 [Noise levels of common equipment](webfiles.ehs.ufl.edu/noiselvl.pdf) (U of FL, with guidelines on how much exposure should be permitted.)
+
+[Noise level examples from Purdue University](https://www.chem.purdue.edu/chemsafety/Training/PPETrain/dblevels.htm).
 
 Noise exposure limits from [National Institute of Environmental Health](https://www.niehs.nih.gov/health/assets/docs_f_o/hearing_protection_508.pdf); table 2-1. 100dB is allowed for 15 minutes a day.
 
