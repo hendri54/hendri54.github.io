@@ -3,7 +3,10 @@
 # Light Rail Facts
 
 * 17 miles, $2.4b (!), 
-* projected 26,000 riders per day
+* projected 26,000 riders per day (update: this number is down to 24,000 per day on GoTriangle's website as of 11/20/2018)
+* this would be about 8m riders per year
+* for comparison: all of the bus lines in Durham taken together serve 6.3m riders per year (source: FTA)
+* hence, the one rail line is supposed to serve more passengers than all of Durham's bus lines combined
 
 [Web site against the rail](https://stopthetrain.org/)
 
@@ -17,6 +20,18 @@ For comparison: Charlotte Blue Line
 * 17,000 riders per day
 * population: 900,000 (Durham: 226,000; Chapel Hill: 57,000)
 * so we have 1/3 of the population 60% of the line length, but we project 60% more riders
+
+The FTA publishes [ridership statistics](https://www.transit.dot.gov/ntd/data-product/monthly-module-raw-data-release) for all US light rail systems.
+
+### Number of train annual riders per person living in the area served (source: FTA):
+
+* Median ridership per resident is 5.6; GoTriangle predicts 24
+* Maximum ridership per resident is 21 for Portland. But this is a clear outlier, likely because it connects to Seattle, so that the population served is much larger than that of Portland.
+* For Charlotte, ridership per person is 3.8.
+
+The smallest city that reports ridership data to the FTA is Buffalo, NY (population 900,000; 5 riders per person). This is nearly 3 times larger than Durham/Chapel Hill. 
+
+There are a few smaller cities that do not report ridership data. These are exempt from reporting because they operate few trains. We expect ridership to be small. The smallest of these cities is Little Rock, AR, with a population of 430,000 (still 100,000 more than Durham/Chapel Hill). The point: there is no city in the U.S. that is as small as Durham/Chapel Hill and operates light rail.
 
 ## Cost
 
@@ -34,6 +49,8 @@ Capital cost per rider:
 This number will likely double because of cost overruns (about 100% on average) and it will double again b/c we will never achieve 27,000 riders per day. $50 per trip seems like a reasonable estimate.
 
 For comparison [City Lab](https://www.citylab.com/transportation/2018/01/why-its-so-expensive-to-build-urban-rail-in-the-us/551408/) estimates that light rail in the U.S. typically costs $100,000 per daily rider (just counting up front investment). In very dense cities (NYC), the cost can be as "low" as $25,000 per rider. 
+
+For comparison: the [FTA] reports that Durham buses cost $3.17 per rider.
 
 ## Revenue
 
