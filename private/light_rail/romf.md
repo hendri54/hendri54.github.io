@@ -44,6 +44,30 @@ Senate (Durham county):
 
 [WUNC](http://www.wunc.org/term/light-rail)
 
+# ROMF Facts
+
+## Noise
+
+The ROMF emits 99 dBA around the clock (measured at 50 feet; according to the appendix of the supplementary noise and vibration study, Oct 2018).
+
+At 1/4 mile (Creekside Elementary School), this attenuates to 81 dBA.
+
+At 1 mile, it attenuates to 69 dBA.
+
+The Durham city night time noise limit in residential areas is 50 dBA. 69 dBA is about 4 times louder than 50 dBA.
+
+## Chemicals
+
+Early November 2018, a GoTriangle representative provided us with a list of chemicals that *might* be stored at the proposed ROMF at Farrington Road.
+
+The representative noted that GoTriangle did *not* have a list of the chemicals that would be actually stored there. Instead, he had to obtain a list from the Charlotte ROMF. This list indicated large quantities of toxic and flammable chemicals.
+
+Since GoTriangle did not have a list of chemicals until we asked for it, this information was presumably never provided for comment to the city’s Fire Department or the health department. This omission must be fixed before any decision on the ROMF can be made. 
+
+Similarly, given that the proposed ROMF is located 1/4 mile from Creekside Elementary School, the views of the school board need to be requested. 
+
+The fact that GoTriangle withheld this information from the public during the comment period leads me to request that the comment period be extended. The public must have the right to comment knowing which chemicals are stored and how fire and health officials assess the associated risks.
+
 # FTA Comments
 
 Send one form per complaint (the FTA counts complaints) to lightrail@gotriangle.org.
