@@ -6,43 +6,7 @@
 
 [Email sent by Hendricks family to Durham city council](romf_email_city_council.html)
 
-
-## Contact info Durham City Council
-
-Mayor Steve Schewel (Steve.Schewel@durhamnc.gov
-
-Council Member Charlie Reece   (charlie.reece@durhamnc.gov )
-
-Council Member Jillian Johnson  (Jillian.Johnson@durhamnc.gov)
-
-Council Member Mark-Anthony Middleton (Mark-Anthony.Middleton@durhamnc.gov )
-
-Council Member DeDreana Freeman (dedreana.freeman@durhamnc.gov )
-
-Council Member Javiera Caballero (Javiera.Caballero@durhamnc.gov )
-
-Council Member Vernetta Alston (vernetta.alston@durhamnc.gov )
-
-## Contact info NC State House / Senate
-
-House District 30 (Maida Vale): [Marcia Morey](https://www.ncleg.net/gascripts/members/viewMember.pl?sChamber=H&nUserID=732), Marcia.Morey@ncleg.net, [web site](https://www.marciamorey.com/).
-
-Senate (Durham county): 
-
-* [Floyd B. McKissick](https://www.ncleg.net/gascripts/members/viewMember.pl?sChamber=S&nUserID=228), Floyd.McKissick@ncleg.net
-* [Mike Woodard](https://www.ncleg.net/gascripts/members/viewMember.pl?sChamber=S&nUserID=379), Mike.Woodard@ncleg.net
-
-## Press contacts
-
-[Herald Sun](https://www.heraldsun.com/news/local/counties/durham-county/article217397240.html), reporter [Dawn Baumgartner Vaughan](dvaughan@heraldsun.com)
-
-[WRAL](https://www.wral.com/durham-can-cover-58m-shortfall-for-durham-orange-light-rail-leaders-say/17799699/), reporter [Tyler Dukes](https://www.wral.com/rs/bio/13311372/?navkeyword=tyler+dukes)
-
-[News & Observer](https://www.newsobserver.com/news/local/counties/orange-county/article219419675.html), reporter [Tammy Grubb], notes that the cost born locally by Durham and Orange counties with be $1.8b.
-
-[Indy Week](https://indyweek.com/news/soapboxer/democracy-and-light-rail-dies-darkness/), reporter [Jeffrey Billman](https://indyweek.com/ContactUs)
-
-[WUNC](http://www.wunc.org/term/light-rail)
+[Contact info](contact_info.html) for city council, state representatives, etc.
 
 # ROMF Facts
 
@@ -71,7 +35,9 @@ The fact that GoTriangle withheld this information from the public during the co
 # FTA Comments
 
 Send one form per complaint (the FTA counts complaints) to lightrail@gotriangle.org.
-CC the email to stanley.a.mitchell@dot.gov
+CC the email to stanley.a.mitchell@dot.gov.
+
+Note: GoTriangle appears to discard emails with attachments. 
 
 Postal addresses are:
 
