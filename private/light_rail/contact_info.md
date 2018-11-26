@@ -51,6 +51,8 @@ Federal Transit Authority, Region IV
 230 Peachtree St. NW, Suite 1400  
 Atlanta, GA 30303
 
+stanley.a.mitchell@dot.gov
+
 Mr. Mitchell states that feedback provided to GoTriangle is automatically considered by the FTA.
 
 ## NC DOT
