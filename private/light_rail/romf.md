@@ -8,6 +8,8 @@
 
 [Contact info](contact_info.html) for city council, state representatives, etc.
 
+[Title vi equity report](report_title-vi-equity-analysis_romf-alternatives.pdf)
+
 # ROMF Facts
 
 ## Noise
