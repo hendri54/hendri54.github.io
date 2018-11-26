@@ -60,6 +60,13 @@ NC DOT accepts comments via web form.
 * [Division 5 (Durham)](https://apps.ncdot.gov/ContactUS/Home/PostComment?Unit=STIPDiv5)
 * [Division 7 (Orange county)](https://apps.ncdot.gov/ContactUS/Home/PostComment?Unit=STIPDiv7)
 
+## Duke University
+
+Duke holds the key for the project. Its president recently (Nov-2018) voiced concerns about noise, vibration, and traffic obstruction at Duke University Hospitals. If Duke does not donate land, DOLRT is in trouble.
+
+* Duke University president Vincent Price: president@duke.edu
+* Tallman Trask III, executive vice president: t3@duke.edu
+
 ## Press contacts
 
 [Herald Sun](https://www.heraldsun.com/news/local/counties/durham-county/article217397240.html), reporter [Dawn Baumgartner Vaughan](dvaughan@heraldsun.com)
