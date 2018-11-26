@@ -27,10 +27,10 @@ answerIh1 = true;
 dueIh1 = 'Oct-15';
 answerCia = true;
 dueCia = 'Oct-22';
-answerIh2 = false;
+answerIh2 = true;
 dueIh2 = 'Nov-19';
 answerRandD = false;
-dueRandD = 'TBA';
+dueRandD = 'Dec-3';
 answerAsset = false;
 dueAsset = 'TBA';
 
