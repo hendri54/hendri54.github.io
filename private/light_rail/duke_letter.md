@@ -2,6 +2,9 @@
 
 # Letter to Duke University President Price
 
+* Duke University president Vincent Price: president@duke.edu
+* Tallman Trask III, executive vice president: t3@duke.edu
+
 Dear President Price:
 
 I was encouraged by the concerns that you recently voiced about the proposed Durham/Orange Country Light Rail (DOLRT). It is my view that the proposed light rail poses several additional concerns that I would like to bring to your attention. I think it is fair to say that the views expressed in this letter are shared by many of the residents who live in or around my subdivision. In fact, together we have submitted hundreds of comments to GoTriangle, unfortunately without eliciting a substantive response.
