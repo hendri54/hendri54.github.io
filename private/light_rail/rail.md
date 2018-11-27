@@ -17,5 +17,6 @@ Outside links:
 * [Stop the train website](https://stopthetrain.org/)
 * [Creekside Elementary School parents against ROMF](https://creeksiderailyard.net/)
 * [Ken Larsen's website](http://kenlarsennc.com/DOLRT101.htm)
+* [Petition](http://chng.it/w9vBxVjwhD) against the Farrington ROMF location.
 
 -----------
