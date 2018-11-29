@@ -10,6 +10,8 @@
 
 [Title vi equity report](report_title-vi-equity-analysis_romf-alternatives.pdf)
 
+[ROMF Q&A](https://gotriangle.org/lightrail/resource-library) by GoTriangle. Note the utterly misleading information on noise (even after the supplementary noise study was released in Oct 2018). Download under "Other project documents".
+
 # ROMF Facts
 
 ## Noise

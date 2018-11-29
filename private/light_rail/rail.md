@@ -18,5 +18,7 @@ Outside links:
 * [Creekside Elementary School parents against ROMF](https://creeksiderailyard.net/)
 * [Ken Larsen's website](http://kenlarsennc.com/DOLRT101.htm)
 * [Petition](http://chng.it/w9vBxVjwhD) against the Farrington ROMF location.
+* [Local business leaders oppose DOLRT](https://www.newsobserver.com/news/local/article222298455.html) over disruptions in downtown Durham.
+* [Indyweek](https://indyweek.com/news/durham/gotriangle-light-rail-southwest-durham-romf/) article on ROMF related problems.
 
 -----------
