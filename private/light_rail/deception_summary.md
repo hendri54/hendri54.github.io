@@ -1,6 +1,6 @@
 {{../markdown_header.txt}}
 
-# Summary of Deceptive Information by GoTriangle
+# Misleading Information Distributed by GoTriangle
 
 ### ROMF noise
 
@@ -20,10 +20,10 @@ Details:
 
 ROMF noise was consistently misrepresented in public meetings.
 
-* November 19, 2018: GoTriangle holds a public meeting to address new SEA. 
+* November 19, 2018: GoTriangle held a public meeting to address new SEA. 
 	* No information about the ROMF presented. 
-	* Upon request only, a representative claims that the SEA contained "nothing new" about noise. 
-	* When Appendix J is pointed out by residents, another representative finally admits that the ROMF will be very noisy.
+	* Upon request only, a representative claimed that the SEA contained "nothing new" about noise. 
+	* When Appendix J was pointed out by residents, another representative finally admitted that the ROMF will be very noisy.
 * GoTriangle changed figures in SEA noise study repeatedly. 
 	* As late as **November 29**, noise estimates for Culp Arbor were changed from the low end of moderate to the high end of moderate. This happened 4 days before the city council was set to vote on rezoning.
 	* Noise estimates for the homes closest to the ROMF still have **not** been released.
@@ -31,13 +31,28 @@ ROMF noise was consistently misrepresented in public meetings.
 
 ### Misleading Outreach
 
-* GoTriangle's NEPA documents fail to mention Creekside Elementary School and the adjacent retirement community. Creekside is a Title I school that serves minority and low-income families.
+GoTriangle's NEPA documents fail to mention 
+
+* Creekside Elementary School and the adjacent retirement community. Creekside is a Title I school that serves minority and low-income families;
+* the environmental impacts of the ROMF: destruction of wetlands and clearcutting of trees along I-40.
+
+Omissions from GoTriangle outreach materials:
+
+* All material distributed widely to the public recognizes only the rail route itself. The ROMF is invisible.
 * The ROMF site does not appear on maps presented during fall 2018 Open Houses.
 * GoTriangle's documents do not mention at all that the Farrington ROMF site displaces an African American family that has lived on this site since after the Civil War.
 
+GoTriangle states on its website and in public meetings that extensive public meetings were held before the Farrington site was picked. In fact, no meetings were held that were ROMF specific or that specifically invited affected neighbors until after the ROMF was chosen as the NEPA-preferred site.
+
 GoTriangle started to work on the Farrington size rezoning request with the city's Planning Department in March 2018. Surrounding residents were not informed until September (during Hurricane Florence). The first meeting with residents took place on November 13, and only upon resident request. By then, it was too late to make changes before the scheduled city council vote on December 3.
 
-### Hazardous substances
+All meetings that were held for the public were carefully orchestrated and neighbors left feeling that the core issues of noise pollution, incongruous development, environmental contamination were not addressed because the site-selection had already been made.  Residents were asked at that point to contribute design ideas only.
+
+GoTriangle repeatedly claimed in writing that a 90 foot buffer along Farrington Road would shield surrounding neighborhoods from noise. ROMF site plans indicate that this buffer would only be 20 feet wide.
+
+During a November 2019 public meeting, GoTriangle representatives claimed that trains would be stored "occasionally" on the ROMF site and that operating hours had not been set. Both claims are false. The ROMF will operate around the clock.
+
+### Hazardous Substances
 
 * Upon **resident request**, GoTriangle produced a list of controlled substances that will be stored at the ROMF. 
 * This list was distributed for the first time on **November 12, 2018**. 
@@ -45,7 +60,7 @@ GoTriangle started to work on the Farrington size rezoning request with the city
 * As of November 30, 2018, these substances have never been mentioned in public meetings or in GoTriangle's written materials, including its ROMF FAQ. Residents can only find out if they request the information.
 * No responses from public health or fire officials on the potential hazards posed by these substances have been obtained.
 
-## Outside information not distributed
+## Other Omissions
 
 Allen Smith III, the GM of the ROMF in Charlotte, asserts that he supplied a "peer review" about the Farrington site to GoTriangle. In it, Mr. Smith conveyed his opinion that the Farrington site "won't work." The main reasons are:
 
