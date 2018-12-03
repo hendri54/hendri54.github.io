@@ -19,6 +19,7 @@ According to FTA [ridership statistics](https://www.transit.dot.gov/ntd/data-pro
 * Portland (OR-WA) is the system with the highest number of riders per person: 21.4. This is an outlier and likely results from the fact that people commute to Seattle, which is not included in the service area population.
 * The second highest number is attained by San Francisco / Oakland (15 riders per person). In other words, GoTriangle predicts a single track connecting Durham with Chapel Hill will produce more riders per persons than San Francisco / Oaklands entire light rail system.
 * Charlotte, NC is an obvious comparison: it achieves 3.8 riders per person (4.8m riders out of a population of 1.25m). This is a plausible estimate for a single rail line. It implies annual ridership for Durham/Chapel Hill of 1.1m (about 1/7th of GoTriangle's projection).
+* The northern part of 15/501 carries about [15,000 riders a day](http://reimagining15501.com/) in 2015. I refer to the section leading into downtown Durham past the split from 15/501 Business. GoTriangle's ridership numbers imply that more than all of these drivers will switch to light rail. Alternatively, it could be that most light rail riders will not actually travel to/from Durham (even though the density of rail stations will be highest there).
 
 ### Point 3: GoTriangle's ridership predictions are absurdly high relative to demand for public transit
 

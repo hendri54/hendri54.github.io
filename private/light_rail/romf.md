@@ -24,6 +24,8 @@ At 1 mile, it attenuates to 69 dBA.
 
 The Durham city night time noise limit in residential areas is 50 dBA. 69 dBA is about 4 times louder than 50 dBA.
 
+On November 30, John Tallmadge started that any noise made by the ROMF would be drowned out by the increased noise from I-40 based on the clear cutting of the land parcel. Therefore he felt that noise would not be an issue. 
+
 ## Chemicals
 
 Early November 2018, a GoTriangle representative provided us with a list of chemicals that *might* be stored at the proposed ROMF at Farrington Road.

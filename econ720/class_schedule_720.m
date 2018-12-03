@@ -272,9 +272,9 @@ topicV{i1} = markdownLH.SubTopic({'[Stochastic optimization](stochastic/Stochast
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Dynamic programming](stochastic/theorems_sl.pdf) -- we will not talk about this in class. Think of it as a simple user guide to the results that are out there.'}, ...
    [],  'sameDate');
-% iTopic = iTopic + 1; topicListV{iTopic} = markdownLH.Topic('Recitation: '});
+
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Asset pricing](stochastic/AssetTheory_SL.pdf)'},  [],  'sameDate');
+topicV{i1} = markdownLH.SubTopic({'[Asset pricing](stochastic/AssetTheory_SL.pdf)'});
 
 i1 = i1 + 1;
 if answerAsset
@@ -282,12 +282,14 @@ if answerAsset
 else
    answerStr = ['due ', dueAsset];
 end
+
 topicV{i1} = markdownLH.SubTopic({'[Extensions](stochastic/asset_extensions_sl.pdf)', ...
    '[RQ](stochastic/Asset_RQ.pdf)', ...
-   '[PS7](stochastic/Asset_PS.pdf)',   answerStr});
+   '[PS7](stochastic/Asset_PS.pdf)',   answerStr}, [], 'sameDate');
+
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Stochastic growth model](stochastic/Stoch_Growth_SL.pdf)', ...
-   '[RQ](stochastic/Stoch_Growth_RQ.pdf)'},  [],  'sameDate');
+   '[RQ](stochastic/Stoch_Growth_RQ.pdf)'});
 
 iTopic = iTopic + 1;
 topicListV{iTopic} = markdownLH.Topic('Stochastic Growth', topicV(1 : i1), classDateV);

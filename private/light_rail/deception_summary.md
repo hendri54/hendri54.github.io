@@ -1,0 +1,60 @@
+{{../markdown_header.txt}}
+
+# Summary of Deceptive Information by GoTriangle
+
+### ROMF noise
+
+Key point: GoTriangle's verbal statements assure the public and political decision makers that the ROMF poses no significant noise problems. Initially, these statements were based on no supporting evidence. Later, they directly contradicted GoTriangle's own noise study dated October 2018.
+
+Details:
+
+* Prior to 2016: no noise study conducted. Without evidence, GoTriangle claims "no noise" impact of Farrington ROMF site.
+* Prior to Oct 2018: inadequate noise study without specific decibel estimates (true??). Statements in AA, DEIS, and EIS again claim "no noise." (true?)
+* Oct 2018: Supplemental Environmental Assessment (SEA) released, 3 (?) years AFTER Farrington site was selected. Contains first specific noise level estimates.
+* SEA main text claims that only 13 homes would be "moderately" affected by ROMF noise. "Proposed Reﬁnements would not result in severe noise impacts for the communities surrounding the ROMF" (section 6.3.1).
+* SEA **Appendix J** provides specific noise estimates that are **never referenced** in the main text. 
+* These include 48 night time incidents of 136 decibels (equivalent to fighter jet at take-off; pain threshold is 140 decibels) and 99 decibels of constant, around the clock noise (equivalent to a leaf blower). These are measured at 50 feet. Culp Arbor residences are located 75 feet (?) from the ROMF site.
+* GoTriangle's online "FAQ" document falsely claims (as of Nov-27, 2018) that the ROMF will comply with city noise ordinances. These limit noise to 50 dBA at night.
+* The Consolidated Report prepared by city staff for the Planning Commission in March 2018 does not mention noise at all. 
+* As of November 30, Go Triangle was still waiting for noise data from the Norfolk light rail system which they would like to use as evidence of the probable noise impacts of the ROMF sited at Farrington Road. 
+
+ROMF noise was consistently misrepresented in public meetings.
+
+* November 19, 2018: GoTriangle holds a public meeting to address new SEA. 
+	* No information about the ROMF presented. 
+	* Upon request only, a representative claims that the SEA contained "nothing new" about noise. 
+	* When Appendix J is pointed out by residents, another representative finally admits that the ROMF will be very noisy.
+* GoTriangle changed figures in SEA noise study repeatedly. 
+	* As late as **November 29**, noise estimates for Culp Arbor were changed from the low end of moderate to the high end of moderate. This happened 4 days before the city council was set to vote on rezoning.
+	* Noise estimates for the homes closest to the ROMF still have **not** been released.
+* Culp Arbor phase II (across Farrington Road from ROMF) and Creekside Elementary School (1/4 mile from it) do not appear on maps used during GoTriangle's fall 2018 Open Houses. The area around the ROMF is presented as woodlands.
+
+### Misleading Outreach
+
+* GoTriangle's NEPA documents fail to mention Creekside Elementary School and the adjacent retirement community. Creekside is a Title I school that serves minority and low-income families.
+* The ROMF site does not appear on maps presented during fall 2018 Open Houses.
+* GoTriangle's documents do not mention at all that the Farrington ROMF site displaces an African American family that has lived on this site since after the Civil War.
+
+GoTriangle started to work on the Farrington size rezoning request with the city's Planning Department in March 2018. Surrounding residents were not informed until September (during Hurricane Florence). The first meeting with residents took place on November 13, and only upon resident request. By then, it was too late to make changes before the scheduled city council vote on December 3.
+
+### Hazardous substances
+
+* Upon **resident request**, GoTriangle produced a list of controlled substances that will be stored at the ROMF. 
+* This list was distributed for the first time on **November 12, 2018**. 
+* It indicates that large quantities of flammable, toxic, and potentially explosive substances will be stored at the ROMF (e.g., 1,000 gallons of used oil).
+* As of November 30, 2018, these substances have never been mentioned in public meetings or in GoTriangle's written materials, including its ROMF FAQ. Residents can only find out if they request the information.
+* No responses from public health or fire officials on the potential hazards posed by these substances have been obtained.
+
+## Outside information not distributed
+
+Allen Smith III, the GM of the ROMF in Charlotte, asserts that he supplied a "peer review" about the Farrington site to GoTriangle. In it, Mr. Smith conveyed his opinion that the Farrington site "won't work." The main reasons are:
+
+* the site does not accomodate a double track;
+* it requires tight curves;
+* delivering rail cars to the site will be infeasible.
+* Mr. Smith's assessment does not appear in any of GoTriangle's written material.
+
+The ROMF's effect on Farrington Road traffic was conducted during the summer while Creekside Elementary School was closed.
+
+
+-----------------

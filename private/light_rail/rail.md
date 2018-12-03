@@ -20,5 +20,9 @@ Outside links:
 * [Petition](http://chng.it/w9vBxVjwhD) against the Farrington ROMF location.
 * [Local business leaders oppose DOLRT](https://www.newsobserver.com/news/local/article222298455.html) over disruptions in downtown Durham.
 * [Indyweek](https://indyweek.com/news/durham/gotriangle-light-rail-southwest-durham-romf/) article on ROMF related problems.
+* [Herald Sun](https://www.heraldsun.com/news/local/article222245295.html) article on Creekside Elementary parents against the ROMF.
+* GoTriangle employed Stephen Banta [as a consultant](https://www.newsobserver.com/news/local/article222333340.html). Mr. Banta previously [pleaded guilty](https://www.usnews.com/news/best-states/arizona/articles/2018-09-10/former-ceo-of-transit-system-pleads-guilty-to-fraud-charge) to a felony fraud charge while employed by Valley Transit.
+* [Orlando Sentinel](https://www.orlandosentinel.com/news/breaking-news/os-sunrail-noise-sanford-residents-20150709-story.html): residents complain about ROMF noise for years.
+* [Charlotte light rail causes traffic jams](http://www.wfae.org/post/light-rail-extension-backs-traffic-city-takes-action)
 
 -----------
