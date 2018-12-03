@@ -8,6 +8,7 @@
 	* [Notes on ridership estimates](ridership.html)
 	* [Notes on cost per rider](cost.html)
 	* [Other concerns](other_concerns.html)
+* [Misleading information by GoTriangle](deception_summary.html)
 * [Contact info](contact_info.html) for complaints: city council, state representatives, etc.
 * [Opposition against Farrington Maintenance Facility](romf.html) (ROMF)
 * [Letter to Duke President Price](duke_letter.html)
