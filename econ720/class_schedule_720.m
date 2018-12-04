@@ -29,10 +29,10 @@ answerCia = true;
 dueCia = 'Oct-22';
 answerIh2 = true;
 dueIh2 = 'Nov-19';
-answerRandD = false;
+answerRandD = true;
 dueRandD = 'Dec-3';
 answerAsset = false;
-dueAsset = 'TBA';
+dueAsset = 'never';
 
 
 %% Class dates
@@ -285,7 +285,7 @@ end
 
 topicV{i1} = markdownLH.SubTopic({'[Extensions](stochastic/asset_extensions_sl.pdf)', ...
    '[RQ](stochastic/Asset_RQ.pdf)', ...
-   '[PS7](stochastic/Asset_PS.pdf)',   answerStr}, [], 'sameDate');
+   '[PS7](stochastic/Asset_PS.pdf)',   answerStr});
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Stochastic growth model](stochastic/Stoch_Growth_SL.pdf)', ...
