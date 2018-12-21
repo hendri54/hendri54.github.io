@@ -6,7 +6,7 @@ Aside from the general economic viability of the DOLRT, there are concerns about
 
 1. GoTriangle proposes to build a train maintenance facility in a residential area (at Farrington Road and Ephesus Church Road). This will generate substantial around the clock noise. The facility will store large quantities of toxic and flammable substances across the street from a retirement community and within a quarter mile of an elementary school. There is no evidence that GoTriangle has consulted fire or public health officials about the risks posed by the site. [Details](romf.html)
 2. Where the track has to cross existing roads, GoTriangle plans "at grade" crossings for most locations. These will block traffic 150 times a day. They also cause traffic accidents.
-3. Objections have been raised by Depac and the American Tobacco Campus that "[Light rail could disrupt downtown Durham](https://indyweek.com/news/durham/gotriangle-light-rail-downtown-durham-DPAC-american-tobacco-campus/)"
+3. Objections have been raised by DPAC and the American Tobacco Campus that "[Light rail could disrupt downtown Durham](https://indyweek.com/news/durham/gotriangle-light-rail-downtown-durham-DPAC-american-tobacco-campus/)"
 4. Duke University has raised concerns that rail tracks could block access to university hospitals.
 
 Finally, there are concerns about the process by which the DOLRT has been promoted to the general public.

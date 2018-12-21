@@ -18,6 +18,16 @@
 
 The ROMF emits 99 dBA around the clock (measured at 50 feet; according to the appendix of the supplementary noise and vibration study, Oct 2018).
 
+A typical substation emits [60-80 dBA](https://electrical-engineering-portal.com/audible-substation-noise). 
+
+* [Valley metro noise study](https://www.valleymetro.org/sites/default/files/uploads/event-resources/south_central_appendice_e_noise_vibration_report.pdf): "A general guideline is that locating the TPSS at least 50 feet from the closest residential land use would avoid noise impacts." (p. 11)
+* From the same study: "The primary noise sources from the TPSS units are the transformer hum and noise from cooling systems. On most modern TPSS units the transformer hum is minimal, so only the ventilation and cooling system has potential to cause noise impacts. A recent noise measurement of a TPSS unit used in a residential area along the Los Angeles Metro Gold Line showed that the ventilation fan generated a sound level of 51 dBA at a distance of 40 feet from the fan, which is equivalent to an Leq of 49 dBA at a distance of 50 feet" (p. 27)
+* Valley Metro has 5 substations. Only one is predicted to generate any impact (Table 14) and there the adjacent home is only 21 feet from the substation.
+
+Note that track squeal numbers in the SEA as "SEL" measures. They give the noise level that would yield the same sound energy  in a 1 second interval as the event studied.
+
+The 99 dBA number is also an SEL. It has no clear units.
+
 At 1/4 mile (Creekside Elementary School), this attenuates to 81 dBA.
 
 At 1 mile, it attenuates to 69 dBA.

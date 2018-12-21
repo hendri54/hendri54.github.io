@@ -53,7 +53,7 @@ If there are 900,000 residents in Charlotte, there will be homes for 900,000 peo
 
 The point is: rail is not a magical technology. It just takes people from 18 points on the map to 18 points on the map at 25 miles per hour at a cost of $18,000 a person-year.
 
-In other words: rail, in a city the size of Charlotte, is an insanity.
+In other words: rail, in a city the size of Charlotte, let alone Durham, is an insanity. 
 
 ## Revenue
 
@@ -68,6 +68,12 @@ Charlotte Blue Line charges $2.20 per rider. At the projected 9.5m riders per ye
 A [2010 Berkely Study](https://iurd.berkeley.edu/wp/2010-04.pdf) finds that, without externalities, almost no light rail system is cost effective. For Charlotte, breaking even would require an externality of $8.57 per trip. The only cities that are close to breaking even are large ones (San Francisco, New York).
 
 But this line of argument is a losing proposition. Everybody will just argue that the congestion benefits are worth the budget deficits.
+
+## Train Alternatives
+
+If it goes through, the DOLRT will go online in 2028. By then it will be technologically obsolete. Actually, it is already obsolete.
+
+Waymo has just launched its first [consumer self-driving car service](https://www.extremetech.com/extreme/281776-waymo-launches-consumer-self-driving-car-service-in-arizona) in Arizona. It is now (not in 10 years) possible to call a shared ride using a phone app, similar to an Uber or Lyft. Unlike Ubers, these are minivans, so that riders who travel similar routes can share a vehicle (if the wish) and thereby reduce cost and road congestion.
 
 ## Charlotte Blue Line
 

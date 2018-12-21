@@ -13,7 +13,7 @@
 * [Opposition against Farrington Maintenance Facility](romf.html) (ROMF)
 * [Letter to Duke President Price](duke_letter.html)
 
-Outside links:
+## Outside links:
 
 * [Stop the train website](https://stopthetrain.org/)
 * [Creekside Elementary School parents against ROMF](https://creeksiderailyard.net/)
@@ -25,5 +25,8 @@ Outside links:
 * GoTriangle employed Stephen Banta [as a consultant](https://www.newsobserver.com/news/local/article222333340.html). Mr. Banta previously [pleaded guilty](https://www.usnews.com/news/best-states/arizona/articles/2018-09-10/former-ceo-of-transit-system-pleads-guilty-to-fraud-charge) to a felony fraud charge while employed by Valley Transit.
 * [Orlando Sentinel](https://www.orlandosentinel.com/news/breaking-news/os-sunrail-noise-sanford-residents-20150709-story.html): residents complain about ROMF noise for years.
 * [Charlotte light rail causes traffic jams](http://www.wfae.org/post/light-rail-extension-backs-traffic-city-takes-action)
+* Videos of Durham [city council meetings](https://www.youtube.com/playlist?list=PLLeX6M8cvLwPpqMIIgToUjvmguXQ_scoc)
+* [Indy Week](https://indyweek.com/news/durham/gotriangle-proposes-to-tunnel-light-rail-under-downtown-durh/): GoTriangle plans to *tunnel* under downtown Durham (!). Mayor Schewel stated that light rail is "crucial for our region over the next 100 years." Underground rail construction typically costs more than [$2 billion a mile](https://www.nytimes.com/2018/03/28/nyregion/new-york-subway-construction-costs-congress.html). Are these people sane?
+
 
 -----------

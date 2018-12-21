@@ -52,6 +52,10 @@ GoTriangle repeatedly claimed in writing that a 90 foot buffer along Farrington 
 
 During a November 2019 public meeting, GoTriangle representatives claimed that trains would be stored "occasionally" on the ROMF site and that operating hours had not been set. Both claims are false. The ROMF will operate around the clock.
 
+During the Dec-5, 2018 Durham city council hearing, a GoTriangle representative claimed that only the top 20 feet of the ROMF building would be visible. Most of the building would be hidden behind the 4 foot berm along Farrington Road. But engineering drawings show that the ROMF site will be level. So only 4 feet of the building can be hidden behind a 4 foot berm.
+
+For months, GoTriangle maintained that it was too late to make substantive changes to the DOLRT planning. On Dec-15, 2018, GoTriangle completely redesigned the downtown Durham section, moving it underground. 
+
 ### Hazardous Substances
 
 * Upon **resident request**, GoTriangle produced a list of controlled substances that will be stored at the ROMF. 
