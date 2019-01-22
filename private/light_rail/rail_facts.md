@@ -29,19 +29,21 @@ The fact that Mr. Jones took the train to get to one of the 18 points does not i
 What distinguishes light rail from other modes of transportation is the following:
 
 1. Riders can only go to 18 points on the map.
-2. The train is slow: 25 miles per hour plus time spent waiting for the train.
+2. The train is slow: 20 miles per hour (GoTriangle's figure) plus time spent waiting for the train.
 3. Trains require separate tracks that are ugly and unused 95% of the time.
 4. Trains are expensive. Really, really expensive.
 
 Take the numbers for Charlotte, NC. Actual numbers. Not predictions.
 
 * The Blue Line cost about $2b to build (the actual cash cost is somewhat less, but it took a very long time over which interest accrued). 
-* At 5% interest, the capital cost alone is $100m per year.
+* At 5% interest, the capital cost alone is $100m per year. (Federal guidelines suggest a 30 year annuity factor of more than 8%.)
 * Operating costs are about $30m a year.
 * In addition, we have depreciation, occasional rail car replacements or refurbishments, etc which I won't count.
 * Let's call the total cost $130m per year.
 * It does 7,000 roundtrips a day, meaning that about 0.8% of Charlotte's population take the train each day (so much for solving Charlotte's congestion problems).
 * Therefore, the Blue Line costs about $18,000 per roundtrip rider a year. In other words, it eats up about half of the typical rider's annual earnings.
+
+The situation will be far worse for DOLRT. One reason is that construction costs are extremely high (about $136 million per mile before cost overruns). A second reason is that Durham's population is much smaller than Charlotte's; hence fewer riders will use the train.
 
 Clearly, light rail can only make sense if there are big magical "economic development" benefits that only occur if Mr. Jones travels by train, not by bus, taxi or car.
 
@@ -51,7 +53,9 @@ This sounds like a big benefit, but the figure is actually perfectly useless. Th
 
 If there are 900,000 residents in Charlotte, there will be homes for 900,000 people -- train or no train. The train does not generate any residential construction on net. Perhaps there are more shops and restaurants. Or perhaps not. Those shops and restaurants may just be relocated to be closer to train stations. We don't know.
 
-The point is: rail is not a magical technology. It just takes people from 18 points on the map to 18 points on the map at 25 miles per hour at a cost of $18,000 a person-year.
+Another argument is job creation. For example, [Mayor Schewel and coauthors](https://www.newsobserver.com/opinion/article223934840.html) claim that DOLRT will create 30,000 new jobs. Such arguments are common. Unfortunately, any economist will attest that they are also nonsensical. In normal times, including these days, the economy is at or near full employment. There is no shortage of jobs. In fact, in construction, there is a shortage of workers. What we need is more high paying jobs. How DOLRT would create those is entirely unclear.
+
+The point is: rail is not a magical technology. It just takes people from 18 points on the map to 18 points on the map at 20 miles per hour at a cost of $18,000 a person-year.
 
 In other words: rail, in a city the size of Charlotte, let alone Durham, is an insanity. 
 
@@ -68,6 +72,9 @@ Charlotte Blue Line charges $2.20 per rider. At the projected 9.5m riders per ye
 A [2010 Berkely Study](https://iurd.berkeley.edu/wp/2010-04.pdf) finds that, without externalities, almost no light rail system is cost effective. For Charlotte, breaking even would require an externality of $8.57 per trip. The only cities that are close to breaking even are large ones (San Francisco, New York).
 
 But this line of argument is a losing proposition. Everybody will just argue that the congestion benefits are worth the budget deficits.
+
+GoTriangle asserts that DOLRT [will not solve traffic congestion](https://gotriangle.org/faq/how-was-ridership-forecast-project): "In general, the project is not expected to have a significant effect on traffic on nearby roadways. However, the project will provide a competitive and reliable travel alternative to the congestion on these roadways, particularly during peak traffic hours."  
+
 
 ## Train Alternatives
 

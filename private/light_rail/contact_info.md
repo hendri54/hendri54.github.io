@@ -41,6 +41,13 @@ Senate (Durham county):
 * [Floyd B. McKissick](https://www.ncleg.net/gascripts/members/viewMember.pl?sChamber=S&nUserID=228), Floyd.McKissick@ncleg.net
 * [Mike Woodard](https://www.ncleg.net/gascripts/members/viewMember.pl?sChamber=S&nUserID=379), Mike.Woodard@ncleg.net
 
+Committee for Appropriations on Department of Transportation
+
+* Senators Davis (chair), McInnis (chair), Alexander, deViere, Garrett, Rabon, Woodard
+* Emails: Jim.Davis@ncleg.net, Tom.McInnis@ncleg.net, John.Alexander@ncleg.net, Kirk.deViere@ncleg.net, Michael.Garrett@ncleg.net, Bill.Rabon@ncleg.net, Mike.Woodard@ncleg.net
+
+Phil Berger, Senate President Pro Tempore, Phil.Berger@ncleg.net
+
 ## Federal Transit Authority
 
 The FTA ranks projects and decides on federal funding. The FTA contact is:
