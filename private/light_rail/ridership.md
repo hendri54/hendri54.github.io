@@ -2,13 +2,15 @@
 
 # Notes on DOLRT Ridership
 
-GoTriangle estimates that each year 8 million people will ride the one train line that is currently being planned. This estimate is absurd. There is no light rail system in the United States that attracts this many riders in such a small city.
+GoTriangle estimates that each year 8 million people will ride the one train line that is currently being planned. This estimate is absurd. There is no light rail system in the United States that attracts this many riders in such a small city. 
+
+Note: GoTriangle's ridership figures have varied over time and across documents. As of February 2019, the estimate on GoTriangle's [website](https://gotriangle.org/lightrail/home) is 9.5 million riders per year. But I have seen figures as low as 6.1 million riders per year. It is not clear why the figures vary so much.
 
 According to FTA [ridership statistics](https://www.transit.dot.gov/ntd/data-product/monthly-module-raw-data-release) for 2017, there are 35 U.S. cities with light rail systems. Of these, 12 are small enough that they do not need to report data to the FTA. The following is based on the 23 systems that do report ridership figures.
 
 ### Point 1: All U.S. cities with light rail are much larger than Durham/Chapel Hill
 
-* The median population among cities that report ridership data is 2.4m. This is **7.3 times larger** than the population of Durham/Chapel Hill (population 330,000).
+* The median service area population among cities that report ridership data is 2.4m. This is **7.3 times larger** than the population of Durham/Chapel Hill (population 330,000).
 * The smallest city that reports light rail ridership is Buffalo, NY with a population of 940,000 and 4.7m riders. This is about 3 times larger than Durham/Chapel Hill, but still generates only 58% of the number of riders GoTriangle predicts for Durham/Chapel Hill.
 
 ### Point 2: GoTriangle's ridership predictions are unrealistic relative to area population
@@ -16,10 +18,10 @@ According to FTA [ridership statistics](https://www.transit.dot.gov/ntd/data-pro
 * GoTriangle predicts 8m riders per year for a service area of 330,000 persons. This works out to **24** riders per person.
 * The median ratio of annual ridership per person for the 23 systems that report ridership statistics is **5.6**; less than one quarter of GoTriangle's prediction.
 * NO light rail system in the United States, no matter how dense, achieves 24 annual riders per person.
-* Portland (OR-WA) is the system with the highest number of riders per person: 21.4. This is an outlier and likely results from the fact that people commute to Seattle, which is not included in the service area population.
+* Portland (OR-WA) is the system with the highest number of riders per person: 21.4. This is an outlier and likely results from the fact that Portland has deliberately restricted road traffic.
 * The second highest number is attained by San Francisco / Oakland (15 riders per person). In other words, GoTriangle predicts a single track connecting Durham with Chapel Hill will produce more riders per persons than San Francisco / Oaklands entire light rail system.
 * Charlotte, NC is an obvious comparison: it achieves 3.8 riders per person (4.8m riders out of a population of 1.25m). This is a plausible estimate for a single rail line. It implies annual ridership for Durham/Chapel Hill of 1.1m (about 1/7th of GoTriangle's projection).
-* The northern part of 15/501 carries about [15,000 riders a day](http://reimagining15501.com/) in 2015. I refer to the section leading into downtown Durham past the split from 15/501 Business. GoTriangle's ridership numbers imply that more than all of these drivers will switch to light rail. Alternatively, it could be that most light rail riders will not actually travel to/from Durham (even though the density of rail stations will be highest there).
+* In 2015, the northern part of 15/501 carries about [15,000 riders a day](http://reimagining15501.com/). I refer to the section leading into downtown Durham past the split from 15/501 Business. GoTriangle's ridership numbers imply that more than all of these drivers will switch to light rail. Alternatively, it could be that most light rail riders will not actually travel to/from Durham (even though the density of rail stations will be highest there).
 
 ### Point 3: GoTriangle's ridership predictions are absurdly high relative to demand for public transit
 

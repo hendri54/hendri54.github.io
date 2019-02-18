@@ -34,4 +34,9 @@
 * [Federal Government Cost Overruns](https://object.cato.org/sites/cato.org/files/pubs/pdf/tbb-72.pdf), Cato Institute.
 * [Phoenix ballot initiative to stop all future light rail funding](https://www.azcentral.com/story/news/local/phoenix/2018/11/28/phoenix-voters-decide-future-light-rail-election-building-better-phoenix-sales-tax-transportation/2127960002/)
 
+## General Info on Light Rail
+
+* [Light Rail Is the Wrong Choice for Cities](https://www.cato.org/publications/commentary/light-rail-wrong-choice-cities), Cato Institute, 2014.
+* [The Worst of Both](https://object.cato.org/sites/cato.org/files/pubs/pdf/pa750_web_1.pdf), Cato Institute, 2014.
+
 -----------
