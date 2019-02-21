@@ -12,6 +12,7 @@
 * [Contact info](contact_info.html) for complaints: city council, state representatives, etc.
 * [Opposition against Farrington Maintenance Facility](romf.html) (ROMF)
 * [Letter to Duke President Price](duke_letter.html)
+* [Letter 2 to Duke President Price](duke_letter2.html), Feb-20, 2019
 
 ## Outside links: Rail opposition
 
