@@ -8,6 +8,8 @@
 * for comparison: all of the bus lines in Durham taken together serve 6.3m riders per year (source: FTA)
 * hence, the one rail line is supposed to serve more passengers than all of Durham's bus lines combined
 
+[DOLRT FAQ](docs/DOLRTQuestionsFlier.pdf) by [Affordable Transit for All](www.affordabletransitforall.com)
+
 [Web site against the rail](https://stopthetrain.org/)
 
 [List of projects currently under consideration for federal funding](https://www.transit.dot.gov/funding/grant-programs/capital-investments/current-capital-investment-grant-cig-projects)

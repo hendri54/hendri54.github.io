@@ -2,7 +2,6 @@
 
 # Material on Durham/Chapel Hill Light Rail
 
-* [Task list](https://docs.google.com/document/d/1cB0eMeuEHsWg5tfPmaf2V4ImBi_xTt5SyD_31AhMm9E/edit?usp=sharing)
 * [Light rail facts](rail_facts.html)
 * Light rail concerns:
 	* [Notes on ridership estimates](ridership.html)
@@ -13,6 +12,7 @@
 * [Opposition against Farrington Maintenance Facility](romf.html) (ROMF)
 * [Letter to Duke President Price](duke_letter.html)
 * [Letter 2 to Duke President Price](duke_letter2.html), Feb-20, 2019
+* [Letter to Representative David Price](letters/letter_david_price.pdf), Feb-23, 2019
 
 ## Outside links: Rail opposition
 
