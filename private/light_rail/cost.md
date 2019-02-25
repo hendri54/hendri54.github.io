@@ -44,4 +44,9 @@ For comparison: dedicated bus lanes cost, on average, $11.5 m per mile (based on
 
 Cost per mile of dedicated bus lanes: [$6 to $20 million per mile](https://onlinepubs.trb.org/onlinepubs/tcrp/tcrp_rpt_90v1c2.pdf)
 
+
+# Cost Fact Summary
+
+1. Cost overruns: The average cost overrun among 56 light rail project was [50%](http://ti.org/antiplanner/?p=10036). More recent projects tended to suffer greater cost overruns.
+
 ----------------

@@ -31,6 +31,24 @@ According to FTA [ridership statistics](https://www.transit.dot.gov/ntd/data-pro
 * For Charlotte, NC, the ratio is 0.26 (rail transports about 1/4 of the passengers that travel by bus). This would seem like a reasonable expectation for DOLRT, which will feature only a single rail line.
 * If the Charlotte ratio holds for DOLRT, we would expect 1.7m annual riders (less than 1/4 of GoTriangle's prediction).
 
+### Point 4: GoTriangle plans too few rail  cars
+
+* Each vehicle will carry at most 220 passengers, including standing passengers (GoTriangle presentation at Duke Climate Coalition, Feb 20, 2019).
+* Each train has 2 vehicles.
+* During rush hour (hours not specified), trains run every 10 minutes. So 6 x 440 = 2,640 passengers per hour, if every vehicle is packed to capacity.
+* This capacity doubles because trains run both ways. So we have 5,280 passenger per hour.
+* Assume that morning rush hour has passengers arriving at work between 7:30am and 8:30am. That would be 7 trains or 6,160 passengers.
+
+These calculations assume that every vehicle is packed to capacity, which is obviously not possible.
+
+It follows that at most 6,000 of GoTriangle's expected 13,000 riders a day can be peak hour commuters. **More than half of GoTriangle predicted riderhsip will be off peak.**
+
+Why is this important? Because off-peak hour riders can be transported inexpensively with buses. They are irrelevant for most of DOLRT's goals: traffic congestion, CO2 emissions, access to jobs. More than half of GoTriangle's predicted ridership could be transported at much lower cost without building new infrastructure. 
+
+Another bottle neck for ridership is parking. 70% of DOLRT riders will travel to their train stations by car (source?). 6,000 peak hour commuters would then require 4,200 parking spots near train stations, again assuming that parking is fully utilized. 
+
+There will be parking at South Square, MLK, Leigh Village, Gateway, Friday Center. It is not known (to me) how many spots each station will have, but I doubt that the number adds up to 4,200 (the figure is 3,900 according to [railway_technology.com](https://www.railway-technology.com/projects/durham-orange-light-rail-transit-project-north-carolina/)). Note that all of the planned parking spots are "half way" between Durham and Chapel Hill. Evidently, GoTriangle expects that most commuters will drive to train stations that are located half way along the track so they can take rail at 18mph to cover the remaining 9 miles to work. This would easily double the time a typical commuter spends on commuting.
+
 ### Conclusions
 
 I draw two conclusions from this comparison:
@@ -38,10 +56,16 @@ I draw two conclusions from this comparison:
 1. The Durham/Chapel Hill area is too small to support a light rail system. No other U.S. city this small has light rail. For light rail to be economically viable, it would have to connect Raleigh to surrounding cities (Cary, Apex).
 2. GoTriangle's ridership estimates are pure fantasy numbers that bear no plausible relationship to reality.
 
+Overstated ridership estimates are, by the way, standard practice in the industry. On average, light rail ridership estimates were [70% higher](http://ti.org/antiplanner/?p=10045) than actual ridership outcomes.
+
 What are the alternatives to light rail?
 
 Clearly, transportation has to move away from cars carrying one or two persons each. Fortunately, alternatives are coming online as I am writing this. Several cities are experimenting with self-driving van services. In contrast to rail, these will solve the "last mile problem." Instead of discharging passengers at a handful of train stations, vans drop off passengers where they actually need to go.
 
 By the time the planned DOLRT would come online (2028, if everything goes according to plan), it will be technologically obsolete.
+
+# Ridership fact summary
+
+1. On average, light rail ridership estimates were [70% higher](http://ti.org/antiplanner/?p=10045) than actual ridership outcomes.
 
 ------------
