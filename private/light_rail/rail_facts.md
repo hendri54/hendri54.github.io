@@ -75,8 +75,17 @@ A [2010 Berkely Study](https://iurd.berkeley.edu/wp/2010-04.pdf) finds that, wit
 
 But this line of argument is a losing proposition. Everybody will just argue that the congestion benefits are worth the budget deficits.
 
+## Effects on Traffic Congestion and Energy Use
+
 GoTriangle asserts that DOLRT [will not solve traffic congestion](https://gotriangle.org/faq/how-was-ridership-forecast-project): "In general, the project is not expected to have a significant effect on traffic on nearby roadways. However, the project will provide a competitive and reliable travel alternative to the congestion on these roadways, particularly during peak traffic hours."  
 
+The Draft Environmental Impact Study (ch. 4: [Affected Environment and Environmental Consequences](https://gotriangle.org/sites/default/files/0633_deis-ch-4-150820_v0.pdf)) shows that, relative to "no build", DOLRT will
+
+1. reduce auto vehicle miles driven by 0.1% (table 4.13-1);
+2. reduce direct transportation energy use by 0.06 (both for year 2040) (table 4.13-2).
+3. account for 0.96 out of 24,274 million miles driven per year (table 4.13-1).
+
+Note: As of Feb 2019, GoTriangle advertises the reduction in energy use of 83b BTU per year as a major environmental benefit ("The Business Case for the DOLRT", Feb 2019). GoTriangle does not mention that 83b BTU amounts to 0.06% of transportation energy use in the service area.
 
 ## Train Alternatives
 

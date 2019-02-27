@@ -1,12 +1,24 @@
 {{../../markdown_header.txt}}
 
-# Notes on DOLRT Cost per Trip
+# DOLRT as a Lifetime Commuter Pass
+
+Here is my way of thinking about DOLRT. GoTriangle offers a few thousand people lifetime commuter passes that shuttle riders between 18 permanently fixed stations at 18 mph. How much does one commuter pass cost? About $1 million.
+
+Here is how the $1 million cost figure is computed:
+
+* Capital cost: $3.4 billion.
+* Daily roundtrip riders: let's say half of Charlotte's 7,000. To make the math easy, say 3,400 daily roundtrips (see [notes on ridership](ridership.html)).
+* Cost per commuter pass: $3.4b / 3,400 = $1m.
+
+Even if we assume that DOLRT will be a smash hit success with as many daily riders as Charlotte (service area population 1.7m; source [FTA](https://www.transit.dot.gov/ntd/data-product/monthly-module-raw-data-release)), the cost per commuter pass will be $500,000. 
+
+# DOLRT Cost per Trip
 
 GoTriangle has not calculated (or made public) an estimate of the cost per rider. However, a simple back-of-the-envelope calculation reveals that each round-trip could easily cost $100 per passenger.
 
 As a starting point, the following is a simple capital cost calculation, based entirely on the numbers provided by GoTriangle (likely optimistic):
 
-1. Capital cost of the project: $2.45b
+1. Capital cost of the project: $2.45b (note: the cost is now up to $3.4b, as of Feb-27, 2019)
 2. Assumed interest rate: 5% (my assumption)
 3. Interest cost per year: $122m
 2. Daily number of riders: 24,000 (GoTriangle website as of 11/24/2018)
@@ -32,21 +44,13 @@ Why are these costs so high? There are two simple reasons:
 
 My conclusion from this is simple: Light rail belongs in large, densely populated cities. Phoenix recently completed its first rail line at a cost of $65m per mile. The area population exceeds 3m. This is a case where the numbers can make sense. If the DOLRT connected the major population centers of the area (e.g., Raleigh with Cary and Apex), its numbers could work out as well. However, connecting smallish cities in the periphery just makes no sense; which is why it has never been done before.
 
-## Cheaper Alternatives
-
-### Bus Rapid Transit
-
-For comparison: dedicated bus lanes cost, on average, $11.5 m per mile (based on projects currently [under review](https://ti.org/antiplanner/?p=14829) with the FTA).
-
-[Seattle's Swift II BRT](http://www.soundtransitrevealed.com/platform) cost $48 m (12.5 miles). The proposed Light Rail line would have covered the same path for $4.5 to $5 billion -- 100 times more expensive than BRT.
-
-[Reason foundation](https://reason.org/wp-content/uploads/files/bus_rapid_transit_and_managed_lanes.pdf) comparison of BRT with alternatives.
-
-Cost per mile of dedicated bus lanes: [$6 to $20 million per mile](https://onlinepubs.trb.org/onlinepubs/tcrp/tcrp_rpt_90v1c2.pdf)
+Fortunately, there is a cheaper alternative: [Bus Rapid Transit](brt.html).
 
 
 # Cost Fact Summary
 
+1. DOLRT is projected to cost $3.4 billion for 18 miles of track ($2.45b capital cost, $800m accrued interest, $100m for the downtown Durham tunnel). This works out to $188m per mile.
+2. Bus Rapid Transit typically costs [$6 to $20 million per mile](https://onlinepubs.trb.org/onlinepubs/tcrp/tcrp_rpt_90v1c2.pdf) of dedicated bus lanes.
 1. Cost overruns: The average cost overrun among 56 light rail project was [50%](http://ti.org/antiplanner/?p=10036). More recent projects tended to suffer greater cost overruns.
 
 ----------------

@@ -2,15 +2,17 @@
 
 # Notes on DOLRT Ridership
 
-GoTriangle estimates that each year 8 million people will ride the one train line that is currently being planned. This estimate is absurd. There is no light rail system in the United States that attracts this many riders in such a small city. 
+GoTriangle estimates that each year around 8 million people will ride the one train line that is currently being planned. This estimate is absurd. There is no light rail system in the United States that attracts this many riders in such a small city. 
 
-Note: GoTriangle's ridership figures have varied over time and across documents. As of February 2019, the estimate on GoTriangle's [website](https://gotriangle.org/lightrail/home) is 9.5 million riders per year. But I have seen figures as low as 6.1 million riders per year. It is not clear why the figures vary so much.
+Note: GoTriangle's ridership figures have varied over time and across documents. As of February 2019, the estimate on GoTriangle's [website](https://gotriangle.org/lightrail/home) is 26,000 riders per day, which works out to 9.5 million riders per year (though my conjecture is that GoTriangle means 26,000 riders per work day). But I have seen figures as low as 6.1 million riders per year. It is not clear why the figures vary so much.
 
 According to FTA [ridership statistics](https://www.transit.dot.gov/ntd/data-product/monthly-module-raw-data-release) for 2017, there are 35 U.S. cities with light rail systems. Of these, 12 are small enough that they do not need to report data to the FTA. The following is based on the 23 systems that do report ridership figures.
 
+Throughout, I am using the urbanized area population as my measure of service area population. This makes a difference for a few cities where the service area population is much smaller than the urbanized area population. Notably, for Phoenix-Mesa, the service area population is only 10% of the urbanized population (which sounds strage to someone who knows the area well). For Charlotte, on the other hand, the service area population is quite a bit larger than the urbanized population.
+
 ### Point 1: All U.S. cities with light rail are much larger than Durham/Chapel Hill
 
-* The median service area population among cities that report ridership data is 2.4m. This is **7.3 times larger** than the population of Durham/Chapel Hill (population 330,000).
+* The median population among cities that report ridership data is 2.4m. This is **7.3 times larger** than the population of Durham/Chapel Hill (population 330,000).
 * The smallest city that reports light rail ridership is Buffalo, NY with a population of 940,000 and 4.7m riders. This is about 3 times larger than Durham/Chapel Hill, but still generates only 58% of the number of riders GoTriangle predicts for Durham/Chapel Hill.
 
 ### Point 2: GoTriangle's ridership predictions are unrealistic relative to area population
@@ -67,5 +69,11 @@ By the time the planned DOLRT would come online (2028, if everything goes accord
 # Ridership fact summary
 
 1. On average, light rail ridership estimates were [70% higher](http://ti.org/antiplanner/?p=10045) than actual ridership outcomes.
+2. Charlotte, NC light rail: Service area population 1.8m; annual riders: 4.77m. Source: National Transit Database, Monthly Module, retrieved Nov-2018.
+3. DOLRT: Service area population (for Durham/Chapel Hill transit area): 240,000 (source: NTD). Assuming 50% population growth by 2035, the service area population is 360,000 (1/5th of Charlotte's current service area). Projected ridership in 2035 (GoTriangle): at least 6m (figures vary across documents). 
+4. [Population densities](http://worldpopulationreview.com/us-cities/durham-population/): 
+	5. at the city level: Durham: 2,100 persons per sq mile; Charlotte: 2,800; Raleigh: 3,200. 
+	6. at the county level: Durham: 1,000 (source: Wikipedia); Mecklenburg county (Charlotte): 2,013; Wake county (Raleigh): 1,254. 
+	The claim that Durham is suitable for light rail because of population density while Raleigh is not does not hold up.
 
 ------------

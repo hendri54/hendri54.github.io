@@ -14,6 +14,14 @@
 * [Letter 2 to Duke President Price](duke_letter2.html), Feb-20, 2019
 * [Letter to Representative David Price](letters/letter_david_price.pdf), Feb-23, 2019
 
+## GoTriangle Links
+
+* DEIS ch. 4: [Affected Environment and Environmental Consequences](https://gotriangle.org/sites/default/files/0633_deis-ch-4-150820_v0.pdf)
+
+## FTA Links
+
+* [Info on public transit projects, including ridership figures](https://www.transit.dot.gov/ntd/data-product/monthly-module-raw-data-release)
+
 ## Outside links: Rail opposition
 
 * [Stop the train website](https://stopthetrain.org/)
