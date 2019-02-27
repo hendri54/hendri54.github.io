@@ -16,6 +16,9 @@
 
 ## GoTriangle Links
 
+* Alternatives analysis:
+	* [Executive summary](https://gotriangle.org/sites/default/files/do-aa-executive-summary-073112.pdf)
+	* [Final report](https://gotriangle.org/sites/default/files/oct18_do_aa_final_report_small.pdf)
 * DEIS ch. 4: [Affected Environment and Environmental Consequences](https://gotriangle.org/sites/default/files/0633_deis-ch-4-150820_v0.pdf)
 
 ## FTA Links
@@ -25,8 +28,10 @@
 ## Outside links: Rail opposition
 
 * [Stop the train website](https://stopthetrain.org/)
+* [Affordable transit for all](https://www.affordabletransitforall.com/)
 * [Creekside Elementary School parents against ROMF](https://creeksiderailyard.net/)
 * [Ken Larsen's website](http://kenlarsennc.com/DOLRT101.htm)
+* [ARCS](https://arcsdurhamorange.home.blog/avoiding-a-light-rail-train-wreck-in-southwest-durham/)
 * [Petition](http://chng.it/w9vBxVjwhD) against the Farrington ROMF location.
 * Videos of Durham [city council meetings](https://www.youtube.com/playlist?list=PLLeX6M8cvLwPpqMIIgToUjvmguXQ_scoc)
 
