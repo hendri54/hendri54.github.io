@@ -2,6 +2,8 @@
 
 # Notes on DOLRT Ridership
 
+This document is no longer updated. See [the summary document](dolrt_comprehensive.pdf).
+
 GoTriangle estimates that each year around 8 million people will ride the one train line that is currently being planned. This estimate is absurd. There is no light rail system in the United States that attracts this many riders in such a small city. 
 
 Note: GoTriangle's ridership figures have varied over time and across documents. As of February 2019, the estimate on GoTriangle's [website](https://gotriangle.org/lightrail/home) is 26,000 riders per day, which works out to 9.5 million riders per year (though my conjecture is that GoTriangle means 26,000 riders per work day). But I have seen figures as low as 6.1 million riders per year. It is not clear why the figures vary so much.
