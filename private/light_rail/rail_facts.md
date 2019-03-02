@@ -2,11 +2,6 @@
 
 # Light Rail Facts
 
-* 17 miles, $2.4b (!), 
-* projected 26,000 riders per day (update: this number is down to 24,000 per day on GoTriangle's website as of 11/20/2018)
-* this would be about 8m riders per year
-* for comparison: all of the bus lines in Durham taken together serve 6.3m riders per year (source: FTA)
-* hence, the one rail line is supposed to serve more passengers than all of Durham's bus lines combined
 
 [DOLRT FAQ](docs/DOLRTQuestionsFlier.pdf) by [Affordable Transit for All](www.affordabletransitforall.com)
 
@@ -75,23 +70,7 @@ A [2010 Berkely Study](https://iurd.berkeley.edu/wp/2010-04.pdf) finds that, wit
 
 But this line of argument is a losing proposition. Everybody will just argue that the congestion benefits are worth the budget deficits.
 
-## Effects on Traffic Congestion and Energy Use
 
-GoTriangle asserts that DOLRT [will not solve traffic congestion](https://gotriangle.org/faq/how-was-ridership-forecast-project): "In general, the project is not expected to have a significant effect on traffic on nearby roadways. However, the project will provide a competitive and reliable travel alternative to the congestion on these roadways, particularly during peak traffic hours."  
-
-The Draft Environmental Impact Study (ch. 4: [Affected Environment and Environmental Consequences](https://gotriangle.org/sites/default/files/0633_deis-ch-4-150820_v0.pdf)) shows that, relative to "no build", DOLRT will
-
-1. reduce auto vehicle miles driven by 0.1% (table 4.13-1);
-2. reduce direct transportation energy use by 0.06 (both for year 2040) (table 4.13-2).
-3. account for 0.96 out of 24,274 million miles driven per year (table 4.13-1).
-
-Note: As of Feb 2019, GoTriangle advertises the reduction in energy use of 83b BTU per year as a major environmental benefit ("The Business Case for the DOLRT", Feb 2019). GoTriangle does not mention that 83b BTU amounts to 0.06% of transportation energy use in the service area.
-
-## Train Alternatives
-
-If it goes through, the DOLRT will go online in 2028. By then it will be technologically obsolete. Actually, it is already obsolete.
-
-Waymo has just launched its first [consumer self-driving car service](https://www.extremetech.com/extreme/281776-waymo-launches-consumer-self-driving-car-service-in-arizona) in Arizona. It is now (not in 10 years) possible to call a shared ride using a phone app, similar to an Uber or Lyft. Unlike Ubers, these are minivans, so that riders who travel similar routes can share a vehicle (if the wish) and thereby reduce cost and road congestion.
 
 ## Charlotte Blue Line
 

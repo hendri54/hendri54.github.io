@@ -2,14 +2,15 @@
 
 # Material on Durham/Chapel Hill Light Rail
 
+* [Comprehensive document with facts and analysis](dolrt_comprehensive.pdf); will be updated as new facts emerge.
 * [Light rail facts](rail_facts.html)
-* Light rail concerns:
-	* [Notes on ridership estimates](ridership.html)
-	* [Notes on cost per rider](cost.html)
-	* [Other concerns](other_concerns.html)
+* [Light rail concerns](other_concerns.html)
 * [Misleading information by GoTriangle](deception_summary.html)
 * [Contact info](contact_info.html) for complaints: city council, state representatives, etc.
 * [Opposition against Farrington Maintenance Facility](romf.html) (ROMF)
+
+Letters written in opposition to DOLRT
+
 * [Letter to Duke President Price](duke_letter.html)
 * [Letter 2 to Duke President Price](duke_letter2.html), Feb-20, 2019
 * [Letter to Representative David Price](letters/letter_david_price.pdf), Feb-23, 2019
@@ -32,7 +33,6 @@
 * [Creekside Elementary School parents against ROMF](https://creeksiderailyard.net/)
 * [Ken Larsen's website](http://kenlarsennc.com/DOLRT101.htm)
 * [ARCS](https://arcsdurhamorange.home.blog/avoiding-a-light-rail-train-wreck-in-southwest-durham/)
-* [Petition](http://chng.it/w9vBxVjwhD) against the Farrington ROMF location.
 * Videos of Durham [city council meetings](https://www.youtube.com/playlist?list=PLLeX6M8cvLwPpqMIIgToUjvmguXQ_scoc)
 
 ## Press coverage

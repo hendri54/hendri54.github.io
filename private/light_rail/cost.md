@@ -1,5 +1,7 @@
 {{../../markdown_header.txt}}
 
+This document is no longer updated. See [the summary document](dolrt_comprehensive.pdf).
+
 # DOLRT as a Lifetime Commuter Pass
 
 Here is my way of thinking about DOLRT. GoTriangle offers a few thousand people lifetime commuter passes that shuttle riders between 18 permanently fixed stations at 18 mph. How much does one commuter pass cost? About $1 million.
