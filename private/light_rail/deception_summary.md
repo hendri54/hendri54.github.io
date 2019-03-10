@@ -9,7 +9,7 @@ Key point: GoTriangle's verbal statements assure the public and political decisi
 Details:
 
 * Prior to 2016: no noise study conducted. Without evidence, GoTriangle claims "no noise" impact of Farrington ROMF site.
-* Prior to Oct 2018: inadequate noise study without specific decibel estimates (true??). Statements in AA, DEIS, and EIS again claim "no noise." (true?)
+* Prior to Oct 2018: inadequate noise study without specific decibel estimates. Statements in AA, DEIS, and EIS again claim "no noise." 
 * Oct 2018: Supplemental Environmental Assessment (SEA) released, 3 (?) years AFTER Farrington site was selected. Contains first specific noise level estimates.
 * SEA main text claims that only 13 homes would be "moderately" affected by ROMF noise. "Proposed Reﬁnements would not result in severe noise impacts for the communities surrounding the ROMF" (section 6.3.1).
 * SEA **Appendix J** provides specific noise estimates that are **never referenced** in the main text. 

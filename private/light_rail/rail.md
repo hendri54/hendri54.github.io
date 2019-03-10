@@ -37,6 +37,7 @@ Letters written in opposition to DOLRT
 
 ## Press coverage
 
+* [Duke University rejects Erwin Road corridor](https://www.newsobserver.com/news/local/article227267579.html), N&O, 3/6/2019
 * [Local business leaders oppose DOLRT](https://www.newsobserver.com/news/local/article222298455.html) over disruptions in downtown Durham.
 * [Indyweek](https://indyweek.com/news/durham/gotriangle-light-rail-southwest-durham-romf/) article on ROMF related problems.
 * [Herald Sun](https://www.heraldsun.com/news/local/article222245295.html) article on Creekside Elementary parents against the ROMF.
