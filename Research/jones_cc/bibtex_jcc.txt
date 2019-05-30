@@ -1,0 +1,8 @@
+@Unpublished{LH_khcomp,
+  author        = {Lutz Hendricks and Schoellman, Todd},
+  title         = {Skilled Labor Productivity and Cross-country Income Differences},
+  note          = {Manuscript. University of North Carolina},
+  year          = {2019},
+  date-added    = {2018-12-20 13:21:27 -0500},
+  date-modified = {2018-12-20 13:24:31 -0500},
+}
