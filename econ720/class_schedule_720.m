@@ -11,7 +11,7 @@ Change
    should be possible to mark all dates up to a fixed date as taken (easier to handle ex post)
 %}
 
-year1 = 2018;
+year1 = 2019;
 
 topicListV = cell(10, 1);
 iTopic = 0;
@@ -19,17 +19,17 @@ iTopic = 0;
 
 %% Which problem sets have answers?
 
-answerOlg = true;
+answerOlg = false;
 dueOlg = 'Sep-10';
-answerOlgMoney = true;
+answerOlgMoney = false;
 dueOlgMoney = 'Oct-1';
-answerIh1 = true;
+answerIh1 = false;
 dueIh1 = 'Oct-15';
-answerCia = true;
+answerCia = false;
 dueCia = 'Oct-22';
-answerIh2 = true;
+answerIh2 = false;
 dueIh2 = 'Nov-19';
-answerRandD = true;
+answerRandD = false;
 dueRandD = 'Dec-3';
 answerAsset = false;
 dueAsset = 'never';
@@ -51,17 +51,11 @@ i1 = 0;
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: TBA.'}, ...
-   datetime(year1, 10, 15));
+   datetime(year1, 10, 14));  % ++++++++
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Labor day'}, datetime(year1, 9, 3));
+topicV{i1} = markdownLH.SubTopic({'Labor day'}, datetime(year1, 9, 2));
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Hurricane'}, datetime(year1, 9, 12));
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Hurricane'}, datetime(year1, 9, 17));
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Make-up class will be scheduled.'}, datetime(year1, 10, 17));
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Thanksgiving'}, datetime(year1, 11, 21));
+topicV{i1} = markdownLH.SubTopic({'Thanksgiving'}, datetime(year1, 11, 27));
 
 iTopic = iTopic + 1;
 topicListV{iTopic} = markdownLH.Topic('Special dates', topicV(1 : i1), classDateV);
