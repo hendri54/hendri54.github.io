@@ -221,10 +221,12 @@ Extracting specific elements with indices given by vectors:
 \end_layout
 
 \begin_layout Verbatim
+
 A = rand(4,3,5); 
 \end_layout
 
 \begin_layout Verbatim
+
 A[CartesianIndex.([1,2], [2,2]), 1] -> A[1,2,1] and A[2,2,1]
 \end_layout
 
@@ -233,10 +235,12 @@ Similar to using sub2ind:
 \end_layout
 
 \begin_layout Verbatim
+
 idxV = sub2ind(size(A), [1,2],[2,2],[1,1])
 \end_layout
 
 \begin_layout Verbatim
+
 A[idxV]
 \end_layout
 
@@ -354,6 +358,7 @@ Python
 \end_layout
 
 \begin_layout Verbatim
+
 fs = FormatExpr(
 \begin_inset Quotes eld
 \end_inset
@@ -366,6 +371,7 @@ fs = FormatExpr(
 \end_layout
 
 \begin_layout Verbatim
+
 format(fs, 1.123, 2)
 \end_layout
 
@@ -1451,6 +1457,13 @@ ssh user@longleaf.unc.edu
 
 \begin_layout Subsection
 Rsync File Transfer
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Rsync-File-Transfer"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1470,7 +1483,11 @@ ourceDir"
 \end_layout
 
 \begin_layout Standard
-Note: The source dir should end in 
+Notes: 
+\end_layout
+
+\begin_layout Itemize
+The source dir should end in 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1479,6 +1496,22 @@ Note: The source dir should end in
 \end_inset
 
 ; the target dir should not.
+\end_layout
+
+\begin_layout Itemize
+Exluding 
+\family typewriter
+.git
+\family default
+ speeds up the transfer.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+--delete
+\family default
+ ensures that no old files remain on the server.
 \end_layout
 
 \begin_layout Subsection
@@ -1562,120 +1595,138 @@ Running code on the cluster
 \end_layout
 
 \begin_layout Standard
+Steps:
+\end_layout
 
+\begin_layout Enumerate
+Copy your code and all of its dependencies to the cluster (see 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Rsync-File-Transfer"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+Write a Julia script that contains the startup code for the project and
+ then runs the actual computation (call this 
+\family typewriter
+batch.jl
+\family default
+).
+\end_layout
+
+\begin_layout Enumerate
+Write a batch file that submits 
+\family typewriter
+julia batch.jl
+\family default
+ as a job to the cluster's job scheduler.
+ For UNC's 
 \family typewriter
 longleaf
 \family default
- uses slurm
+ cluster, this would be slurm.
+ So you need to write 
 \family typewriter
+job.sl
+\family default
+ that will be submitted using 
+\family typewriter
+sbatch job.sl
+\family default
 .
+\end_layout
 
-\family default
- This is equivalent to running a 
-\family typewriter
-julia file.jl
-\family default
- command from the terminal.
+\begin_layout Subsubsection
+The Julia script
 \end_layout
 
 \begin_layout Standard
-To run a package, the file should contain:
+Submitting a job is (almost) equivalent to 
+\family typewriter
+julia batch.jl
+\family default
+ from the terminal.
+\end_layout
+
+\begin_layout Itemize
+Note: 
+\family typewriter
+cd()
+\family default
+ does not work in these command files.
+ To include a file, provide a full path.
+\end_layout
+
+\begin_layout Standard
+If you only use registered packages, life is easy.
+ Your code would simply say:
 \end_layout
 
 \begin_layout Verbatim
+
 using Pkg
 \end_layout
 
 \begin_layout Verbatim
-# Now we need to `add` all unregistered packages
+
+# This needs to be run only once
 \end_layout
 
 \begin_layout Verbatim
-# None of this is automatic.
- If `TestPkg2LH` uses `TestPkgLH`, the latter must be added first.
+
+Pkg.add(MyPackage)
 \end_layout
 
 \begin_layout Verbatim
-githubUrl = "https://github.com/hendri54/"
+
+# If you want the latest version each time
 \end_layout
 
 \begin_layout Verbatim
-pkgNameV = ["TestPkgLH",  "TestPkg2LH"] for pkgName in pkgNameV
+
+Pkg.update()
 \end_layout
 
 \begin_layout Verbatim
-	ps = PackageSpec(name = pkgName,  url = githubUrl * pkgName)
+
+using MyPackage
 \end_layout
 
 \begin_layout Verbatim
-	Pkg.add(ps) 
-\end_layout
 
-\begin_layout Verbatim
-end
-\end_layout
-
-\begin_layout Verbatim
-# Now we can finally run the code
-\end_layout
-
-\begin_layout Verbatim
-using TestPkg2LH 
-\end_layout
-
-\begin_layout Verbatim
-TestPkg2LH.show_version() 
+MyPackage.run()
 \end_layout
 
 \begin_layout Standard
-Before doing any of this, all code must be pushed to 
+If 
 \family typewriter
-github
+MyPackage
 \family default
- and 
+ contains unregistered dependencies, things get more difficult.
+ Now 
 \family typewriter
-longleaf
+batch.jl
 \family default
-.
- And none of this works with unregistered packages.
- They don't recompile, even if you download new versions.
-\end_layout
-
-\begin_layout Standard
-My approach:
+ must:
 \end_layout
 
 \begin_layout Enumerate
-Do not 
-\family typewriter
-add
-\family default
- any unregistered packages; 
+Activate the package's environment.
+\end_layout
+
+\begin_layout Enumerate
+
 \family typewriter
 develop
 \family default
- them instead, so that Julia tracks the local source code.
-\end_layout
-
-\begin_layout Enumerate
-
-\family typewriter
-rsync
-\family default
- the code to the cluster.
-\end_layout
-
-\begin_layout Enumerate
-Start Julia and activate the environment of the package that we would like
- to run.
-\end_layout
-
-\begin_layout Enumerate
-For every unregistered dependency, issue 
-\family typewriter
-Pkg.develop
-\family default
-.
+ all unregistered dependencies.
  This replaces the invalid paths to directories on the local machine (e.g.
  
 \family typewriter
@@ -1687,10 +1738,25 @@ Pkg.develop
 /nas/longleaf/...
 \family default
 ).
+ Note: I verified that one cannot replace 
+\family typewriter
+homedir()
+\family default
+ with ~ in 
+\family typewriter
+Manifest.toml.
 \end_layout
 
 \begin_layout Enumerate
-Run your code.
+
+\family typewriter
+using MyPackage
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+MyPackage.run()
 \end_layout
 
 \begin_layout Standard
@@ -1706,6 +1772,89 @@ shared
 \family default
  repo (this is not a package b/c its very purpose is to facilitate loading
  of unregistered packages).
+\end_layout
+
+\begin_layout Standard
+For an example implementation of the entire process, see 
+\family typewriter
+batch_commands.jl
+\family default
+ in 
+\family typewriter
+TestPkg2LH
+\family default
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+This uses 
+\family typewriter
+PackageToolsLH
+\family default
+ to handle directories on different computers and file transfer.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+write_command_file()
+\family default
+ writes the julia file that is to be executed remotely (
+\family typewriter
+command_file.jl
+\family default
+).
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+write_sbatch
+\family default
+ writes the sbatch file that will be submitted to 
+\family typewriter
+slurm
+\family default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+project_upload()
+\family default
+ uses 
+\family typewriter
+rsync
+\family default
+ to copy the code of the project, its dependencies, and some general purpose
+ code that is required at startup (mainly 
+\family typewriter
+PackageToolsLH
+\family default
+ itself) to the remote machine.
+\end_layout
+
+\begin_layout Subsubsection
+The sbatch file
+\end_layout
+
+\begin_layout Standard
+How this works can be looked up online.
+ The only trick is that the Julia command requires a full path (or a relative
+ path, but that's a little risky) on the remote machine.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+PackageToolsLH
+\family default
+ keeps track of where things are on each machine.
+ It is used to build the full paths.
 \end_layout
 
 \begin_layout Section
