@@ -221,12 +221,10 @@ Extracting specific elements with indices given by vectors:
 \end_layout
 
 \begin_layout Verbatim
-
 A = rand(4,3,5); 
 \end_layout
 
 \begin_layout Verbatim
-
 A[CartesianIndex.([1,2], [2,2]), 1] -> A[1,2,1] and A[2,2,1]
 \end_layout
 
@@ -235,12 +233,10 @@ Similar to using sub2ind:
 \end_layout
 
 \begin_layout Verbatim
-
 idxV = sub2ind(size(A), [1,2],[2,2],[1,1])
 \end_layout
 
 \begin_layout Verbatim
-
 A[idxV]
 \end_layout
 
@@ -358,7 +354,6 @@ Python
 \end_layout
 
 \begin_layout Verbatim
-
 fs = FormatExpr(
 \begin_inset Quotes eld
 \end_inset
@@ -371,7 +366,6 @@ fs = FormatExpr(
 \end_layout
 
 \begin_layout Verbatim
-
 format(fs, 1.123, 2)
 \end_layout
 
@@ -584,6 +578,23 @@ Manifest.toml
 \end_layout
 
 \begin_layout Standard
+The environment determines how code is loaded.
+ When you type 
+\family typewriter
+using M
+\family default
+ Julia looks for module 
+\family typewriter
+M
+\family default
+ in all directories that are listed in 
+\family typewriter
+LOAD_PATH
+\family default
+.
+\end_layout
+
+\begin_layout Standard
 You can 
 \series bold
 add
@@ -606,76 +617,6 @@ Pkg.add
 Mainfest.toml
 \family default
  in that directory.
-\end_layout
-
-\begin_layout Standard
-The environment determines how code is loaded.
- When you type 
-\family typewriter
-using M
-\family default
- Julia looks for module 
-\family typewriter
-M
-\family default
- in all directories that are listed in 
-\family typewriter
-LOAD_PATH
-\family default
-.
- 
-\end_layout
-
-\begin_layout Standard
-Note: Julia does 
-\series bold
-not
-\series default
- look in the current directory (unlike Matlab).
-\end_layout
-
-\begin_layout Standard
-When examining a particular directory in 
-\family typewriter
-LOAD_PATH
-\family default
-, what happens depends on whether the directory contains 
-\family typewriter
-Manifest.toml
-\family default
- (or 
-\family typewriter
-Project.toml
-\family default
-; two go together).
- 
-\end_layout
-
-\begin_layout Itemize
-If it does not, Julia looks for 
-\family typewriter
-M.jl
-\family default
- in this directory.
- 
-\end_layout
-
-\begin_layout Itemize
-Otherwise, Julia 
-\series bold
-only
-\series default
- looks in 
-\family typewriter
-Manifest.toml
-\family default
-.
- The 
-\series bold
-only
-\series default
- part is key.
- Julia does not look in the directory itself.
 \end_layout
 
 \begin_layout Subsubsection
@@ -732,7 +673,7 @@ D
 \family typewriter
 using D
 \family default
-? I actually don't know the answer to this question.
+?
 \end_layout
 
 \begin_layout Standard
@@ -1771,37 +1712,30 @@ If you only use registered packages, life is easy.
 \end_layout
 
 \begin_layout Verbatim
-
 using Pkg
 \end_layout
 
 \begin_layout Verbatim
-
 # This needs to be run only once
 \end_layout
 
 \begin_layout Verbatim
-
 Pkg.add(MyPackage)
 \end_layout
 
 \begin_layout Verbatim
-
 # If you want the latest version each time
 \end_layout
 
 \begin_layout Verbatim
-
 Pkg.update()
 \end_layout
 
 \begin_layout Verbatim
-
 using MyPackage
 \end_layout
 
 \begin_layout Verbatim
-
 MyPackage.run()
 \end_layout
 

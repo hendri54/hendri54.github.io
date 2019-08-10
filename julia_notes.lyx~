@@ -608,6 +608,76 @@ Mainfest.toml
  in that directory.
 \end_layout
 
+\begin_layout Standard
+The environment determines how code is loaded.
+ When you type 
+\family typewriter
+using M
+\family default
+ Julia looks for module 
+\family typewriter
+M
+\family default
+ in all directories that are listed in 
+\family typewriter
+LOAD_PATH
+\family default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Note: Julia does 
+\series bold
+not
+\series default
+ look in the current directory (unlike Matlab).
+\end_layout
+
+\begin_layout Standard
+When examining a particular directory in 
+\family typewriter
+LOAD_PATH
+\family default
+, what happens depends on whether the directory contains 
+\family typewriter
+Manifest.toml
+\family default
+ (or 
+\family typewriter
+Project.toml
+\family default
+; two go together).
+ 
+\end_layout
+
+\begin_layout Itemize
+If it does not, Julia looks for 
+\family typewriter
+M.jl
+\family default
+ in this directory.
+ 
+\end_layout
+
+\begin_layout Itemize
+Otherwise, Julia 
+\series bold
+only
+\series default
+ looks in 
+\family typewriter
+Manifest.toml
+\family default
+.
+ The 
+\series bold
+only
+\series default
+ part is key.
+ Julia does not look in the directory itself.
+\end_layout
+
 \begin_layout Subsubsection
 Stacked environments
 \end_layout
@@ -1070,6 +1140,37 @@ Pkg.develop
 \family default
  seems to work.
  Once the code is copied to a remote computer, things get more complicated.
+\end_layout
+
+\begin_layout Itemize
+The solution suggested on 
+\begin_inset CommandInset href
+LatexCommand href
+name "discourse"
+target "https://discourse.julialang.org/t/forced-recompilation/27367/4?u=hendri54"
+literal "false"
+
+\end_inset
+
+ suggests to always 
+\family typewriter
+develop
+\family default
+ packages and to have relative paths in 
+\family typewriter
+Manifest.toml
+\family default
+.
+ That would be relative paths of the form 
+\family typewriter
+../MyPackage
+\family default
+.
+ User directory expansion, as in 
+\family typewriter
+~/abc
+\family default
+ does not work.
 \end_layout
 
 \begin_layout Standard
