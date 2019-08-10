@@ -221,12 +221,10 @@ Extracting specific elements with indices given by vectors:
 \end_layout
 
 \begin_layout Verbatim
-
 A = rand(4,3,5); 
 \end_layout
 
 \begin_layout Verbatim
-
 A[CartesianIndex.([1,2], [2,2]), 1] -> A[1,2,1] and A[2,2,1]
 \end_layout
 
@@ -235,12 +233,10 @@ Similar to using sub2ind:
 \end_layout
 
 \begin_layout Verbatim
-
 idxV = sub2ind(size(A), [1,2],[2,2],[1,1])
 \end_layout
 
 \begin_layout Verbatim
-
 A[idxV]
 \end_layout
 
@@ -358,7 +354,6 @@ Python
 \end_layout
 
 \begin_layout Verbatim
-
 fs = FormatExpr(
 \begin_inset Quotes eld
 \end_inset
@@ -371,7 +366,6 @@ fs = FormatExpr(
 \end_layout
 
 \begin_layout Verbatim
-
 format(fs, 1.123, 2)
 \end_layout
 
@@ -1072,6 +1066,37 @@ Pkg.develop
  Once the code is copied to a remote computer, things get more complicated.
 \end_layout
 
+\begin_layout Itemize
+The solution suggested on 
+\begin_inset CommandInset href
+LatexCommand href
+name "discourse"
+target "https://discourse.julialang.org/t/forced-recompilation/27367/4?u=hendri54"
+literal "false"
+
+\end_inset
+
+ suggests to always 
+\family typewriter
+develop
+\family default
+ packages and to have relative paths in 
+\family typewriter
+Manifest.toml
+\family default
+.
+ That would be relative paths of the form 
+\family typewriter
+../MyPackage
+\family default
+.
+ User directory expansion, as in 
+\family typewriter
+~/abc
+\family default
+ does not work.
+\end_layout
+
 \begin_layout Standard
 Note that 
 \family typewriter
@@ -1670,37 +1695,30 @@ If you only use registered packages, life is easy.
 \end_layout
 
 \begin_layout Verbatim
-
 using Pkg
 \end_layout
 
 \begin_layout Verbatim
-
 # This needs to be run only once
 \end_layout
 
 \begin_layout Verbatim
-
 Pkg.add(MyPackage)
 \end_layout
 
 \begin_layout Verbatim
-
 # If you want the latest version each time
 \end_layout
 
 \begin_layout Verbatim
-
 Pkg.update()
 \end_layout
 
 \begin_layout Verbatim
-
 using MyPackage
 \end_layout
 
 \begin_layout Verbatim
-
 MyPackage.run()
 \end_layout
 

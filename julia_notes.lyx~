@@ -1483,7 +1483,11 @@ ourceDir"
 \end_layout
 
 \begin_layout Standard
-Note: The source dir should end in 
+Notes: 
+\end_layout
+
+\begin_layout Itemize
+The source dir should end in 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1492,6 +1496,22 @@ Note: The source dir should end in
 \end_inset
 
 ; the target dir should not.
+\end_layout
+
+\begin_layout Itemize
+Exluding 
+\family typewriter
+.git
+\family default
+ speeds up the transfer.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+--delete
+\family default
+ ensures that no old files remain on the server.
 \end_layout
 
 \begin_layout Subsection
