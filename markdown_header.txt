@@ -1,3 +1,4 @@
+CSS:	https://hendri54.github.io/css/avenir-white.css
 Author:	Lutz Hendricks
 Affiliation: https://www.unc.edu
 HTML header: <a style="color: rgb(102, 102, 102);" href="https://www.lhendricks.org"><span
