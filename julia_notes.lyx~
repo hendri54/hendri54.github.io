@@ -1291,12 +1291,29 @@ Manifest.toml
 \end_layout
 
 \begin_layout Standard
-Note that 
+Note:
+\end_layout
+
+\begin_layout Itemize
+
 \family typewriter
 Pkg.update
 \family default
  does nothing for unregistered dependencies.
  
+\end_layout
+
+\begin_layout Itemize
+Deleting the corresponding subdirectory in 
+\family typewriter
+~/.julia/compiled
+\family default
+ sometimes triggers a recompile, but not always.
+\end_layout
+
+\begin_layout Itemize
+Removing a package and then adding it again sometimes triggers a recompile,
+ but not always.
 \end_layout
 
 \begin_layout Standard
@@ -1377,11 +1394,23 @@ Pkg
 \begin_layout Enumerate
 Each time a package is changed or updated, the registry needs to be augmented
  by hand, including all dependencies.
+ 
+\family typewriter
+Registrator.jl
+\family default
+ is a project that aims to automate this, but the setup involved is substantial.
 \end_layout
 
 \begin_layout Standard
 Fredrik Ekre has an example in his github repo.
  At this time, the approach is not really workable.
+\end_layout
+
+\begin_layout Standard
+After trying a simple example registry with just one entry, I got an HTTP
+ 404 error while adding a package.
+ No info on which file was not accessible.
+ This does not work.
 \end_layout
 
 \begin_layout Subsection
@@ -1422,6 +1451,48 @@ src
 test
 \family default
 .
+\end_layout
+
+\begin_layout Standard
+Note that the package needs the following in 
+\family typewriter
+Project.toml
+\family default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+[extras] Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+\end_layout
+
+\begin_layout Plain Layout
+
+[targets] test = ["Test"]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+These are not automatically added.
+ You need to hand-edit 
+\family typewriter
+Project.toml
+\family default
+.
+ Or simply add 
+\family typewriter
+Test
+\family default
+ as a dependency directly.
 \end_layout
 
 \begin_layout Standard
@@ -2174,6 +2245,11 @@ github
 .
 \end_layout
 
+\begin_layout Itemize
+For this purpose, it is useful to have an environment lying around that
+ is just for adding packages that need to be downloaded.
+\end_layout
+
 \begin_layout Section
 Types (1.1)
 \end_layout
@@ -2218,6 +2294,28 @@ Constructing objects with many fields:
 \begin_layout Itemize
 Define an inner constructor that leaves the object (partially) uninitialized.
  It is legal to have new(x) even if the object contains additional fields.
+\end_layout
+
+\begin_layout Subsection
+Inheritance (1.1)
+\end_layout
+
+\begin_layout Standard
+There is no inheritance in Julia.
+ Abstract types have no fields and concrete types have no subtypes.
+\end_layout
+
+\begin_layout Standard
+There are various 
+\begin_inset CommandInset href
+LatexCommand href
+name "discussions"
+target "https://discourse.julialang.org/t/composition-and-inheritance-the-julian-way/11231"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
