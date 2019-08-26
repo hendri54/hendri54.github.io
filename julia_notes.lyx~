@@ -222,10 +222,12 @@ Extracting specific elements with indices given by vectors:
 \end_layout
 
 \begin_layout Verbatim
+
 A = rand(4,3,5); 
 \end_layout
 
 \begin_layout Verbatim
+
 A[CartesianIndex.([1,2], [2,2]), 1] -> A[1,2,1] and A[2,2,1]
 \end_layout
 
@@ -234,10 +236,12 @@ Similar to using sub2ind:
 \end_layout
 
 \begin_layout Verbatim
+
 idxV = sub2ind(size(A), [1,2],[2,2],[1,1])
 \end_layout
 
 \begin_layout Verbatim
+
 A[idxV]
 \end_layout
 
@@ -263,7 +267,79 @@ selectdim
 \end_layout
 
 \begin_layout Section
-Debugging
+Data Handling (1.1)
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+DataFrames
+\family default
+ has the rough equivalent of Matlab 
+\family typewriter
+table
+\family default
+s.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+JuliaDB
+\family default
+ resembles the data handling capabilities of traditional stats packages
+ (like STATA) where processing happens outside of RAM.
+\end_layout
+
+\begin_layout Subsection
+Dataframes (1.1)
+\end_layout
+
+\begin_layout Standard
+Stats packages often provide data in 
+\begin_inset Quotes eld
+\end_inset
+
+long
+\begin_inset Quotes erd
+\end_inset
+
+ format (i.e., each id occupies many rows to cover many variables).
+ 
+\begin_inset CommandInset href
+LatexCommand href
+name "unstack"
+target "http://juliadata.github.io/DataFrames.jl/stable/man/reshaping_and_pivoting/"
+literal "false"
+
+\end_inset
+
+ and 
+\family typewriter
+stack
+\family default
+ can go back and forth between 
+\begin_inset Quotes eld
+\end_inset
+
+long
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+short
+\begin_inset Quotes erd
+\end_inset
+
+ formats.
+\end_layout
+
+\begin_layout Section
+Debugging (1.1)
 \end_layout
 
 \begin_layout Standard
@@ -308,7 +384,7 @@ bp add func:line
 \end_layout
 
 \begin_layout Section
-External Programs
+External Programs (1.1)
 \end_layout
 
 \begin_layout Standard
@@ -336,7 +412,7 @@ run(`.
 \end_layout
 
 \begin_layout Section
-Formatting
+Formatting (1.1)
 \end_layout
 
 \begin_layout Standard
@@ -355,6 +431,7 @@ Python
 \end_layout
 
 \begin_layout Verbatim
+
 fs = FormatExpr(
 \begin_inset Quotes eld
 \end_inset
@@ -367,6 +444,7 @@ fs = FormatExpr(
 \end_layout
 
 \begin_layout Verbatim
+
 format(fs, 1.123, 2)
 \end_layout
 
@@ -387,7 +465,7 @@ Modules
 \end_layout
 
 \begin_layout Subsection
-LOAD_PATH
+LOAD_PATH (1.1)
 \end_layout
 
 \begin_layout Standard
@@ -418,8 +496,39 @@ LOAD_PATH
 ).
 \end_layout
 
+\begin_layout Standard
+As a general rule, though: If one has to fiddle with the 
+\family typewriter
+LOAD_PATH
+\family default
+, something is probably not right.
+ Packages have all their dependencies in 
+\family typewriter
+Project.toml
+\family default
+.
+ Anything that gets run from the 
+\family typewriter
+REPL
+\family default
+ is 
+\family typewriter
+include
+\family default
+d.
+ That only leaves potential startup code that sits in a 
+\family typewriter
+module
+\family default
+ as a candidate for being on the 
+\family typewriter
+LOAD_PATH
+\family default
+.
+\end_layout
+
 \begin_layout Subsection
-Sub-Modules
+Sub-Modules (1.1)
 \end_layout
 
 \begin_layout Standard
@@ -725,6 +834,20 @@ Note: Julia does
 not
 \series default
  look in the current directory (unlike Matlab).
+ In fact, the current directory really does nothing at all, except it is
+ the base directory for 
+\family typewriter
+REPL
+\family default
+ commands such as 
+\family typewriter
+cd()
+\family default
+ or 
+\family typewriter
+include()
+\family default
+.
 \end_layout
 
 \begin_layout Standard
@@ -1316,6 +1439,14 @@ Removing a package and then adding it again sometimes triggers a recompile,
  but not always.
 \end_layout
 
+\begin_layout Itemize
+
+\family typewriter
+revise(MyPkg)
+\family default
+ does not trigger a recompile.
+\end_layout
+
 \begin_layout Standard
 It is easy enough to get the most recent version of the code on any computer.
  Forcing Julia to recompile once the code has changed is more difficult.
@@ -1419,7 +1550,116 @@ Multiple Modules in one Package (1.1)
 
 \begin_layout Standard
 The cleanest approach is sub-modules.
- One can still 
+ I.e.,
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+module Foo
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+include(
+\begin_inset Quotes eld
+\end_inset
+
+That.jl
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Plain Layout
+
+include(
+\begin_inset Quotes eld
+\end_inset
+
+Bar.jl
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+using .Bar, .That
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+<code>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# In Bar.jl
+\end_layout
+
+\begin_layout Plain Layout
+
+module Bar
+\end_layout
+
+\begin_layout Plain Layout
+
+	using ..That
+\end_layout
+
+\begin_layout Plain Layout
+
+	<code>
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+One can still 
 \family typewriter
 import Foo.Bar
 \family default
@@ -1530,6 +1770,30 @@ push(LOAD_PATH, @__DIR__)
  This has to be done in each module.
  Not elegant.
  
+\end_layout
+
+\begin_layout Section
+Operators
+\end_layout
+
+\begin_layout Subsection
+Logical (1.1)
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+&&
+\family default
+ is the logical AND operator, but in broadcasting use 
+\family typewriter
+.&
+\family default
+ (even though 
+\family typewriter
+&
+\family default
+ is a bitwise AND).
 \end_layout
 
 \begin_layout Section
@@ -1959,30 +2223,37 @@ If you only use registered packages, life is easy.
 \end_layout
 
 \begin_layout Verbatim
+
 using Pkg
 \end_layout
 
 \begin_layout Verbatim
+
 # This needs to be run only once
 \end_layout
 
 \begin_layout Verbatim
+
 Pkg.add(MyPackage)
 \end_layout
 
 \begin_layout Verbatim
+
 # If you want the latest version each time
 \end_layout
 
 \begin_layout Verbatim
+
 Pkg.update()
 \end_layout
 
 \begin_layout Verbatim
+
 using MyPackage
 \end_layout
 
 \begin_layout Verbatim
+
 MyPackage.run()
 \end_layout
 
@@ -2315,7 +2586,27 @@ literal "false"
 
 \end_inset
 
+ about how to implement types that share common fields.
+\end_layout
 
+\begin_layout Standard
+For simple cases, it is probably best to just repeat the fields in all types.
+ This can be automated using 
+\family typewriter
+@forward
+\family default
+ in 
+\family typewriter
+Lazy.jl
+\family default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+One good piece of advice: ensure that methods are generally defined on the
+ abstract type, so that all concrete types have the same interface (kind
+ of the point of having an abstract type).
 \end_layout
 
 \begin_layout Subsection
@@ -2499,7 +2790,7 @@ Unit Testing (1.1)
 \end_layout
 
 \begin_layout Standard
-All codes should be in 
+All code should be in 
 \family typewriter
 modules
 \family default
@@ -2580,6 +2871,23 @@ s produce nested error reports (nice).
  return its result.
 \end_layout
 
+\begin_layout Standard
+To run tests selectively, simply 
+\family typewriter
+include
+\family default
+ the file that contains the 
+\family typewriter
+@testset
+\family default
+ at the 
+\family typewriter
+REPL
+\family default
+.
+ This, of course, requires that tests are organized into separate files.
+\end_layout
+
 \begin_layout Section
 Workflow (1.1)
 \end_layout
@@ -2609,6 +2917,40 @@ Revise
 includet
 \family default
  creates problems for me.
+\end_layout
+
+\begin_layout Standard
+But keep in mind that 
+\family typewriter
+Revise
+\family default
+ cannot handle:
+\end_layout
+
+\begin_layout Enumerate
+changes in file structure (you factor out some code into a new file that
+ is 
+\family typewriter
+include
+\family default
+d in the main file);
+\end_layout
+
+\begin_layout Enumerate
+changes in 
+\family typewriter
+struct
+\family default
+s.
+ 
+\end_layout
+
+\begin_layout Standard
+Those still require restarting the 
+\family typewriter
+REPL
+\family default
+.
 \end_layout
 
 \begin_layout Standard

@@ -51,7 +51,7 @@ i1 = 0;
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: TBA.'}, ...
-   datetime(year1, 10, 14));  % ++++++++
+   datetime(year1, 10, 14));
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Labor day'}, datetime(year1, 9, 2));
 i1 = i1 + 1;
@@ -72,7 +72,7 @@ topicV{i1} =  markdownLH.SubTopic({'[Modern macro](GenEquil_SL.pdf)', ...
    'Here we talk about methods: how to set up a general equilibrium model and characterize its equilibrium.'});
 
 i1 = i1 + 1;
-topicV{i1} =  markdownLH.SubTopic({'Modern macro, part 2'});
+topicV{i1} =  markdownLH.SubTopic({'[Sequential trading and Arrow-Debreu](GenEquil2_SL.pdf)'});
 
 iTopic = iTopic + 1;
 topicListV{iTopic} = markdownLH.Topic('Modern Macro', topicV(1 : i1), classDateV);
