@@ -1816,17 +1816,7 @@ Registrator.jl
 \end_layout
 
 \begin_layout Standard
-This is based on the workflow figured out by a 
-\begin_inset CommandInset href
-LatexCommand href
-name "discourse user"
-target "https://discourse.julialang.org/t/creating-a-custom-registry/28007"
-literal "false"
-
-\end_inset
-
-.
- What I am writing up here copies their code almost one-for-one.
+This is based on 
 \end_layout
 
 \begin_layout Paragraph

@@ -209,6 +209,23 @@ Juno
  Not ideal.
 \end_layout
 
+\begin_layout Subsection
+Updating to a new version (1.2)
+\end_layout
+
+\begin_layout Standard
+After starting the new version, basic packages need to be added so the startup
+ code can be run (e.g., 
+\family typewriter
+OhMyREPL
+\family default
+).
+\end_layout
+
+\begin_layout Standard
+The bash profile needs to be updated to point to the new version.
+\end_layout
+
 \begin_layout Section
 Arrays (1.1)
 \end_layout
@@ -948,7 +965,18 @@ D
 \family typewriter
 using D
 \family default
-? I actually don't know the answer to this question.
+? The 
+\begin_inset CommandInset href
+LatexCommand href
+name "answer"
+target "https://docs.julialang.org/en/v1/manual/code-loading/"
+literal "false"
+
+\end_inset
+
+ turns out to be that the most recent environment wins (that would usually
+ be the currently activated project).
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1001,7 +1029,7 @@ git config --global user.name YourName
 \end_layout
 
 \begin_layout Standard
-This must be done insite a 
+This must be done inside a 
 \family typewriter
 git
 \family default
@@ -1472,76 +1500,10 @@ REPL
  
 \end_layout
 
-\begin_layout Subsection
-Creating a package registry (1.1)
-\end_layout
-
 \begin_layout Standard
-Any registry that lives in 
-\family typewriter
-~/.julia/registries
-\family default
- is automatically used by 
-\family typewriter
-Pkg
-\family default
-.
-\end_layout
-
-\begin_layout Standard
-In principle, it is easy to create your own registry (see 
-\begin_inset CommandInset href
-LatexCommand href
-name "discourse"
-target "https://discourse.julialang.org/t/creating-a-registry/12094"
-literal "false"
-
-\end_inset
-
- for a guide).
- But there are problems:
-\end_layout
-
-\begin_layout Enumerate
-Entries must be added to the registry by hand.
- Each package gets an entry line in the registry and a subdirectory in the
- registry directory with 
-\family typewriter
-Versions.toml, Deps.toml, Compat.toml, Package.toml
-\family default
-.
-\end_layout
-
-\begin_layout Enumerate
-Any inconsistencies in the entries will cause the registry to be ignored
- by 
-\family typewriter
-Pkg
-\family default
-.
- So this approach is fragile.
-\end_layout
-
-\begin_layout Enumerate
-Each time a package is changed or updated, the registry needs to be augmented
- by hand, including all dependencies.
- 
-\family typewriter
-Registrator.jl
-\family default
- is a project that aims to automate this, but the setup involved is substantial.
-\end_layout
-
-\begin_layout Standard
-Fredrik Ekre has an example in his github repo.
- At this time, the approach is not really workable.
-\end_layout
-
-\begin_layout Standard
-After trying a simple example registry with just one entry, I got an HTTP
- 404 error while adding a package.
- No info on which file was not accessible.
- This does not work.
+For small functions that are themselves stand-alone, it seems best to simply
+ copy them into the project.
+ This is the old trade-off between duplication and dependencies.
 \end_layout
 
 \begin_layout Subsection
@@ -1672,7 +1634,7 @@ Bar.f()
 \end_layout
 
 \begin_layout Subsection
-Testing a package (1.1)
+Testing a package (1.2)
 \end_layout
 
 \begin_layout Standard
@@ -1769,7 +1731,305 @@ push(LOAD_PATH, @__DIR__)
 .
  This has to be done in each module.
  Not elegant.
+ This apparently no longer works in V1.2.
+ It appears that tests cannot be in modules any more.
+\end_layout
+
+\begin_layout Subsection
+Creating a package registry (1.2)
+\end_layout
+
+\begin_layout Standard
+Any registry that lives in 
+\family typewriter
+~/.julia/registries
+\family default
+ is automatically used by 
+\family typewriter
+Pkg
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+In principle, it is easy to create your own registry (see 
+\begin_inset CommandInset href
+LatexCommand href
+name "discourse"
+target "https://discourse.julialang.org/t/creating-a-registry/12094"
+literal "false"
+
+\end_inset
+
+ for a guide).
+ But there are problems:
+\end_layout
+
+\begin_layout Enumerate
+Entries must be added to the registry by hand.
+ Each package gets an entry line in the registry and a subdirectory in the
+ registry directory with 
+\family typewriter
+Versions.toml, Deps.toml, Compat.toml, Package.toml
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+Any inconsistencies in the entries will cause the registry to be ignored
+ by 
+\family typewriter
+Pkg
+\family default
+.
+ So this approach is fragile.
+\end_layout
+
+\begin_layout Enumerate
+Each time a package is changed or updated, the registry needs to be augmented
+ by hand, including all dependencies.
  
+\family typewriter
+Registrator.jl
+\family default
+ is a project that aims to automate this, but the setup involved is substantial.
+\end_layout
+
+\begin_layout Standard
+Fredrik Ekre has an example in his github repo.
+ At this time, the approach is not really workable.
+\end_layout
+
+\begin_layout Standard
+After trying a simple example registry with just one entry, I got an HTTP
+ 404 error while adding a package.
+ No info on which file was not accessible.
+ This does not work.
+\end_layout
+
+\begin_layout Subsubsection
+Using 
+\family typewriter
+Registrator.jl
+\family default
+ (1.2)
+\end_layout
+
+\begin_layout Paragraph
+Creating the registry:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Pkg.add(Pkg.PackageSpec(url="https://github.com/GunnarFarneback/Registrator.jl"))
+\end_layout
+
+\begin_layout Plain Layout
+
+using Registrator
+\end_layout
+
+\begin_layout Plain Layout
+
+cd(joinpath(homedir(), 
+\begin_inset Quotes eld
+\end_inset
+
+Documents
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+julia
+\begin_inset Quotes erd
+\end_inset
+
+))
+\end_layout
+
+\begin_layout Plain Layout
+
+regName = 
+\begin_inset Quotes eld
+\end_inset
+
+registryLH
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+regUrl = 
+\begin_inset Quotes eld
+\end_inset
+
+https://github.com/hendri54/$regName
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Registrator.create_registry(regName,  regUrl)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Create the 
+\family typewriter
+registryLH
+\family default
+ repo on 
+\family typewriter
+github.com
+\family default
+ (not sure why this is necessary).
+ Push the registry to github using
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+git -C registryLH push -u -f origin master
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Check that 
+\family typewriter
+Registry.toml
+\family default
+ appears on github in the repo.
+ Add the registry (cloning it to 
+\family typewriter
+.julia/registries
+\family default
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Pkg.Registry.add(Pkg.RegistrySpec(url = regUrl))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We now have an empty registry.
+ Check that it can be used:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Pkg.update()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This should now show 
+\family typewriter
+registryLH
+\family default
+ being updated.
+\end_layout
+
+\begin_layout Paragraph
+Adding packages to the registry.
+ 
+\end_layout
+
+\begin_layout Standard
+I am using 
+\family typewriter
+TestPkgLH
+\family default
+ for testing.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+# `add` the package somehow
+\end_layout
+
+\begin_layout Plain Layout
+
+pkgRepo = 
+\begin_inset Quotes eld
+\end_inset
+
+https://github.com/hendri54/TestPkgLH
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+using TestPkgLH
+\end_layout
+
+\begin_layout Plain Layout
+
+Registrator.register(TestPkgLH, regName, url = pkgRepo)
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
