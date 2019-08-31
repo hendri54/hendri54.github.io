@@ -137,6 +137,22 @@ The purpose of this file is to document (mainly for myself) how to solve
 Bash Scripting
 \end_layout
 
+\begin_layout Section
+Visual Studio Code
+\end_layout
+
+\begin_layout Subsection
+Useful keyboard shortcuts
+\end_layout
+
+\begin_layout Subsubsection
+File operations
+\end_layout
+
+\begin_layout Standard
+^P: open file
+\end_layout
+
 \begin_layout Standard
 \begin_inset CommandInset line
 LatexCommand rule

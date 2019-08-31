@@ -1445,46 +1445,7 @@ Manifest.toml
 \begin_layout Itemize
 
 \family typewriter
-Pkg.add(url = 
-\begin_inset Quotes eld
-\end_inset
-
-https://github.com/myUser/MyPkg
-\begin_inset Quotes erd
-\end_inset
-
-)
-\family default
- 
-\begin_inset CommandInset href
-LatexCommand href
-name "dowloads the lastest master and recompiles the code"
-target "https://discourse.julialang.org/t/how-to-activate-a-package-in-a-script/28185/18"
-literal "false"
-
-\end_inset
-
-.
- One option is therefore: run the code on the remote on a new environment.
- Add each unregistered dependency and then the main package.
- This is cumbersome, but can be done in a script.
- The key is to manually add all unregistered dependencies through that script.
- 
-\family typewriter
-Pkg
-\family default
- cannot do so automatically.
-\end_layout
-
-\begin_layout Itemize
-Create your own package registry (not as hard as it sounds).
- Register all your packages.
- Then a simple 
-\family typewriter
-Pkg.add
-\family default
- for the code that is actually to be run will automatically download all
- dependencies (which are now registered).
+Pkg.add(url = https://github.com/myUser/MyPkg
 \end_layout
 
 \begin_layout Standard
@@ -1509,11 +1470,41 @@ Deleting the corresponding subdirectory in
 \end_layout
 
 \begin_layout Itemize
+Removing a package and then adding it again sometimes triggers a recompile,
+ but not always.
+\end_layout
+
+\begin_layout Itemize
 
 \family typewriter
 revise(MyPkg)
 \family default
  does not trigger a recompile.
+\end_layout
+
+\begin_layout Standard
+It is easy enough to get the most recent version of the code on any computer.
+ Forcing Julia to recompile once the code has changed is more difficult.
+ On the local machine, 
+\family typewriter
+Revise
+\family default
+ does the trick.
+ But since you don't edit code on the remote machine before running it,
+ I don't see how one can force a recompile.
+\end_layout
+
+\begin_layout Standard
+What works sometimes:
+\end_layout
+
+\begin_layout Itemize
+Restart the 
+\family typewriter
+REPL
+\family default
+.
+ 
 \end_layout
 
 \begin_layout Standard

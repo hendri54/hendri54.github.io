@@ -10,12 +10,6 @@
 \input{paper_preamble}
 
 % \usepackage{refstyle}
-
-% New commands in an included preamble
-\input{preamble_include}
-\newcommand{\nCountries}{28}
-
-% \newenvironment{lhTest}{\begin{center}\small}{\end{center}\normalsize}
 \end_preamble
 \use_default_options false
 \maintain_unincluded_children false
