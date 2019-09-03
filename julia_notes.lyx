@@ -323,6 +323,19 @@ Dataframes (1.1)
 \end_layout
 
 \begin_layout Standard
+Tutorials are collected 
+\begin_inset CommandInset href
+LatexCommand href
+name "here"
+target "https://discourse.julialang.org/t/another-intro-to-dataframes-jl/28308"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 Stats packages often provide data in 
 \begin_inset Quotes eld
 \end_inset
