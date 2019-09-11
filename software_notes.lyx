@@ -153,6 +153,52 @@ File operations
 ^P: open file
 \end_layout
 
+\begin_layout Subsubsection
+Navigation
+\end_layout
+
+\begin_layout Standard
+Ctrl -: go back
+\end_layout
+
+\begin_layout Standard
+Ctrl Shift -: go forward
+\end_layout
+
+\begin_layout Subsubsection
+Searching
+\end_layout
+
+\begin_layout Standard
+See 
+\begin_inset CommandInset href
+LatexCommand href
+name "dev"
+target "https://dev.to/codevault/search-features-in-visual-studio-code-2a0c"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Shift F12: find where current symbol is used (editable!)
+\end_layout
+
+\begin_layout Standard
+Cmd T: search for symbol across files; same as 
+\family typewriter
+#
+\family default
+ prefix in command palette
+\end_layout
+
+\begin_layout Standard
+Cmd Shift T: search for symbol in current file; same as @ prefix in command
+ palette
+\end_layout
+
 \begin_layout Standard
 \begin_inset CommandInset line
 LatexCommand rule

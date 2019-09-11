@@ -137,6 +137,56 @@ The purpose of this file is to document (mainly for myself) how to solve
 Bash Scripting
 \end_layout
 
+\begin_layout Section
+Visual Studio Code
+\end_layout
+
+\begin_layout Subsection
+Useful keyboard shortcuts
+\end_layout
+
+\begin_layout Subsubsection
+File operations
+\end_layout
+
+\begin_layout Standard
+^P: open file
+\end_layout
+
+\begin_layout Subsubsection
+Searching
+\end_layout
+
+\begin_layout Standard
+See 
+\begin_inset CommandInset href
+LatexCommand href
+name "dev"
+target "https://dev.to/codevault/search-features-in-visual-studio-code-2a0c"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Shift F12: find where current symbol is used (editable!)
+\end_layout
+
+\begin_layout Standard
+Cmd T: search for symbol across files; same as 
+\family typewriter
+#
+\family default
+ prefix in command palette
+\end_layout
+
+\begin_layout Standard
+Cmd Shift T: search for symbol in current file; same as @ prefix in command
+ palette
+\end_layout
+
 \begin_layout Standard
 \begin_inset CommandInset line
 LatexCommand rule
