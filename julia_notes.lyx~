@@ -376,7 +376,55 @@ short
 \end_layout
 
 \begin_layout Section
-Debugging (1.1)
+Dates and Times (1.2)
+\end_layout
+
+\begin_layout Standard
+Keeping track of elapsed time (e.g., since starting a computation):
+\end_layout
+
+\begin_layout Itemize
+store the start time as a 
+\family typewriter
+DateTime
+\family default
+ : 
+\family typewriter
+startTime = Dates.now()
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+round(Dates.now() - startTime, Dates.Minute)
+\family default
+ gives the elapsed time in minutes.
+\end_layout
+
+\begin_layout Section
+Debugging (1.2)
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+ArgCheck.jl
+\family default
+ is useful for sprinkling more expressive 
+\family typewriter
+@assert
+\family default
+s around the code.
+ As far as I can tell, the difference compared with 
+\family typewriter
+@assert
+\family default
+ is that 
+\family typewriter
+ArgCheck
+\family default
+ produces more informative errors.
+ It shows the values of the expressions to be compared.
 \end_layout
 
 \begin_layout Standard
@@ -390,7 +438,19 @@ Julia
 \family default
 ).
  But the command line debugger may well be the better option.
- After 
+\end_layout
+
+\begin_layout Subsection
+Debugger (1.2)
+\end_layout
+
+\begin_layout Standard
+My favorite debugging option.
+ 
+\end_layout
+
+\begin_layout Standard
+After 
 \family typewriter
 using Debugger
 \family default
@@ -409,7 +469,7 @@ Particularly useful:
 \begin_layout Itemize
 
 \family typewriter
-bp on error
+break_on(:error)
 \end_layout
 
 \begin_layout Itemize
@@ -418,6 +478,35 @@ bp on error
 bp add func:line
 \family default
  with possible restrictions on particular argument types.
+\end_layout
+
+\begin_layout Subsection
+Rebugger
+\end_layout
+
+\begin_layout Standard
+The MacOs keybinding for 
+\family typewriter
+interpret
+\family default
+ is 
+\family typewriter
+Fn-Esc-i
+\family default
+.
+\end_layout
+
+\begin_layout Section
+Documentation (1.2)
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+DocStringExtensions.jl
+\family default
+ makes it easier to write docs.
+ In particular, function signatures are automatically created in docstrings.
 \end_layout
 
 \begin_layout Section
@@ -819,6 +908,270 @@ literal "false"
 \end_layout
 
 \begin_layout Section
+Operators
+\end_layout
+
+\begin_layout Subsection
+Logical (1.1)
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+&&
+\family default
+ is the logical AND operator, but in broadcasting use 
+\family typewriter
+.&
+\family default
+ (even though 
+\family typewriter
+&
+\family default
+ is a bitwise AND).
+\end_layout
+
+\begin_layout Section
+Optimization (Mathematical)
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "JuMP"
+target "https://github.com/JuliaOpt/JuMP.jl"
+literal "false"
+
+\end_inset
+
+ is a popular interface, but it requires (as of v.0.2) analytical derivatives
+ for all objective functions.
+\end_layout
+
+\begin_layout Standard
+Collections:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "NLopt"
+target "https://github.com/JuliaOpt/NLopt.jl"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+NLopt (1.2)
+\end_layout
+
+\begin_layout Standard
+Objective function requires gradient as input, even if it is not used.
+ If gradient is not provided, NLopt returns 
+\family typewriter
+FORCED_STOP
+\family default
+ without error message.
+\end_layout
+
+\begin_layout Standard
+Runs the optimization for a very long time without progress (thousands of
+ iterations).
+ Then returns 
+\family typewriter
+FORCED_STOP
+\family default
+.
+\end_layout
+
+\begin_layout Subsection
+Noisy objectives
+\end_layout
+
+\begin_layout Standard
+Useful discourse threads: 
+\begin_inset CommandInset href
+LatexCommand href
+name "here"
+target "https://discourse.julialang.org/t/optimizing-noisy-objective/25260"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "SPSA"
+target "https://www.jhuapl.edu/SPSA/"
+literal "false"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Itemize
+according to the author: specifically made for simulation type problems
+\end_layout
+
+\begin_layout Itemize
+approximates gradients using a few function evaluations
+\end_layout
+
+\begin_layout Itemize
+extremely easy to implement
+\end_layout
+
+\begin_layout Itemize
+can vary the distribution of step sizes (main algorithm uses step sizes
+ 1 or 2 times a 
+\begin_inset Formula $c\left(k\right)$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Standard
+COBYLA
+\end_layout
+
+\begin_layout Itemize
+implemented in 
+\begin_inset CommandInset href
+LatexCommand href
+name "NLopt COBYLA"
+target "https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+uses a linear approximation of the function
+\end_layout
+
+\begin_layout Standard
+Subplex
+\end_layout
+
+\begin_layout Itemize
+implemented in 
+\begin_inset CommandInset href
+LatexCommand href
+name "NLopt Sbplx"
+target "https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+similar to Nelder-Mead, but claims to be more robust
+\end_layout
+
+\begin_layout Standard
+Bayesian optimization
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "SPSA"
+target "https://www.jhuapl.edu/SPSA/"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+basic idea seems to approximate derivatives, but instead of perturbing each
+ parameter one-by-one (expensive), all are perturbed in the same step.
+\end_layout
+
+\begin_layout Subsection
+Global algorithms
+\end_layout
+
+\begin_layout Standard
+Controlled Random Search
+\end_layout
+
+\begin_layout Itemize
+implemented as 
+\begin_inset CommandInset href
+LatexCommand href
+name "NLopt CRS"
+target "https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+starts from a random population of points
+\end_layout
+
+\begin_layout Itemize
+the evolves these using heuristic rules.
+\end_layout
+
+\begin_layout Standard
+MLSL
+\end_layout
+
+\begin_layout Itemize
+implemented as 
+\begin_inset CommandInset href
+LatexCommand href
+name "NLopt MLSL"
+target "https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+basic idea: multistart a local solver, avoiding resolving points that are
+ close to each other
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "BlackBoxOptim"
+target "https://github.com/robertfeldt/BlackBoxOptim.jl"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+implements SPSA
+\end_layout
+
+\begin_layout Itemize
+currently no documentation of algorithms (2019/09).
+\end_layout
+
+\begin_layout Section
 Packages
 \end_layout
 
@@ -1172,7 +1525,7 @@ MyPackage
 \begin_inset Quotes erd
 \end_inset
 
-, skip_existings_dir = true)
+, skip_existings_dir = false)
 \family default
 .
 \end_layout
@@ -2293,7 +2646,11 @@ by hand
 \family typewriter
 REPL
 \family default
-:
+ (or using 
+\family typewriter
+shared/register_package.jl
+\family default
+):
 \end_layout
 
 \begin_layout Standard
@@ -2363,259 +2720,75 @@ julia> Pkg.Registry.update()
 
 \end_layout
 
-\begin_layout Section
-Operators
-\end_layout
-
 \begin_layout Subsection
-Logical (1.1)
+Miscellaneous
 \end_layout
 
 \begin_layout Standard
+Find out if a package is installed (present in current 
+\family typewriter
+Manifest
+\family default
+):
+\end_layout
+
+\begin_layout Itemize
 
 \family typewriter
-&&
+d = Pkg.installed()
 \family default
- is the logical AND operator, but in broadcasting use 
+ returns a 
 \family typewriter
-.&
+Dict
 \family default
- (even though 
+ with package names as keys.
+\end_layout
+
+\begin_layout Itemize
+
 \family typewriter
-&
+haskey(d, MyPackage)
 \family default
- is a bitwise AND).
-\end_layout
-
-\begin_layout Section
-Optimization
+ returns true if package is installed.
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset href
-LatexCommand href
-name "JuMP"
-target "https://github.com/JuliaOpt/JuMP.jl"
-literal "false"
-
-\end_inset
-
- is a popular interface, but it requires (as of v.0.2) analytical derivatives
- for all objective functions.
-\end_layout
-
-\begin_layout Standard
-Collections:
-\end_layout
-
-\begin_layout Itemize
-\begin_inset CommandInset href
-LatexCommand href
-name "NLopt"
-target "https://github.com/JuliaOpt/NLopt.jl"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Subsection
-NLopt (1.2)
-\end_layout
-
-\begin_layout Standard
-Runs the optimization for a very long time without progress (thousands of
- iterations).
- Then returns 
+Adding a private repo does not work with the standard 
 \family typewriter
-FORCED_STOP
+add
 \family default
-.
+ syntax.
+ 
 \end_layout
 
-\begin_layout Subsection
-Noisy objectives
-\end_layout
-
-\begin_layout Standard
-Useful discourse threads: 
-\begin_inset CommandInset href
-LatexCommand href
-name "here"
-target "https://discourse.julialang.org/t/optimizing-noisy-objective/25260"
-literal "false"
-
+\begin_layout Itemize
+It yields an error (
+\begin_inset Quotes eld
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset href
-LatexCommand href
-name "SPSA"
-target "https://www.jhuapl.edu/SPSA/"
-literal "false"
-
-\end_inset
-
-:
-\end_layout
-
-\begin_layout Itemize
-according to the author: specifically made for simulation type problems
-\end_layout
-
-\begin_layout Itemize
-approximates gradients using a few function evaluations
-\end_layout
-
-\begin_layout Itemize
-extremely easy to implement
-\end_layout
-
-\begin_layout Itemize
-can vary the distribution of step sizes (main algorithm uses step sizes
- 1 or 2 times a 
-\begin_inset Formula $c\left(k\right)$
+redirect from HTTPS to HTTP no allowed
+\begin_inset Quotes erd
 \end_inset
 
 ).
-\end_layout
-
-\begin_layout Standard
-COBYLA
+ 
 \end_layout
 
 \begin_layout Itemize
-implemented in 
-\begin_inset CommandInset href
-LatexCommand href
-name "NLopt COBYLA"
-target "https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/"
-literal "false"
-
+One needs to construct a 
+\family typewriter
+PackageSpec(url = 
+\begin_inset Quotes eld
 \end_inset
 
-
-\end_layout
-
-\begin_layout Itemize
-uses a linear approximation of the function
-\end_layout
-
-\begin_layout Standard
-Subplex
-\end_layout
-
-\begin_layout Itemize
-implemented in 
-\begin_inset CommandInset href
-LatexCommand href
-name "NLopt Sbplx"
-target "https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/"
-literal "false"
-
+ssh://git@github.com/user/MyPackage.git
+\begin_inset Quotes erd
 \end_inset
 
-
-\end_layout
-
-\begin_layout Itemize
-similar to Nelder-Mead, but claims to be more robust
-\end_layout
-
-\begin_layout Standard
-Bayesian optimization
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset href
-LatexCommand href
-name "SPSA"
-target "https://www.jhuapl.edu/SPSA/"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-basic idea seems to approximate derivatives, but instead of perturbing each
- parameter one-by-one (expensive), all are perturbed in the same step.
-\end_layout
-
-\begin_layout Subsection
-Global algorithms
-\end_layout
-
-\begin_layout Standard
-Controlled Random Search
-\end_layout
-
-\begin_layout Itemize
-implemented as 
-\begin_inset CommandInset href
-LatexCommand href
-name "NLopt CRS"
-target "https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-starts from a random population of points
-\end_layout
-
-\begin_layout Itemize
-the evolves these using heuristic rules.
-\end_layout
-
-\begin_layout Standard
-MLSL
-\end_layout
-
-\begin_layout Itemize
-implemented as 
-\begin_inset CommandInset href
-LatexCommand href
-name "NLopt MLSL"
-target "https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-basic idea: multistart a local solver, avoiding resolving points that are
- close to each other
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset href
-LatexCommand href
-name "BlackBoxOptim"
-target "https://github.com/robertfeldt/BlackBoxOptim.jl"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-implements SPSA
-\end_layout
-
-\begin_layout Itemize
-currently no documentation of algorithms (2019/09).
+)
+\family default
+.
+ This will ask for the location of the ssh key.
 \end_layout
 
 \begin_layout Section
@@ -2652,8 +2825,47 @@ ProfileView
 StatProfilerHTML
 \family default
  is a good alternative (1.1).
- It provides a flame graph with clickable links that show which lines in
+ 
+\end_layout
+
+\begin_layout Itemize
+It provides a flame graph with clickable links that show which lines in
  a function take up most time.
+\end_layout
+
+\begin_layout Itemize
+Need to locate 
+\family typewriter
+index.html
+\family default
+ and open it by hand in the browser after running 
+\family typewriter
+statprofilehtml()
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+PProf.jl
+\family default
+:
+\end_layout
+
+\begin_layout Itemize
+requires 
+\family typewriter
+Graphviz
+\family default
+.
+ On MacOS, install using 
+\family typewriter
+brew install graphviz
+\family default
+.
+ But it has TONS of dependencies and did not install on my system.
+ Then PProf cannot be used.
 \end_layout
 
 \begin_layout Subsection
@@ -2714,6 +2926,10 @@ Regressions
 RegressionTables.jl produces formatted regression tables.
 \end_layout
 
+\begin_layout Subsection
+GLM (1.2)
+\end_layout
+
 \begin_layout Standard
 GLM.jl is the package to run regressions.
 \end_layout
@@ -2728,6 +2944,34 @@ coeftable(mdl)
  This produces a 
 \family typewriter
 StatsBase.CoefTable
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+Alternative, use 
+\family typewriter
+RegressionTable
+\family default
+ from 
+\family typewriter
+EconometricsLH
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+Categorical regressors return names such as 
+\family typewriter
+Symbol(
+\begin_inset Quotes eld
+\end_inset
+
+school: 3
+\begin_inset Quotes erd
+\end_inset
+
+)
 \family default
 .
 \end_layout
@@ -3024,6 +3268,7 @@ noprefix "false"
 \end_inset
 
 ).
+ This is not needed when all dependencies are registered.
 \end_layout
 
 \begin_layout Enumerate
@@ -3266,6 +3511,18 @@ PackageToolsLH
 
 \begin_layout Subsubsection
 Instantiating Packages
+\end_layout
+
+\begin_layout Standard
+If all dependencies are registered, simply activate an environment and 
+\family typewriter
+>pkg add https://github.com/user/MyPackage.git
+\family default
+ followed by 
+\family typewriter
+using MyPackage
+\family default
+.
 \end_layout
 
 \begin_layout Standard
