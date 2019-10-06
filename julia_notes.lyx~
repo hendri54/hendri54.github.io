@@ -242,12 +242,10 @@ Extracting specific elements with indices given by vectors:
 \end_layout
 
 \begin_layout Verbatim
-
 A = rand(4,3,5); 
 \end_layout
 
 \begin_layout Verbatim
-
 A[CartesianIndex.([1,2], [2,2]), 1] -> A[1,2,1] and A[2,2,1]
 \end_layout
 
@@ -256,12 +254,10 @@ Similar to using sub2ind:
 \end_layout
 
 \begin_layout Verbatim
-
 idxV = sub2ind(size(A), [1,2],[2,2],[1,1])
 \end_layout
 
 \begin_layout Verbatim
-
 A[idxV]
 \end_layout
 
@@ -982,11 +978,13 @@ FORCED_STOP
 \end_layout
 
 \begin_layout Standard
-Runs the optimization for a very long time without progress (thousands of
- iterations).
- Then returns 
+When objective function errors, return value is 
 \family typewriter
-FORCED_STOP
+STOPVAL_REACHED
+\family default
+ and 
+\family typewriter
+fVal=0.0
 \family default
 .
 \end_layout
@@ -1025,7 +1023,8 @@ according to the author: specifically made for simulation type problems
 \end_layout
 
 \begin_layout Itemize
-approximates gradients using a few function evaluations
+basic idea seems to approximate derivatives, but instead of perturbing each
+ parameter one-by-one (expensive), all are perturbed in the same step.
 \end_layout
 
 \begin_layout Itemize
@@ -1087,11 +1086,15 @@ similar to Nelder-Mead, but claims to be more robust
 Bayesian optimization
 \end_layout
 
+\begin_layout Subsection
+Global algorithms
+\end_layout
+
 \begin_layout Standard
 \begin_inset CommandInset href
 LatexCommand href
-name "SPSA"
-target "https://www.jhuapl.edu/SPSA/"
+name "QuadDIRECT"
+target "https://github.com/timholy/QuadDIRECT.jl"
 literal "false"
 
 \end_inset
@@ -1100,12 +1103,31 @@ literal "false"
 \end_layout
 
 \begin_layout Itemize
-basic idea seems to approximate derivatives, but instead of perturbing each
- parameter one-by-one (expensive), all are perturbed in the same step.
+combines ideas of DIRECT with local search
 \end_layout
 
-\begin_layout Subsection
-Global algorithms
+\begin_layout Itemize
+points from local search are used to form boxes for the global search
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "NODAL"
+target "https://github.com/phrb/NODAL.jl"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+global optimization algorithms that can run in parallel
+\end_layout
+
+\begin_layout Itemize
+possibly abandoned
 \end_layout
 
 \begin_layout Standard
@@ -2831,6 +2853,45 @@ The general idea is that packages state which versions of their dependencies
 \end_layout
 
 \begin_layout Section
+Parallel Computing
+\end_layout
+
+\begin_layout Standard
+Useful overviews: 
+\begin_inset CommandInset href
+LatexCommand href
+name "Bruel 2019"
+target "https://phrb.github.io/2019-02-16-intro_parallel_julia/"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Threads
+\end_layout
+
+\begin_layout Standard
+Use shared memory.
+ Simply place 
+\family typewriter
+Threads.@threads
+\family default
+ in front of a code section (typically a loop).
+\end_layout
+
+\begin_layout Standard
+Runs on a single processor (with multiple cores).
+\end_layout
+
+\begin_layout Standard
+Julia needs to be started with a command line argument that indicates the
+ number of cores to use.
+\end_layout
+
+\begin_layout Section
 Performance
 \end_layout
 
@@ -2955,6 +3016,18 @@ Union
 Body:
 \family default
 ).
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "Cthulhu.jl"
+target "https://github.com/JuliaDebug/Cthulhu.jl"
+literal "false"
+
+\end_inset
+
+ is a tool for debugging type instability.
 \end_layout
 
 \begin_layout Section
@@ -3374,37 +3447,30 @@ If you only use registered packages, life is easy.
 \end_layout
 
 \begin_layout Verbatim
-
 using Pkg
 \end_layout
 
 \begin_layout Verbatim
-
 # This needs to be run only once
 \end_layout
 
 \begin_layout Verbatim
-
 Pkg.add(MyPackage)
 \end_layout
 
 \begin_layout Verbatim
-
 # If you want the latest version each time
 \end_layout
 
 \begin_layout Verbatim
-
 Pkg.update()
 \end_layout
 
 \begin_layout Verbatim
-
 using MyPackage
 \end_layout
 
 \begin_layout Verbatim
-
 MyPackage.run()
 \end_layout
 
