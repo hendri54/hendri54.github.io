@@ -19,13 +19,13 @@ iTopic = 0;
 
 %% Which problem sets have answers?
 
-answerOlg = false;
+answerOlg = true;
 dueOlg = 'Sep-16';
-answerOlgMoney = false;
+answerOlgMoney = true;
 dueOlgMoney = 'Sep-23';
-answerIh1 = false;
+answerIh1 = true;
 dueIh1 = 'Oct-7';
-answerCia = false;
+answerCia = true;
 dueCia = 'Oct-14';
 answerIh2 = false;
 dueIh2 = 'Nov-4';
@@ -166,7 +166,7 @@ topicV{i1} = markdownLH.SubTopic({'[Two sector models](ih1/TwoSec_SL.pdf)', ...
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Example: Asset pricing](ih1/IH1_Asset_SL.pdf)', ...
-   '[RQ](ih1/ih1_asset_rq.pdf)'});
+   '[RQ](ih1/ih1_asset_rq.pdf)'}, [], 'sameDate');
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Dynamic programming theorems](ih1/DP_SL.pdf)', ...
