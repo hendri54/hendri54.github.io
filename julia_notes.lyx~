@@ -375,6 +375,23 @@ short
  formats.
 \end_layout
 
+\begin_layout Subsection
+STATA files (1.2)
+\end_layout
+
+\begin_layout Standard
+Can be read using 
+\begin_inset CommandInset href
+LatexCommand href
+name "StatFiles.jl"
+target "https://github.com/queryverse/StatFiles.jl"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
 \begin_layout Section
 Dates and Times (1.2)
 \end_layout
@@ -629,6 +646,18 @@ DocStringExtensions.jl
 \end_layout
 
 \end_deeper
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "Traits"
+target "https://www.juliabloggers.com/the-emergent-features-of-julialang-part-ii-traits/"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Modules
 \end_layout
@@ -1551,7 +1580,7 @@ MyPackage
 \begin_inset Quotes erd
 \end_inset
 
-, skip_existings_dir = false)
+, skip_existing_dirs = false)
 \family default
 .
 \end_layout
@@ -2891,6 +2920,32 @@ Julia needs to be started with a command line argument that indicates the
  number of cores to use.
 \end_layout
 
+\begin_layout Subsection
+Distributed computation
+\end_layout
+
+\begin_layout Standard
+Issue 
+\family typewriter
+using Distributed, SharedArrays
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+In front of the parallel loop, place 
+\family typewriter
+@sync @distributed
+\family default
+.
+ The 
+\family typewriter
+@sync
+\family default
+ macro ensures that the code waits for completion of the loop before it
+ continues.
+\end_layout
+
 \begin_layout Section
 Performance
 \end_layout
@@ -2966,6 +3021,29 @@ brew install graphviz
 .
  But it has TONS of dependencies and did not install on my system.
  Then PProf cannot be used.
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+\begin_inset CommandInset href
+LatexCommand href
+name "TimerOutputs.jl"
+target "https://github.com/KristofferC/TimerOutputs.jl"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+can be used to time selected lines of code
+\end_layout
+
+\begin_layout Itemize
+produces a nicely formatted table that is much easier to digest than profiler
+ output.
 \end_layout
 
 \begin_layout Subsection
@@ -4015,7 +4093,59 @@ ParamVector
 
 \end_deeper
 \begin_layout Section
-Unit Testing (1.1)
+Unit Testing (1.2)
+\end_layout
+
+\begin_layout Standard
+My current approach:
+\end_layout
+
+\begin_layout Enumerate
+Place each group of tests into a module, so the tests are independent of
+ each other and can be run independently.
+ 
+\family typewriter
+SafeTestsets.jl
+\family default
+ has a similar idea, but I find it cleaner to explicitly write out the modules.
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+runtests.jl
+\family default
+ simply contains a list of 
+\family typewriter
+include
+\family default
+ statements; one for each test module.
+ Those are wrapped in a 
+\family typewriter
+@testset
+\family default
+ for nice display and to ensure that errors don't stop the tests.
+\end_layout
+
+\begin_layout Enumerate
+Each test module also contains a 
+\family typewriter
+@testset
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+When 
+\family typewriter
+runtests
+\family default
+ is run, it displays a single success summary.
+ But when there are errors, they are nicely broken down by 
+\family typewriter
+testset
+\family default
+.
 \end_layout
 
 \begin_layout Standard
@@ -4031,13 +4161,28 @@ Main
 \family typewriter
 Main
 \family default
-, and it harder to 
+, and is harder to 
 \family typewriter
 revise
 \family default
 .
  This also applies to test code.
  
+\family typewriter
+SafeTestsets.jl
+\family default
+ contains the 
+\family typewriter
+@safetestset
+\family default
+ macro that automatically creates a module for each 
+\family typewriter
+testset
+\family default
+.
+ But it seems cleaner then to explicitly place tests into modules.
+ But much of the benefit of modules can be achieved by simply putting tests
+ into functions.
 \end_layout
 
 \begin_layout Standard
@@ -4049,7 +4194,8 @@ However, placing the
 \family typewriter
 @testset
 \family default
- portions into the test module causes them not to run sometimes (why?).
+ portions into the test module causes them not to run sometimes (version
+ 1.1; why?).
  It also implies that 
 \family typewriter
 using

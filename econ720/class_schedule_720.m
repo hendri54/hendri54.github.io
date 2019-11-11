@@ -241,6 +241,9 @@ topicV{i1} = markdownLH.SubTopic({'[Increasing varieties](growth/Varieties_SL.pd
    '[RQ](growth/RandD_RQ.pdf)'}, [], 'sameDate');
 
 i1 = i1 + 1;
+topicV{i1} = markdownLH.SubTopic({'Increasing varieties, part II'});
+
+i1 = i1 + 1;
 if answerRandD
    answerStr = '[answers](growth/RandD_PS-answers.pdf)';
 else
