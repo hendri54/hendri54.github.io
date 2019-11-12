@@ -27,7 +27,7 @@ answerIh1 = true;
 dueIh1 = 'Oct-7';
 answerCia = true;
 dueCia = 'Oct-14';
-answerIh2 = false;
+answerIh2 = true;
 dueIh2 = 'Nov-4';
 answerRandD = false;
 dueRandD = 'Nov-18';
@@ -253,7 +253,7 @@ topicV{i1} = markdownLH.SubTopic({'[Knowledge spillovers and scale effects](grow
    '[PS6](growth/RandD_PS.pdf)',    answerStr});
 % * : Recitation (examples)
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Quality ladders](growth/Schumpeter_SL.pdf)'},  [],  'sameDate');
+topicV{i1} = markdownLH.SubTopic({'[Quality ladders](growth/Schumpeter_SL.pdf)'});
 
 % i1 = i1 + 1;
 % topicV{i1} = markdownLH.SubTopic({'[Quality ladders with firm dynamics](growth/Schumpeter2_SL.pdf)'});
