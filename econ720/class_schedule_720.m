@@ -29,9 +29,9 @@ answerCia = true;
 dueCia = 'Oct-14';
 answerIh2 = true;
 dueIh2 = 'Nov-4';
-answerRandD = false;
+answerRandD = true;
 dueRandD = 'Nov-18';
-answerAsset = false;
+answerAsset = true;
 dueAsset = 'never';
 
 
@@ -287,7 +287,7 @@ end
 
 topicV{i1} = markdownLH.SubTopic({'[Extensions](stochastic/asset_extensions_sl.pdf)', ...
    '[RQ](stochastic/Asset_RQ.pdf)', ...
-   '[PS7](stochastic/Asset_PS.pdf)',   answerStr});
+   '[PS7](stochastic/Asset_PS.pdf)',   answerStr}, [], 'sameDate');
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Stochastic growth model](stochastic/Stoch_Growth_SL.pdf)', ...
