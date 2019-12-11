@@ -242,10 +242,12 @@ Extracting specific elements with indices given by vectors:
 \end_layout
 
 \begin_layout Verbatim
+
 A = rand(4,3,5); 
 \end_layout
 
 \begin_layout Verbatim
+
 A[CartesianIndex.([1,2], [2,2]), 1] -> A[1,2,1] and A[2,2,1]
 \end_layout
 
@@ -254,10 +256,12 @@ Similar to using sub2ind:
 \end_layout
 
 \begin_layout Verbatim
+
 idxV = sub2ind(size(A), [1,2],[2,2],[1,1])
 \end_layout
 
 \begin_layout Verbatim
+
 A[idxV]
 \end_layout
 
@@ -607,6 +611,57 @@ yields
 "1.12 and 2.000"
 \family default
 .
+\end_layout
+
+\begin_layout Section
+Installation (MacOS)
+\end_layout
+
+\begin_layout Standard
+Install the 
+\family typewriter
+Julia_ver.app
+\family default
+ as usual.
+\end_layout
+
+\begin_layout Standard
+Change 
+\family typewriter
+bash_profile
+\family default
+ to point to the new version's path.
+\end_layout
+
+\begin_layout Standard
+Open Julia from Finder to override MacOS's refusal to start an unknown app.
+\end_layout
+
+\begin_layout Standard
+Exit Julia
+\end_layout
+
+\begin_layout Standard
+To keep previous packages:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+cp -r ~/.julia/environments/v1.2 ~/.julia/environments/v1.3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+That also copied registries.
 \end_layout
 
 \begin_layout Section
@@ -3525,30 +3580,37 @@ If you only use registered packages, life is easy.
 \end_layout
 
 \begin_layout Verbatim
+
 using Pkg
 \end_layout
 
 \begin_layout Verbatim
+
 # This needs to be run only once
 \end_layout
 
 \begin_layout Verbatim
+
 Pkg.add(MyPackage)
 \end_layout
 
 \begin_layout Verbatim
+
 # If you want the latest version each time
 \end_layout
 
 \begin_layout Verbatim
+
 Pkg.update()
 \end_layout
 
 \begin_layout Verbatim
+
 using MyPackage
 \end_layout
 
 \begin_layout Verbatim
+
 MyPackage.run()
 \end_layout
 
@@ -4097,6 +4159,14 @@ Unit Testing (1.2)
 \end_layout
 
 \begin_layout Standard
+Goals:
+\end_layout
+
+\begin_layout Enumerate
+Ensure that tests are self-contained, so that each can be run independently.
+\end_layout
+
+\begin_layout Standard
 My current approach:
 \end_layout
 
@@ -4148,68 +4218,21 @@ testset
 .
 \end_layout
 
-\begin_layout Standard
-All code should be in 
+\begin_layout Enumerate
+To run tests selectively, simply 
 \family typewriter
-modules
+include
 \family default
- because code in 
-\family typewriter
-Main
-\family default
- runs slower, pollutes 
-\family typewriter
-Main
-\family default
-, and is harder to 
-\family typewriter
-revise
-\family default
-.
- This also applies to test code.
- 
-\family typewriter
-SafeTestsets.jl
-\family default
- contains the 
-\family typewriter
-@safetestset
-\family default
- macro that automatically creates a module for each 
-\family typewriter
-testset
-\family default
-.
- But it seems cleaner then to explicitly place tests into modules.
- But much of the benefit of modules can be achieved by simply putting tests
- into functions.
-\end_layout
-
-\begin_layout Standard
-However, placing the 
-\family typewriter
-@test
-\family default
- or 
+ the file that contains the 
 \family typewriter
 @testset
 \family default
- portions into the test module causes them not to run sometimes (version
- 1.1; why?).
- It also implies that 
+ at the 
 \family typewriter
-using
+REPL
 \family default
- the test module runs all tests, which is generally unwanted.
- I therefore place the 
-\family typewriter
-@test
-\family default
- code into a separate file (not inside a 
-\family typewriter
-module
-\family default
-).
+.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -4244,23 +4267,6 @@ s produce nested error reports (nice).
  statements can be placed inside functions.
  To preserve result reporting, the function should contain a @testset and
  return its result.
-\end_layout
-
-\begin_layout Standard
-To run tests selectively, simply 
-\family typewriter
-include
-\family default
- the file that contains the 
-\family typewriter
-@testset
-\family default
- at the 
-\family typewriter
-REPL
-\family default
-.
- This, of course, requires that tests are organized into separate files.
 \end_layout
 
 \begin_layout Standard

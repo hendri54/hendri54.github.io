@@ -614,6 +614,69 @@ yields
 \end_layout
 
 \begin_layout Section
+Installation (MacOS)
+\end_layout
+
+\begin_layout Standard
+Install the 
+\family typewriter
+Julia_ver.app
+\family default
+ as usual.
+\end_layout
+
+\begin_layout Standard
+Change 
+\family typewriter
+bash_profile
+\family default
+ to point to the new version's path.
+\end_layout
+
+\begin_layout Standard
+Open Julia from Finder to override MacOS's refusal to start an unknown app.
+\end_layout
+
+\begin_layout Standard
+Exit Julia
+\end_layout
+
+\begin_layout Standard
+To keep previous packages:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+cp -r ~/.julia/environments/v1.2 ~/.julia/environments/v1.3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+That also copied registries.
+\end_layout
+
+\begin_layout Standard
+Then it's not a bad idea to run 
+\family typewriter
+]pkg up
+\family default
+ to get latest versions of packages that are used in 
+\family typewriter
+Main
+\family default
+.
+\end_layout
+
+\begin_layout Section
 Miscellaneous
 \end_layout
 
