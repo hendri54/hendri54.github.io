@@ -150,9 +150,21 @@ Each section is labeled with the Julia version for which it was last updated.
 \end_layout
 
 \begin_layout Standard
-My current setup is Julia 1.2 run from the terminal and Visual Studio Code
+My current setup is Julia 1.3 run from the terminal and Visual Studio Code
  as editor (augmented with BBEdit to overcome VsCode's shortcomings in multi-fil
 e search and replace).
+\end_layout
+
+\begin_layout Standard
+Running the 
+\family typewriter
+Julia
+\family default
+ apps seems identical to running 
+\family typewriter
+Julia
+\family default
+ from the terminal.
 \end_layout
 
 \begin_layout Standard
@@ -171,10 +183,6 @@ Revise
 \family default
  comes after packages from the standard libraries, so it does not track
  changes to those.
-\end_layout
-
-\begin_layout Subsection
-Julia + Editor (1.1)
 \end_layout
 
 \begin_layout Standard
@@ -242,12 +250,10 @@ Extracting specific elements with indices given by vectors:
 \end_layout
 
 \begin_layout Verbatim
-
 A = rand(4,3,5); 
 \end_layout
 
 \begin_layout Verbatim
-
 A[CartesianIndex.([1,2], [2,2]), 1] -> A[1,2,1] and A[2,2,1]
 \end_layout
 
@@ -256,12 +262,10 @@ Similar to using sub2ind:
 \end_layout
 
 \begin_layout Verbatim
-
 idxV = sub2ind(size(A), [1,2],[2,2],[1,1])
 \end_layout
 
 \begin_layout Verbatim
-
 A[idxV]
 \end_layout
 
@@ -423,7 +427,7 @@ round(Dates.now() - startTime, Dates.Minute)
 \end_layout
 
 \begin_layout Section
-Debugging (1.2)
+Debugging (1.3)
 \end_layout
 
 \begin_layout Standard
@@ -446,6 +450,20 @@ ArgCheck
 \family default
  produces more informative errors.
  It shows the values of the expressions to be compared.
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+Infiltrate.jl
+\family default
+ can set a breakpoint similar to 
+\family typewriter
+Matlab's keyboard
+\family default
+ statement.
+ Very useful.
+ But one cannot continue the run after a breakpoint.
 \end_layout
 
 \begin_layout Standard
@@ -501,6 +519,15 @@ bp add func:line
  with possible restrictions on particular argument types.
 \end_layout
 
+\begin_layout Standard
+Breakpoints, including the 
+\family typewriter
+@bp
+\family default
+ macro, do not work in my code (throws unparsable errors) but they work
+ in simple examples.
+\end_layout
+
 \begin_layout Subsection
 Rebugger
 \end_layout
@@ -530,8 +557,17 @@ DocStringExtensions.jl
  In particular, function signatures are automatically created in docstrings.
 \end_layout
 
+\begin_layout Standard
+
+\family typewriter
+Documenter.jl
+\family default
+ is the package to write documentation.
+ 
+\end_layout
+
 \begin_layout Section
-External Programs (1.1)
+External Programs (1.3)
 \end_layout
 
 \begin_layout Standard
@@ -558,8 +594,53 @@ run(`.
  Why?
 \end_layout
 
+\begin_layout Standard
+Commands are constructed like strings with interpolation: 
+\family typewriter
+`mkdir $myPath`
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+If the command contains quotes, first build a string and then interpolate
+ it into the command:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+fPath = 
+\begin_inset Quotes eld
+\end_inset
+
+'abc.txt'
+\begin_inset Quotes erd
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+`ls $fPath`
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
-Formatting (1.1)
+Formatted Output
+\end_layout
+
+\begin_layout Subsection
+Formatting individual numbers (1.3)
 \end_layout
 
 \begin_layout Standard
@@ -611,6 +692,213 @@ yields
 "1.12 and 2.000"
 \family default
 .
+\end_layout
+
+\begin_layout Standard
+This cannot be used to format a vector of numbers in one command.
+ Broadcasting also does not work.
+ The easiest approach for this:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+println(round.(x, digits = 3))
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Formatting tables (1.3)
+\end_layout
+
+\begin_layout Standard
+Latex output can be produced with 
+\family typewriter
+LatexTables.jl
+\family default
+.
+\end_layout
+
+\begin_layout Section
+Functions and Methods
+\end_layout
+
+\begin_layout Subsection
+Array inputs (1.3)
+\end_layout
+
+\begin_layout Standard
+It is best to restrict inputs to 
+\family typewriter
+AbstractArray{T1}
+\family default
+ rather than 
+\family typewriter
+Array{T1}
+\family default
+.
+ This way, array transformations, such as 
+\family typewriter
+reshape
+\family default
+, and 
+\family typewriter
+range
+\family default
+s are accepted.
+ For example:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+typeof(1:4) <: AbstractVector{T1} where T1 <: Integer
+\end_layout
+
+\begin_layout Subsection
+Keyword arguments (1.3)
+\end_layout
+
+\begin_layout Standard
+Passing keyword arguments through to another function is easy:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+function foo(x; kwargs...)
+\end_layout
+
+\begin_layout Plain Layout
+
+	# This is how the args are accessed inside the function
+\end_layout
+
+\begin_layout Plain Layout
+
+	println(kwargs[:a]); 
+\end_layout
+
+\begin_layout Plain Layout
+
+	# All passed through and expanded into indvidual args.
+ Note the semicolon.
+\end_layout
+
+\begin_layout Plain Layout
+
+	bar(x; kwargs...); 
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+bar(x; a=1, b=2) = println((a,b)); 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Now we can call
+\end_layout
+
+\begin_layout Plain Layout
+
+foo(1; b=5) == bar(x; a=1, b=5)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Allowing a function to ignore 
+\begin_inset Quotes eld
+\end_inset
+
+excessive
+\begin_inset Quotes erd
+\end_inset
+
+ keyword arguments is also easy:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+function bar(x; a=1, kwargs...)
+\end_layout
+
+\begin_layout Plain Layout
+
+	println((x,a));
+\end_layout
+
+\begin_layout Plain Layout
+
+	println(kwargs);
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+# Can be called with any arguments as long as `x` is provided:
+\end_layout
+
+\begin_layout Plain Layout
+
+bar(1, b=3)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is useful for functions that pass similar sets of keyword arguments
+ to several sub-functions.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+CommonLH.KwArgs
+\family default
+ type and associated methods are useful for defining default values for
+ keyword arguments.
 \end_layout
 
 \begin_layout Section
@@ -678,6 +966,22 @@ Main
 
 \begin_layout Section
 Miscellaneous
+\end_layout
+
+\begin_layout Standard
+Introductions and guides:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "From Zero to Julia"
+target "https://techytok.com/from-zero-to-julia/"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1638,7 +1942,12 @@ I first create the repo on github and clone it to the local dir.
 
 \begin_layout Itemize
 Then I use 
-\family typewriter
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
 PkgSkeleton.generate(
 \begin_inset Quotes eld
 \end_inset
@@ -1647,9 +1956,12 @@ MyPackage
 \begin_inset Quotes erd
 \end_inset
 
-, skip_existing_dirs = false)
-\family default
-.
+, skip_existing_dir = false)
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -2768,11 +3080,7 @@ by hand
 \family typewriter
 REPL
 \family default
- (or using 
-\family typewriter
-shared/register_package.jl
-\family default
-):
+ :
 \end_layout
 
 \begin_layout Standard
@@ -2840,6 +3148,52 @@ julia> Pkg.Registry.update()
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+I packaged this into a function which is used as follows:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+using TestPkgLH
+\end_layout
+
+\begin_layout Plain Layout
+
+include(
+\begin_inset Quotes eld
+\end_inset
+
+shared/register_package.jl
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Plain Layout
+
+register_package(TestPkgLH)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Updating an existing package works in the same way.
+ Increment the version number in 
+\family typewriter
+Project.toml
+\family default
+ and register the package again.
 \end_layout
 
 \begin_layout Subsection
@@ -2985,6 +3339,65 @@ Runs on a single processor (with multiple cores).
 \begin_layout Standard
 Julia needs to be started with a command line argument that indicates the
  number of cores to use.
+ Or issue 
+\family typewriter
+export JULIA_NUM_THREADS=8
+\family default
+ in shell (not persistent across sessions unless written into 
+\family typewriter
+bash_profile
+\family default
+).
+\end_layout
+
+\begin_layout Standard
+Keeping track of progress:
+\end_layout
+
+\begin_layout Itemize
+Standard 
+\family typewriter
+print
+\family default
+ statements are not displayed (or written to a log file) until the entire
+ computation finishes.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "This discourse thread"
+target "https://discourse.julialang.org/t/print-functions-in-a-threaded-loop/12112/5"
+literal "false"
+
+\end_inset
+
+ suggests that the solution is to use 
+\family typewriter
+Core.println
+\family default
+ (as opposed to 
+\family typewriter
+Base.println
+\family default
+ which is not thread-safe).
+ Note that 
+\family typewriter
+Core.println
+\family default
+ does not accept 
+\family typewriter
+stdout
+\family default
+ as argument.
+\end_layout
+
+\begin_layout Itemize
+Could also try to 
+\family typewriter
+flush(stdout)
+\family default
+ periodically.
 \end_layout
 
 \begin_layout Subsection
@@ -3029,16 +3442,25 @@ if false
 \end_layout
 
 \begin_layout Subsection
-Profiling
+Profiling (1.3)
 \end_layout
 
 \begin_layout Standard
 The output generated by the built-in profiler is hard to read.
  
+\end_layout
+
+\begin_layout Standard
+
 \family typewriter
 ProfileView
 \family default
- does not compile (1.1).
+ now does compile, taking a surprisingly long time.
+ Personally, I find the presentation of 
+\family typewriter
+StatProfilerHTML
+\family default
+ more convenient, though.
 \end_layout
 
 \begin_layout Standard
@@ -3286,7 +3708,7 @@ PATH="/Applications/Julia-1.1.app/Contents/Resources/julia/bin:$PATH"
 \end_layout
 
 \begin_layout Itemize
-Then make sure you can run the test script with
+Then make sure you can run the test script locally with
 \family typewriter
 
 \begin_inset Newline newline
@@ -3313,7 +3735,12 @@ Test3.jl
 
 \begin_layout Itemize
 You may need to add the Julia binary to the path.
- On Longleaf (editing 
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+On Longleaf (editing 
 \family typewriter
 ~/.bash_profile)
 \family default
@@ -3323,9 +3750,18 @@ You may need to add the Julia binary to the path.
 
 
 \family typewriter
-export PATH="/nas/longleaf/apps/julia/1.1.0/bin:$PATH"
+export PATH="/nas/longleaf/apps/julia/1.3.0/bin:$PATH"
 \end_layout
 
+\begin_layout Itemize
+The more robust approach is 
+\family typewriter
+module add julia/1.3.0
+\family default
+.
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 Then run 
 \family typewriter
@@ -3591,39 +4027,131 @@ If you only use registered packages, life is easy.
  Your code would simply say:
 \end_layout
 
-\begin_layout Verbatim
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
 
 using Pkg
 \end_layout
 
-\begin_layout Verbatim
+\begin_layout Plain Layout
 
 # This needs to be run only once
 \end_layout
 
-\begin_layout Verbatim
+\begin_layout Plain Layout
 
 Pkg.add(MyPackage)
 \end_layout
 
-\begin_layout Verbatim
+\begin_layout Plain Layout
 
 # If you want the latest version each time
 \end_layout
 
-\begin_layout Verbatim
+\begin_layout Plain Layout
 
 Pkg.update()
 \end_layout
 
-\begin_layout Verbatim
+\begin_layout Plain Layout
 
 using MyPackage
 \end_layout
 
-\begin_layout Verbatim
+\begin_layout Plain Layout
 
 MyPackage.run()
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If the code for 
+\family typewriter
+MyPackage
+\family default
+ has been copied to the remote, then
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+julia --project=
+\begin_inset Quotes erd
+\end_inset
+
+/path/to/MyPackage
+\begin_inset Quotes erd
+\end_inset
+
+ --startup-file=no batch.jl
+\end_layout
+
+\end_inset
+
+activates 
+\family typewriter
+MyPackage
+\family default
+ and runs 
+\family typewriter
+batch.jl
+\family default
+.
+ The 
+\family typewriter
+--project
+\family default
+ option is equivalent to 
+\family typewriter
+Pkg.activate
+\family default
+.
+\end_layout
+
+\begin_layout Itemize
+Julia looks for 
+\family typewriter
+batch.jl
+\family default
+ in the directory that was active when Julia was invoked (in this case:
+ when 
+\family typewriter
+sbatch
+\family default
+ was invoked).
+\end_layout
+
+\begin_layout Itemize
+Disabling the 
+\family typewriter
+startup-file
+\family default
+ prevents surprises where the 
+\family typewriter
+startup-file
+\family default
+ changes the directory before looking for 
+\family typewriter
+batch.jl
+\family default
+.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+~
+\family default
+ is not expanded when relative paths are used.
 \end_layout
 
 \begin_layout Standard
@@ -3631,7 +4159,11 @@ If
 \family typewriter
 MyPackage
 \family default
- contains unregistered dependencies, things get more difficult.
+ contains is unregistered or contains 
+\series bold
+unregistered dependencies
+\series default
+, things get more difficult.
  Now 
 \family typewriter
 batch.jl
@@ -3679,6 +4211,19 @@ using MyPackage
 
 \family typewriter
 MyPackage.run()
+\end_layout
+
+\begin_layout Standard
+Developing 
+\family typewriter
+MyPackage
+\family default
+ in a blank folder does not work (for reasons I do not understand).
+ It results in errors indicating that dependencies of 
+\family typewriter
+MyPackage
+\family default
+ could not be found.
 \end_layout
 
 \begin_layout Standard
@@ -3773,7 +4318,7 @@ How this works can be looked up online.
 \begin_layout Standard
 
 \family typewriter
-PackageToolsLH
+FilesLH
 \family default
  keeps track of where things are on each machine.
  It is used to build the full paths.
@@ -3903,7 +4448,7 @@ For this purpose, it is useful to have an environment lying around that
 \end_layout
 
 \begin_layout Section
-Types (1.1)
+Types (1.3)
 \end_layout
 
 \begin_layout Standard
@@ -3946,6 +4491,35 @@ Constructing objects with many fields:
 \begin_layout Itemize
 Define an inner constructor that leaves the object (partially) uninitialized.
  It is legal to have new(x) even if the object contains additional fields.
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+Parameters.jl
+\family default
+ is useful for objects with default values.
+\end_layout
+
+\begin_layout Itemize
+Constructor must then provide all arguments that do not have defaults.
+\end_layout
+
+\begin_layout Itemize
+Note that 
+\family typewriter
+@with_kw
+\family default
+ automatically defines 
+\family typewriter
+show()
+\family default
+.
+ Use 
+\family typewriter
+@with_kw_noshow
+\family default
+ to avoid this.
 \end_layout
 
 \begin_layout Subsection
@@ -4050,8 +4624,10 @@ load
 \end_layout
 
 \begin_layout Enumerate
-All dependencies need to imported into Main
+All dependencies need to imported into 
 \family typewriter
+Main
+\family default
  
 \begin_inset Quotes eld
 \end_inset
