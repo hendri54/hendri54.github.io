@@ -466,19 +466,6 @@ Matlab's keyboard
  But one cannot continue the run after a breakpoint.
 \end_layout
 
-\begin_layout Standard
-The 
-\family typewriter
-Juno
-\family default
- debugger stopped working in V.1.1 (invoking it hangs 
-\family typewriter
-Julia
-\family default
-).
- But the command line debugger may well be the better option.
-\end_layout
-
 \begin_layout Subsection
 Debugger (1.2)
 \end_layout
@@ -754,6 +741,13 @@ reshape
 range
 \family default
 s are accepted.
+ For example:
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+typeof(1:4) <: AbstractVector{T1} where T1 <: Integer
 \end_layout
 
 \begin_layout Subsection
@@ -1542,6 +1536,11 @@ literal "false"
 
 \begin_layout Itemize
 starts from a random population of points
+\end_layout
+
+\begin_layout Itemize
+user can control the size of the initial population, but there are no warm
+ starts.
 \end_layout
 
 \begin_layout Itemize
@@ -3591,6 +3590,89 @@ literal "false"
 \end_layout
 
 \begin_layout Section
+Plotting
+\end_layout
+
+\begin_layout Standard
+Visually, 
+\family typewriter
+PlotlyJS
+\family default
+ produces the most appealing plots (for me).
+ But it does not install on my system (1.3).
+\end_layout
+
+\begin_layout Standard
+When a plotting related library is not found (as in 
+\begin_inset Quotes eld
+\end_inset
+
+error compiling display
+\begin_inset Quotes erd
+\end_inset
+
+), try 
+\family typewriter
+]build Plots
+\family default
+.
+ 
+\end_layout
+
+\begin_layout Subsection
+Saving data with plots:
+\end_layout
+
+\begin_layout Standard
+VegaLite does this natively.
+\end_layout
+
+\begin_layout Standard
+with 
+\family typewriter
+Plots.jl
+\family default
+ 
+\begin_inset CommandInset href
+LatexCommand href
+name "one can use"
+target "https://discourse.julialang.org/t/how-to-save-a-plot-structure/28694/5?u=hendri54"
+literal "false"
+
+\end_inset
+
+ 
+\family typewriter
+hdf5plot_write
+\family default
+ to write an entire plot, including the data, to an hdf5 file.
+ 
+\end_layout
+
+\begin_layout Itemize
+This means that each plot has to be generated twice; once with whatever
+ backend is used to generate PDF files; and then again with 
+\family typewriter
+hdf5
+\family default
+.
+ In particular, one cannot first plot with another backend and then save
+ the resulting plot object to 
+\family typewriter
+hdf5
+\family default
+.
+\end_layout
+
+\begin_layout Itemize
+The approach is then to first save the plot to 
+\family typewriter
+hdf5
+\family default
+, then load it and save it with another backend.
+\end_layout
+
+\begin_layout Section
 Regressions
 \end_layout
 
@@ -3938,6 +4020,23 @@ git push longleaf master
 \begin_layout Standard
 Note that this does not upload any files! So this only works for packages,
  not for code that should be run outside of packages.
+\end_layout
+
+\begin_layout Standard
+Note: Perhaps a bare 
+\family typewriter
+git repo
+\family default
+ is not 
+\begin_inset CommandInset href
+LatexCommand href
+name "needed after all"
+target "https://discourse.julialang.org/t/local-remote-workflow/17780/2?u=hendri54"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -4558,29 +4657,20 @@ One good piece of advice: ensure that methods are generally defined on the
 \end_layout
 
 \begin_layout Subsection
-Loading and saving (1.1)
+Loading and saving (1.3)
 \end_layout
 
 \begin_layout Standard
-
-\family typewriter
-using FileIO
-\family default
- and extension 
-\family typewriter
-.jld2
-\family default
- automatically saves in 
-\family typewriter
-jld2
-\family default
- format.
- This can save used defined types.
+Loading and saving user defined types is a 
+\series bold
+major problem
+\series default
+ in Julia.
+ There is, to my knowledge, no working solution right now.
 \end_layout
 
 \begin_layout Standard
-Loading user defined types is more complicated.
- All modules needed to construct the loaded types need to be known in the
+All modules needed to construct the loaded types need to be known in the
  loading module and in 
 \family typewriter
 Main
@@ -4605,136 +4695,108 @@ Core.eval(Main, :(using Module))
 \end_layout
 
 \begin_layout Standard
-Implications:
+JLD2
 \end_layout
 
-\begin_layout Enumerate
-Each user defined type needs its own 
+\begin_layout Itemize
+
 \family typewriter
-load
+using FileIO
 \family default
- function.
+ and extension 
+\family typewriter
+.jld2
+\family default
+ automatically saves in 
+\family typewriter
+jld2
+\family default
+ format.
+ This can save used defined types.
 \end_layout
 
-\begin_layout Enumerate
-All dependencies need to imported into 
-\family typewriter
-Main
-\family default
- 
-\begin_inset Quotes eld
-\end_inset
-
-by hand
-\begin_inset Quotes erd
-\end_inset
-
- for each loaded object.
+\begin_layout Itemize
+fails to load files without any apparent pattern (UnsupportedFeatureException)
 \end_layout
 
 \begin_layout Standard
-An alternative is 
+
 \family typewriter
 BSON.jl
+\end_layout
+
+\begin_layout Itemize
+Note that 
+\family typewriter
+BSON
 \family default
+ 
+\begin_inset CommandInset href
+LatexCommand href
+name "modifies Dicts when they are saved"
+target "https://github.com/JuliaIO/BSON.jl/issues/26"
+literal "false"
+
+\end_inset
+
 .
- It has the same limitation.
+\end_layout
+
+\begin_layout Itemize
+Fails to load files without any apparent pattern.
+\end_layout
+
+\begin_layout Subsubsection
+Saving ModelObjects
 \end_layout
 
 \begin_layout Standard
-One could save the 
+This refers to saving 
 \family typewriter
-ParamVector
+ModelObjects
 \family default
-s in each object and reconstruct the object from those (recursively).
- This, of course, only works for objects that can be constructed from 
+ defined in 
 \family typewriter
-ParamVector
-\family default
-s.
- Each 
-\family typewriter
-ParamVector
-\family default
- could be stored as a 
-\family typewriter
-Dict{Symbol, Any}
+ModelParams
 \family default
 .
- But even easier: store the 
-\family typewriter
-ParamVector
-\family default
-s directly.
- Constructing them after loading only requires 
-\family typewriter
-modelLH
-\family default
-.
- The approach would then be:
+\end_layout
+
+\begin_layout Standard
+The most feasible solution is:
 \end_layout
 
 \begin_layout Enumerate
-Collect the 
-\family typewriter
-ParamVector
-\family default
-s from all model objects into a 
-\family typewriter
-Dict{Symbol,ParamVector}
-\family default
-.
- The symbol identifies the associated model object.
+Construct the object with default parameters.
 \end_layout
 
 \begin_layout Enumerate
-Save the 
+Load a 
 \family typewriter
-Dict
+Vector{ParamVector}
 \family default
 .
 \end_layout
 
 \begin_layout Enumerate
-In 
-\family typewriter
-Main: 
-\family default
-using modelLH, so that loading works.
-\end_layout
-
-\begin_layout Enumerate
-Function that loads the model: 
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Construct the model object with arbitrary default values.
-\end_layout
-
-\begin_layout Enumerate
-Load the 
+Apply the values of the calibrated parameters (according to the object's
+ own 
 \family typewriter
 ParamVector
 \family default
-s.
- 
+) and the default values of the not-calibrated parameters.
 \end_layout
 
-\begin_layout Enumerate
-Sync each 
+\begin_layout Standard
+How to save/load a 
 \family typewriter
-ParamVector
+Vector{ParamVector}
 \family default
-'s parameters into the correct model object.
- Essentially, the model object needs a constructor that accepts a 
-\family typewriter
-ParamVector
-\family default
-.
+ is not so obvious.
+ But one only has to save the values.
+ The other info is determined at model construction.
 \end_layout
 
-\end_deeper
 \begin_layout Section
 Unit Testing (1.2)
 \end_layout
