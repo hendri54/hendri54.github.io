@@ -250,10 +250,12 @@ Extracting specific elements with indices given by vectors:
 \end_layout
 
 \begin_layout Verbatim
+
 A = rand(4,3,5); 
 \end_layout
 
 \begin_layout Verbatim
+
 A[CartesianIndex.([1,2], [2,2]), 1] -> A[1,2,1] and A[2,2,1]
 \end_layout
 
@@ -262,10 +264,12 @@ Similar to using sub2ind:
 \end_layout
 
 \begin_layout Verbatim
+
 idxV = sub2ind(size(A), [1,2],[2,2],[1,1])
 \end_layout
 
 \begin_layout Verbatim
+
 A[idxV]
 \end_layout
 
@@ -296,6 +300,15 @@ To drop dimensions, use
 dropdims
 \family default
 .
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+LabelledArrays.jl
+\family default
+: allows to assign names to row or column indices or even to slices.
+ This becomes like a Table, but with the performance of a (static) array.
 \end_layout
 
 \begin_layout Section
@@ -1113,6 +1126,34 @@ literal "false"
 Modules
 \end_layout
 
+\begin_layout Standard
+Name conflicts:
+\end_layout
+
+\begin_layout Itemize
+If module A defines 
+\family typewriter
+foo
+\family default
+ and wants to call the (exported) 
+\family typewriter
+foo
+\family default
+ from module B, the name needs to be qualified: 
+\family typewriter
+B.foo
+\family default
+.
+\end_layout
+
+\begin_layout Itemize
+This makes it advantageous to avoid generic names, such as 
+\family typewriter
+name(x)
+\family default
+.
+\end_layout
+
 \begin_layout Subsection
 LOAD_PATH (1.1)
 \end_layout
@@ -1637,7 +1678,7 @@ user can control the size of the initial population, but there are no warm
 \end_layout
 
 \begin_layout Itemize
-the evolves these using heuristic rules.
+then evolves these using heuristic rules.
 \end_layout
 
 \begin_layout Standard
@@ -1687,7 +1728,7 @@ Packages
 \end_layout
 
 \begin_layout Subsection
-Environments (1.2)
+Environments (1.3)
 \end_layout
 
 \begin_layout Standard
@@ -1697,7 +1738,7 @@ Project.toml
 \family default
 .
  When you start Julia, you enter the version's environment (e.g.
- 1.1).
+ 1.3).
  When you add a package, you effectively edit 
 \family typewriter
 Project.toml
@@ -1725,9 +1766,18 @@ Pkg.add
 \family default
  to initialize a 
 \family typewriter
-Mainfest.toml
+Project.toml
 \family default
  in that directory.
+ Now the 
+\family typewriter
+Project.toml
+\family default
+ of 
+\series bold
+both
+\series default
+ environments are used to resolve dependencies.
 \end_layout
 
 \begin_layout Standard
@@ -1753,7 +1803,7 @@ LOAD_PATH
 \end_layout
 
 \begin_layout Itemize
-Julia also looks in the directory of the currently activate package (which
+Julia also looks in the directory of the currently activated package (which
  is 
 \series bold
 not
@@ -1770,6 +1820,21 @@ Pkg.activate()
  does internally is not clear.
  Once you activate another package, previously activated packages are no
  longer considered during code loading.
+ But: Whatever was 
+\family typewriter
+using
+\family default
+ed previously remains loaded.
+ And since only one version of a given package can be loaded at any point
+ in time, once 
+\family typewriter
+M
+\family default
+ is loaded its version is fixed, no matter what the 
+\family typewriter
+Project.toml
+\family default
+ of the current environment says.
 \end_layout
 
 \begin_layout Itemize
@@ -1977,6 +2042,37 @@ wrong
 \end_inset
 
  version of a dependency.
+\end_layout
+
+\begin_layout Standard
+This can lead to interesting problems.
+ Example: I updated a package's dependencies, resulting in a crash.
+ The diagnosis was that 
+\family typewriter
+Parsers.jl
+\family default
+ was out of date, but the 
+\family typewriter
+Manifest
+\family default
+ showed the correct version.
+ It turned out that this version was never loaded because a package in my
+ base environment already loaded an older version of 
+\family typewriter
+Parsers.jl
+\family default
+.
+ Remember: What is shown in 
+\family typewriter
+Manifest.toml
+\family default
+ is not necessarily what gets loaded when environments are stacked.
+ 
+\end_layout
+
+\begin_layout Standard
+This is one reason why the base environment should be lean and frequently
+ updated.
 \end_layout
 
 \begin_layout Subsection
@@ -3015,6 +3111,13 @@ registryLH
  being updated.
 \end_layout
 
+\begin_layout Standard
+Note: For Julia 1.4 you should replace the "GunnarFarneback" clone by LocalRegist
+ry.jl.
+ Things appear to be very much the same then.
+ Thanks to Juergen Fuhrmann for pointing this out.
+\end_layout
+
 \begin_layout Paragraph
 Adding packages to the registry.
  
@@ -3607,12 +3710,20 @@ dbg() = false;
 
 \begin_layout Plain Layout
 
-dbg && @assert <stuff>
+dbg() && @assert <stuff>
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Does the same work with 
+\family typewriter
+const Dbg
+\family default
+?
 \end_layout
 
 \begin_layout Subsection
@@ -3769,6 +3880,27 @@ literal "false"
 \end_inset
 
  is a tool for debugging type instability.
+\end_layout
+
+\begin_layout Subsection
+Tricks
+\end_layout
+
+\begin_layout Enumerate
+Avoid allocations in calls to functions like 
+\family typewriter
+any()
+\family default
+.
+ For example, 
+\family typewriter
+any(x .< 5)
+\family default
+ allocates while 
+\family typewriter
+any(z -> z < 5, x)
+\family default
+ does not (and is much faster).
 \end_layout
 
 \begin_layout Section
