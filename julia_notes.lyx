@@ -250,10 +250,12 @@ Extracting specific elements with indices given by vectors:
 \end_layout
 
 \begin_layout Verbatim
+
 A = rand(4,3,5); 
 \end_layout
 
 \begin_layout Verbatim
+
 A[CartesianIndex.([1,2], [2,2]), 1] -> A[1,2,1] and A[2,2,1]
 \end_layout
 
@@ -262,10 +264,12 @@ Similar to using sub2ind:
 \end_layout
 
 \begin_layout Verbatim
+
 idxV = sub2ind(size(A), [1,2],[2,2],[1,1])
 \end_layout
 
 \begin_layout Verbatim
+
 A[idxV]
 \end_layout
 
@@ -2912,9 +2916,42 @@ literal "false"
  for a guide).
  The key to making it practical is 
 \family typewriter
+LocalRegistry.jl
+\family default
+.
+\end_layout
+
+\begin_layout Subsubsection
+Using LocalRegistry.jl (1.3)
+\end_layout
+
+\begin_layout Standard
+This is the successor to Gunnar Farneback's 
+\family typewriter
 Registrator.jl
 \family default
- (not the official one, but the one from Gunnar Farneback; see below).
+.
+\end_layout
+
+\begin_layout Standard
+Once a package has been registered with 
+\family typewriter
+Registrator.jl
+\family default
+, registering a new version simply requires 
+\family typewriter
+register(MyPackage; commit = true, push = true)
+\family default
+.
+ The keyword arguments push a git commit of the local registry to github.
+\end_layout
+
+\begin_layout Standard
+This directly edits the copy of the registry in 
+\family typewriter
+.julia/registries
+\family default
+.
 \end_layout
 
 \begin_layout Subsubsection
@@ -3630,7 +3667,11 @@ bash_profile
 Keeping track of progress:
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Subsection
+Printing in multi-threaded code
+\end_layout
+
+\begin_layout Standard
 Standard 
 \family typewriter
 print
@@ -3639,7 +3680,7 @@ print
  computation finishes.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 \begin_inset CommandInset href
 LatexCommand href
 name "This discourse thread"
@@ -3668,12 +3709,33 @@ stdout
  as argument.
 \end_layout
 
-\begin_layout Itemize
+\begin_layout Standard
 Could also try to 
 \family typewriter
 flush(stdout)
 \family default
  periodically.
+\end_layout
+
+\begin_layout Standard
+To print output in the correct sequence: one solution is 
+\begin_inset CommandInset href
+LatexCommand href
+name "this discourse thread"
+target "https://discourse.julialang.org/t/print-functions-in-a-threaded-loop/12112/8"
+literal "false"
+
+\end_inset
+
+: use a 
+\family typewriter
+SpinLock
+\family default
+ together with (thread-safe) 
+\family typewriter
+Core.println
+\family default
+.
 \end_layout
 
 \begin_layout Subsection
@@ -3955,6 +4017,24 @@ error compiling display
 \family default
 .
  
+\end_layout
+
+\begin_layout Subsection
+Legends
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+label
+\family default
+ is set when each series is plotted.
+ If 
+\family typewriter
+labels
+\family default
+ are set when the plot is created (before the series are plotted), the entries
+ are ignored.
 \end_layout
 
 \begin_layout Subsection
