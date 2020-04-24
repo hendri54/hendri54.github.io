@@ -250,12 +250,10 @@ Extracting specific elements with indices given by vectors:
 \end_layout
 
 \begin_layout Verbatim
-
 A = rand(4,3,5); 
 \end_layout
 
 \begin_layout Verbatim
-
 A[CartesianIndex.([1,2], [2,2]), 1] -> A[1,2,1] and A[2,2,1]
 \end_layout
 
@@ -264,12 +262,10 @@ Similar to using sub2ind:
 \end_layout
 
 \begin_layout Verbatim
-
 idxV = sub2ind(size(A), [1,2],[2,2],[1,1])
 \end_layout
 
 \begin_layout Verbatim
-
 A[idxV]
 \end_layout
 
@@ -1053,6 +1049,36 @@ Then it's not a bad idea to run
  to get latest versions of packages that are used in 
 \family typewriter
 Main
+\family default
+.
+\end_layout
+
+\begin_layout Section
+IO (1.3)
+\end_layout
+
+\begin_layout Standard
+Writing output simultaneously to 
+\family typewriter
+stdout
+\family default
+ and a file is best accomplished by defining an 
+\family typewriter
+IO
+\family default
+ struct that contains a vector of 
+\family typewriter
+IO
+\family default
+ types.
+ Then define 
+\family typewriter
+Base.print
+\family default
+ to write to all IO streams sequentially.
+ This is implemented in 
+\family typewriter
+CommonLH.MultiIO
 \family default
 .
 \end_layout
@@ -4088,6 +4114,14 @@ The approach is then to first save the plot to
 hdf5
 \family default
 , then load it and save it with another backend.
+\end_layout
+
+\begin_layout Standard
+Note: In my current (v.1.3) installation, 
+\family typewriter
+hdf5plot_write
+\family default
+ generates a bunch or warnings followed by a crash due to world age problems.
 \end_layout
 
 \begin_layout Section
