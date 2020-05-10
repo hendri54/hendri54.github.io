@@ -3,7 +3,7 @@
 cd /Users/lutz/Documents/data/web/hendri54.github.io/
 echo "MMD batch conversion"
 
-mmd *.mmd
+mmd *.md
 
 mmd research/*.mmd
 
@@ -20,12 +20,12 @@ mmd econ720/*.mmd
 #cd ..
 
 #cd honors
-mmd honors/*.mmd
-mmd honors/instructions/*.mmd
+# mmd honors/*.mmd
+# mmd honors/instructions/*.mmd
 #cd ..
 
 #cd private
-mmd private/*.mmd
+mmd private/*.md
 mmd private/light_rail/*.md
 #cd ..
 

@@ -133,10 +133,26 @@ today
 This document summarizes my experience with the Julia language.
  Its main purpose is to document tips and tricks that are not covered in
  the official documentation.
+ 
 \end_layout
 
 \begin_layout Section
-My Setup (1.2)
+Introduction
+\end_layout
+
+\begin_layout Standard
+Much of what is collected here is really just that: collected from other
+ sources, which I try to cite where appropriate.
+ Some of the material is a synthesis of material taken from various Discourse
+ threads.
+ In these cases, I may not always recall where I learned something.
+ Apologies to Discourse contributors who I should perhaps have cited, but
+ whose contributions I failed to recall.
+ I will be happy to add citations if omissions are pointed out to me.
+\end_layout
+
+\begin_layout Section
+My Setup (1.3)
 \begin_inset Foot
 status collapsed
 
@@ -541,7 +557,7 @@ Fn-Esc-i
 \end_layout
 
 \begin_layout Section
-Documentation (1.2)
+Documentation (1.3)
 \end_layout
 
 \begin_layout Standard
@@ -560,6 +576,31 @@ Documenter.jl
 \family default
  is the package to write documentation.
  
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "Literate.jl"
+target "https://github.com/fredrikekre/Literate.jl"
+literal "false"
+
+\end_inset
+
+ is useful for generating examples.
+\end_layout
+
+\begin_layout Standard
+A useful 
+\begin_inset CommandInset href
+LatexCommand href
+name "guide to writing documentation"
+target "https://documentation.divio.com"
+literal "false"
+
+\end_inset
+
+ (pointed out by Tim Holy on Discourse).
 \end_layout
 
 \begin_layout Section
@@ -1087,6 +1128,10 @@ CommonLH.MultiIO
 Miscellaneous
 \end_layout
 
+\begin_layout Subsection
+Learning Julia
+\end_layout
+
 \begin_layout Standard
 Introductions and guides:
 \end_layout
@@ -1146,6 +1191,39 @@ literal "false"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "JuliaHub"
+target "juliahub.com"
+literal "false"
+
+\end_inset
+
+: full text search of package documentation and code.
+\end_layout
+
+\begin_layout Subsection
+Quasi-random numbers
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "Sobol.jl"
+target "https://github.com/stevengj/Sobol.jl"
+literal "false"
+
+\end_inset
+
+ draws Sobol sequences.
+\end_layout
+
+\begin_layout Itemize
+the same sequence of numbers is drawn each time.
+ The initial condition is not related to the random seed.
 \end_layout
 
 \begin_layout Section
@@ -1774,7 +1852,96 @@ implements SPSA
 \end_layout
 
 \begin_layout Itemize
-currently no documentation of algorithms (2019/09).
+currently little documentation (2020-May)
+\end_layout
+
+\begin_layout Itemize
+There is an example of distributed parallel optimization.
+ Not clear whether multi-threaded works as well.
+ 
+\end_layout
+
+\begin_layout Itemize
+Not clear whether / how optimization history can be saved.
+\end_layout
+
+\begin_layout Subsection
+Surrogate Optimization
+\end_layout
+
+\begin_layout Standard
+Basic idea:
+\end_layout
+
+\begin_layout Itemize
+Sample a small number of points.
+ Evaluate the objective.
+\end_layout
+
+\begin_layout Itemize
+Fit a surrogate function to those points.
+\end_layout
+
+\begin_layout Itemize
+Optimize this function, which is cheap to evaluate, using an algorithm that
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+explores the global parameter space
+\end_layout
+
+\begin_layout Itemize
+downweights points that are far from points where the true objective has
+ been evaluated
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Add the optimum of the surrogate to the list of evaluated points (using
+ the true function value).
+\end_layout
+
+\begin_layout Itemize
+Update the surrogate model based on the new point.
+\end_layout
+
+\begin_layout Itemize
+Repeat.
+\end_layout
+
+\begin_layout Standard
+Packages:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "Surrogates.jl"
+target "https://surrogates.sciml.ai/stable/"
+literal "false"
+
+\end_inset
+
+: a variety of algorithms and sampling methods.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "SurrogateModelOptim.jl"
+target "https://mrurq.github.io/SurrogateModelOptim.jl/stable/"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Drawback: There is no good way of running the surrogate optimization in
+ parallel (unlike Matlab).
 \end_layout
 
 \begin_layout Section
@@ -3762,6 +3929,23 @@ SpinLock
 Core.println
 \family default
 .
+\end_layout
+
+\begin_layout Standard
+One solution for keeping track of long computations: Write output to a file
+ instead of (or in addition to) stdout.
+ File output is written in the correct order.
+ Periodically 
+\family typewriter
+flush
+\family default
+ to ensure that output is written and the file can be viewed.
+ This basically replaces the log files the the cluster managers would usually
+ generate (redirecting 
+\family typewriter
+stdout
+\family default
+).
 \end_layout
 
 \begin_layout Subsection

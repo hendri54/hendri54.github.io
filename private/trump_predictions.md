@@ -58,4 +58,14 @@ Trump is under constant attack from all sides. There are multiple scandals a wee
 
 Update 2017-Aug: More likely than health reasons: Trump will simply claim that he has achieved everything he wanted in his first term and that he simply does not need a second term to right the country. He will point to trade reform (exiting TPA, renegotiation NAFTA), millions of new jobs, a firmly conservative Supreme Court, immigration policies that reduce illegal immigration, and something great about the military.
 
+# Update 2020-April
+
+Well, I was obviously way too optimistic back in 2016 and 2017.
+
+Yes, there were scandals, mistakes, embarassements, lawsuits, and big fiscal deficts. But none of this affected Trump's approval ratings one bit. It is hard to see how this is not the end of democracy in the U.S.
+
+What I did not expect was that Trump would simply turn out to be senile. His response to the Covid-19 crisis is absolutely incoherent. He goes down rabbit holes that no sane person would ever mention. The clearest example is Trump's very serious consideration to ingest light (how does one do that?) or disinfectants to kill the Coronavirus. 
+
+Thanks to Trump's "leadership," the federal governemtn, especially the CDC, has done pretty much nothing to make testing widely available, to validate Covid tests (as was just started by private researchers), to contact trace (700 tracers for the entire U.S.??), or to procure PPE (as of today, the VA still says that it is short of PPE and operates in emergency mode). Even Trump voters will not put up with this level of catastrophe for long.
+
 -----------

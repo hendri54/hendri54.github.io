@@ -51,6 +51,7 @@ Letters written in opposition to DOLRT
 
 ## General Info on Light Rail
 
+* [A Hard-Eyed Look at Mass Transit](https://conversableeconomist.blogspot.com/2020/05/a-hard-eyed-look-at-mass-transit.html), Conversable Economist, May 2020. Interesting fact: Mass transit uses more energy per rider than driving by car.
 * [Light Rail Is the Wrong Choice for Cities](https://www.cato.org/publications/commentary/light-rail-wrong-choice-cities), Cato Institute, 2014.
 * [The Worst of Both](https://object.cato.org/sites/cato.org/files/pubs/pdf/pa750_web_1.pdf), Cato Institute, 2014.
 

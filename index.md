@@ -8,21 +8,23 @@
 
 [Computer code](computer_code.html)
 
-## Teaching Fall 2019
+## Teaching Fall 2020
 
-Office hours: Tue, Thr, 2-3pm
+Office hours: TBA
 
-[Econ720](econ720/econ720.html): Advanced Macro Theory I (PhD)
+[Econ720](econ720/econ720.html): Advanced Macro Theory I (PhD) (Material still from 2019)
 
-## Teaching Spring 2019
-
-[Econ692H](honors/econ692h.html): Honors Seminar
-
-If you wish to apply for the **2019/20 honors seminar**, information is posted [here](honors/intro.html).
+[Econ520] material to be posted
 
 [Teaching related notes](teaching/teaching.html)
 
 [Tips for PhD students](teaching/phd_students.html)
+
+## Teaching Spring 2021
+
+[Econ520] material to be posted
+
+[Econ820] material to be posted, but see [here](econ821/econ821.html) for my 2016 course on related topics.
 
 
 ## Thoughts ##

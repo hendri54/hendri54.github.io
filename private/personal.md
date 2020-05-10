@@ -4,8 +4,9 @@ This is the personal web page of Lutz Hendricks. My professional page can be fou
 
 # Politics #
 
-* [Thoughts on stock markets](stock_markets.html)(2020-Apr)
-* [Time for a Break-up](breaking_up.html)(2020-Apr)
+* [The GOP's Resemblance to the Communist Party](gop_communists.html) (2020-May)
+* [Thoughts on stock markets](stock_markets.html) (2020-Apr)
+* [Time for a Break-up](breaking_up.html) (2020-Apr)
 * [Failed COVID response](covid.html) (2020-Apr)
 * [Presidential Dictatorship](presidential_dictatorship.html)  (2019-Sep)
 * [Why does Trump want a trade war?](trade_war.html) (2018-Mar)
