@@ -40,4 +40,8 @@ Over the next few months, Trump will replace all competent officials in the CDC 
 
 Production of the treatment will not start until after the election. This way, the timing of the approval will give Trump the maximum boost in the polls. Trump will point out that "he" achieved in months what would have taken years under another president. Not producing before the election also ensures that the risks and effectiveness of the treatment will not be apparent until after voting has taken place.
 
+Update 6/8/2020: The same idea in a [NY Times opinion piece](https://www.nytimes.com/2020/06/08/opinion/trump-coronavirus-vaccine.html).
+
+It now looks like my mortality predictions were high. I would now expect 50 million infections and 500,000 deaths by the time a vaccine becomes widely available.
+
 ---------

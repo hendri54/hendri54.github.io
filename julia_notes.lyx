@@ -224,7 +224,7 @@ Juno
 \end_layout
 
 \begin_layout Subsection
-Updating to a new version (1.2)
+Updating to a new version (1.4)
 \end_layout
 
 \begin_layout Standard
@@ -234,10 +234,43 @@ After starting the new version, basic packages need to be added so the startup
 OhMyREPL
 \family default
 ).
+ In my case these are:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+]add OhMyREPL Revise
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 The bash profile needs to be updated to point to the new version.
+ Alternatively, create a symlink for the new version with
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ln -s /Applications/Julia-1.4.app/Contents/Resources/julia/bin/julia /usr/local/bi
+n/julia
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -266,10 +299,12 @@ Extracting specific elements with indices given by vectors:
 \end_layout
 
 \begin_layout Verbatim
+
 A = rand(4,3,5); 
 \end_layout
 
 \begin_layout Verbatim
+
 A[CartesianIndex.([1,2], [2,2]), 1] -> A[1,2,1] and A[2,2,1]
 \end_layout
 
@@ -278,10 +313,12 @@ Similar to using sub2ind:
 \end_layout
 
 \begin_layout Verbatim
+
 idxV = sub2ind(size(A), [1,2],[2,2],[1,1])
 \end_layout
 
 \begin_layout Verbatim
+
 A[idxV]
 \end_layout
 
@@ -425,6 +462,60 @@ literal "false"
 .
 \end_layout
 
+\begin_layout Subsection
+Data Dependencies
+\end_layout
+
+\begin_layout Standard
+Github issues
+\end_layout
+
+\begin_layout Itemize
+to download from a github repo: link to the 
+\begin_inset Quotes eld
+\end_inset
+
+raw
+\begin_inset Quotes erd
+\end_inset
+
+ file (
+\begin_inset Quotes eld
+\end_inset
+
+raw/githubusercontent.com/...
+\begin_inset Quotes erd
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+for private repos, the raw URL ends in a 
+\begin_inset Quotes eld
+\end_inset
+
+token
+\begin_inset Quotes erd
+\end_inset
+
+; the presumably handles authorization for access
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+DataDeps.jl
+\end_layout
+
+\begin_layout Itemize
+each data dependency is a single file (it seems)
+\end_layout
+
+\begin_layout Itemize
+but can download and unpack a tarball
+\end_layout
+
 \begin_layout Section
 Dates and Times (1.2)
 \end_layout
@@ -538,6 +629,25 @@ Breakpoints, including the
 \family default
  macro, do not work in my code (throws unparsable errors) but they work
  in simple examples.
+\end_layout
+
+\begin_layout Subsubsection
+VS Code Interface (1.4)
+\end_layout
+
+\begin_layout Standard
+Gives a graphical interface for setting breakpoints and inspecting variables.
+ Still rough, but useful.
+ A description is 
+\begin_inset CommandInset href
+LatexCommand href
+name "here"
+target "https://discourse.julialang.org/t/ann-vs-code-extension-v0-15-released-with-debugger/36415/1"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsection
@@ -695,6 +805,16 @@ Array{Float64}
 \end_layout
 
 \begin_layout Subsection
+JDF (1.4)
+\end_layout
+
+\begin_layout Standard
+Saves DataFrames.
+ Likely the best option when saving rectangular data (as opposed to serialized
+ objects).
+\end_layout
+
+\begin_layout Subsection
 JSON3 (1.3)
 \end_layout
 
@@ -763,6 +883,10 @@ ValueHistories.jl
 JSON3
 \family default
  history file was only 2MB.
+\end_layout
+
+\begin_layout Standard
+Appears to have been abandoned in mid 2020.
 \end_layout
 
 \begin_layout Section
@@ -894,7 +1018,7 @@ typeof(1:4) <: AbstractVector{T1} where T1 <: Integer
 \end_layout
 
 \begin_layout Subsection
-Keyword arguments (1.3)
+Keyword arguments (1.4)
 \end_layout
 
 \begin_layout Standard
@@ -1022,6 +1146,10 @@ This is useful for functions that pass similar sets of keyword arguments
  to several sub-functions.
 \end_layout
 
+\begin_layout Subsubsection
+Default arguments
+\end_layout
+
 \begin_layout Standard
 The 
 \family typewriter
@@ -1029,6 +1157,53 @@ CommonLH.KwArgs
 \family default
  type and associated methods are useful for defining default values for
  keyword arguments.
+\end_layout
+
+\begin_layout Standard
+An easy way of defining defaults is to 
+\family typewriter
+merge
+\family default
+ with a named tuple:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+function foo(; kwargs...)
+\end_layout
+
+\begin_layout Plain Layout
+
+  defaults = (x = 17, );
+\end_layout
+
+\begin_layout Plain Layout
+
+  args = merge(defaults, kwargs);
+\end_layout
+
+\begin_layout Plain Layout
+
+  println(args[:x])
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This even works when no args are passed.
 \end_layout
 
 \begin_layout Section
@@ -2394,7 +2569,7 @@ I first create the repo on github and clone it to the local dir.
 \end_layout
 
 \begin_layout Itemize
-Then I use 
+Then I use, from the parent dir: 
 \begin_inset listings
 inline false
 status open
@@ -2976,6 +3151,17 @@ import Foo.Bar
 Bar.f()
 \family default
 .
+\end_layout
+
+\begin_layout Standard
+The alternative is to split the package into multiple packages.
+ To run this on a HPC, the 
+\family typewriter
+dev
+\family default
+'d packages need to be included as relative paths in Project.toml.
+ And the code for all of the packages needs to be copied to the HPC.
+  
 \end_layout
 
 \begin_layout Subsection
@@ -3806,6 +3992,15 @@ The general idea is that packages state which versions of their dependencies
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Updating packages breaks 
+\family typewriter
+Revise
+\family default
+'s tracking.
+ For updates to take effect, Julia needs to be restarted.
 \end_layout
 
 \begin_layout Section
@@ -5180,6 +5375,25 @@ Types (1.3)
 \end_layout
 
 \begin_layout Standard
+Parametric types without the type parameter are NOT 
+\family typewriter
+DataType
+\family default
+s; they are 
+\family typewriter
+UnionAll
+\family default
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Example: 
+\family typewriter
+struct Foo{T} end; isa(Foo, DataType) == false;
+\end_layout
+
+\begin_layout Standard
 I find it easiest to write model specific code NOT using parametric types.
  Instead, I define 
 \family typewriter
@@ -5209,7 +5423,7 @@ It becomes possible to call constructors with, say, integers of all kinds
 \end_layout
 
 \begin_layout Subsection
-Constructors (1.1)
+Constructors (1.4)
 \end_layout
 
 \begin_layout Standard
@@ -5248,6 +5462,14 @@ show()
 @with_kw_noshow
 \family default
  to avoid this.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+Base.@kwdef
+\family default
+ now does much of the same.
 \end_layout
 
 \begin_layout Subsection
