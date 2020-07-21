@@ -463,17 +463,7 @@ Data Dependencies
 \end_layout
 
 \begin_layout Standard
-
-\family typewriter
-DataDeps.jl
-\end_layout
-
-\begin_layout Itemize
-each data dependency is a single file (it seems)
-\end_layout
-
-\begin_layout Itemize
-but can download and unpack a tarball
+Github issues
 \end_layout
 
 \begin_layout Itemize
@@ -494,6 +484,74 @@ raw/githubusercontent.com/...
 \end_inset
 
 ).
+\end_layout
+
+\begin_layout Itemize
+for private repos, the raw URL ends in a 
+\begin_inset Quotes eld
+\end_inset
+
+token
+\begin_inset Quotes erd
+\end_inset
+
+; the presumably handles authorization for access.
+ Or set up an ssh key for each computer and register it with github (instruction
+s at github.com).
+\end_layout
+
+\begin_layout Standard
+
+\family typewriter
+DataDeps.jl
+\end_layout
+
+\begin_layout Itemize
+each data dependency is a single file (it seems)
+\end_layout
+
+\begin_layout Itemize
+but can download and unpack a tarball
+\end_layout
+
+\begin_layout Standard
+Storing data inside a package: 
+\end_layout
+
+\begin_layout Itemize
+directories inside a package can be accessed, even if the code has not been
+ explicitly copied to a computer.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+@__DIR__
+\family default
+ points to the package directory in 
+\family typewriter
+.julia/packages
+\family default
+.
+ This does contain copies of all package subdirectories.
+\end_layout
+
+\begin_layout Itemize
+Therefore, one can simply wire the path to the data as 
+\family typewriter
+joinpath(@__DIR__, 
+\begin_inset Quotes eld
+\end_inset
+
+..
+\begin_inset Quotes erd
+\end_inset
+
+, data)
+\family default
+.
+ When the package is added somewhere, this will work.
 \end_layout
 
 \begin_layout Section
@@ -1411,6 +1469,10 @@ This makes it advantageous to avoid generic names, such as
 name(x)
 \family default
 .
+\end_layout
+
+\begin_layout Standard
+Threads that discuss how to deal with module interdependencies:
 \end_layout
 
 \begin_layout Subsection
@@ -3856,6 +3918,14 @@ Project.toml
 \end_layout
 
 \begin_layout Subsection
+Relocatable Packages (1.4)
+\end_layout
+
+\begin_layout Subsubsection
+Data Dependencies
+\end_layout
+
+\begin_layout Subsection
 Miscellaneous
 \end_layout
 
@@ -5495,7 +5565,7 @@ One good piece of advice: ensure that methods are generally defined on the
 \end_layout
 
 \begin_layout Subsection
-Loading and saving (1.3)
+Loading and saving (1.4)
 \end_layout
 
 \begin_layout Standard
@@ -5508,28 +5578,24 @@ major problem
 \end_layout
 
 \begin_layout Standard
-All modules needed to construct the loaded types need to be known in the
- loading module and in 
-\family typewriter
-Main
-\family default
-.
- See 
+JLD
+\end_layout
+
+\begin_layout Itemize
+currently maintained (2020-July)
+\end_layout
+
+\begin_layout Itemize
+unable to save functions (
 \begin_inset CommandInset href
 LatexCommand href
-name "Issue 134"
-target "https://github.com/JuliaIO/JLD2.jl/issues/134"
+name "Issue 57"
+target "https://github.com/JuliaIO/JLD.jl/issues/57"
 literal "false"
 
 \end_inset
 
-.
- It is not possible to use 
-\family typewriter
-Core.eval(Main, :(using Module))
-\family default
- for unclear reasons.
- 
+)
 \end_layout
 
 \begin_layout Standard
@@ -5563,6 +5629,31 @@ saving user objects converted to
 Dict
 \family default
 s does not help (InvalidDataException).
+\end_layout
+
+\begin_layout Itemize
+All modules needed to construct the loaded types need to be known in the
+ loading module and in 
+\family typewriter
+Main
+\family default
+.
+ See 
+\begin_inset CommandInset href
+LatexCommand href
+name "Issue 134"
+target "https://github.com/JuliaIO/JLD2.jl/issues/134"
+literal "false"
+
+\end_inset
+
+.
+ It is not possible to use 
+\family typewriter
+Core.eval(Main, :(using Module))
+\family default
+ for unclear reasons.
+ 
 \end_layout
 
 \begin_layout Standard

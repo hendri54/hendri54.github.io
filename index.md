@@ -10,11 +10,9 @@
 
 ## Teaching Fall 2020
 
-Office hours: TBA
+Office hours: TBA. Office hours will be held online only. I encourage students to make appointments.
 
-[Econ720](econ720/econ720.html): Advanced Macro Theory I (PhD) (Material still from 2019)
-
-[Econ520] material to be posted
+[Econ720](econ720/econ720.html): Advanced Macro Theory I (PhD)
 
 [Teaching related notes](teaching/teaching.html)
 

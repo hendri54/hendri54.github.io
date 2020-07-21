@@ -4,9 +4,9 @@
 
 [Notes on the Julia language](julia_notes.pdf). The purpose is to document solutions that I could not find in the Julia documentation. Updated periodically.
 
-My [github repo](https://github.com/hendri54) contains code for recent projects.
+My [github repo](https://github.com/hendri54) contains code for recent projects. Newer code is written in Julia. Pre-2019 code is written in Matlab.
 
-The [shared repo](https://github.com/hendri54/shared) contains general purpose Matlab code.
+The [shared repo](https://github.com/hendri54/shared) contains general purpose Matlab code. This is no longer updated.
 
 Making this code available is a small attempt at reducing duplication, given that [economics lacks a code archive](thoughts/duplication.html).
 

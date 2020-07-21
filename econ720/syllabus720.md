@@ -15,15 +15,33 @@ This is a largely a theory and methods course. But we will cover some applicatio
 
 ## Organization:
 
-* Two lectures per week: MW, 1:25 to 2:40, GA 1
-* Recitation: Fri 1:25-2:15, GA 1
-* TA: Yanran Guo, office hours Thu 1-2, Carroll 40.
+* Two lectures per week: MW, room and time to be announced
+* Recitation: Fri room and time to be announced
+* TA: Yanran Guo, office hours TBA
+* Course website: [lhendricks.org/econ720/econ720.html](lhendricks.org/econ720/econ720.html)
+* Sakai site: [https://sakai.unc.edu/portal/site/econ720](https://sakai.unc.edu/portal/site/econ720)
 
 ## Grading:
 
 * Midterm: 40%. Final: 50%. Problem sets: 10%. Exams are closed book and cover all material taught.
 * Review problems are for your practice and not to be turned in. Many are questions from previous exams.
 * If a student misses a midterm, the weight of that midterm in the course grade will be added to the weight on the student’s final.  An exception will be made for [University-approved absences](http://catalog.unc.edu/policies-procedures/attendance-grading-examination/). Students with this type of absence may request a make-up examination at a time convenient to both student and instructor.
+
+## Special Arrangements for 2020:
+
+UNC has decided that the course will be taught in "hybrid-flex" format. There will be in person class meetings as usual. Class meetings will also be streamed live on `zoom` and recorded for later viewing by students in difficult time zones.
+
+During class, I will screen share the slides on my laptop, which are also projected on the projector screen in the classroom. I will ask one student to keep an eye on questions that come in via `zoom`, either by chat or using the raised hand feature.
+
+For safety reasons, I will not stay after class for questions or discussions. Office hours will be held online. I will hold scheduled office hours (as required by UNC), even though I have always found them useless (`n` students show up at the same time with `n-1` students waiting for the first to finish their discussion). I encourage everyone to make appointments instead. I also plan to set up forums on `sakai` so that discussions among students and with me can occur asynchronously.
+
+Given that COVID cases are on the rise, it is likely that the course will switch to online only after the first few weeks. This is out of my control.
+
+It is also likely that the exams will switch to online. In that case, exams will be open book.
+
+Students who attend in person must wear masks and observe social distancing. No exceptions. Even so, meeting in person is dangerous and I will not force students who do not feel safe to attend in person.
+
+Problem sets must be scanned and submitted electronically (probably by email).
 
 ## Text:
 
@@ -38,7 +56,7 @@ This is a largely a theory and methods course. But we will cover some applicatio
 ## Previous Exams ##
 
 * Qualifying exams: [August 2009][], [January 2010][], [August 2010][], [January 2011][], [August 2011][], [January 2012][], [August 2012][],
-[January 2013][], [August 2013][], [January 2014][], [August 2014][], [January 2015][], [August 2015](exams/Quals_2015_Aug.pdf), [January 2016][], [August 2016][], [January 2017][], [August 2017](exams/Quals_2017_Aug.pdf), [May 2018](exams/Quals_2018_May.pdf), [May 2019](exams/Quals_2019_May.pdf), [Aug 2019](exams/Quals_2019_Aug.pdf).
+[January 2013][], [August 2013][], [January 2014][], [August 2014][], [January 2015][], [August 2015](exams/Quals_2015_Aug.pdf), [January 2016][], [August 2016][], [January 2017][], [August 2017](exams/Quals_2017_Aug.pdf), [May 2018](exams/Quals_2018_May.pdf), [May 2019](exams/Quals_2019_May.pdf), [Aug 2019](exams/Quals_2019_Aug.pdf), [June 2020](exams/Quals_2020_June.pdf).
 * Final exams: [2009][fin2009], [2010][fin2010], [2011][fin2011], [2012][fin2012], [2013][fin2013], [2014][fin2014], [2015](exams/final2015_720.pdf), [2016](exams/final2016_720.pdf), [2017](exams/final2017_720.pdf), [2018](exams/final2018_720.pdf), [2019](exams/final2019_720.pdf). 
 * Midterms: [2008][mid2008] (Iowa State), [2009][mid2009], [2009 take 3][mid2009 take 3], [2010][mid2010], [2011][mid2011], [2012][mid2012], [2013][mid2013], [2014][mid2014], [2015](exams/midterm2015_720.pdf), [2016](exams/midterm2016_720.pdf), [2017](exams/midterm2017_720.pdf), [2018](exams/midterm2018_720.pdf), [2019](exams/midterm2019_720.pdf).  
 * If answers are missing, the exam questions are usually reused as problem sets. 

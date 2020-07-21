@@ -5,4 +5,4 @@ style="font-weight: bold;">Econ720</span></a>  --  <a style="color: rgb(102, 102
 style="font-weight: bold;">Lutz Hendricks  --  UNC  --  Department of
 Economics</span></a>
 Affiliation: https://www.unc.edu
-ClassTerm: Fall 2019
+ClassTerm: Fall 2020

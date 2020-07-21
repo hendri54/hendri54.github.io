@@ -12,7 +12,7 @@ mmd research/*.mmd
 #cd ..
 
 #cd econ720
-mmd econ720/*.mmd
+mmd econ720/*.md
 #cd ..
 
 #cd econ920
