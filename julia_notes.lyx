@@ -299,10 +299,12 @@ Extracting specific elements with indices given by vectors:
 \end_layout
 
 \begin_layout Verbatim
+
 A = rand(4,3,5); 
 \end_layout
 
 \begin_layout Verbatim
+
 A[CartesianIndex.([1,2], [2,2]), 1] -> A[1,2,1] and A[2,2,1]
 \end_layout
 
@@ -311,10 +313,12 @@ Similar to using sub2ind:
 \end_layout
 
 \begin_layout Verbatim
+
 idxV = sub2ind(size(A), [1,2],[2,2],[1,1])
 \end_layout
 
 \begin_layout Verbatim
+
 A[idxV]
 \end_layout
 
@@ -581,7 +585,7 @@ round(Dates.now() - startTime, Dates.Minute)
 \end_layout
 
 \begin_layout Section
-Debugging (1.3)
+Debugging (1.4)
 \end_layout
 
 \begin_layout Standard
@@ -621,7 +625,7 @@ Matlab's keyboard
 \end_layout
 
 \begin_layout Subsection
-Debugger (1.2)
+Debugger (1.4)
 \end_layout
 
 \begin_layout Standard
@@ -667,6 +671,29 @@ Breakpoints, including the
 \family default
  macro, do not work in my code (throws unparsable errors) but they work
  in simple examples.
+\end_layout
+
+\begin_layout Standard
+With large projects, the debugger can be very slow.
+ One can run in compiled mode, but this ignores breakpoints that are stepped
+ over.
+ Switch this on by pressing 
+\family typewriter
+C
+\family default
+ in the debugger REPL.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset href
+LatexCommand href
+name "A useful tutorial"
+target "http://webpages.csus.edu/fitzgerald/julia-debugger-tutorial/"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
