@@ -1,9 +1,0 @@
-CSS:	http://hendri54.github.io/css/avenir-white.css
-Author:	Lutz Hendricks
-Affiliation: http://www.unc.edu
-HTML header: <a style="color: rgb(102, 102, 102);" href="http://www.lhendricks.org/private/personal.html"><span
-style="font-weight: bold;">Lutz Hendricks</span></a><link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/default.min.css">
-    <script src="http://yandex.st/highlightjs/7.3/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>	
-xhtml header:	<script type="text/javascript"  
-	src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
