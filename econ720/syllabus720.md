@@ -15,8 +15,8 @@ This is a largely a theory and methods course. But we will cover some applicatio
 
 ## Organization:
 
-* Two lectures per week: MW, room and time to be announced
-* Recitation: Fri room and time to be announced
+* Two lectures per week: MW 8:00 - 9:15, room to be announced
+* Recitation: Fri 8:00 - 8:50 room to be announced
 * TA: Yanran Guo, office hours TBA
 * Course website: [lhendricks.org/econ720/econ720.html](lhendricks.org/econ720/econ720.html)
 * Sakai site: [https://sakai.unc.edu/portal/site/econ720](https://sakai.unc.edu/portal/site/econ720)
@@ -33,13 +33,13 @@ UNC has decided that the course will be taught in "hybrid-flex" format. There wi
 
 During class, I will screen share the slides on my laptop, which are also projected on the projector screen in the classroom. I will ask one student to keep an eye on questions that come in via `zoom`, either by chat or using the raised hand feature.
 
-For safety reasons, I will not stay after class for questions or discussions. Office hours will be held online. I will hold scheduled office hours (as required by UNC), even though I have always found them useless (`n` students show up at the same time with `n-1` students waiting for the first to finish their discussion). I encourage everyone to make appointments instead. I also plan to set up forums on `sakai` so that discussions among students and with me can occur asynchronously.
+For safety reasons, I will not stay after class for questions or discussions. Office hours will be held online. I will hold scheduled office hours (as required by UNC), even though I have always found them imperfect (`n` students show up at the same time with `n-1` students waiting for the first to finish their discussion). I encourage everyone to make appointments instead. I also set up forums on `sakai` so that discussions among students and with me can occur asynchronously.
 
 Given that COVID cases are on the rise, it is likely that the course will switch to online only after the first few weeks. This is out of my control.
 
 It is also likely that the exams will switch to online. In that case, exams will be open book.
 
-Students who attend in person must wear masks and observe social distancing. No exceptions. Even so, meeting in person is dangerous and I will not force students who do not feel safe to attend in person.
+Students who attend in person must wear masks and observe social distancing. No exceptions. Even so, meeting in person is dangerous and I will not force students who do not feel safe to attend in person. Feel free to switch between in person and remote attendance over time.
 
 Problem sets must be scanned and submitted electronically (probably by email).
 

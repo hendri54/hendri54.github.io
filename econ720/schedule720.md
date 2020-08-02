@@ -14,7 +14,7 @@
 ## Overlapping Generations [OLG Models] ## 
   
 * Aug-17 (Mon): [Model](olg/OLG_SL.pdf) 
-* Aug-19 (Wed): [Dynamics and steady state](olg/olg_analysis_sl.pdf), [solution for example](OLG_example.pdf) 
+* Aug-19 (Wed): [Dynamics and steady state](olg/olg_analysis_sl.pdf), example (not yet active) 
 * Aug-24 (Mon): Dynamics and steady state, part 2, [PS1](olg/OLG_PS.pdf), due Aug-31 
 * Aug-26 (Wed): [Efficiency and Social Security](olg/OLG_SS_SL.pdf), [RQ](olg/OLG_RQ.pdf) (review questions, not to be handed in) 
 * Aug-31 (Mon): [Bequests](olg/OLG_Bequest_SL.pdf) 

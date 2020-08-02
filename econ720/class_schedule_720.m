@@ -80,7 +80,7 @@ topicListV{iTopic} = markdownLH.Topic('Modern Macro', topicV(1 : i1), classDateV
 
 %% OLG
 
-showExample = true;
+showExample = false;
 
 topicV = cell(10, 1);
 i1 = 0;

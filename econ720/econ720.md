@@ -14,7 +14,7 @@
 * [Syllabus](syllabus720.html)
 
 
-{{schedule720.mmd}}
+{{schedule720.md}}
 
 
 -----------------

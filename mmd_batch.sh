@@ -5,7 +5,7 @@ echo "MMD batch conversion"
 
 mmd *.md
 
-mmd research/*.mmd
+mmd research/*.md
 
 #cd econ520
 #mmd econ520/*.mmd
@@ -25,8 +25,8 @@ mmd econ720/*.md
 #cd ..
 
 #cd private
-mmd private/*.md
-mmd private/light_rail/*.md
+# mmd private/*.md
+# mmd private/light_rail/*.md
 #cd ..
 
 #mmd econ821/*.mmd

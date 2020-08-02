@@ -299,12 +299,10 @@ Extracting specific elements with indices given by vectors:
 \end_layout
 
 \begin_layout Verbatim
-
 A = rand(4,3,5); 
 \end_layout
 
 \begin_layout Verbatim
-
 A[CartesianIndex.([1,2], [2,2]), 1] -> A[1,2,1] and A[2,2,1]
 \end_layout
 
@@ -313,12 +311,10 @@ Similar to using sub2ind:
 \end_layout
 
 \begin_layout Verbatim
-
 idxV = sub2ind(size(A), [1,2],[2,2],[1,1])
 \end_layout
 
 \begin_layout Verbatim
-
 A[idxV]
 \end_layout
 
@@ -358,6 +354,73 @@ LabelledArrays.jl
 \family default
 : allows to assign names to row or column indices or even to slices.
  This becomes like a Table, but with the performance of a (static) array.
+\end_layout
+
+\begin_layout Subsection
+Broadcasting (1.4)
+\end_layout
+
+\begin_layout Standard
+Treating objects as scalars:
+\end_layout
+
+\begin_layout Itemize
+Generically 
+\family typewriter
+f.(x, [1,2,3])
+\family default
+ fails because broadcasting tries to iterate over elements of 
+\family typewriter
+x
+\family default
+.
+\end_layout
+
+\begin_layout Itemize
+Some objects are treated by default as scalars.
+ Then it works.
+\end_layout
+
+\begin_layout Itemize
+For user defined types, 
+\family typewriter
+f.(Ref(x), [1,2,3])
+\family default
+ does the trick because a 
+\family typewriter
+Ref
+\family default
+ is treated as a 
+\begin_inset CommandInset href
+LatexCommand href
+name "scalar in broadcasting"
+target "https://docs.julialang.org/en/v1/base/c/#Core.Ref"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Or create a broacastable version of 
+\family typewriter
+x
+\family default
+ with 
+\family typewriter
+Base.broadcastable(x :: XType) = Ref(x)
+\family default
+ (based on 
+\begin_inset CommandInset href
+LatexCommand href
+name "this suggestion"
+target "https://discourse.julialang.org/t/broadcasting-not-on-all-arguments/44027"
+literal "false"
+
+\end_inset
+
+).
 \end_layout
 
 \begin_layout Section
@@ -589,39 +652,77 @@ Debugging (1.4)
 \end_layout
 
 \begin_layout Standard
-
+Julia offers several debugger options that work in very different ways.
+ The main trade-off is compile time versus run time.
+ Debuggers that run interpreted code, such as 
 \family typewriter
-ArgCheck.jl
+Debugger.jl
 \family default
- is useful for sprinkling more expressive 
+, compile reasonably fast but run very slowly (about 10 times slower than
+ compiled code).
+ Debuggers that compile debugging features into the code run at near native
+ speed but are either slow to compile (
 \family typewriter
-@assert
+MagneticReadHead)
 \family default
-s around the code.
- As far as I can tell, the difference compared with 
+ or offer limited features (
 \family typewriter
-@assert
+Infiltrator
 \family default
- is that 
-\family typewriter
-ArgCheck
-\family default
- produces more informative errors.
- It shows the values of the expressions to be compared.
+).
 \end_layout
 
 \begin_layout Standard
+Common options are:
+\end_layout
+
+\begin_layout Enumerate
 
 \family typewriter
-Infiltrate.jl
+Debugger.jl
 \family default
- can set a breakpoint similar to 
+: It interprets all code and can therefore offer a complete feature set.
+ But it is very slow for larger projects.
+ Options are available that make 
 \family typewriter
-Matlab's keyboard
+Debugger
 \family default
- statement.
- Very useful.
- But one cannot continue the run after a breakpoint.
+ faster, but less powerful.
+ The VS Code plugin gives an IDE experience.
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+MagneticReadHead.jl
+\family default
+: It compiles debugging features into all code and therefore runs at near
+ native speed.
+ But compile times are often extremely long.
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+Infiltrator.jl
+\family default
+: It compiles all code, adding only user specified breakpoints (
+\family typewriter
+@infiltrate
+\family default
+).
+ Compile times and run times are good, but the user can only inspect the
+ local state when a break point is reached.
+ It is not possible to move around the call stack.
+\end_layout
+
+\begin_layout Standard
+There are other options that I don't know much about, such as 
+\family typewriter
+Juno
+\family default
+'s debugger.
+ 
 \end_layout
 
 \begin_layout Subsection
@@ -629,10 +730,63 @@ Debugger (1.4)
 \end_layout
 
 \begin_layout Standard
-My favorite debugging option.
- 
+
+\family typewriter
+Debugger
+\family default
+ runs code through 
+\family typewriter
+JuliaInterpreter
+\family default
+.
+ By default, everything is interpreted, including code from 
+\family typewriter
+Base
+\family default
+.
+ There are two ways of increasing speed:
 \end_layout
 
+\begin_layout Enumerate
+An experimental compiled mode runs code that is stepped over (I am not sure
+ exactly what that means), ignoring breakpoints in that code.
+\end_layout
+
+\begin_layout Enumerate
+One can exclude 
+\family typewriter
+Base
+\family default
+ (or any other module) code from being interpreted using 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+push!(JuliaInterpreter.compiled_modules, Base);
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+But note that this steps over any compiled functions, even if they call
+ interpreted functions.
+ Hence, a breakpoint in code that calls 
+\family typewriter
+MyModule -> Base -> MyModule
+\family default
+ will be missed.
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 After 
 \family typewriter
@@ -647,37 +801,55 @@ using Debugger
 \end_layout
 
 \begin_layout Standard
-Particularly useful:
+Breakpoints:
+\end_layout
+
+\begin_layout Itemize
+The 
+\family typewriter
+@bp
+\family default
+ macro does not work in my code (throws unparsable errors or is ignored)
+ but it works in simple examples.
 \end_layout
 
 \begin_layout Itemize
 
 \family typewriter
 break_on(:error)
+\family default
+ – does it work in compiled mode?
 \end_layout
 
 \begin_layout Itemize
 
 \family typewriter
-bp add func:line
+JuliaInterpreter
 \family default
- with possible restrictions on particular argument types.
+ syntax can also be used to manipulate breakpoints.
 \end_layout
 
 \begin_layout Standard
-Breakpoints, including the 
-\family typewriter
-@bp
-\family default
- macro, do not work in my code (throws unparsable errors) but they work
- in simple examples.
+Links:
 \end_layout
 
-\begin_layout Standard
+\begin_layout Itemize
 \begin_inset CommandInset href
 LatexCommand href
 name "A useful tutorial"
 target "http://webpages.csus.edu/fitzgerald/julia-debugger-tutorial/"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset CommandInset href
+LatexCommand href
+name "Discourse thread on debugging"
+target "https://discourse.julialang.org/t/debugger-status-and-future-plans/43638"
 literal "false"
 
 \end_inset
@@ -691,7 +863,6 @@ VS Code Interface (1.4)
 
 \begin_layout Standard
 Gives a graphical interface for setting breakpoints and inspecting variables.
- Still rough, but useful.
  A description is 
 \begin_inset CommandInset href
 LatexCommand href
@@ -705,8 +876,168 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-With large projects, the debugger can be very slow.
- In VS Code, one can run in compiled mode (no breakpoints, though).
+Each time code is run, a new debugging window is opened.
+ There is a significant delay until the code starts running.
+\end_layout
+
+\begin_layout Subsection
+Infiltrator (1.4)
+\end_layout
+
+\begin_layout Standard
+A debugger that always runs in compiled mode (hence faster).
+ Breakpoints are set in the code using the 
+\family typewriter
+@infiltrate
+\family default
+ macro (similar to Matlab's 
+\family typewriter
+keyboard
+\family default
+ but more limited in capabilities).
+\end_layout
+
+\begin_layout Standard
+Because the code is compiled, one cannot move around in the call stack or
+ change local variables.
+ One can only inspect the local state and then resume that run.
+\end_layout
+
+\begin_layout Subsection
+MixedModeDebugger
+\end_layout
+
+\begin_layout Standard
+Experimental package that tries to speed up Debugger by interpreting only
+ code around breakpoints.
+\end_layout
+
+\begin_layout Standard
+Once a breakpoint is reached, the 
+\family typewriter
+Debugger.jl
+\family default
+ interface becomes available.
+\end_layout
+
+\begin_layout Standard
+Breakpoints:
+\end_layout
+
+\begin_layout Itemize
+After 
+\family typewriter
+using JuliaInterpreter
+\family default
+, its API for manipulating breakpoints becomes available.
+ Breakpoints can be set with the 
+\family typewriter
+@breakpoint
+\family default
+ macro.
+\end_layout
+
+\begin_layout Itemize
+The 
+\family typewriter
+@bp
+\family default
+ macro and the 
+\family typewriter
+breakpoint()
+\family default
+ function do not work.
+ 
+\end_layout
+
+\begin_layout Standard
+Example session
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+using JuliaInterpreter, MixedModeDebugger
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+function foo(x)
+\end_layout
+
+\begin_layout Plain Layout
+
+  println(
+\begin_inset Quotes eld
+\end_inset
+
+foo
+\begin_inset Quotes erd
+\end_inset
+
+);
+\end_layout
+
+\begin_layout Plain Layout
+
+  x += 2
+\end_layout
+
+\begin_layout Plain Layout
+
+  println(x)
+\end_layout
+
+\begin_layout Plain Layout
+
+  x += 3
+\end_layout
+
+\begin_layout Plain Layout
+
+  return x
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+@breakpoint foo(2) 3
+\end_layout
+
+\begin_layout Plain Layout
+
+@run_mixedmode foo(3)
+\end_layout
+
+\begin_layout Plain Layout
+
+[...]
+\end_layout
+
+\begin_layout Plain Layout
+
+>debug
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1458,6 +1789,22 @@ literal "false"
 \begin_layout Itemize
 the same sequence of numbers is drawn each time.
  The initial condition is not related to the random seed.
+\end_layout
+
+\begin_layout Subsection
+Regular Expressions
+\end_layout
+
+\begin_layout Standard
+Packages that try to simplify constructing Regex: 
+\family typewriter
+ReadableRegex.jl
+\family default
+ and 
+\family typewriter
+RegularExpressions.jl
+\family default
+.
 \end_layout
 
 \begin_layout Section
