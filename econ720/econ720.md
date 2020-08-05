@@ -10,7 +10,6 @@
 
 ## Announcements ##
 
-* This material is still in flux as the university works out teaching modalities for Fall 2020.
 * [Syllabus](syllabus720.html)
 
 

@@ -15,8 +15,8 @@ This is a largely a theory and methods course. But we will cover some applicatio
 
 ## Organization:
 
-* Two lectures per week: MW 8:00 - 9:15, room to be announced
-* Recitation: Fri 8:00 - 8:50 room to be announced
+* Two lectures per week: MW 8:00 - 9:15, Greenlaw 101
+* Recitation: Fri 8:00 - 8:50, Greenlaw 101
 * TA: Yanran Guo, office hours TBA
 * Course website: [lhendricks.org/econ720/econ720.html](lhendricks.org/econ720/econ720.html)
 * Sakai site: [https://sakai.unc.edu/portal/site/econ720](https://sakai.unc.edu/portal/site/econ720)
