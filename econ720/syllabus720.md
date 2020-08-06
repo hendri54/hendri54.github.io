@@ -16,7 +16,7 @@ This is a largely a theory and methods course. But we will cover some applicatio
 ## Organization:
 
 * Two lectures per week: MW 8:00 - 9:15, Greenlaw 101
-* Recitation: Fri 8:00 - 8:50, Greenlaw 101
+* Recitation: Fri 8:00 - 8:50, Dey Hall Toy Lounge 409
 * TA: Yanran Guo, office hours TBA
 * Course website: [lhendricks.org/econ720/econ720.html](lhendricks.org/econ720/econ720.html)
 * Sakai site: [https://sakai.unc.edu/portal/site/econ720](https://sakai.unc.edu/portal/site/econ720)
@@ -71,7 +71,7 @@ Problem sets must be scanned and submitted electronically (probably by email).
 -----------
 
 [Macroeconomic Theory]: http://www.ssc.wisc.edu/~aseshadr/econ714/MacroTheory.pdf
-[Real Macroeconomic Theory]: https://www.sas.upenn.edu/~vr0j/704-18/newmanu.pdf
+[Real Macroeconomic Theory]: https://www.sas.upenn.edu/~vr0j/oldteaching/704-18/newmanu.pdf
 
 
   [August 2009]: exams/Quals_2009_Aug.pdf
