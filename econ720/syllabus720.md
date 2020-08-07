@@ -24,6 +24,7 @@ This is a largely a theory and methods course. But we will cover some applicatio
 ## Grading:
 
 * Midterm: 40%. Final: 50%. Problem sets: 10%. Exams are closed book and cover all material taught.
+* Per university requirement, the final will last 3 hours.
 * Review problems are for your practice and not to be turned in. Many are questions from previous exams.
 * If a student misses a midterm, the weight of that midterm in the course grade will be added to the weight on the student’s final.  An exception will be made for [University-approved absences](http://catalog.unc.edu/policies-procedures/attendance-grading-examination/). Students with this type of absence may request a make-up examination at a time convenient to both student and instructor.
 
@@ -66,6 +67,13 @@ Problem sets must be scanned and submitted electronically (probably by email).
 * Reading material is listed at the end of the slides.
 * Dirk Krueger’s [Macroeconomic Theory][] manuscript ([2012 version][]; this tends to move around on the web).
 * Per Krusell’s [Real Macroeconomic Theory][] manuscript, 2014 version  
+
+
+## Required University Boilerplate Text
+
+This fall semester, while we are in the midst of a global pandemic, all enrolled students are required to wear a mask covering your mouth and nose at all times in our classroom. This requirement is to protect our educational community — your classmates and me – as we learn together. If you choose not to wear a mask, or wear it improperly, I will ask you to leave immediately, and I will submit a report to the Office of Student Conduct.  At that point you will be disenrolled from this course for the protection of our educational community. An exemption to the mask wearing community standard will not typically be considered to be a reasonable accommodation. Individuals with a disability or health condition that prevents them from safely wearing a face mask must seek alternative accommodations through the Accessibility Resources and Service. For additional information, see Carolina Together.
+
+Any student who is impacted by discrimination, harassment, interpersonal (relationship) violence, sexual violence, sexual exploitation, or stalking is encouraged to seek resources on campus or in the community. Please contact the Director of Title IX Compliance (Adrienne Allison – Adrienne.allison@unc.edu), Report and Response Coordinators in the Equal Opportunity and Compliance Office (reportandresponse@unc.edu), Counseling and Psychological Services (confidential), or the Gender Violence Services Coordinators (gvsc@unc.edu; confidential) to discuss your specific needs. Additional resources are available at safe.unc.edu.
 
 
 -----------
