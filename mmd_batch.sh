@@ -36,8 +36,8 @@ mmd econ720/*.md
 
 cd /Users/lutz/Documents/data/web/hendri54.github.io/
 
-mmd teaching/*.mmd
+mmd teaching/*.md
 
-mmd thoughts/*.mmd
+mmd thoughts/*.md
 
 cd /Users/lutz/Documents/data/web/hendri54.github.io/

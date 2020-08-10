@@ -10,6 +10,8 @@
 
 ## Announcements ##
 
+* For online discussions, I suggest to sign up at [Econ StackExchange](https://economics.stackexchange.com/): there you can post questions that are not directly class related. The questions have to be specific (discussion questions are not permitted).
+* For questions that are directly class related, please use the Sakai forum. You can of course also just email me directly, but using the forums has the benefit that others can see the conversations (and chime in).
 * [Syllabus](syllabus720.html)
 
 

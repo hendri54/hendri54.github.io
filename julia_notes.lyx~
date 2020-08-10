@@ -152,7 +152,7 @@ Much of what is collected here is really just that: collected from other
 \end_layout
 
 \begin_layout Section
-My Setup (1.4)
+My Setup (1.5)
 \begin_inset Foot
 status collapsed
 
@@ -166,7 +166,7 @@ Each section is labeled with the Julia version for which it was last updated.
 \end_layout
 
 \begin_layout Standard
-My current setup is Julia 1.4 run from the terminal and Visual Studio Code
+My current setup is Julia 1.5 run from the terminal and Visual Studio Code
  as editor (augmented with BBEdit to overcome VsCode's shortcomings in multi-fil
 e search and replace).
 \end_layout
@@ -218,7 +218,7 @@ One drawback: Links in the terminal REPL are not clickable (update: they
 \end_layout
 
 \begin_layout Subsection
-Updating to a new version (1.4)
+Updating to a new version (1.5)
 \end_layout
 
 \begin_layout Standard
@@ -713,6 +713,22 @@ Infiltrator.jl
  Compile times and run times are good, but the user can only inspect the
  local state when a break point is reached.
  It is not possible to move around the call stack.
+\end_layout
+
+\begin_layout Enumerate
+
+\family typewriter
+Exfiltrator.jl
+\family default
+: Simply exports all local variables at the point of call to 
+\family typewriter
+Main
+\family default
+.
+ The idea is that the entire local environment can be inspected at really
+ no runtime or compilation cost.
+ Simple and effective, but one cannot manipulate objects in the context
+ of the calling module.
 \end_layout
 
 \begin_layout Standard

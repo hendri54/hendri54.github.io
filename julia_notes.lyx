@@ -715,6 +715,22 @@ Infiltrator.jl
  It is not possible to move around the call stack.
 \end_layout
 
+\begin_layout Enumerate
+
+\family typewriter
+Exfiltrator.jl
+\family default
+: Simply exports all local variables at the point of call to 
+\family typewriter
+Main
+\family default
+.
+ The idea is that the entire local environment can be inspected at really
+ no runtime or compilation cost.
+ Simple and effective, but one cannot manipulate objects in the context
+ of the calling module.
+\end_layout
+
 \begin_layout Standard
 There are other options that I don't know much about, such as 
 \family typewriter
@@ -1136,6 +1152,11 @@ Commands are constructed like strings with interpolation:
 `mkdir $myPath`
 \family default
 .
+\end_layout
+
+\begin_layout Standard
+When strings are quoted in commands, they are enclosed in single quotes,
+ if they contain spaces.
 \end_layout
 
 \begin_layout Standard
