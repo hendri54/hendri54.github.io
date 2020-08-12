@@ -28,7 +28,7 @@ Due to Covid, office hours will be held online only. I encourage students to mak
 
 ## Thoughts ##
 
-* 2020-Aug: [Economics discussion forums](thoughts/discussion_forums.html)
+* 2020-Aug: [Economics discussion forums](thoughts/forums.html)
 * 2017-July: [Economists need to specialize](thoughts/specialization.html)
 * [How economists can avoid reinventing the wheel](thoughts/duplication.html)
 * [On simple models calibrated using little data](thoughts/quantitative_models.html)
