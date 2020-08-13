@@ -2,6 +2,8 @@
 
 # Teaching Related Notes #
 
+[Potential topics for honors theses](honors_thesis_topics.html)
+
 [How can undergraduates get involved in research?](undergrad_research.html)
 
 [Current issues in the policy arena](current_issues.html)
