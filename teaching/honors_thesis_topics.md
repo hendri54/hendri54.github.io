@@ -1,6 +1,6 @@
 {{../markdown_header.txt}}
 
-# Some Ideas for Dissertation Projects #
+# Some Ideas for Honors Thesis Projects #
 
 This page contains a collection of ideas that may be useful starting points for honors theses.
 
@@ -23,7 +23,7 @@ Possible data sources: IPEDS (since about 1985) and HERI freshmen surveys.
 
 ## Do immigrant earnings rise with source country GDP?
 
-But see JOEG 2018/139.
+But see JOEG 2018/139 (never published)
 
 ## Occupational downgrading of immigrants (2020)
 
