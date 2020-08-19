@@ -63,6 +63,6 @@ Dispersion supposedly has decreased. Could one explore empirically possible expl
 
 This is very open ended without a clear hypothesis or method.
 
-See Marey "shifts and twists in the relative productivity of skilled labor"
+Giannone, Elisa. n.d. “Skill-Biased Technical Change and Regional Convergence” 
 
 -------------
