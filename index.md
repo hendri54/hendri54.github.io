@@ -23,7 +23,7 @@ Due to Covid, office hours will be held online only. I encourage students to mak
 
 [Econ520] material to be posted
 
-[Econ820] material to be posted, but see [here](econ821/econ821.html) for my 2016 course on related topics.
+[Econ820](econ821/econ821.html).
 
 
 ## Thoughts ##

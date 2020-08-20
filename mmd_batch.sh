@@ -29,7 +29,7 @@ mmd econ720/*.md
 # mmd private/light_rail/*.md
 #cd ..
 
-#mmd econ821/*.mmd
+mmd econ821/*.md
 
 #cd growth
 #mmd *.mmd
