@@ -24,6 +24,8 @@ Over time, students would come up with project ideas. Once a promising idea is i
 
 In the past, this course covered computational methods as well. I have come to the conclusion that mixing these with the economic material is not productive. The department needs a dedicated course on computing structural models, but Econ821 is not that.
 
+--------
+
 [Matlab Intro]: http://matlab-introduction.readthedocs.org/en/latest/matlab_intro.html
 
 [Notes on programming]: http://matlab-introduction.readthedocs.org/en/latest/programming.html
