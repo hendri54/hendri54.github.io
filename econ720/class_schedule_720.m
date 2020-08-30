@@ -80,7 +80,7 @@ topicListV{iTopic} = markdownLH.Topic('Modern Macro', topicV(1 : i1), classDateV
 
 %% OLG
 
-showExample = false;
+showExample = true;
 
 topicV = cell(10, 1);
 i1 = 0;
@@ -102,17 +102,17 @@ else
 end
 if showExample
    % Final example with government bonds
-   exampleStr = '[solution for example](OLG_example.pdf)';
+   exampleStr = '[solution for example](olg/OLG_example.pdf)';
 else
    exampleStr = 'example (not yet active)';
 end
 
 
 topicV{i1} = markdownLH.SubTopic({'[Dynamics and steady state](olg/olg_analysis_sl.pdf)', ...
-   exampleStr});
+   exampleStr,    '[PS1](olg/OLG_PS.pdf)', answerStr});
 
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Dynamics and steady state, part 2',    '[PS1](olg/OLG_PS.pdf)', answerStr});
+% i1 = i1 + 1;
+% topicV{i1} = markdownLH.SubTopic({'Dynamics and steady state, part 2'});
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Efficiency and Social Security](olg/OLG_SS_SL.pdf)', ...
