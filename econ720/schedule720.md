@@ -19,7 +19,7 @@
 * Aug-26 (Wed): [Dynamics and steady state](olg/olg_analysis_sl.pdf), [solution for example](olg/OLG_example.pdf), [PS1](olg/OLG_PS.pdf), due Aug-31 
 * Aug-31 (Mon): [Efficiency and Social Security](olg/OLG_SS_SL.pdf), [RQ](olg/OLG_RQ.pdf) (review questions, not to be handed in) 
 * Sep-02 (Wed): [Bequests](olg/OLG_Bequest_SL.pdf) 
-* Sep-09 (Wed): [Money in OLG models](olg/OLG_Money_SL.pdf), [PS2](olg/OLG_Money_PS.pdf), due Sep-9 
+* Sep-09 (Wed): [Money in OLG models](olg/OLG_Money_SL.pdf), [PS2](olg/OLG_Money_PS.pdf), due Sep-14 
   
   
 ## Infinite Horizon, Discrete Time Models [IH1] ## 
