@@ -285,6 +285,53 @@ literal "false"
  automates this process.
 \end_layout
 
+\begin_layout Subsection
+Customizing the REPL
+\end_layout
+
+\begin_layout Standard
+On MacOS, 
+\family typewriter
+meta-X
+\family default
+ means 
+\family typewriter
+Esc-X
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+There does not seem to be a way of binding 
+\family typewriter
+Alt-x
+\family default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Customizing key bindings is somewhat tricky.
+ One has to edit 
+\family typewriter
+startup.jl
+\family default
+ to define a function that modifies the key map.
+ It is likely easier to do the modificiation in Keyboard Maestro where one
+ can bind keys without figuring out the ascii representions (e.g.
+ 
+\begin_inset Quotes eld
+\end_inset
+
+
+\backslash
+e[A
+\begin_inset Quotes erd
+\end_inset
+
+ for up arrow).
+\end_layout
+
 \begin_layout Section
 Arrays (1.1)
 \end_layout
@@ -6061,7 +6108,7 @@ Base.@kwdef
 \end_layout
 
 \begin_layout Subsection
-Inheritance (1.1)
+Inheritance (1.5)
 \end_layout
 
 \begin_layout Standard
@@ -6097,15 +6144,168 @@ Lazy.jl
 \end_layout
 
 \begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+using Lazy
+\end_layout
+
+\begin_layout Plain Layout
+
+struct Foo
+\end_layout
+
+\begin_layout Plain Layout
+
+  x
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+@forward Foo.x (Base.show, Base.isempty)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 One good piece of advice: ensure that methods are generally defined on the
  abstract type, so that all concrete types have the same interface (kind
  of the point of having an abstract type).
 \end_layout
 
 \begin_layout Standard
-A macro that lets users define a set of common fields for a set of 
+\begin_inset CommandInset href
+LatexCommand href
+name "A macro"
+target "https://discourse.julialang.org/t/julia-learning-macros-metaprogramming/45753/3"
+literal "false"
+
+\end_inset
+
+ that lets users define a set of common fields for a set of 
 \family typewriter
-structs.
+structs
+\family default
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+macro def(name, definition)
+\end_layout
+
+\begin_layout Plain Layout
+
+    return quote
+\end_layout
+
+\begin_layout Plain Layout
+
+        macro $(esc(name))()
+\end_layout
+
+\begin_layout Plain Layout
+
+            esc($(Expr(:quote, definition)))
+\end_layout
+
+\begin_layout Plain Layout
+
+        end
+\end_layout
+
+\begin_layout Plain Layout
+
+    end
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+@def commonfields begin
+\end_layout
+
+\begin_layout Plain Layout
+
+    #Data
+\end_layout
+
+\begin_layout Plain Layout
+
+    X #Feature vectors
+\end_layout
+
+\begin_layout Plain Layout
+
+    y #Labels (-1,1)
+\end_layout
+
+\begin_layout Plain Layout
+
+    nSamples::Int64 # Number of data points
+\end_layout
+
+\begin_layout Plain Layout
+
+    nFeatures::Int64 # Number of features
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+struct Foo
+\end_layout
+
+\begin_layout Plain Layout
+
+	@commonfields
+\end_layout
+
+\begin_layout Plain Layout
+
+	z
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection

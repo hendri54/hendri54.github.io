@@ -19,7 +19,7 @@ iTopic = 0;
 
 %% Which problem sets have answers?
 
-answerOlg = false;
+answerOlg = true;
 dueOlg = 'Aug-31';
 answerOlgMoney = false;
 dueOlgMoney = 'Sep-14';

@@ -285,6 +285,50 @@ literal "false"
  automates this process.
 \end_layout
 
+\begin_layout Subsection
+Customizing the REPL
+\end_layout
+
+\begin_layout Standard
+On MacOS, 
+\family typewriter
+meta-X
+\family default
+ means 
+\family typewriter
+Esc-X
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+There does not seem to be a way of binding 
+\family typewriter
+Alt-x
+\family default
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Customizing key bindings is somewhat tricky.
+ One has to edit 
+\family typewriter
+startup.jl
+\family default
+ to define a function that modifies the key map.
+ 
+\end_layout
+
+\begin_layout Standard
+I have not been able to assign Ctrl-H and similar.
+ Perhaps 
+\family typewriter
+iterm
+\family default
+ intercepts them, but they always arrive as control sequences.
+\end_layout
+
 \begin_layout Section
 Arrays (1.1)
 \end_layout
@@ -6061,7 +6105,7 @@ Base.@kwdef
 \end_layout
 
 \begin_layout Subsection
-Inheritance (1.1)
+Inheritance (1.5)
 \end_layout
 
 \begin_layout Standard
@@ -6094,6 +6138,41 @@ Lazy.jl
 \family default
 .
  
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+using Lazy
+\end_layout
+
+\begin_layout Plain Layout
+
+struct Foo
+\end_layout
+
+\begin_layout Plain Layout
+
+  x
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+@forward Foo.x (Base.show, Base.isempty)
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
