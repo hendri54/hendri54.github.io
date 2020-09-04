@@ -15,6 +15,8 @@ mmd research/*.md
 mmd econ720/*.md
 #cd ..
 
+mmd econ890/*.md
+
 #cd econ920
 #mmd *.mmd
 #cd ..

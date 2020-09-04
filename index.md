@@ -21,9 +21,12 @@ Due to Covid, office hours will be held online only. I encourage students to mak
 
 ## Teaching Spring 2021
 
-[Econ520] material to be posted
+[Econ520] Advanced Macroeconomic Theory 
 
-[Econ820](econ821/econ821.html).
+* material to be posted
+* will focus on income and wealth inequality
+
+[Econ890](econ890/econ890.html) Graduate field course on income and wealth inequality.
 
 
 ## Thoughts ##

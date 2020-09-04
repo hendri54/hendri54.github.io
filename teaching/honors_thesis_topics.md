@@ -45,6 +45,12 @@ Todd Schoellman may have done this.
 
 # Inequality
 
+## Hsieh/Klenow for Immigrants
+
+[Hsieh et al 2019](https://onlinelibrary.wiley.com/doi/full/10.3982/ECTA11427?casa_token=h5fnM_k27bQAAAAA%3ATtyNa5m7IdoJ16RigV8oLoYUfw5dHdRwp_qDVGlbplSHula09CmcvVAG3LlEtbfjAMo7EdgcDjDyjtTZ) show that women and black men were underrepresented in certain occupations in the 1960s. Over time, the gaps diminished, suggesting that the allocation of talent improved.
+
+Is there evidence for a similar convergence among immigrants?
+
 ## How important are inheritances (2020)
 
 Using the SCF, calculate the fraction of wealth inherited by the rich.
