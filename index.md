@@ -26,7 +26,7 @@ Due to Covid, office hours will be held online only. I encourage students to mak
 * material to be posted
 * will focus on income and wealth inequality
 
-[Econ890](Econ890/econ890.html) Graduate field course on income and wealth inequality.
+[Econ890](econ890/econ890.html) Graduate field course on income and wealth inequality.
 
 
 ## Thoughts ##
