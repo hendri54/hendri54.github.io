@@ -660,16 +660,16 @@
                   
                 
                 
-                <h1 id="plotting">Plotting</h1>
-<h2 id="plotsjl">Plots.jl</h2>
+                <h1 id="plotting">Plotting<a class="headerlink" href="#plotting" title="Permanent link">&para;</a></h1>
+<h2 id="plotsjl">Plots.jl<a class="headerlink" href="#plotsjl" title="Permanent link">&para;</a></h2>
 <p>Visually, PlotlyJS produces the most appealing plots (for me). But it does not install on my system (1.5).</p>
 <p>When a plotting related library is not found (as in “error compiling display”), try <code>]build Plots</code>. </p>
-<h3 id="axis-labels">Axis labels</h3>
+<h3 id="axis-labels">Axis labels<a class="headerlink" href="#axis-labels" title="Permanent link">&para;</a></h3>
 <p><code>bar</code> tends to have too small default margins for axis labels to show (at least in subplots). Try</p>
 <p><code>using Plots.PlotMeasures</code></p>
-<h3 id="legends">Legends</h3>
+<h3 id="legends">Legends<a class="headerlink" href="#legends" title="Permanent link">&para;</a></h3>
 <p>The label is set when each series is plotted. If labels are set when the plot is created (before the series are plotted), the entries are ignored.</p>
-<h2 id="saving-data-with-plots">Saving data with plots:</h2>
+<h2 id="saving-data-with-plots">Saving data with plots:<a class="headerlink" href="#saving-data-with-plots" title="Permanent link">&para;</a></h2>
 <p>VegaLite does this natively.</p>
 <p>with Plots.jl <a href="https://discourse.julialang.org/t/how-to-save-a-plot-structure/28694">one can use</a> hdf5plot_write to write an entire plot, including the data, to an hdf5 file. </p>
 <p>This means that each plot has to be generated twice; once with whatever backend is used to generate PDF files; and then again with hdf5. In particular, one cannot first plot with another backend and then save the resulting plot object to hdf5.</p>

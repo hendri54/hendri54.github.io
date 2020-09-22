@@ -620,7 +620,7 @@
                   
                 
                 
-                <h1 id="testing">Testing</h1>
+                <h1 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h1>
 <p>Test dependencies now need to be added to the <code>Project.toml</code> file in <code>./test</code>:</p>
 <pre><code>pkg&gt; activate ./test
 pkg&gt; add MyPkg
@@ -628,7 +628,7 @@ pkg&gt; activate .
 </code></pre>
 
 <p>All dependencies used in tests now have to be manually added. They do not "carry over" from the main package.</p>
-<h2 id="structuring-tests">Structuring tests</h2>
+<h2 id="structuring-tests">Structuring tests<a class="headerlink" href="#structuring-tests" title="Permanent link">&para;</a></h2>
 <p>The goal is to be able to run subsets of tests and to encapsulate the code of each test. One way of achieving this:</p>
 <pre><code class="julia"># runtests.jl
 
@@ -653,8 +653,8 @@ end
 end
 </code></pre>
 
-<p>Now <code>Pkg.test()</code> runs everything, but <code>include("test/test_one.jl")</code> only runs the subset.</p>
-<h2 id="useful-packages">Useful packages</h2>
+<p>Now <code>Pkg.test()</code> runs everything, but <code>include("test/test_one.jl")</code> only runs the subset. <code>SafeTests.jl</code> goes further by wrapping tests in modules.</p>
+<h2 id="useful-packages">Useful packages<a class="headerlink" href="#useful-packages" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://github.com/JuliaTesting/Aqua.jl">Aqua.jl</a><ul>
 <li>checks for method ambiguities, invalid exports, stale dependencies, and more.</li>

@@ -595,20 +595,20 @@
                 
                 
                 <p>{{../markdown_header.txt}}</p>
-<h1 id="using-hpcs-at-unc">Using HPCs at UNC</h1>
-<h2 id="crashing-jobs">Crashing jobs</h2>
+<h1 id="using-hpcs-at-unc">Using HPCs at UNC<a class="headerlink" href="#using-hpcs-at-unc" title="Permanent link">&para;</a></h1>
+<h2 id="crashing-jobs">Crashing jobs<a class="headerlink" href="#crashing-jobs" title="Permanent link">&para;</a></h2>
 <p>When jobs crash without explanation:
 * check whether over disc quota. Quota is 52GB in 2020.
 * the reason may be errors writing to files. This terminates a process without any info on the reason in the log.
 * Matlab ignores file writing errors. It just keeps running. The crash only occurs when file reads fails.</p>
-<h2 id="uploading-files">Uploading Files</h2>
+<h2 id="uploading-files">Uploading Files<a class="headerlink" href="#uploading-files" title="Permanent link">&para;</a></h2>
 <p>Set up login via <code>ssh</code> keys. Then use <code>rsync</code> to upload and download files.</p>
-<h2 id="changing-software-versions">Changing software versions</h2>
+<h2 id="changing-software-versions">Changing software versions<a class="headerlink" href="#changing-software-versions" title="Permanent link">&para;</a></h2>
 <p><code>module avail</code> julia lists available versions.</p>
 <p><code>module add julia/1.4.1</code> adds a module temporarily. But need to <code>module save</code> to make it permanent.</p>
 <p><code>module rm</code> removes a module</p>
 <p><code>module list</code> lists currently installed ones.</p>
-<h2 id="slurm">Slurm</h2>
+<h2 id="slurm">Slurm<a class="headerlink" href="#slurm" title="Permanent link">&para;</a></h2>
 <p>Each line in the sbatch file looks like <code>#SBATCH -o value</code>.</p>
 <p>Options (indicated by -o) are:
 * -t 03-00: time in days-hours
@@ -620,7 +620,7 @@
 <li>squeue --job XXXX</li>
 <li><code>sacct --format="JobID,JobName%30,State,ExitCode"</code> (best typed using KeyboardMaestro)</li>
 </ul>
-<h2 id="matlab-issues">Matlab Issues</h2>
+<h2 id="matlab-issues">Matlab Issues<a class="headerlink" href="#matlab-issues" title="Permanent link">&para;</a></h2>
 <p>It is easiest to replicate the local directory structure on <code>killdevil</code>. Then running files on the cluster just requires a change in the base directory that all other directories hang off.</p>
 <p>Write your code so that the data are placed in the right folder (different on unix cluster vs local machine).</p>
 <p>Write a matlab function that does the computations and can be called from the command line.</p>
