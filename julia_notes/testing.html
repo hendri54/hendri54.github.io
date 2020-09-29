@@ -487,6 +487,30 @@
 
 
   <li class="md-nav__item">
+    <a href="packages.html" title="Packages" class="md-nav__link">
+      Packages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="performance.html" title="Performance" class="md-nav__link">
+      Performance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="plotting.html" title="Plotting" class="md-nav__link">
       Plotting
     </a>
@@ -542,6 +566,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#test-specific-dependencies" class="md-nav__link">
+    Test specific dependencies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#structuring-tests" class="md-nav__link">
     Structuring tests
   </a>
@@ -591,6 +622,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#test-specific-dependencies" class="md-nav__link">
+    Test specific dependencies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#structuring-tests" class="md-nav__link">
     Structuring tests
   </a>
@@ -621,13 +659,15 @@
                 
                 
                 <h1 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h1>
+<h2 id="test-specific-dependencies">Test specific dependencies<a class="headerlink" href="#test-specific-dependencies" title="Permanent link">&para;</a></h2>
 <p>Test dependencies now need to be added to the <code>Project.toml</code> file in <code>./test</code>:</p>
 <pre><code>pkg&gt; activate ./test
 pkg&gt; add MyPkg
 pkg&gt; activate .
 </code></pre>
 
-<p>All dependencies used in tests now have to be manually added. They do not "carry over" from the main package.</p>
+<p>All dependencies used in tests now have to be manually added. They do not "carry over" from the main package. </p>
+<p>Developing test set dependencies seems to cause problems ("error: cannot merge projects"). They need to be added.</p>
 <h2 id="structuring-tests">Structuring tests<a class="headerlink" href="#structuring-tests" title="Permanent link">&para;</a></h2>
 <p>The goal is to be able to run subsets of tests and to encapsulate the code of each test. One way of achieving this:</p>
 <pre><code class="julia"># runtests.jl
@@ -658,6 +698,10 @@ end
 <ul>
 <li><a href="https://github.com/JuliaTesting/Aqua.jl">Aqua.jl</a><ul>
 <li>checks for method ambiguities, invalid exports, stale dependencies, and more.</li>
+</ul>
+</li>
+<li>TestSetExtensions.jl<ul>
+<li>mainly provides nicer display of test progress and failures</li>
 </ul>
 </li>
 </ul>
