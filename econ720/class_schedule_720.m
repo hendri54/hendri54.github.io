@@ -23,7 +23,7 @@ answerOlg = true;
 dueOlg = 'Aug-31';
 answerOlgMoney = true;
 dueOlgMoney = 'Sep-14';
-answerIh1 = false;
+answerIh1 = true;
 dueIh1 = 'Sep-28';
 answerCia = false;
 dueCia = 'Oct-5';
@@ -168,15 +168,16 @@ topicV{i1} = markdownLH.SubTopic({'[Cash in advance models](ih1/CIA_SL.pdf)', ..
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Two sector models](ih1/TwoSec_SL.pdf)', ...
-   '[RQ](ih1/TwoSec_RQ.pdf)'});
+   '[RQ](ih1/TwoSec_RQ.pdf)',  '(Skipped this year)'});
 
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Example: Asset pricing](ih1/IH1_Asset_SL.pdf)', ...
-   '[RQ](ih1/ih1_asset_rq.pdf)'}, [], 'sameDate');
+topicV{i1} = markdownLH.SubTopic({...
+   '[Example: Asset pricing](ih1/IH1_Asset_SL.pdf)', ...
+   '[RQ](ih1/ih1_asset_rq.pdf)',  '(Skipped this year)'}, [], 'sameDate');
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Dynamic programming theorems](ih1/DP_SL.pdf)', ...
-   '[Notes on Dynamic Programming](ih1/Dp_ln.pdf)'}, [], 'sameDate');
+   '[Notes on Dynamic Programming](ih1/Dp_ln.pdf)',  '(Skipped this year)'}, [], 'sameDate');
 
 % i1 = i1 + 1;
 % topicV{i1} = markdownLH.SubTopic({'[Final example](ih1/ih1_final_example_sl.pdf)'},  [],  'sameDate');
