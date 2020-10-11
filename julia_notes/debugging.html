@@ -15,7 +15,7 @@
     
     
       
-        <title>Packages - Lutz Hendricks</title>
+        <title>Debugging - Lutz Hendricks</title>
       
     
     
@@ -54,7 +54,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#packages" class="md-skip">
+        <a href="#debugging" class="md-skip">
           Skip to content
         </a>
       
@@ -82,7 +82,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Packages
+              Debugging
             
           </span>
         </div>
@@ -473,11 +473,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="debugging.html" title="Debugging" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="debugging.html" title="Debugging" class="md-nav__link md-nav__link--active">
       Debugging
     </a>
+    
   </li>
 
         
@@ -497,69 +506,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Packages
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-    
-    <a href="packages.html" title="Packages" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="packages.html" title="Packages" class="md-nav__link">
       Packages
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#creating-packages" class="md-nav__link">
-    Creating packages
-  </a>
-  
-    <nav class="md-nav" aria-label="Creating packages">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pkgtemplatesjl" class="md-nav__link">
-    PkgTemplates.jl
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pkg-errors" class="md-nav__link">
-    Pkg Errors
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -657,41 +608,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#creating-packages" class="md-nav__link">
-    Creating packages
-  </a>
-  
-    <nav class="md-nav" aria-label="Creating packages">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#pkgtemplatesjl" class="md-nav__link">
-    PkgTemplates.jl
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pkg-errors" class="md-nav__link">
-    Pkg Errors
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -706,25 +622,16 @@
                   
                 
                 
-                <h1 id="packages">Packages<a class="headerlink" href="#packages" title="Permanent link">&para;</a></h1>
-<h2 id="creating-packages">Creating packages<a class="headerlink" href="#creating-packages" title="Permanent link">&para;</a></h2>
-<h3 id="pkgtemplatesjl">PkgTemplates.jl<a class="headerlink" href="#pkgtemplatesjl" title="Permanent link">&para;</a></h3>
-<p>The typical flow would be:</p>
-<pre><code class="julia">using PkgTemplates
-t = Template(;
-    dir = joinpath(pwd(), &quot;MyPkg&quot;,
-    plugins = [
-        Documenter{NoDeploy},
-        !CompatHelper(),
-        !AppVeyor(),
-        !TravisCI()
-        ])
-    );
-t(&quot;MyPkg&quot;);
-</code></pre>
-
-<h2 id="pkg-errors">Pkg Errors<a class="headerlink" href="#pkg-errors" title="Permanent link">&para;</a></h2>
-<p>Occasionally, <code>Pkg</code> complains that a package is not registered. <code>]registry up</code> tends to solve that issue.</p>
+                <h1 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h1>
+<p>This is a <a href="https://discourse.julialang.org/t/debugger-status-and-future-plans/43638">point of contention</a> in the Julia ecosystem. Many users think the lack of a "good" debugger is the main drawback that prevents them from using Julia.</p>
+<p>One common answer is: Yeah, debugging is kind of lousy at this point. Just write your code so you don't need a debugger much. This is pretty much what I do and I find that I don't miss the debugger much at all. Roughly, I work as follows.</p>
+<ul>
+<li>Where possible, I break code into lots of small functions. This is probably anyway a good idea (see Martin's famous "Clean Code" book). Then I write tests for the small functions. </li>
+<li>When I develop custom types, I write test setup functions that make instances of the types that can be used for testing.</li>
+<li>The test functions are placed into self-contained files that can be <code>include</code>d from the REPL. When something goes wrong, it is easy to inspect it there. See <a href="testing.html">testing</a>.</li>
+<li>When something goes wrong in the integrated code that was not found during tests, I start to sprinkle <code>@assert</code>s into the code. If the code is not performance sensitive (95% of what I write), the <code>@assert</code>s are never removed, even when the bug is fixed. This gets me closer to the source of the error.</li>
+</ul>
+<p>In the vast majority of the cases, this process identifies errors without ever using a debugger. If this fails, <code>Infiltrator.jl</code> and <code>Exfiltrator.jl</code> are helpful. They are a bit like <code>Matlab</code>s <code>keyboard</code> statements, but less powerful. The code essentially stops at a breakpoint. The user can inspect the state of the system, but cannot move around the call stack. But that's usually OK because the steps taken before invoking the debugger have gotten me close to the origin of the problem.</p>
 <hr />
                 
               
@@ -744,7 +651,7 @@ t(&quot;MyPkg&quot;);
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="documentation.html" title="Documentation" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="installation.html" title="Installation" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -753,19 +660,19 @@ t(&quot;MyPkg&quot;);
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Documentation
+                Installation
               </div>
             </div>
           </a>
         
         
-          <a href="performance.html" title="Performance" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="documentation.html" title="Documentation" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Performance
+                Documentation
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
