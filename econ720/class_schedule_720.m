@@ -28,9 +28,9 @@ dueIh1 = 'Sep-28';
 answerCia = true;
 dueCia = 'Oct-5';
 answerIh2 = false;
-dueIh2 = 'Oct-21';
+dueIh2 = 'Oct-26';
 answerRandD = false;
-dueRandD = 'Nov-4';
+dueRandD = 'Nov-2';
 answerAsset = false;
 dueAsset = 'never';
 
@@ -217,14 +217,13 @@ i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Money in the utility function](ih2/miu_sl.pdf)', ...
    '[PS5](ih2/IH2_PS.pdf)',   answerStr});
 
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Perpetual youth](ih2/PerpetualYouth_SL.pdf)'});
+% i1 = i1 + 1;
+% topicV{i1} = markdownLH.SubTopic({'[Perpetual youth](ih2/PerpetualYouth_SL.pdf)'});
+% 
+% i1 = i1 + 1;
+% topicV{i1} = markdownLH.SubTopic({'[Aggregation issues](ih2/Aggregation_SL.pdf) (skipped this year)'}, ...
+%    [],  'sameDate');
 
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Aggregation issues](ih2/Aggregation_SL.pdf) (skipped this year)'}, ...
-   [],  'sameDate');
-
-% [ih2psa]: ih2/IH2_PS-answers.pdf
 
 iTopic = iTopic + 1;
 topicListV{iTopic} = markdownLH.Topic('Infinite Horizon, Continuous Time Models', topicV(1 : i1), classDateV);
