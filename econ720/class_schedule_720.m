@@ -239,8 +239,8 @@ topicV{i1} = markdownLH.SubTopic({'[Endogenous growth: AK model](growth/AK_SL.pd
    '[RQ](growth/AK_RQ.pdf)',  '[Phase diagram](growth/phase_diagram_sl.pdf) (skipped this year)'});
 % * : Recitation: Midterm + examples
 
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[R&D driven growth](growth/RandD_SL.pdf)'}, [], 'sameDate');
+% i1 = i1 + 1;
+% topicV{i1} = markdownLH.SubTopic({'[R&D driven growth](growth/RandD_SL.pdf)'}, [], 'sameDate');
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Increasing varieties](growth/Varieties_SL.pdf)', ...
