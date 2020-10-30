@@ -261,8 +261,9 @@ topicV{i1} = markdownLH.SubTopic({'[Knowledge spillovers and scale effects](grow
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Quality ladders](growth/Schumpeter_SL.pdf)'});
 
-% i1 = i1 + 1;
-% topicV{i1} = markdownLH.SubTopic({'[Quality ladders with firm dynamics](growth/Schumpeter2_SL.pdf)'});
+i1 = i1 + 1;
+topicV{i1} = markdownLH.SubTopic({'[Quality ladders with firm dynamics](growth/Schumpeter2_SL.pdf)'}, ...
+   [], 'sameDate');
 
 %[randpsa]: growth/RandD_PS-answers.pdf
 
