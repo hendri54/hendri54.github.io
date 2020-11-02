@@ -11,7 +11,7 @@ Change
    should be possible to mark all dates up to a fixed date as taken (easier to handle ex post)
 %}
 
-year1 = 2017;
+year1 = 2021;
 
 topicListV = cell(10, 1);
 iTopic = 0;
@@ -19,9 +19,9 @@ iTopic = 0;
 
 %% Class dates
 
-startDate = datetime(year1, 1, 11);
-endDate = datetime(year1, 4, 27);
-weekDayV = {'Tuesday', 'Thursday'};
+startDate = datetime(year1, 1, 19);
+endDate = datetime(year1, 5, 5);
+weekDayV = {'Monday', 'Wednesday'};
 cdS = markdownLH.ClassDates(startDate, endDate, weekDayV);
 classDateV = cdS.date_list;
 
@@ -33,12 +33,12 @@ topicV = cell(5,1);
 i1 = 0;
 
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: TBA'}, datetime(year1, 3, 2));
+topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: TBA'}, datetime(year1, 3, 10));
 
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Spring break'},  datetime(year1, 3, 14));
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Spring break'},  datetime(year1, 3, 16));
+% i1 = i1 + 1;
+% topicV{i1} = markdownLH.SubTopic({'Spring break'},  datetime(year1, 3, 14));
+% i1 = i1 + 1;
+% topicV{i1} = markdownLH.SubTopic({'Spring break'},  datetime(year1, 3, 16));
 
 iTopic = iTopic + 1;
 topicListV{iTopic} = markdownLH.Topic('Special dates', topicV(1 : i1), classDateV);
@@ -231,7 +231,7 @@ topicListV{iTopic} = markdownLH.Topic('Expectations', topicV(1 : i1), classDateV
 
 cS = markdownLH.ClassSchedule(classDateV, topicListV(1 : iTopic));
 
-cS.write('schedule520.mmd');
+cS.write('schedule520.md');
 
 
 
