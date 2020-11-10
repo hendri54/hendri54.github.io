@@ -32,7 +32,7 @@ dueIh2 = 'Oct-26';
 answerRandD = false;
 dueRandD = 'Nov-2';
 answerAsset = false;
-dueAsset = 'Nov-16';
+dueAsset = 'never';
 
 
 %% Class dates
