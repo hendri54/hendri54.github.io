@@ -31,7 +31,7 @@ answerIh2 = false;
 dueIh2 = 'Oct-26';
 answerRandD = false;
 dueRandD = 'Nov-2';
-answerAsset = false;
+answerAsset = true;
 dueAsset = 'never';
 
 
@@ -294,7 +294,7 @@ end
 
 topicV{i1} = markdownLH.SubTopic({'[Extensions](stochastic/asset_extensions_sl.pdf)', ...
    '[RQ](stochastic/Asset_RQ.pdf)', ...
-   '[PS7](stochastic/Asset_PS.pdf)',   answerStr}, [], 'sameDate');
+   '[PS7](stochastic/Asset_PS.pdf)',   answerStr});
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'[Stochastic growth model](stochastic/Stoch_Growth_SL.pdf)', ...
@@ -306,28 +306,28 @@ topicListV{iTopic} = markdownLH.Topic('Stochastic Growth', topicV(1 : i1), class
 
 
 %% Heterogeneous agent models
+if false
+   topicV = cell(10, 1);
+   i1 = 0;
 
-topicV = cell(10, 1);
-i1 = 0;
+   i1 = i1 + 1;
+   topicV{i1} = markdownLH.SubTopic({'[Bewley model](hetero/Bewley_SL.pdf)'});
 
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Bewley model](hetero/Bewley_SL.pdf)'});
+   i1 = i1 + 1;
+   topicV{i1} = markdownLH.SubTopic({'Wealth distribution: ', ...
+      '[Motivation and baseline model](hetero/huggett1996_sl.pdf)'},  [],  'sameDate');
 
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Wealth distribution: ', ...
-   '[Motivation and baseline model](hetero/huggett1996_sl.pdf)'},  [],  'sameDate');
+   i1 = i1 + 1;
+   topicV{i1} = markdownLH.SubTopic({'[Stochastic aging](hetero/castaneda_sl.pdf)'}, [], 'sameDate');
 
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Stochastic aging](hetero/castaneda_sl.pdf)'}, [], 'sameDate');
-   
-   % '[Self-employment](hetero/wealth_selfempl_sl.pdf)'},  [],  'sameDate');
+      % '[Self-employment](hetero/wealth_selfempl_sl.pdf)'},  [],  'sameDate');
 
-i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'Aggregate uncertainty: [Krusell and Smith](hetero/Krusell_Smith_SL.pdf)'});
+   i1 = i1 + 1;
+   topicV{i1} = markdownLH.SubTopic({'Aggregate uncertainty: [Krusell and Smith](hetero/Krusell_Smith_SL.pdf)'});
 
-iTopic = iTopic + 1;
-topicListV{iTopic} = markdownLH.Topic('Heterogeneous Agents', topicV(1 : i1), classDateV);
-
+   iTopic = iTopic + 1;
+   topicListV{iTopic} = markdownLH.Topic('Heterogeneous Agents', topicV(1 : i1), classDateV);
+end
 
 
 %% Search / matching
