@@ -27,9 +27,9 @@ answerIh1 = true;
 dueIh1 = 'Sep-28';
 answerCia = true;
 dueCia = 'Oct-5';
-answerIh2 = false;
+answerIh2 = true;
 dueIh2 = 'Oct-26';
-answerRandD = false;
+answerRandD = true;
 dueRandD = 'Nov-2';
 answerAsset = true;
 dueAsset = 'never';
@@ -208,7 +208,7 @@ topicV{i1} = markdownLH.SubTopic({'[Dynamics and phase diagrams](ih2/PhaseDiagra
    '[RQ](ih2/IH2_RQ.pdf)'},  [],  'sameDate');
 
 if answerIh2
-   answerStr = '[answers](ih2/IH2_PS-answers.pdf)';
+   answerStr = '[answers](ih2/IH2_PS-with_answers.pdf)';
 else
    answerStr = ['due ', dueIh2];
 end
