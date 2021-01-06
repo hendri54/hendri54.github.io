@@ -755,6 +755,7 @@ ln -s /Applications/Julia-1.5.app/Contents/Resources/julia/bin/julia /usr/local/
 <p>I have not been able to assign Ctrl-H and similar. Perhaps iterm intercepts them, but they always arrive as control sequences.</p>
 <h2 id="vs-code">VS Code<a class="headerlink" href="#vs-code" title="Permanent link">&para;</a></h2>
 <p>Set the Julia executable path to <code>/usr/local/bin/julia</code> (the symlink created above).</p>
+<p>A <a href="https://discourse.julialang.org/t/external-julia-repl-in-vscode/50745">bash script</a> that links an external terminal REPL to the Julia VSCode extension.</p>
 <h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
 <p>When problems with package operations occur, it often helps to reinstall the main registry:</p>
 <pre><code>pkg&gt; registry rm General

@@ -636,6 +636,23 @@
                 
                 <h1 id="remote-clusters">Remote Clusters<a class="headerlink" href="#remote-clusters" title="Permanent link">&para;</a></h1>
 <p>From time to time, <code>github</code> asks for user credentials when trying to download private repos, even if those have been downloaded many times before. Then precompile the package from the REPL on the cluster, entering the credentials by hand. They will then be stored for some time again.</p>
+<h1 id="slurm">Slurm<a class="headerlink" href="#slurm" title="Permanent link">&para;</a></h1>
+<p>Each line in the sbatch file looks like <code>#SBATCH -o value</code>.</p>
+<p>Options (indicated by -o) are:
+* -t 03-00: time in days-hours
+* -N 1: number of nodes
+* --mem 24576: memory in megabytes (per cpu)</p>
+<p>Status of running jobs:</p>
+<ul>
+<li>squeue -u <onyen></li>
+<li>squeue --job XXXX</li>
+<li><code>sacct --format="JobID,JobName%30,State,ExitCode"</code> (best typed using KeyboardMaestro)</li>
+</ul>
+<h1 id="examining-memory-and-cpu-usage">Examining memory and cpu usage<a class="headerlink" href="#examining-memory-and-cpu-usage" title="Permanent link">&para;</a></h1>
+<p><a href="https://docs.ycrc.yale.edu/clusters-at-yale/job-scheduling/resource-usage/">Yale guide</a></p>
+<p>After jobs completed:
+- <code>seff jobid</code>
+- <code>sacct</code> with <code>MaxRSS</code> switch shows memory usage.</p>
 <hr />
                 
               

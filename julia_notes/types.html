@@ -661,6 +661,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#properties-and-fields" class="md-nav__link">
+    Properties and fields
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -740,6 +747,13 @@
         <li class="md-nav__item">
   <a href="#user-defined-types-15" class="md-nav__link">
     User Defined Types (1.5)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#properties-and-fields" class="md-nav__link">
+    Properties and fields
   </a>
   
 </li>
@@ -889,6 +903,22 @@ end
 
 <h2 id="user-defined-types-15">User Defined Types (1.5)<a class="headerlink" href="#user-defined-types-15" title="Permanent link">&para;</a></h2>
 <p><a href="https://kristofferc.github.io/LazilyInitializedFields.jl/">LazyInitializedFields.jl</a> is a nice way of handling partially initialized struct fields.</p>
+<h2 id="properties-and-fields">Properties and fields<a class="headerlink" href="#properties-and-fields" title="Permanent link">&para;</a></h2>
+<p><code>getfield</code> is a "built-in" function that always points to a <code>struct</code> field directly. Example:</p>
+<pre><code class="julia">struct A
+  x :: Dict{Symbol,Int}
+  y :: Int
+end
+a = A(Dict([:a =&gt; 1]), 2);
+getfield(a, :x) isa Dict{Symbol, Int}
+</code></pre>
+
+<p><code>getproperty</code> is generically the same as <code>getfield</code>. But note that <code>propertynames(A)</code> spits out additional hidden properties, not just <code>:x, :y</code>.</p>
+<p>Users can overload <code>getproperty</code> to point to something more useful than the direct fields of the <code>struct</code>:</p>
+<pre><code class="julia">Base.getproperty(a :: A, n :: Symbol) = getfield(a, :x)[n];
+</code></pre>
+
+<p>Then also overload <code>propertynames</code> so that functions that rely on the public properties of <code>A</code> work.</p>
 <hr />
                 
               

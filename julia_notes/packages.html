@@ -556,8 +556,22 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#pkgskeletonjl-15" class="md-nav__link">
+    PkgSkeleton.jl (1.5)
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-and-packages" class="md-nav__link">
+    Github and packages
+  </a>
   
 </li>
       
@@ -690,8 +704,22 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#pkgskeletonjl-15" class="md-nav__link">
+    PkgSkeleton.jl (1.5)
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#github-and-packages" class="md-nav__link">
+    Github and packages
+  </a>
   
 </li>
       
@@ -720,21 +748,50 @@
                 
                 <h1 id="packages">Packages<a class="headerlink" href="#packages" title="Permanent link">&para;</a></h1>
 <h2 id="creating-packages">Creating packages<a class="headerlink" href="#creating-packages" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Create the package locally. If using <code>PkgTemplates.jl</code>, this automatically initializes the <code>github</code> repo and sets it as the <code>origin</code> (<code>git remote add origin &lt;url&gt;</code>).</li>
+<li>Write some code. </li>
+<li>Push to github.</li>
+</ol>
 <h3 id="pkgtemplatesjl">PkgTemplates.jl<a class="headerlink" href="#pkgtemplatesjl" title="Permanent link">&para;</a></h3>
 <p>The typical flow would be:</p>
 <pre><code class="julia">using PkgTemplates
+gitIgnore = [&quot;*.jl.cov&quot;, &quot;*.jl.*.cov&quot;, &quot;*.jl.mem&quot;, &quot;/deps/deps.jl&quot;, &quot;/docs/build&quot;];
 t = Template(;
-    dir = joinpath(pwd(), &quot;MyPkg&quot;,
+    dir = joinpath(homedir(), &quot;Documents&quot;, &quot;julia&quot;),
     plugins = [
-        Documenter{NoDeploy},
-        !CompatHelper(),
-        !AppVeyor(),
-        !TravisCI()
-        ])
-    );
+        Documenter{GitHubActions},
+        Git(; jl = false, ignore = gitIgnore),
+        !CompatHelper,
+        !AppVeyor,
+        !TravisCI,
+        !TagBot
+        ]);
+
 t(&quot;MyPkg&quot;);
 </code></pre>
 
+<p>Note that <code>dir</code> points to the parent directory of the new packages to be created.</p>
+<p>Even if one does not want to deploy documentation, the <code>Documenter</code> plugin is needed to create the barebones file structure. </p>
+<h3 id="pkgskeletonjl-15">PkgSkeleton.jl (1.5)<a class="headerlink" href="#pkgskeletonjl-15" title="Permanent link">&para;</a></h3>
+<p>The easiest way for creating a package is PkgSkeleton.jl. You need to set your github info (user.name etc) using </p>
+<p><code>git config --global user.name YourName</code></p>
+<p>This must be done inside a git directory. Then generate generates the directory structure and the required files (Project.toml etc). Example:</p>
+<p><code>PkgSkeleton.generate("dir1/MyPackage")</code></p>
+<p>Details:</p>
+<ul>
+<li>I first create the repo on github and clone it to the local dir.</li>
+<li>Then I use, from the parent dir: <code>PkgSkeleton.generate("MyPackage", skip_existing_dir = false)</code></li>
+<li>This way everything is linked to github from the start.</li>
+</ul>
+<h2 id="github-and-packages">Github and packages<a class="headerlink" href="#github-and-packages" title="Permanent link">&para;</a></h2>
+<p>The basic steps (after creating the package locally):</p>
+<ol>
+<li>Create the package on github.</li>
+<li><code>git branch -M main</code></li>
+<li><code>git push -u origin main</code></li>
+</ol>
+<p>Or import the package repo into Github Desktop.</p>
 <h2 id="pkg-errors">Pkg Errors<a class="headerlink" href="#pkg-errors" title="Permanent link">&para;</a></h2>
 <p>Occasionally, <code>Pkg</code> complains that a package is not registered. <code>]registry up</code> tends to solve that issue.</p>
 <hr />
