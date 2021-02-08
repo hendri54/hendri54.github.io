@@ -69,7 +69,7 @@ i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[Solow model](growth/Solow_SL.pdf)'});
 
 i1 = i1 + 1;
-topicV{i1} = markdownLH.SubTopic({'[Solow diagram](growth/solow_diagram_sl.pdf)',  ...
+topicV{i1} = markdownLH.SubTopic({'[Solow diagram](growth/solow_diagram_SL.pdf)',  ...
    '[PP](growth/Solow_RQ.pdf)'});
 
 i1 = i1 + 1;
