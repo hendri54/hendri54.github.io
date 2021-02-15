@@ -35,6 +35,11 @@ i1 = 0;
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: TBA'}, datetime(year1, 3, 10));
 
+for wday = [datetime(year1, 2, 15), datetime(year1, 4, 5)]
+   i1 = i1 + 1;
+   topicV{i1} = markdownLH.SubTopic({'Wellness day'},  wday);
+end
+
 % i1 = i1 + 1;
 % topicV{i1} = markdownLH.SubTopic({'Spring break'},  datetime(year1, 3, 14));
 % i1 = i1 + 1;
@@ -74,7 +79,7 @@ topicV{i1} = markdownLH.SubTopic({'[Solow diagram](growth/solow_diagram_SL.pdf)'
 
 i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[Solow Applications](growth/Solow_Applications_SL.pdf)', ...
-   '[Part 2](growth/Solow_Applications2_SL.pdf)'});
+   '[Applications, part 2](growth/Solow_Applications2_SL.pdf)'});
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({...
    'Discussion: [How to prevent the end of economic growth](https://www.scientificamerican.com/article/how-to-prevent-the-end-of-economic-growth/)'});
@@ -93,13 +98,27 @@ topicV{i1} =  markdownLH.SubTopic({'[Romer model](growth/RandD_SL.pdf)', '[PP](g
 i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[Policy implications](growth/romer_implications_SL.pdf)'}, [], 'sameDate');
 
-% Inequality
+iTopic = iTopic + 1;
+topicListV{iTopic} = markdownLH.Topic('Economic Growth', topicV(1 : i1), classDateV);
+
+
+%% Inequality
+
+
+topicV = cell(5, 1);
+i1 = 0;
+
 i1 = i1 + 1;
-topicV{i1} =  markdownLH.SubTopic({'Digression: [Rising income inequality](inequality/Inequality_SL.pdf)'});
+topicV{i1} =  markdownLH.SubTopic({'[Inequality facts](inequality/basic_facts_sl.pdf)'});
+i1 = i1 + 1;
+topicV{i1} =  markdownLH.SubTopic({'[Earnings inequality](inequality/earnings_inequality_sl.pdf)'}, [], ...
+   'sameDate');
+i1 = i1 + 1;
+topicV{i1} =  markdownLH.SubTopic({'[The top 1 percent](inequality/top_incomes_sl.pdf)'});
 
 
 iTopic = iTopic + 1;
-topicListV{iTopic} = markdownLH.Topic('Economic Growth', topicV(1 : i1), classDateV);
+topicListV{iTopic} = markdownLH.Topic('Inequality', topicV(1 : i1), classDateV);
 
 
 %% Short run
