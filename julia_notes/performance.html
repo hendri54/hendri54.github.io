@@ -588,6 +588,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#loops-15" class="md-nav__link">
+    Loops (1.5)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#manual-dispatch-15" class="md-nav__link">
     Manual dispatch (1.5)
   </a>
@@ -731,6 +738,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#loops-15" class="md-nav__link">
+    Loops (1.5)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#manual-dispatch-15" class="md-nav__link">
     Manual dispatch (1.5)
   </a>
@@ -786,6 +800,8 @@ include(&quot;profiling_code.jl&quot;) # for this package
 <li>can be used to time selected lines of code</li>
 <li>produces a nicely formatted table that is much easier to digest than profiler output.</li>
 </ul>
+<h2 id="loops-15">Loops (1.5)<a class="headerlink" href="#loops-15" title="Permanent link">&para;</a></h2>
+<p><code>LoopVectorization.jl</code> can give massive speed improvements for <code>for</code> loops. <a href="https://discourse.julialang.org/t/help-improving-performance-of-a-loop/55343">An example</a>.</p>
 <h2 id="manual-dispatch-15">Manual dispatch (1.5)<a class="headerlink" href="#manual-dispatch-15" title="Permanent link">&para;</a></h2>
 <p>It is beneficial to manually dispatch at runtime when a variable could potentially take on many types (as far as the compiler knows) but we know that only a few of those are possible. This is done automatically for small unions (known as union splitting). But for parametric types, the compiler has to look up methods in the method table at runtime because they could be extended. </p>
 <p>The package <code>ManualDispatch.jl</code> has a <code>@unionsplit</code> macro for this purpose. But AFAIK one may just as well write out an explicit <code>if else</code>. This would look weird:</p>
