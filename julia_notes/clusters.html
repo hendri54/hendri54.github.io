@@ -487,6 +487,30 @@
 
 
   <li class="md-nav__item">
+    <a href="arrays.html" title="Arrays" class="md-nav__link">
+      Arrays
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="clusters.html" title="Clusters" class="md-nav__link">
+      Clusters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="debugging.html" title="Debugging" class="md-nav__link">
       Debugging
     </a>
@@ -635,24 +659,94 @@
                 
                 
                 <h1 id="remote-clusters">Remote Clusters<a class="headerlink" href="#remote-clusters" title="Permanent link">&para;</a></h1>
-<p>From time to time, <code>github</code> asks for user credentials when trying to download private repos, even if those have been downloaded many times before. Then precompile the package from the REPL on the cluster, entering the credentials by hand. They will then be stored for some time again.</p>
+<h1 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">&para;</a></h1>
+<ol>
+<li>Get an account on the cluster, such as UNC's <code>longleaf</code>.</li>
+<li><a href="https://www.digitalocean.com/community/articles/how-to-set-up-ssh-keys--2">Generate an <code>ssh</code> key</a>, which allows you to log on without entering passwords. </li>
+<li>Try this out by logging into the cluster via <code>ssh</code>. At the terminal, enter <code>ssh user@longleaf.unc.edu</code>. </li>
+</ol>
+<h1 id="getting-started-with-a-test-script">Getting started with a test script<a class="headerlink" href="#getting-started-with-a-test-script" title="Permanent link">&para;</a></h1>
+<p>How to get your code to run on a typical Linux cluster?</p>
+<ul>
+<li>Get started by writing a simple test script (Test3.jl) so we can test running from the command line. </li>
+<li>Make sure you can run the test script locally with <code>julia “/full/path/to/Test3.jl”</code></li>
+<li>Now copy Test3.jl to a directory on the cluster and repeat the same.</li>
+<li>Once: make Julia available on the cluster with <code>module add julia</code> or <code>module add julia/1.5.3</code> if you want a specific version.</li>
+<li>Then run <code>julia "/full/path/to/Test3.jl"</code></li>
+</ul>
+<p>Now we know that things run on the cluster and it's time to submit a batch file:</p>
+<pre><code>sbatch -p general -N 1 -J &quot;test_job&quot; -t 3-00 --mem 16384 -n 1 --mail-type=end --mail-user=lhendri@email.unc.edu -o &quot;test1.out&quot; --wrap=&quot;julia /full/path/to/Test3.jl&quot;
+</code></pre>
+
 <h1 id="slurm">Slurm<a class="headerlink" href="#slurm" title="Permanent link">&para;</a></h1>
+<h2 id="submitting-jobs">Submitting jobs<a class="headerlink" href="#submitting-jobs" title="Permanent link">&para;</a></h2>
+<p>The usual way of submitting jobs consists of writing an sbatch file and then submitting it using the <code>sbatch</code> command.</p>
+<p>Steps:</p>
+<ol>
+<li>Copy your code and all of its dependencies to the cluster (see below). This is not needed when all dependencies are registered.</li>
+<li>Write a Julia script that contains the startup code for the project and then runs the actual computation (call this <code>batch.jl</code>).</li>
+<li>Write a batch file that submits <code>julia batch.jl</code> as a job to the cluster's job scheduler. For UNC's longleaf cluster, this would be slurm. So you need to write <code>job.sl</code> that will be submitted using <code>sbatch job.sl</code>.</li>
+</ol>
 <p>Each line in the sbatch file looks like <code>#SBATCH -o value</code>.</p>
 <p>Options (indicated by -o) are:
-* -t 03-00: time in days-hours
-* -N 1: number of nodes
-* --mem 24576: memory in megabytes (per cpu)</p>
-<p>Status of running jobs:</p>
+* <code>-t 03-00</code>: time in days-hours
+* <code>-N 1</code>: number of nodes
+* <code>--mem 24576</code>: memory in megabytes (per cpu)</p>
+<h2 id="status-of-running-jobs">Status of running jobs:<a class="headerlink" href="#status-of-running-jobs" title="Permanent link">&para;</a></h2>
 <ul>
 <li>squeue -u <onyen></li>
 <li>squeue --job XXXX</li>
 <li><code>sacct --format="JobID,JobName%30,State,ExitCode"</code> (best typed using KeyboardMaestro)</li>
 </ul>
-<h1 id="examining-memory-and-cpu-usage">Examining memory and cpu usage<a class="headerlink" href="#examining-memory-and-cpu-usage" title="Permanent link">&para;</a></h1>
+<h2 id="examining-memory-and-cpu-usage">Examining memory and cpu usage<a class="headerlink" href="#examining-memory-and-cpu-usage" title="Permanent link">&para;</a></h2>
 <p><a href="https://docs.ycrc.yale.edu/clusters-at-yale/job-scheduling/resource-usage/">Yale guide</a></p>
 <p>After jobs completed:
 - <code>seff jobid</code>
 - <code>sacct</code> with <code>MaxRSS</code> switch shows memory usage.</p>
+<h2 id="errors">Errors<a class="headerlink" href="#errors" title="Permanent link">&para;</a></h2>
+<p>From time to time, <code>github</code> asks for user credentials when trying to download private repos, even if those have been downloaded many times before. Then precompile the package from the REPL on the cluster, entering the credentials by hand. They will then be stored for some time again.</p>
+<h2 id="the-julia-script">The Julia script<a class="headerlink" href="#the-julia-script" title="Permanent link">&para;</a></h2>
+<p>Submitting a job is (almost) equivalent to <code>julia batch.jl</code> from the terminal.</p>
+<p>Note: cd() does not work in these command files. To include a file, provide a full path.</p>
+<p>If you only use registered packages, life is easy. Your code would simply say:</p>
+<pre><code>using Pkg
+# This needs to be done only once, but it does not hurt
+Pkg.add(MyPackage)
+# Make sure all required packages are downloaded
+Pkg.instantiate()
+MyPackage.run()
+</code></pre>
+
+<p>If the code for MyPackage has been copied to the remote, then</p>
+<p><code>julia --project="/path/to/MyPackage" --startup-file=no batch.jl</code> activates MyPackage and runs <code>batch.jl</code>. The <code>--project</code> option is equivalent to Pkg.activate.</p>
+<ul>
+<li>Julia looks for <code>batch.jl</code> in  the <code>MyPackage</code> directory.</li>
+<li>Disabling the startup-file prevents surprises where the startup-file changes the directory before looking for batch.jl.</li>
+<li><code>~</code> is not expanded when relative paths are used.</li>
+</ul>
+<p>If MyPackage contains is unregistered or contains unregistered dependencies, things get more difficult. Now batch.jl must:</p>
+<ol>
+<li>Activate the package's environment.</li>
+<li>develop all unregistered dependencies. This replaces the invalid paths to directories on the local machine (e.g. /Users/lutz/julia/...) with the corresponding paths on the cluster (e.g. /nas/longleaf/...). Note: I verified that one cannot replace homedir() with ~ in Manifest.toml.</li>
+<li>using MyPackage</li>
+<li>MyPackage.run()</li>
+</ol>
+<p>Developing MyPackage in a blank folder does not work (for reasons I do not understand). It results in errors indicating that dependencies of MyPackage could not be found.</p>
+<p>This approach requires you to keep track of all unregistered dependencies and where they are located on the remote machine. My way of doing this is contained in <code>PackageTools.jl</code> in the shared repo (this is not a package b/c its very purpose is to facilitate loading of unregistered packages). But the easier way is to create a private registry and register all dependencies.</p>
+<h1 id="file-transfer">File Transfer<a class="headerlink" href="#file-transfer" title="Permanent link">&para;</a></h1>
+<p>A reliable command line transfer option is <code>rsync</code> (on mac / linux). The command would be something like</p>
+<pre><code>rsync -atuzv &quot;/someDirectory/sourceDir/&quot; &quot;username@longleaf.unc.edu:someDirectorySourceDir&quot;
+</code></pre>
+
+<p>Notes: </p>
+<ul>
+<li>The source dir should end in “/”; the target dir should not.</li>
+<li>Exluding .git speeds up the transfer.</li>
+<li><code>--delete</code> ensures that no old files remain on the server.</li>
+<li>This will use <code>ssh</code> for authentication if it is set up.</li>
+</ul>
+<p>An alternative is to use <code>git</code>.</p>
+<p>To transfer an individual file: <code>run(</code>scp $filename hostname:/path/to/newfile.txt')`.</p>
 <hr />
                 
               

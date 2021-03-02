@@ -487,6 +487,30 @@
 
 
   <li class="md-nav__item">
+    <a href="arrays.html" title="Arrays" class="md-nav__link">
+      Arrays
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="clusters.html" title="Clusters" class="md-nav__link">
+      Clusters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="debugging.html" title="Debugging" class="md-nav__link">
       Debugging
     </a>
@@ -602,6 +626,26 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#structuring-tests" class="md-nav__link">
+    Structuring tests
+  </a>
+  
+    <nav class="md-nav" aria-label="Structuring tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-approach" class="md-nav__link">
+    Module approach:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#test-specific-dependencies" class="md-nav__link">
     Test specific dependencies
   </a>
@@ -609,15 +653,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#structuring-tests" class="md-nav__link">
-    Structuring tests
+  <a href="#useful-packages" class="md-nav__link">
+    Useful packages
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#useful-packages" class="md-nav__link">
-    Useful packages
+  <a href="#travis-ci-12" class="md-nav__link">
+    Travis CI (1.2)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#miscellaneous" class="md-nav__link">
+    Miscellaneous
   </a>
   
 </li>
@@ -670,6 +721,26 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#structuring-tests" class="md-nav__link">
+    Structuring tests
+  </a>
+  
+    <nav class="md-nav" aria-label="Structuring tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-approach" class="md-nav__link">
+    Module approach:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#test-specific-dependencies" class="md-nav__link">
     Test specific dependencies
   </a>
@@ -677,15 +748,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#structuring-tests" class="md-nav__link">
-    Structuring tests
+  <a href="#useful-packages" class="md-nav__link">
+    Useful packages
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#useful-packages" class="md-nav__link">
-    Useful packages
+  <a href="#travis-ci-12" class="md-nav__link">
+    Travis CI (1.2)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#miscellaneous" class="md-nav__link">
+    Miscellaneous
   </a>
   
 </li>
@@ -707,20 +785,16 @@
                 
                 
                 <h1 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h1>
-<h2 id="test-specific-dependencies">Test specific dependencies<a class="headerlink" href="#test-specific-dependencies" title="Permanent link">&para;</a></h2>
-<p>Test dependencies now need to be added to the <code>Project.toml</code> file in <code>./test</code>:</p>
-<pre><code>pkg&gt; activate ./test
-pkg&gt; add MyPkg
-pkg&gt; activate .
-</code></pre>
-
-<p>All dependencies used in tests now have to be manually added. They do not "carry over" from the main package. </p>
-<p>Developing test set dependencies seems to cause problems ("error: cannot merge projects"). They need to be added.</p>
-<p><strong>Important note</strong>: For now (1.5) test dependencies are still considered "beta" and buggy. Do not use. Instead, use the 1.0 method of <code>extras</code> in <code>Project.toml</code>.</p>
 <h2 id="structuring-tests">Structuring tests<a class="headerlink" href="#structuring-tests" title="Permanent link">&para;</a></h2>
-<p>The goal is to be able to run subsets of tests and to encapsulate the code of each test. One way of achieving this:</p>
+<p>The goal is to be able to run subsets of tests and to encapsulate the code of each test. </p>
+<p>My current approach:</p>
+<ol>
+<li>Place each testset inside a function.</li>
+<li>Call these functions from within other testsets.</li>
+<li>One can now include each file and run the tests independently.</li>
+<li>The function provide some isolation (similar to using modules).</li>
+</ol>
 <pre><code class="julia"># runtests.jl
-
 
 @testset &quot;All&quot; begin
     include(&quot;test_one.jl&quot;);
@@ -748,6 +822,24 @@ end
 </code></pre>
 
 <p>This checks whether the module <code>TestHelpers</code> exists. But one may not need a module for the helpers.</p>
+<h3 id="module-approach">Module approach:<a class="headerlink" href="#module-approach" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Place each group of tests into a module, so the tests are independent of each other and can be run independently. SafeTestsets.jl has a similar idea, but I find it cleaner to explicitly write out the modules. Though modules have the benefit that they can include setup code that is used repeatedly in different tests.</li>
+<li>runtests.jl simply contains a list of include statements; one for each test module. Those are wrapped in a @testset for nice display and to ensure that errors don't stop the tests.</li>
+<li>Each test module also contains a @testset.</li>
+<li>When runtests is run, it displays a single success summary. But when there are errors, they are nicely broken down by testset.</li>
+<li>To run tests selectively, simply include the file that contains the @testset at the REPL. </li>
+</ol>
+<h2 id="test-specific-dependencies">Test specific dependencies<a class="headerlink" href="#test-specific-dependencies" title="Permanent link">&para;</a></h2>
+<p>Test dependencies now need to be added to the <code>Project.toml</code> file in <code>./test</code>:</p>
+<pre><code>pkg&gt; activate ./test
+pkg&gt; add MyPkg
+pkg&gt; activate .
+</code></pre>
+
+<p>All dependencies used in tests now have to be manually added. They do not "carry over" from the main package. </p>
+<p>Developing test set dependencies seems to cause problems ("error: cannot merge projects"). They need to be added.</p>
+<p><strong>Important note</strong>: For now (1.5) test dependencies are still considered "beta" and buggy. Do not use. Instead, use the 1.0 method of <code>extras</code> in <code>Project.toml</code>.</p>
 <h2 id="useful-packages">Useful packages<a class="headerlink" href="#useful-packages" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://github.com/JuliaTesting/Aqua.jl">Aqua.jl</a><ul>
@@ -764,6 +856,14 @@ end
 </ul>
 </li>
 </ul>
+<h2 id="travis-ci-12">Travis CI (1.2)<a class="headerlink" href="#travis-ci-12" title="Permanent link">&para;</a></h2>
+<p>Travis can automatically test all branches uploaded to github.</p>
+<p>Need to customize travis.yml to only build for the current Julia version. </p>
+<p>Building with unregistered dependencies is tricky. Probably ok if the dependencies are added (so they point to a github url), but not if they are developed.</p>
+<h2 id="miscellaneous">Miscellaneous<a class="headerlink" href="#miscellaneous" title="Permanent link">&para;</a></h2>
+<p>Errors in the code to be tested (but not caught by @test) cause the entire test run to crash. Preventing this requires all tests to be enclosed in a @testset. A sequence of @testset does not do the trick. An error in one prevents all others from being run. Nested @testsets produce nested error reports (nice).</p>
+<p>@test statements can be placed inside functions. To preserve result reporting, the function should contain a @testset and return its result.</p>
+<hr />
                 
               
               

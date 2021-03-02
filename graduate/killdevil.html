@@ -485,6 +485,30 @@
 
 
   <li class="md-nav__item">
+    <a href="../julia_notes/arrays.html" title="Arrays" class="md-nav__link">
+      Arrays
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../julia_notes/clusters.html" title="Clusters" class="md-nav__link">
+      Clusters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../julia_notes/debugging.html" title="Debugging" class="md-nav__link">
       Debugging
     </a>
@@ -630,6 +654,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#submitting-jobs" class="md-nav__link">
+    Submitting Jobs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#changing-software-versions" class="md-nav__link">
     Changing software versions
   </a>
@@ -668,6 +699,8 @@
 * Matlab ignores file writing errors. It just keeps running. The crash only occurs when file reads fails.</p>
 <h2 id="uploading-files">Uploading Files<a class="headerlink" href="#uploading-files" title="Permanent link">&para;</a></h2>
 <p>Set up login via <code>ssh</code> keys. Then use <code>rsync</code> to upload and download files.</p>
+<h2 id="submitting-jobs">Submitting Jobs<a class="headerlink" href="#submitting-jobs" title="Permanent link">&para;</a></h2>
+<p><code>Longleaf</code> uses <a href="">slurm</a></p>
 <h2 id="changing-software-versions">Changing software versions<a class="headerlink" href="#changing-software-versions" title="Permanent link">&para;</a></h2>
 <p><code>module avail</code> julia lists available versions.</p>
 <p><code>module add julia/1.4.1</code> adds a module temporarily. But need to <code>module save</code> to make it permanent.</p>
