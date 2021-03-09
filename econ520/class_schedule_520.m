@@ -115,6 +115,9 @@ topicV{i1} =  markdownLH.SubTopic({'[Earnings inequality](inequality/earnings_in
    'sameDate');
 i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[The top 1 percent](inequality/top_incomes_sl.pdf)'});
+i1 = i1 + 1;
+topicV{i1} =  markdownLH.SubTopic({'[Intergenerational mobility](inequality/mobility_sl.pdf)'}, [], ...
+   'sameDate');
 
 
 iTopic = iTopic + 1;

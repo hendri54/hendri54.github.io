@@ -1,0 +1,1000 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>Variables and Types - Lutz Hendricks</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.6a5ad368.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#variables-and-types" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Lutz Hendricks" class="md-header-nav__button md-logo" aria-label="Lutz Hendricks">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Lutz Hendricks
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Variables and Types
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Lutz Hendricks" class="md-nav__button md-logo" aria-label="Lutz Hendricks">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Lutz Hendricks
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../index.html" title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Research
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Research" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Research
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Research/research.html" title="Human capital" class="md-nav__link">
+      Human capital
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Research/research_other.html" title="Other topics" class="md-nav__link">
+      Other topics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Research/computer_code.html" title="Computer code" class="md-nav__link">
+      Computer code
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Graduate teaching
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Graduate teaching" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Graduate teaching
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../econ720/econ720.html" title="Econ720" class="md-nav__link">
+      Econ720
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../econ890.html" title="Econ890" class="md-nav__link">
+      Econ890
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../graduate/graduate.html" title="Graduate notes" class="md-nav__link">
+      Graduate notes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Undergraduate teaching
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Undergraduate teaching" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Undergraduate teaching
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../econ520/econ520.html" title="Econ520" class="md-nav__link">
+      Econ520
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../teaching/teaching.html" title="Teaching notes" class="md-nav__link">
+      Teaching notes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Thoughts
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Thoughts" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Thoughts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../thoughts/forums.html" title="Economics discussion forums" class="md-nav__link">
+      Economics discussion forums
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../thoughts/specialization.html" title="Economists need to specialize" class="md-nav__link">
+      Economists need to specialize
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../thoughts/duplication.html" title="Avoid reinventing the wheel" class="md-nav__link">
+      Avoid reinventing the wheel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../thoughts/quantitative_models.html" title="On simple models calibrated using little data" class="md-nav__link">
+      On simple models calibrated using little data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../thoughts/models_beliefs.html" title="Models and beliefs" class="md-nav__link">
+      Models and beliefs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../thoughts/micro_macro.html" title="Micro versus macro models" class="md-nav__link">
+      Micro versus macro models
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Julia Language
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Julia Language" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Julia Language
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/intro.html" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/installation.html" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/arrays.html" title="Arrays" class="md-nav__link">
+      Arrays
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/clusters.html" title="Clusters" class="md-nav__link">
+      Clusters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/debugging.html" title="Debugging" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/documentation.html" title="Documentation" class="md-nav__link">
+      Documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/packages.html" title="Packages" class="md-nav__link">
+      Packages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/performance.html" title="Performance" class="md-nav__link">
+      Performance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/plotting.html" title="Plotting" class="md-nav__link">
+      Plotting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/regressions.html" title="Regressions" class="md-nav__link">
+      Regressions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/clusters.html" title="Remote clusters" class="md-nav__link">
+      Remote clusters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/testing.html" title="Testing" class="md-nav__link">
+      Testing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/types.html" title="Types" class="md-nav__link">
+      Types
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#supertypes-and-subtypes" class="md-nav__link">
+    Supertypes and Subtypes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scalar-numbers" class="md-nav__link">
+    Scalar Numbers
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vectors" class="md-nav__link">
+    Vectors
+  </a>
+  
+    <nav class="md-nav" aria-label="Vectors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#indexing" class="md-nav__link">
+    Indexing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ranges" class="md-nav__link">
+    Ranges
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    Exercises
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrices" class="md-nav__link">
+    Matrices
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#multi-dimensional-arrays" class="md-nav__link">
+    Multi-dimensional Arrays
+  </a>
+  
+    <nav class="md-nav" aria-label="Multi-dimensional Arrays">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#array-exercises" class="md-nav__link">
+    Array Exercises
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#strings" class="md-nav__link">
+    Strings
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="variables-and-types">Variables and Types<a class="headerlink" href="#variables-and-types" title="Permanent link">&para;</a></h1>
+<p>When you issue an assignment statement, such as</p>
+<pre><code class="julia">x = 2
+</code></pre>
+
+<p>you create a variable called <code>x</code>. What does this actually mean?</p>
+<p>Julia creates a place in memory where the value <code>2</code> is stored. It then creates a "binding" so that the symbol <code>:x</code> from now on points to that location in memory. (This is actually not the way it works for scalar real numbers, but we will set this detail aside right now.)</p>
+<p>The memory location now has a <code>type</code>. In this case, it is <code>Int64</code>:</p>
+<pre><code class="julia">typeof(x)
+    Int64
+</code></pre>
+
+<p>Julia is <strong>dynamically typed</strong>. This means that I can change the type of <code>x</code> by simply reassigning a new value or by converting the value to a different type:</p>
+<pre><code class="julia">x=Float64(x)
+    2.0
+</code></pre>
+
+<p>Doing this kind of thing is generally a bad idea, but it is legal. It is a bad idea because it confuses the reader of the code and the compiler.</p>
+<p>Important types include:</p>
+<ol>
+<li>Scalar numbers, such as <code>1</code> or <code>1.0</code>.</li>
+<li>Strings, such as "this is a string".</li>
+<li>Arrays of numbers, such as <code>[1 2; 3 4]</code>.</li>
+<li><code>Dict</code>: a container that maps names to values; similar to a <code>struct</code> in Matlab.</li>
+<li><code>Struct</code>: a composite type with fixed fields; similar to a <code>class</code> in Matlab.</li>
+</ol>
+<h2 id="supertypes-and-subtypes">Supertypes and Subtypes<a class="headerlink" href="#supertypes-and-subtypes" title="Permanent link">&para;</a></h2>
+<p>One <code>DataType</code> is <code>Number</code>. This includes integers, floating point numbers, etc.</p>
+<p>Types come in hierarchies. For example:</p>
+<pre><code class="julia">Base.show_supertypes(Int64)
+    Int64 &lt;: Signed &lt;: Integer &lt;: Real &lt;: Number &lt;: Any
+</code></pre>
+
+<p>shows that <code>Int64</code> is a subtype of <code>Signed</code> etc. </p>
+<p>Only the "lowest" types in the hierarchy are <strong>concrete types</strong> that can actually be assigned values. The higher up types are <strong>abstract</strong>. They only exist to make a type hierarchy. </p>
+<p>Why do types come in a hierarchy? Mainly because some functions are defined on certain groups of types, but not on others. For example, <code>sin("abc")</code> does not make sense, but <code>sin(x)</code> makes sense for various types of <code>Number</code>.</p>
+<h2 id="scalar-numbers">Scalar Numbers<a class="headerlink" href="#scalar-numbers" title="Permanent link">&para;</a></h2>
+<p>The main <code>Number</code> types that we care about are integers and floats. Integers come in various flavors depending on how many digits they can store and whether or not they are signed. The default is <code>Int64</code> which stores 64 bits and is signed. <code>UInt8</code> requires only 8 bits, but it cannot store large values.</p>
+<p>Overflow warning: if you assign a value that is too large for a type to store, you get overflow issues:</p>
+<pre><code class="julia">y=UInt8(12345678)
+    InexactError: trunc(UInt8, 12345678)
+
+    Stacktrace:
+
+     [1] throw_inexacterror(::Symbol, ::Type{UInt8}, ::Int64) at ./boot.jl:558
+
+     [2] checked_trunc_uint at ./boot.jl:588 [inlined]
+
+     [3] toUInt8 at ./boot.jl:650 [inlined]
+
+     [4] UInt8(::Int64) at ./boot.jl:710
+
+     [5] top-level scope at In[5]:1
+
+     [6] include_string(::Function, ::Module, ::String, ::String) at ./loading.jl:1091
+</code></pre>
+
+<p>This throws an error because Julia cannot convert a large number to a <code>UInt8</code>.</p>
+<p>The several lines below the error message are a <strong>stack trace</strong>. It shows where in your code the error occurred. This is important for debugging.</p>
+<h2 id="vectors">Vectors<a class="headerlink" href="#vectors" title="Permanent link">&para;</a></h2>
+<p>To create a vector, simply fill it with values: </p>
+<pre><code class="julia">a = [1, 2, 3]
+3-element Array{Int64,1}:
+ 1
+ 2
+ 3
+</code></pre>
+
+<p>Vectors are simply one-dimensional <code>array</code>s. </p>
+<pre><code class="julia">julia&gt; Vector{Int} === Array{Int,1}
+true
+</code></pre>
+
+<p>There are no row vectors in Julia. A row vector is a <code>1xN</code> <code>Matrix</code>:</p>
+<pre><code class="julia">julia&gt; a = [1 2 3]
+1×3 Array{Int64,2}:
+ 1  2  3
+
+julia&gt; a isa Matrix{Int}
+true
+</code></pre>
+
+<h3 id="indexing">Indexing<a class="headerlink" href="#indexing" title="Permanent link">&para;</a></h3>
+<p>To extract elements from a vector, hand it a list of indices.</p>
+<pre><code class="julia">a = [2, 3, 4, 5];
+# Note the double brackets
+a[[1, 3]]
+2-element Array{Int64,1}:
+ 2
+ 4
+# What we are really doing is
+idx = [1, 3];
+a[idx]
+</code></pre>
+
+<p>Then there is logical indexing:</p>
+<pre><code class="julia">a = [1, 2, 3];
+a[[true, false, true]]
+2-element Array{Int64,1}:
+ 1
+ 3
+</code></pre>
+
+<h3 id="ranges">Ranges<a class="headerlink" href="#ranges" title="Permanent link">&para;</a></h3>
+<p>In Matlab, <code>1:3</code> is a <code>Vector</code>, but not in Julia:</p>
+<pre><code class="julia">julia&gt; 1:3
+1:3
+
+julia&gt; typeof(1:3)
+UnitRange{Int64}
+</code></pre>
+
+<p>The main difference between a <code>Vector</code> and a <code>Range</code> is that the vector is allocated upon construction (its values are computed and stored in memory). A <code>Range</code> is an <code>Iterator</code>. You can iteratore over its elements, but they are not computed until needed. Therefore, the <code>Range</code> does not allocate memory. This is a big deal when lots of values are involved.</p>
+<p>However, a <code>Range</code> is an <code>AbstractArray</code>; so all the indexing that works on <code>Vectors</code> also works on <code>Range</code>s.</p>
+<h3 id="exercises">Exercises<a class="headerlink" href="#exercises" title="Permanent link">&para;</a></h3>
+<p>Start with <code>x = 1 : 3 : 30</code>.</p>
+<ol>
+<li>Find all even elements.</li>
+<li>Find all elements between 5 and 20.</li>
+<li>Set all even elements to their negative values.</li>
+</ol>
+<h2 id="matrices">Matrices<a class="headerlink" href="#matrices" title="Permanent link">&para;</a></h2>
+<p>A <code>Matrix</code> is a 2-dimensional array. There are also n-dimensional arrays (see below).</p>
+<p>To create a matrix, simply fill it with values. </p>
+<pre><code class="julia">julia&gt; a = [1 2 3; 4 5 6]
+2×3 Array{Int64,2}:
+ 1  2  3
+ 4  5  6
+</code></pre>
+
+<p>Many commands work directly on matrices. </p>
+<pre><code class="julia">julia&gt; a = [1 2 3]; b = [2; 1; 1]; a * b
+1-element Array{Int64,1}:
+ 7
+julia&gt; c=b*a
+3×3 Array{Int64,2}:
+ 2  4  6
+ 1  2  3
+ 1  2  3
+</code></pre>
+
+<p>To extract elements: </p>
+<pre><code class="julia">julia&gt; c[1,2]
+4
+
+julia&gt; c[1:2, 2:3]
+2×2 Array{Int64,2}:
+ 4  6
+ 2  3
+</code></pre>
+
+<p>To extract a row (but note that this produces a <code>Vector</code>):</p>
+<pre><code class="julia">julia&gt; c[1,:]
+3-element Array{Int64,1}:
+ 2
+ 4
+ 6
+</code></pre>
+
+<p>Linear indexing works as well:</p>
+<pre><code class="julia">julia&gt; c[4]
+4
+julia&gt; c[4] == c[1,2]
+true
+</code></pre>
+
+<p>In memory, <code>Arrays</code> are stored like <code>Vectors</code>. The compiler just keeps track of how the user wants to interpret the data.</p>
+<h2 id="multi-dimensional-arrays">Multi-dimensional Arrays<a class="headerlink" href="#multi-dimensional-arrays" title="Permanent link">&para;</a></h2>
+<p>Arrays can have more than 2 dimensions. </p>
+<pre><code class="julia">julia&gt; using Random
+
+julia&gt; a = rand(4,3,2)
+4×3×2 Array{Float64,3}:
+[:, :, 1] =
+ 0.146411  0.908415  0.568039
+ 0.444156  0.434034  0.875361
+ 0.429705  0.704086  0.71789
+ 0.502228  0.124412  0.771808
+
+[:, :, 2] =
+ 0.862953   0.58189    0.549077
+ 0.722745   0.677342   0.330188
+ 0.0543144  0.161877   0.358381
+ 0.312414   0.0681076  0.822319
+</code></pre>
+
+<p>Indexing generates new arrays with potentially fewer dimensions:</p>
+<pre><code class="julia">julia&gt; a[:,1,:]
+4×2 Array{Float64,2}:
+ 0.146411  0.862953
+ 0.444156  0.722745
+ 0.429705  0.0543144
+ 0.502228  0.312414
+</code></pre>
+
+<h3 id="array-exercises">Array Exercises<a class="headerlink" href="#array-exercises" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Construct a matrix <code>A</code> with elements <code>[2,4,...,20]</code> in row 1 and <code>[1,4,7,...,28]</code> in row 2.</li>
+<li>Replace row 1 with its square.</li>
+<li>Find all columns where row 1 &gt; row 2.</li>
+<li>Let <code>x=ones(10,1)</code>. Compute <code>Ax</code>.</li>
+</ol>
+<h2 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h2>
+<p>In contrast to Matlab, <code>Strings</code> are not <code>Vector{Char}</code>. They are their own type.</p>
+<p>A <code>String</code> is created by providing characters inside quotes:</p>
+<pre><code class="julia">a = &quot;This is a string&quot;
+</code></pre>
+
+<p>But strings can be indexed like character vectors:</p>
+<pre><code class="julia">julia&gt; a[4]
+'s': ASCII/Unicode U+0073 (category Ll: Letter, lowercase)
+</code></pre>
+
+<hr />
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

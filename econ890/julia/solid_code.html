@@ -1,0 +1,958 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>Writing Solid Code - Lutz Hendricks</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.6a5ad368.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#writing-solid-code" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Lutz Hendricks" class="md-header-nav__button md-logo" aria-label="Lutz Hendricks">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Lutz Hendricks
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Writing Solid Code
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Lutz Hendricks" class="md-nav__button md-logo" aria-label="Lutz Hendricks">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Lutz Hendricks
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../index.html" title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      Research
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Research" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Research
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Research/research.html" title="Human capital" class="md-nav__link">
+      Human capital
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Research/research_other.html" title="Other topics" class="md-nav__link">
+      Other topics
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../Research/computer_code.html" title="Computer code" class="md-nav__link">
+      Computer code
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Graduate teaching
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Graduate teaching" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Graduate teaching
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../econ720/econ720.html" title="Econ720" class="md-nav__link">
+      Econ720
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../econ890.html" title="Econ890" class="md-nav__link">
+      Econ890
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../graduate/graduate.html" title="Graduate notes" class="md-nav__link">
+      Graduate notes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Undergraduate teaching
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Undergraduate teaching" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Undergraduate teaching
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../econ520/econ520.html" title="Econ520" class="md-nav__link">
+      Econ520
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../teaching/teaching.html" title="Teaching notes" class="md-nav__link">
+      Teaching notes
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      Thoughts
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Thoughts" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Thoughts
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../thoughts/forums.html" title="Economics discussion forums" class="md-nav__link">
+      Economics discussion forums
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../thoughts/specialization.html" title="Economists need to specialize" class="md-nav__link">
+      Economists need to specialize
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../thoughts/duplication.html" title="Avoid reinventing the wheel" class="md-nav__link">
+      Avoid reinventing the wheel
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../thoughts/quantitative_models.html" title="On simple models calibrated using little data" class="md-nav__link">
+      On simple models calibrated using little data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../thoughts/models_beliefs.html" title="Models and beliefs" class="md-nav__link">
+      Models and beliefs
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../thoughts/micro_macro.html" title="Micro versus macro models" class="md-nav__link">
+      Micro versus macro models
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
+    
+    <label class="md-nav__link" for="nav-6">
+      Julia Language
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Julia Language" data-md-level="1">
+      <label class="md-nav__title" for="nav-6">
+        <span class="md-nav__icon md-icon"></span>
+        Julia Language
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/intro.html" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/installation.html" title="Installation" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/arrays.html" title="Arrays" class="md-nav__link">
+      Arrays
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/clusters.html" title="Clusters" class="md-nav__link">
+      Clusters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/debugging.html" title="Debugging" class="md-nav__link">
+      Debugging
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/documentation.html" title="Documentation" class="md-nav__link">
+      Documentation
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/packages.html" title="Packages" class="md-nav__link">
+      Packages
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/performance.html" title="Performance" class="md-nav__link">
+      Performance
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/plotting.html" title="Plotting" class="md-nav__link">
+      Plotting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/regressions.html" title="Regressions" class="md-nav__link">
+      Regressions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/clusters.html" title="Remote clusters" class="md-nav__link">
+      Remote clusters
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/testing.html" title="Testing" class="md-nav__link">
+      Testing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../julia_notes/types.html" title="Types" class="md-nav__link">
+      Types
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#structured-programming" class="md-nav__link">
+    Structured Programming
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#write-reusable-code" class="md-nav__link">
+    Write reusable code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#notes-on-writing-code" class="md-nav__link">
+    Notes on Writing Code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-rules" class="md-nav__link">
+    Some rules
+  </a>
+  
+    <nav class="md-nav" aria-label="Some rules">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#style-matters" class="md-nav__link">
+    Style matters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#avoid-literals" class="md-nav__link">
+    Avoid literals
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#self-test-code" class="md-nav__link">
+    Self-Test Code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimization" class="md-nav__link">
+    Optimization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-mistakes" class="md-nav__link">
+    Common mistakes
+  </a>
+  
+    <nav class="md-nav" aria-label="Common mistakes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#passing-arguments-in-the-wrong-order" class="md-nav__link">
+    Passing arguments in the wrong order.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reusing-variable-names" class="md-nav__link">
+    Reusing variable names.
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#indexing-problems" class="md-nav__link">
+    Indexing problems.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#material-for-economists" class="md-nav__link">
+    Material for Economists
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#material-not-for-economists" class="md-nav__link">
+    Material Not for Economists
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                <h1 id="writing-solid-code">Writing Solid Code<a class="headerlink" href="#writing-solid-code" title="Permanent link">&para;</a></h1>
+<p>This section discusses general programming concepts.</p>
+<h2 id="structured-programming">Structured Programming<a class="headerlink" href="#structured-programming" title="Permanent link">&para;</a></h2>
+<p>Break down a process into chunks.</p>
+<p>Package each chunk into a separate function.</p>
+<p>A key idea: aside from an explicitly specified set of inputs and outputs, the function is independent of the rest of the world (<em>encapsulation</em>).</p>
+<p>Write your code <a href="http://www.eecs.wsu.edu/~cs150/tdd.htm"><em>top down by stepwise refinement</em></a></p>
+<ul>
+<li>Start with an outline of the steps.</li>
+<li>For each step:<ul>
+<li>if it's trivial: write it out in <a href="https://en.wikipedia.org/wiki/Pseudocode">pseudo code</a>.</li>
+<li>it it's not: write another outline for that step</li>
+</ul>
+</li>
+<li>Finally, translate the pseudo code into code.</li>
+</ul>
+<p>Each function should be <em>short</em> and perform exactly <em>one task</em>.</p>
+<h2 id="write-reusable-code">Write reusable code<a class="headerlink" href="#write-reusable-code" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Write each function to be sufficiently general, so it can be reused in other projects.</li>
+<li>Over time, you will accumulate a library of code that can be used over and over.</li>
+<li>Example: Write code that produces marginal products, average costs, etc for a CES production function.</li>
+</ul>
+<h2 id="notes-on-writing-code">Notes on Writing Code<a class="headerlink" href="#notes-on-writing-code" title="Permanent link">&para;</a></h2>
+<p>Read a good book on best practices in programming.</p>
+<ol>
+<li>I see a lot of very poorly written code that is impossible to understand and not robust. Do yourself a favor and save a lot of time down the road by learning to how write quality code.</li>
+<li>A book I like is "Writing Solid Code."</li>
+</ol>
+<h2 id="some-rules">Some rules<a class="headerlink" href="#some-rules" title="Permanent link">&para;</a></h2>
+<ol>
+<li>No literals as in <code>x=zeros([5,3])</code> or for <code>i1 = 1 : 57</code>. It's not robust and hard to read.</li>
+<li>No global variables.</li>
+<li>Don't worry about speed. Worry about robustness and transparency.</li>
+<li>Your code should contain lots of self-testing code. Most code is so fast that the loss of speed is irrelevant. If it is relevant, have a  switch that globally switches test code on and off.</li>
+<li>Avoid using reserved words, in particular <code>i</code> as an index.</li>
+</ol>
+<h3 id="style-matters">Style matters<a class="headerlink" href="#style-matters" title="Permanent link">&para;</a></h3>
+<p>This point is hard to overstate. It is extremely important to write code that is easy to understand and easy to maintain. </p>
+<p>In practice, you often revisit programs months or years after they were written. They need to be well documented and well structured.</p>
+<p>The programs needed to solve a stochastic OLG model have thousands of lines of code. 
+The only way to understand something this complex is to break it into logical, self-contained pieces (a function that solves the household problem, another that solves the firm problem, etc.).</p>
+<p>One example of how important this is: </p>
+<p>Air traffic control centers still operate with hardware from the 1970s. The reason is that nobody understands the software well enough to port it to new hardware. </p>
+<p>The FAA has already spent billions of dollars on unsuccessful attempts to rewrite this mess.</p>
+<p>Another example is the Space Shuttle, which runs (now "ran") on hardware from the 1960s. The reason is again that the software engineers can no longer understand the existing code.</p>
+<p>There are many books on good programming style. One that I like is <em>Writing Solid Code</em> by Steve Maguire. Read it!</p>
+<h3 id="avoid-literals">Avoid literals<a class="headerlink" href="#avoid-literals" title="Permanent link">&para;</a></h3>
+<p>Your code should rarely use specific values for any object. When you refer to an object, do so by its name. </p>
+<p>For example, create variables to hold directory names and constants. The reason is that code is otherwise hard to change and maintain. </p>
+<p>Imagine you set some parameter <code>sigma=2</code>, but refer to it as <code>2</code> in your code instead of <code>sigma</code>. If you decide to try <code>sigma = 3</code>, you need to locate and change every occurrence of <code>sigma</code> in your code. It's a mess. </p>
+<p>The Golden Rule is: Every literal must have a name. Its value is defined in one place only.</p>
+<p>Related to this: do not hard-code <em>functional forms</em>. </p>
+<p>If you want to compute the marginal product of capital, write a function for it. Otherwise, if you want to switch from Cobb-Douglas to CES, you have to rewrite all your programs.</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Object-oriented_programming">Object oriented programming</a> makes it easy to swap out entire parts of a model. We will talk about this later.</li>
+</ul>
+<h3 id="self-test-code">Self-Test Code<a class="headerlink" href="#self-test-code" title="Permanent link">&para;</a></h3>
+<p>Your code should test itself automatically and periodically.</p>
+<p>Embed error catching code everywhere (use <a href="http://www.mathworks.com/help/matlab/ref/validateattributes.html">valideattributes</a>).</p>
+<p>Catching bugs early makes them easier to find.</p>
+<p>A trick to prevent your code from getting slowed down by self-testing:</p>
+<ul>
+<li>
+<p>add a debugging switch as an input argument to each function (I call it <code>dbg</code>).</p>
+</li>
+<li>
+<p>if <code>dbg == false</code>: go for speed and turn off self-testing</p>
+</li>
+<li>
+<p>if <code>dbg == true</code>, run all self-test code</p>
+</li>
+</ul>
+<p>The process is then:</p>
+<ol>
+<li>
+<p>Write code. Make sure it runs (correct syntax).</p>
+</li>
+<li>
+<p>Make sure it is correct (run all self-test code -- slow)</p>
+</li>
+<li>
+<p>When you are confident that your code is good, set <code>dbg = false</code> and go for speed</p>
+</li>
+<li>
+<p>But every now and then, randomly switch <code>dbg</code> on so that self tests are run (little cost in terms of run time; a lot of gain in terms of confidence in your code).</p>
+</li>
+</ol>
+<h3 id="optimization">Optimization<a class="headerlink" href="#optimization" title="Permanent link">&para;</a></h3>
+<p>Optimization refers to program modifications that speed up execution.</p>
+<blockquote>
+<p>Think before you optimize!</p>
+</blockquote>
+<p>Most code runs so fast that optimization is simply a waste of time. </p>
+<p>Also: Beware of your intuition about where the program spends most of its time.</p>
+<p>Here is an example: </p>
+<ul>
+<li>Consider the function that solves a stochastic OLG model. </li>
+<li>It turns out that it spends 80% of its time running the Matlab interpolation function <code>interp1</code>! </li>
+<li>There is little point optimizing the rest of the code.</li>
+</ul>
+<p>To find out what makes your program slow, use a Profiler.</p>
+<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
+<h3 id="passing-arguments-in-the-wrong-order">Passing arguments in the wrong order.<a class="headerlink" href="#passing-arguments-in-the-wrong-order" title="Permanent link">&para;</a></h3>
+<p>Often functions have lots of input arguments. This is generally a sign of poor design.</p>
+<p>It is easy to confuse the order and write <code>myfun(b,a)</code> instead of <code>myfun(a,b)</code>. </p>
+<p>To avoid this: check that inputs have admissible values.</p>
+<h3 id="reusing-variable-names">Reusing variable names.<a class="headerlink" href="#reusing-variable-names" title="Permanent link">&para;</a></h3>
+<p>It is easy to use a variable name twice without noticing. This can produce tricky bugs.</p>
+<p>One way of avoiding this: keep your functions <strong>short</strong>. Some experts advocate that functions should be 4 lines of code or less. This is probably not realistic, but you get the idea.</p>
+<h3 id="indexing-problems">Indexing problems.<a class="headerlink" href="#indexing-problems" title="Permanent link">&para;</a></h3>
+<p>It is easy to make mistakes when extracting elements from matrices. This is
+especially true for code that wraps a loop into a single line of code. </p>
+<p>For example, this is easy to read:</p>
+<pre><code class="julia">for ix = 1 : nx
+  zV[ix] = xV[ix+2] + yV[nx + 2 - ix];
+end
+</code></pre>
+
+<p>This is the same thing, more compact but harder to read:</p>
+<pre><code class="julia">zV = xV[3 : nx+2] .+ yV[nx+1 : -1 : 2];
+</code></pre>
+
+<blockquote>
+<p>Tip: Write out code explicitly. Once it works, one can still make it faster
+(if that is even worthwhile).</p>
+</blockquote>
+<p>Note that vectorizing code does not improve speed in Julia (unless you exploit the parallel execution capabilities of modern CPUs).</p>
+<p>Another common indexing mistake is to use too few arguments. For example:</p>
+<pre><code class="julia">    x = rand([3,4]); y = x(3);
+</code></pre>
+
+<p>This should produce a syntax error, but it does not. Instead, it flattens x
+into a vector and then takes the 3rd element.</p>
+<h2 id="material-for-economists">Material for Economists<a class="headerlink" href="#material-for-economists" title="Permanent link">&para;</a></h2>
+<p><a href="http://quant-econ.net/index.html">Quantitative Economics</a> by Sargent and Stachursky</p>
+<ul>
+<li>a really nice collection of lectures and exercises that covers both programming and the economics of the material (in Julia and Python)</li>
+</ul>
+<p><a href="http://aida.wss.yale.edu/smith/econ561a/compute6.pdf">Tony Smith: Tips for quantitative work in economics</a></p>
+<h2 id="material-not-for-economists">Material Not for Economists<a class="headerlink" href="#material-not-for-economists" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="http://lifehacker.com/top-10-ways-to-teach-yourself-to-code-1684250889">Lifehacker: teach yourself how to code</a></li>
+</ol>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
