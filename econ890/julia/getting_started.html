@@ -633,6 +633,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#installation-details" class="md-nav__link">
+    Installation details
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -658,7 +673,21 @@
 <p>Useful guides to getting started:</p>
 <ul>
 <li><a href="https://julia.quantecon.org/getting_started_julia/index.html">QuantEcon</a></li>
+<li>The Julia <a href="https://docs.julialang.org/en/v1/manual/getting-started/">documentation</a> is really very good. It should be your go-to place for getting started.</li>
+<li>I find it useful to install a documentation browser (on MacOS that would be <a href="https://kapeli.com/dash">Dash</a>). It is faster to interact with the docs this way. </li>
 </ul>
+<h2 id="installation-details">Installation details<a class="headerlink" href="#installation-details" title="Permanent link">&para;</a></h2>
+<ol>
+<li><a href="https://julialang.org">Download</a> the binary for your platform.</li>
+<li>Follow the instructions in the "help" link for your platform. You should add a path to the Julia binary in the terminal.</li>
+<li>Try that you can start Julia by typing <code>julia</code> from a terminal window. You should see the <a href="https://docs.julialang.org/en/v1/stdlib/REPL/#The-Julia-REPL">REPL</a>.</li>
+<li>Type <code>using Pkg</code>.</li>
+<li>Type <code>Pkg.add("OhMyREPL")</code>. You will see some registry updating messages. These can take time.</li>
+<li>Type <code>Pkg.add("Revise")</code>. This adds the essential package <a href="https://timholy.github.io/Revise.jl/stable/">Revise.jl</a>. It massively improves the Julia workflow.</li>
+<li>Exit Julia by typing <code>exit()</code>. You are back at the terminal prompt.</li>
+<li>Edit "~/.julia/config/startup.jl" and add the line <code>using OhMyREPL, Revise</code>. This ensures that those packages are used every time you start Julia.</li>
+<li>Start Julia again and type <code>Revise</code>. This should not give an error message, indicating the <code>Revise</code> was installed successfully.</li>
+</ol>
 <h1 id="interacting-with-julia">Interacting with Julia<a class="headerlink" href="#interacting-with-julia" title="Permanent link">&para;</a></h1>
 <p>At the terminal, type <code>julia</code> to start a Julia session. You will see the REPL, which is similar to Matlab's command line.</p>
 <p>At the REPL, you can type any Julia command and see the results displayed. Note the REPL inputs (and all Julia commands) are case sensitive.</p>
