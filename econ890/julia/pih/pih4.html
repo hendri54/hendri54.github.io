@@ -655,7 +655,7 @@
       
         <li class="md-nav__item">
   <a href="#approximate-v_kkt" class="md-nav__link">
-    Approximate $V_{k}(k,t)$
+    Approximate \(V_{k}(k,t)\)
   </a>
   
 </li>
@@ -688,61 +688,62 @@
 <p>This is not efficient in this case, but gets us started on methods for the more general Huggett model.</p>
 <h2 id="the-math">The math<a class="headerlink" href="#the-math" title="Permanent link">&para;</a></h2>
 <p>Bellman equation:</p>
-<p>$$V(k,t)=\max_{k'} U(w+rk-k') + \beta V(k',t+1)$$</p>
+<div class="arithmatex">\[V(k,t)=\max_{k'} U(w+rk-k') + \beta V(k',t+1)\]</div>
 <p>with first order condition</p>
-<p>$$U'(w+rk-k')=\beta V_{k}(k',t+1)$$</p>
+<div class="arithmatex">\[U'(w+rk-k')=\beta V_{k}(k',t+1)\]</div>
 <p>and envelope condition</p>
-<p>$$V_{k}(k,t) = r U'(w + rk - k')$$</p>
+<div class="arithmatex">\[V_{k}(k,t) = r U'(w + rk - k')\]</div>
 <h2 id="value-function-iteration">Value Function Iteration<a class="headerlink" href="#value-function-iteration" title="Permanent link">&para;</a></h2>
-<p>Start at $t = T$ with </p>
-<p>$$V(k,T) = U(w+rk)$$</p>
-<p>Set up a grid for $k$.</p>
-<p>For each $k$ on the grid:</p>
+<p>Start at <span class="arithmatex">\(t = T\)</span> with </p>
+<div class="arithmatex">\[V(k,T) = U(w+rk)\]</div>
+<p>Set up a grid for <span class="arithmatex">\(k\)</span>.</p>
+<p>For each <span class="arithmatex">\(k\)</span> on the grid:</p>
 <ul>
-<li>maximize $U(w+rk-k') + \beta V(k',t+1)$</li>
-<li>by searching over $k'$</li>
-<li>this gives $k'=G(k,t)$</li>
-<li>compute $V(k,t) = U(w+rk-G(k,t)) + \beta V(G(k,t), t+1)$</li>
+<li>maximize <span class="arithmatex">\(U(w+rk-k') + \beta V(k',t+1)\)</span></li>
+<li>by searching over <span class="arithmatex">\(k'\)</span></li>
+<li>this gives <span class="arithmatex">\(k'=G(k,t)\)</span></li>
+<li>compute <span class="arithmatex">\(V(k,t) = U(w+rk-G(k,t)) + \beta V(G(k,t), t+1)\)</span></li>
 </ul>
-<p>Problem: We need to evaluate $V(k',t+1)$ off the grid.</p>
+<p>Problem: We need to evaluate <span class="arithmatex">\(V(k',t+1)\)</span> off the grid.</p>
 <p>Solution: Interpolation (below).</p>
 <p>This is inefficient</p>
 <ul>
-<li>it involves a numerical maximization for each $k$ grid point</li>
+<li>it involves a numerical maximization for each <span class="arithmatex">\(k\)</span> grid point</li>
 <li>it is much easier (numerically) to find a root than to maximize a function</li>
 </ul>
-<h2 id="approximate-v_kkt">Approximate $V_{k}(k,t)$<a class="headerlink" href="#approximate-v_kkt" title="Permanent link">&para;</a></h2>
-<p>Start at $t=T$ with </p>
-<p>$$V_{k}(k,T)=U'(w+rk-k')$$</p>
-<p>Set up a grid for $k$.</p>
-<p>For each $k$ on the grid:</p>
+<h2 id="approximate-v_kkt">Approximate <span class="arithmatex">\(V_{k}(k,t)\)</span><a class="headerlink" href="#approximate-v_kkt" title="Permanent link">&para;</a></h2>
+<p>Start at <span class="arithmatex">\(t=T\)</span> with </p>
+<div class="arithmatex">\[V_{k}(k,T)=U'(w+rk-k')\]</div>
+<p>Set up a grid for <span class="arithmatex">\(k\)</span>.</p>
+<p>For each <span class="arithmatex">\(k\)</span> on the grid:</p>
 <ul>
-<li>Search for the root of $U'(w+rk-k')-\beta V_{k}(k',t+1)$</li>
-<li>Compute the decision rule $k' = G(k,t)$</li>
-<li>Compute $V_{k}(k,t) = r U'(w + rk - G(k,t))$</li>
+<li>Search for the root of <span class="arithmatex">\(U'(w+rk-k')-\beta V_{k}(k',t+1)\)</span></li>
+<li>Compute the decision rule <span class="arithmatex">\(k' = G(k,t)\)</span></li>
+<li>Compute <span class="arithmatex">\(V_{k}(k,t) = r U'(w + rk - G(k,t))\)</span></li>
 </ul>
-<p>Problem: We have $V_{k}$ on the grid, but for the root finding we need $V_{k}$ off the grid.</p>
-<p>Solution: Construct a function that approximates $V_{k}$ based on the grid points that we have computed.</p>
-<p>Problem: $V_{k}$ is highly nonlinear, so it is hard to approximate.</p>
+<p>Problem: We have <span class="arithmatex">\(V_{k}\)</span> on the grid, but for the root finding we need <span class="arithmatex">\(V_{k}\)</span> off the grid.</p>
+<p>Solution: Construct a function that approximates <span class="arithmatex">\(V_{k}\)</span> based on the grid points that we have computed.</p>
+<p>Problem: <span class="arithmatex">\(V_{k}\)</span> is highly nonlinear, so it is hard to approximate.</p>
 <p>Solution: </p>
 <ul>
-<li>Restate the FOC as $w+rk-k'=U'^{-1}(\beta V_{k}(k',t+1))$.</li>
+<li>Restate the FOC as <span class="arithmatex">\(w+rk-k'=U'^{-1}(\beta V_{k}(k',t+1))\)</span>.</li>
 <li>Approximate the RHS of this expression.</li>
-<li>Find the root of the corresponding deviation: $k'=G(k,t)$.</li>
-<li>Use this to compute $V_{k}(k,t)$ on the grid.</li>
+<li>Find the root of the corresponding deviation: <span class="arithmatex">\(k'=G(k,t)\)</span>.</li>
+<li>Use this to compute <span class="arithmatex">\(V_{k}(k,t)\)</span> on the grid.</li>
 </ul>
 <h2 id="policy-function-iteration">Policy Function Iteration<a class="headerlink" href="#policy-function-iteration" title="Permanent link">&para;</a></h2>
-<p>We don't really care about $V$ or $V_{k}$. All we need is $k'=G(k,t)$.</p>
+<p>We don't really care about <span class="arithmatex">\(V\)</span> or <span class="arithmatex">\(V_{k}\)</span>. All we need is <span class="arithmatex">\(k'=G(k,t)\)</span>.</p>
 <p>So we approximate this directly.</p>
-<p>Start at $t=T$ with $G(k,T) = 0$.</p>
-<p>Set up a grid for $k$.</p>
-<p>For each $k$ on the grid:</p>
+<p>Start at <span class="arithmatex">\(t=T\)</span> with <span class="arithmatex">\(G(k,T) = 0\)</span>.</p>
+<p>Set up a grid for <span class="arithmatex">\(k\)</span>.</p>
+<p>For each <span class="arithmatex">\(k\)</span> on the grid:</p>
 <ul>
-<li>find the root of the Euler equation $$U'(w+rk-k') - \beta R U'(w'+rk'-G(k', t+1))$$</li>
-<li>but better (not as non-linear): $$w+rk-k' - U'^{-1}(\beta R U'(w'+rk'-G(k', t+1)))$$</li>
-<li>this gives $k'=G(k,t)$ on the $k$ grid.</li>
+<li>find the root of the Euler equation <span class="arithmatex">\(<span class="arithmatex">\(U'(w+rk-k') - \beta R U'(w'+rk'-G(k', t+1))\)</span>\)</span></li>
+<li>but better (not as non-linear): <span class="arithmatex">\(<span class="arithmatex">\(w+rk-k' - U'^{-1}(\beta R U'(w'+rk'-G(k', t+1)))\)</span>\)</span></li>
+<li>this gives <span class="arithmatex">\(k'=G(k,t)\)</span> on the <span class="arithmatex">\(k\)</span> grid.</li>
 </ul>
 <p>Again, we need to interpolate the policy function between grid points.</p>
+<p><a href="../root_finding.md">Notes on root finding</a>.</p>
 <blockquote>
 <p>Exercise: write this code</p>
 </blockquote>
@@ -790,6 +791,12 @@
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

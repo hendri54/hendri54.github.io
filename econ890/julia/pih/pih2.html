@@ -674,7 +674,7 @@
 <p>How can we build a more flexible model? One approach:</p>
 <ul>
 <li>define a <code>Model</code> object</li>
-<li>it contains the fixed parameters $T$, $R$, $Y$</li>
+<li>it contains the fixed parameters <span class="arithmatex">\(T\)</span>, <span class="arithmatex">\(R\)</span>, <span class="arithmatex">\(Y\)</span></li>
 <li>plus another object that specifies preferences and their parameters</li>
 </ul>
 <p>Then we can:</p>
@@ -692,9 +692,9 @@
 </ul>
 <p>What do we want utility functions to do?</p>
 <ul>
-<li>compute $u(c)$ and $u'(c)$</li>
+<li>compute <span class="arithmatex">\(u(c)\)</span> and <span class="arithmatex">\(u'(c)\)</span></li>
 <li>it is often also useful to know inverse marginal utility</li>
-<li>compute the growth rate of $c$ and (related)</li>
+<li>compute the growth rate of <span class="arithmatex">\(c\)</span> and (related)</li>
 <li>Euler equation deviations</li>
 </ul>
 <p>This defines the API that is visible to the outside world and common to all utility functions.</p>
@@ -710,7 +710,7 @@
 end
 </code></pre>
 
-<p>Note: We generally would not want to hard-wire that <code>sigma</code> is a <code>Float64</code>. More generic would be a [parameteric type]:</p>
+<p>Note: We generally would not want to hard-wire that <code>sigma</code> is a <code>Float64</code>. More generic would be a <a href="https://docs.julialang.org/en/v1/manual/types/#Parametric-Types">parametric type</a>:</p>
 <pre><code class="julia">struct UtilityCRRA{T}
   sigma :: T
 end
@@ -795,6 +795,12 @@ m = Model(10.0, 1.04, 30, 0.98, UtilityLog());
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

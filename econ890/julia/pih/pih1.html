@@ -694,23 +694,25 @@
 <p>Eventually, we want to solve Huggett (1996), but that's complicated. So we start simpler.</p>
 <h2 id="model">Model<a class="headerlink" href="#model" title="Permanent link">&para;</a></h2>
 <ul>
-<li>A household lives for $T$ periods.</li>
-<li>Preferences are $\sum_{t=1}^T \beta^t \frac{c_{t}^{1-\sigma}}{1-\sigma}$</li>
-<li>Lifetime income is $Y$.</li>
-<li>Lifetime budget constraint: $Y=\sum_{t=1}^T R^{1-t} c_t$</li>
+<li>A household lives for <span class="arithmatex">\(T\)</span> periods.</li>
+<li>Preferences are <span class="arithmatex">\(\sum_{t=1}^T \beta^t \frac{c_{t}^{1-\sigma}}{1-\sigma}\)</span></li>
+<li>Lifetime income is <span class="arithmatex">\(Y\)</span>.</li>
+<li>Lifetime budget constraint: <span class="arithmatex">\(Y=\sum_{t=1}^T R^{1-t} c_t\)</span></li>
 </ul>
 <h2 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h2>
-<p>The consumption growth rate is given by $g(c)=(\beta R)^{1/\sigma}$.</p>
+<p>The consumption growth rate is given by <span class="arithmatex">\(g(c)=(\beta R)^{1/\sigma}\)</span>.</p>
 <p>Present value of consumption:</p>
-<p>$$Y=\sum_t R^{1-t} c_t = c_1 \sum_t [g(c)/R]^{1-t}$$</p>
-<p>Recall:  $\sum_{t=0}^{T-1} x_t = \frac{x^T - 1}{x - 1}$</p>
+<div class="arithmatex">\[
+Y=\sum_t R^{1-t} c_t = c_1 \sum_t [g(c)/R]^{1-t}
+\]</div>
+<p>Recall:  <span class="arithmatex">\(\sum_{t=0}^{T-1} x_t = \frac{x^T - 1}{x - 1}\)</span></p>
 <p>Therefore: </p>
-<p>$$Y=c_{1}\frac{\left[g(c)/R\right]^{T}-1}{g\left(c\right)/R-1}$$</p>
+<div class="arithmatex">\[Y=c_{1}\frac{\left[g(c)/R\right]^{T}-1}{g\left(c\right)/R-1}\]</div>
 <h2 id="algorithm">Algorithm<a class="headerlink" href="#algorithm" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Inputs: $Y, R, T, \beta, \sigma$.</li>
-<li>Compute $c_1$.</li>
-<li>$c_t = c_1 g(c)^{t-1}$</li>
+<li>Inputs: <span class="arithmatex">\(Y, R, T, \beta, \sigma\)</span>.</li>
+<li>Compute <span class="arithmatex">\(c_1\)</span>.</li>
+<li><span class="arithmatex">\(c_t = c_1 g(c)^{t-1}\)</span></li>
 </ol>
 <blockquote>
 <p>Excercise: write this!
@@ -731,7 +733,7 @@
 <h2 id="changing-the-utility-function">Changing the Utility Function<a class="headerlink" href="#changing-the-utility-function" title="Permanent link">&para;</a></h2>
 <p>In real world applications, you want to explore alternative functional forms etc.</p>
 <p>Let's try log utility instead.</p>
-<p>In our simple example, this is easy because log utility is just the special case of $\sigma=1$.</p>
+<p>In our simple example, this is easy because log utility is just the special case of <span class="arithmatex">\(\sigma=1\)</span>.</p>
 <p>But let's pretend this were not the case (we cannot try any old utility function because we have baked into our solution that consumption growth is a constant).</p>
 <p>This simple change requires that we hunt through all of our code to find which lines depend on the functional form for utility.</p>
 <p>Once we have found all of those, we need to replace each with</p>
@@ -789,6 +791,12 @@ end
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

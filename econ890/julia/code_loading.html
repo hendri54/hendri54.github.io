@@ -640,22 +640,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#packages" class="md-nav__link">
-    Packages
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#the-load_path" class="md-nav__link">
     The LOAD_PATH
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#environments" class="md-nav__link">
-    Environments
   </a>
   
 </li>
@@ -679,41 +665,10 @@
                 <h1 id="code-loading">Code Loading<a class="headerlink" href="#code-loading" title="Permanent link">&para;</a></h1>
 <p>When you write a file with some code, how does Julia know where to find it?</p>
 <p>From the REPL <code>include(/path/to/file.jl)</code> does the trick. This has the same effect as typing the code in the REPL. The same can be done inside another file.</p>
-<p>But what if you have a big chunk of code that you want to be reusable? What if you want to use someone else's code? This is where packages come into play.</p>
-<h2 id="packages">Packages<a class="headerlink" href="#packages" title="Permanent link">&para;</a></h2>
-<p>A package is a directory with code that declares all of its dependencies. It is self-contained.</p>
-<p>The package <code>MyPackage</code> defines the module <code>MyPackage</code> plus types and functions.</p>
-<p>To use a package, write <code>using MyPackage</code> and voila - all the types and functions defined in <code>MyPackage</code> are available in your code, including the code <code>MyPackage</code> requires from other packages.</p>
-<p>How does Julia find packages?</p>
-<p>Many packages are registered in the General Registry. For them, <code>Pkg.add("MyPackage")</code> figures out where to get the code so that <code>using MyPackage</code> works.</p>
-<p>For unregistered packages, such as your own code (for now), you can make the code available by "devloping" the packages with <code>Pkg.develop(/path/to/MyPackage)</code>.</p>
-<p>There is one fundamental difference between <code>add</code> and <code>develop</code>. </p>
-<ul>
-<li><code>add</code> fixes the version of the package until you manually <code>Pkg.update("MyPackage")</code>. Even if the developer changes the code, the version that you are using remains unchanged. </li>
-<li><code>develop</code> tells Julia to track whatever code changes happen in the directory where the package code resides (the one you provide with the <code>develop</code> command).</li>
-</ul>
-<h2 id="the-load_path">The LOAD_PATH<a class="headerlink" href="#the-load_path" title="Permanent link">&para;</a></h2>
+<p>But what if you have a big chunk of code that you want to be reusable? What if you want to use someone else's code? This is where <a href="packages.html">packages</a> come into play.</p>
+<h3 id="the-load_path">The LOAD_PATH<a class="headerlink" href="#the-load_path" title="Permanent link">&para;</a></h3>
 <p>You can also load modules that are not packaged as packages by putting their directories into the <code>LOAD_PATH</code> environment variable.</p>
 <p>We will not use this approach. It is easier to package everything as a package instead.</p>
-<h2 id="environments">Environments<a class="headerlink" href="#environments" title="Permanent link">&para;</a></h2>
-<p>This is a key concept for Julia!</p>
-<p>An environment is a directory that contains a <code>Project.toml</code> file. This file declares all of the dependencies that are available when the environment is "activated".</p>
-<p>Whe you start Julia, you are in the <code>v.1.5</code> environment. In my case, it declares that the following packages are available:</p>
-<pre><code class="julia">julia&gt; using Pkg
-
-julia&gt; Pkg.status()
-Status `~/.julia/environments/v1.5/Project.toml`
-  [6e4b80f9] BenchmarkTools v0.5.0
-  [89398ba2] LocalRegistry v0.3.2
-  [5fb14364] OhMyREPL v0.5.10
-  [d254efa0] PkgSkeleton v0.4.0
-  [14b8a8f1] PkgTemplates v0.7.14
-  [295af30f] Revise v3.1.12
-</code></pre>
-
-<p>Tip: keep this environment minimal. Here you just want to list packages that you use while developing your code (e.g. <code>Revise.jl</code>).</p>
-<p>If you now activate a different directory using <code>Pkg.activate("/path/to/dir")</code>, additional packages become available. This is known as <strong>stacked environments</strong>. They are stacked in the sense that activating another environment retains the packages that are already activated. This is the reason why you want your <code>v.1.5</code> environment to be minimal.</p>
-<p>Note that a package is just an environment that satisfies some additional criteria (e.g., a specific directory structure is present).</p>
 <hr />
                 
               
@@ -758,6 +713,12 @@ Status `~/.julia/environments/v1.5/Project.toml`
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>

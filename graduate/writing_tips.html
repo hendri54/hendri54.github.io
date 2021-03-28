@@ -778,7 +778,7 @@
 <p>Avoid literals in your text.</p>
 <ul>
 <li>Let your code write a latex preamble with statments like <code>\newcommand{\meanWage}{7.53}</code>.</li>
-<li>Then in the text: "the mean wage in the sample is \$\meanWage".</li>
+<li>Then in the text: "the mean wage in the sample is $\meanWage".</li>
 <li>That way, you don't have to manually update the numbers in the text. It's more robust.</li>
 </ul>
 <h3 id="tables">Tables<a class="headerlink" href="#tables" title="Permanent link">&para;</a></h3>
@@ -834,6 +834,12 @@
           }, typeof search !== "undefined" && search)
         })
       </script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
     
   </body>
