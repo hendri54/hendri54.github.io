@@ -1,0 +1,9 @@
+@article{hendricks2017accounting,
+  title={Accounting for changing returns to experience},
+  author={Hendricks, Lutz},
+  journal={The BE Journal of Macroeconomics},
+  volume={18},
+  number={1},
+  year={2017},
+  publisher={De Gruyter}
+}

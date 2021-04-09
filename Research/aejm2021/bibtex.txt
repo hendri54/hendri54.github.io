@@ -1,0 +1,9 @@
+@article{hendricks2021college,
+  title={College Quality and Attendance Patterns: A Long-Run View},
+  author={Hendricks, Lutz and Herrington, Christopher and Schoellman, Todd},
+  journal={American Economic Journal: Macroeconomics},
+  volume={13},
+  number={1},
+  pages={184--215},
+  year={2021}
+}

@@ -667,6 +667,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#making-a-package" class="md-nav__link">
+    Making a package
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#writing-the-solution-code" class="md-nav__link">
+    Writing the solution code
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -743,7 +757,54 @@
 <li>this gives <span class="arithmatex">\(k'=G(k,t)\)</span> on the <span class="arithmatex">\(k\)</span> grid.</li>
 </ul>
 <p>Again, we need to interpolate the policy function between grid points.</p>
-<p><a href="../root_finding.md">Notes on root finding</a>.</p>
+<p><a href="root_finding.html">Notes on root finding</a>.</p>
+<p>Let's think about this problem a bit more. The expression </p>
+<div class="arithmatex">\[w+rk-k' - U'^{-1}(\beta R U'(w'+rk'-G(k', t+1)))\]</div>
+<p>can be thought of as <span class="arithmatex">\(D(k',k)\)</span>. We are looking for <span class="arithmatex">\(D(k',k) = 0\)</span>. The solution is <span class="arithmatex">\(G(k', t)\)</span>.</p>
+<p>Let's start from the "inside" of the problem. Suppose we have <span class="arithmatex">\(D(k', k)\)</span> on the grid, our first task is to make this a continuous function. </p>
+<p>This is done with <strong>interpolation</strong>. One approach that we used before: each time we need to get a value <span class="arithmatex">\(D(k', k)\)</span>, we call an interpolation function. </p>
+<p>But this is tedious and inelegant. The better approach is to construct a continuous function that represents <span class="arithmatex">\(D(k', k)\)</span>.</p>
+<p>One package that does this is <a href="https://juliamath.github.io/Interpolations.jl/latest/">Interpolations.jl</a>. <a href="https://julia.quantecon.org/more_julia/general_packages.html#Interpolation">QuantEcon</a> contains a nice description that we will use here.</p>
+<h2 id="making-a-package">Making a package<a class="headerlink" href="#making-a-package" title="Permanent link">&para;</a></h2>
+<p>Now that our code is getting more complex, it is time to make it into a <a href="../packages.html">package</a>. </p>
+<p>Instructions for creating packages are <a href="../../julia_notes/packages.md">here</a>.</p>
+<p>Some details:</p>
+<ol>
+<li>It is helpful to have a <code>github</code> account and put your packages there. But you can skip this step for the purposes of this class.</li>
+<li>If you have a <code>github</code> account, you create your (empty) package there and then clone it to the local machine.</li>
+<li>Then you run <code>PkgSkeleton</code> or <code>PkgTemplates</code> to fill in the required Julia bits.</li>
+</ol>
+<p>After creating this package, copy <code>utility.jl</code> and its tests to <code>src</code> and <code>test</code>, respectively.</p>
+<p>Add dependencies (e.g., <code>Pkg.add("Random")</code>) until <code>] test</code> works.</p>
+<h2 id="writing-the-solution-code">Writing the solution code<a class="headerlink" href="#writing-the-solution-code" title="Permanent link">&para;</a></h2>
+<p>This looks complicated. So how do we make it tractable?</p>
+<p><strong>Structured programming</strong> and <strong>top down</strong> design to the rescue.</p>
+<p>The trick is to simply write out the steps that we want to perform without worrying about how to do each:</p>
+<ol>
+<li>Solve the last period: <span class="arithmatex">\(G(k', T) = 0\)</span>. This is trivial.</li>
+<li>For each <span class="arithmatex">\(t\)</span> (backwards):<ol>
+<li>Make a capital grid for period <span class="arithmatex">\(t\)</span>.</li>
+<li>Find <span class="arithmatex">\(k' = G(k, t)\)</span> for each grid point.</li>
+<li>Interpolate <span class="arithmatex">\(G(k, t)\)</span> to make a continuous function.</li>
+</ol>
+</li>
+</ol>
+<p>Now write this out in code and you have <code>solve()</code> in <code>vfi.jl</code>.</p>
+<p>Next, we fill in details.</p>
+<ol>
+<li><code>solve_last_period</code> is basically trivial.</li>
+<li><code>solve_one_period</code> just calls ...</li>
+<li><code>solve_one_point</code> which<ol>
+<li>checks for corner solutions</li>
+<li>runs <code>find_zero</code> on <span class="arithmatex">\(D(k', k)\)</span></li>
+</ol>
+</li>
+<li>Finally, we need to check the solution to make sure it satisfies<ol>
+<li>budget constraint and</li>
+<li>Euler equation</li>
+</ol>
+</li>
+</ol>
 <blockquote>
 <p>Exercise: write this code</p>
 </blockquote>

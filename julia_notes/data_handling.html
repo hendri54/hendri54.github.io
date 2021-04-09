@@ -15,7 +15,7 @@
     
     
       
-        <title>Debugging - Lutz Hendricks</title>
+        <title>Data Handling - Lutz Hendricks</title>
       
     
     
@@ -54,7 +54,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#debugging" class="md-skip">
+        <a href="#data-handling" class="md-skip">
           Skip to content
         </a>
       
@@ -82,7 +82,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Debugging
+              Data Handling
             
           </span>
         </div>
@@ -438,12 +438,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
       Julia Language
@@ -509,56 +507,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Debugging
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-    
-    <a href="debugging.html" title="Debugging" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="debugging.html" title="Debugging" class="md-nav__link">
       Debugging
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-upshot" class="md-nav__link">
-    The Upshot
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-options" class="md-nav__link">
-    The Options
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
         
@@ -680,28 +633,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the-upshot" class="md-nav__link">
-    The Upshot
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the-options" class="md-nav__link">
-    The Options
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -716,32 +647,11 @@
                   
                 
                 
-                <h1 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h1>
+                <h1 id="data-handling">Data Handling<a class="headerlink" href="#data-handling" title="Permanent link">&para;</a></h1>
+<p>Useful packages:</p>
 <ul>
-<li><a href="https://discourse.julialang.org/t/debugger-status-and-future-plans/43638">Discourse thread on debugging</a></li>
-<li><a href="http://webpages.csus.edu/fitzgerald/julia-debugger-tutorial/">A useful tutorial</a></li>
+<li><a href="https://github.com/Hasnep/DataSkimmer.jl">DataSkimmer.jl</a> produces a summary of tabular data (e.g. <code>DataFrames</code>), including histogram.</li>
 </ul>
-<h2 id="the-upshot">The Upshot<a class="headerlink" href="#the-upshot" title="Permanent link">&para;</a></h2>
-<p>This is a <a href="https://discourse.julialang.org/t/debugger-status-and-future-plans/43638">point of contention</a> in the Julia ecosystem. Many users think the lack of a "good" debugger is the main drawback that prevents them from using Julia.</p>
-<p>One common answer is: Yeah, debugging is kind of lousy at this point. Just write your code so you don't need a debugger much. This is pretty much what I do and I find that I don't miss the debugger much at all. Roughly, I work as follows.</p>
-<ul>
-<li>Where possible, I break code into lots of small functions. This is probably anyway a good idea (see Martin's famous "Clean Code" book). Then I write tests for the small functions. </li>
-<li>When I develop custom types, I write test setup functions that make instances of the types that can be used for testing.</li>
-<li>The test functions are placed into self-contained files that can be <code>include</code>d from the REPL. When something goes wrong, it is easy to inspect it there. See <a href="testing.html">testing</a>.</li>
-<li>When something goes wrong in the integrated code that was not found during tests, I start to sprinkle <code>@assert</code>s into the code. If the code is not performance sensitive (95% of what I write), the <code>@assert</code>s are never removed, even when the bug is fixed. This gets me closer to the source of the error.</li>
-</ul>
-<p>In the vast majority of the cases, this process identifies errors without ever using a debugger. If this fails, <code>Infiltrator.jl</code> and <code>Exfiltrator.jl</code> are helpful. They are a bit like <code>Matlab</code>s <code>keyboard</code> statements, but less powerful. The code essentially stops at a breakpoint. The user can inspect the state of the system, but cannot move around the call stack. But that's usually OK because the steps taken before invoking the debugger have gotten me close to the origin of the problem.</p>
-<h2 id="the-options">The Options<a class="headerlink" href="#the-options" title="Permanent link">&para;</a></h2>
-<p>Julia offers several debugger options that work in very different ways. The main trade-off is <strong>compile time versus run time</strong>. </p>
-<p>Debuggers that run interpreted code, such as Debugger.jl, compile reasonably fast but run very slowly (about 10 times slower than compiled code). Debuggers that compile debugging features into the code run at near native speed but are either slow to compile (MagneticReadHead) or offer limited features (Infiltrator).</p>
-<p>Common options are:</p>
-<ol>
-<li>Debugger.jl: It interprets all code and can therefore offer a complete feature set. But it is very slow for larger projects. Options are available that make Debugger faster, but less powerful. The VS Code plugin gives an IDE experience.</li>
-<li>MagneticReadHead.jl: It compiles debugging features into all code and therefore runs at near native speed. But compile times are often extremely long.</li>
-<li>Infiltrator.jl: It compiles all code, adding only user specified breakpoints (@infiltrate). Compile times and run times are good, but the user can only inspect the local state when a break point is reached. It is not possible to move around the call stack.</li>
-<li>Exfiltrator.jl: Simply exports all local variables at the point of call to Main. The idea is that the entire local environment can be inspected at really no runtime or compilation cost. Simple and effective, but one cannot manipulate objects in the context of the calling module.</li>
-</ol>
-<p>There are other options that I don't know much about, such as Juno's debugger. </p>
 <hr />
                 
               
@@ -757,41 +667,6 @@
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="clusters.html" title="Clusters" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Clusters
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="documentation.html" title="Documentation" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Documentation
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
