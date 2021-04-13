@@ -679,7 +679,6 @@
 <ul>
 <li><a href="https://lhendricks.org/julia_notes/installation.html">Installation hints</a></li>
 <li><a href="https://code.visualstudio.com/">Info on VS Code</a> </li>
-<li>You also need the <a href="https://www.julia-vscode.org/">Julia VS Code</a> extension. See also <a href="https://techytok.com/julia-vscode/">VSCode: the future for Julia development - TechyTok</a></li>
 </ul>
 <p>You may have another favorite text editor, but you will lose integration with the Julia language.</p>
 <p>Useful guides to getting started:</p>
@@ -693,17 +692,12 @@
 <li><a href="https://julialang.org">Download</a> the binary for your platform.</li>
 <li>Follow the instructions in the "help" link for your platform. You should add a path to the Julia binary in the terminal.</li>
 <li>Try that you can start Julia by typing <code>julia</code> from a terminal window. You should see the <a href="https://docs.julialang.org/en/v1/stdlib/REPL/#The-Julia-REPL">REPL</a>.</li>
-<li>Type <code>using Pkg</code>.</li>
-<li>Type <code>Pkg.add("OhMyREPL")</code>. You will see some registry updating messages. These can take time.</li>
-<li>Type <code>Pkg.add("Revise")</code>. This adds the essential package <a href="https://timholy.github.io/Revise.jl/stable/">Revise.jl</a>. It massively improves the Julia workflow.</li>
-<li>Exit Julia by typing <code>exit()</code>. You are back at the terminal prompt.</li>
-<li>Edit "~/.julia/config/startup.jl" and add the line <code>using OhMyREPL, Revise</code>. This ensures that those packages are used every time you start Julia.</li>
-<li>Start Julia again and type <code>Revise</code>. This should not give an error message, indicating the <code>Revise</code> was installed successfully.</li>
+<li>If this fails, create a symlink (linux or macos) to the julia binary. The installation instructions describe how to do this, depending on the OS.</li>
 </ol>
 <h1 id="interacting-with-julia">Interacting with Julia<a class="headerlink" href="#interacting-with-julia" title="Permanent link">&para;</a></h1>
 <p>At the terminal, type <code>julia</code> to start a Julia session. You will see the REPL, which is similar to Matlab's command line.</p>
 <p>At the REPL, you can type any Julia command and see the results displayed. Note the REPL inputs (and all Julia commands) are case sensitive.</p>
-<p><code>?</code> switches to REPL help mode. For example, <code>?abs</code> will give help on the <code>abs</code> function:</p>
+<p><code>?</code> switches to REPL <strong>help mode</strong>. For example, <code>?abs</code> will give help on the <code>abs</code> function:</p>
 <pre><code class="julia">?abs
 
 abs(x)
@@ -713,18 +707,10 @@ The absolute value of `x`.
 When `abs` is applied to signed integers, overflow may occur, resulting in the return of a negative value. This overflow occurs only when `abs` is applied to the minimum representable value of a signed integer. That is, when `x == typemin(typeof(x))`, `abs(x) == x &lt; 0`, not `-x` as might be expected.
 
 # Examples
-
-```jldoctest
-julia&gt; abs(-3)
-3
-
-julia&gt; abs(1 + im)
-1.4142135623730951
-
-julia&gt; abs(typemin(Int64))
--9223372036854775808
+[...]
 </code></pre>
 
+<p>Hint: A documentation browser, such as <a href="https://kapeli.com/dash">Dash</a> makes life a lot easier.</p>
 <h1 id="after-installation">After Installation<a class="headerlink" href="#after-installation" title="Permanent link">&para;</a></h1>
 <p>Once Julia is installed and running, it is useful to install a few helper packages. In the REPL, type</p>
 <pre><code>using Pkg;
@@ -733,12 +719,26 @@ Pkg.add(&quot;Revise&quot;);
 </code></pre>
 
 <p>This will take some time to execute.</p>
-<p>You should also:</p>
-<ul>
-<li>create a symlink (linux or macos) to the julia binary</li>
-<li>set the path to the Julia binary in the VS Code extension</li>
-</ul>
+<p><code>OhMyREPL</code> formats REPL output.</p>
+<p><a href="https://timholy.github.io/Revise.jl/stable/">Revise.jl</a> is practically a required package. It massively improves the Julia workflow.</p>
 <p>After making changes to installed packages, you should always restart the REPL. Ctrl-D quits the REPL.</p>
+<p>Edit "~/.julia/config/startup.jl" and add the line <code>using OhMyREPL, Revise</code>. This ensures that those packages are used every time you start Julia.</p>
+<p>Hint: Set the <code>JULIA_EDITOR</code> <a href="https://docs.julialang.org/en/v1/manual/environment-variables/">environment variable</a> to point to your editor. For VSCode:</p>
+<pre><code class="julia">julia&gt; ENV[&quot;JULIA_EDITOR&quot;]
+&quot;/usr/local/bin/code&quot;
+</code></pre>
+
+<p>This allows you to open files by either clicking on file paths in the REPL (if your terminal supports this) or by typing <code>edit(path/to/file.jl)</code>.</p>
+<p>To check that everything worked correctly, start Julia and type <code>Revise</code> at the REPL prompt. Make sure this does not give an error message.</p>
+<h1 id="configure-vscode">Configure VSCode<a class="headerlink" href="#configure-vscode" title="Permanent link">&para;</a></h1>
+<p>Install the <a href="https://www.julia-vscode.org/">Julia VS Code</a> extension. </p>
+<p>Set the <code>julia.executablePath</code> to point to the Julia binary. If you created a <code>symlink</code> as recommended above, that would be <code>/usr/local/bin/julia</code> (on MacOS / Linux).</p>
+<p>See also <a href="https://techytok.com/julia-vscode/">VSCode: the future for Julia development - TechyTok</a></p>
+<p><strong>Check point:</strong> Everybody should have </p>
+<ul>
+<li>Julia 1.6 installed and running.</li>
+<li>a good text editor with the Julia extension running.</li>
+</ul>
 <hr />
                 
               

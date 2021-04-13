@@ -666,67 +666,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#vectors" class="md-nav__link">
-    Vectors
-  </a>
-  
-    <nav class="md-nav" aria-label="Vectors">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#indexing" class="md-nav__link">
-    Indexing
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ranges" class="md-nav__link">
-    Ranges
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#exercises" class="md-nav__link">
-    Exercises
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#matrices" class="md-nav__link">
-    Matrices
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#multi-dimensional-arrays" class="md-nav__link">
-    Multi-dimensional Arrays
-  </a>
-  
-    <nav class="md-nav" aria-label="Multi-dimensional Arrays">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#array-exercises" class="md-nav__link">
-    Array Exercises
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#strings" class="md-nav__link">
     Strings
   </a>
@@ -773,7 +712,7 @@
 <li>Strings, such as "this is a string".</li>
 <li>Arrays of numbers, such as <code>[1 2; 3 4]</code>.</li>
 <li><code>Dict</code>: a container that maps names to values; similar to a <code>struct</code> in Matlab.</li>
-<li><code>Struct</code>: a composite type with fixed fields; similar to a <code>class</code> in Matlab.</li>
+<li><code>Struct</code>: a composite, <strong>user-defined</strong> type with fixed fields; similar to a <code>class</code> in Matlab.</li>
 </ol>
 <h2 id="supertypes-and-subtypes">Supertypes and Subtypes<a class="headerlink" href="#supertypes-and-subtypes" title="Permanent link">&para;</a></h2>
 <p>One <code>DataType</code> is <code>Number</code>. This includes integers, floating point numbers, etc.</p>
@@ -787,7 +726,15 @@
 <p>Why do types come in a hierarchy? Mainly because some functions are defined on certain groups of types, but not on others. For example, <code>sin("abc")</code> does not make sense, but <code>sin(x)</code> makes sense for various types of <code>Number</code>.</p>
 <h2 id="scalar-numbers">Scalar Numbers<a class="headerlink" href="#scalar-numbers" title="Permanent link">&para;</a></h2>
 <p>The main <code>Number</code> types that we care about are integers and floats. Integers come in various flavors depending on how many digits they can store and whether or not they are signed. The default is <code>Int64</code> which stores 64 bits and is signed. <code>UInt8</code> requires only 8 bits, but it cannot store large values.</p>
-<p>Overflow warning: if you assign a value that is too large for a type to store, you get overflow issues:</p>
+<p>Julia knows standard operators on numbers and is smart enough to convert types as needed:</p>
+<pre><code class="julia">julia&gt; x= 1 + 2.0
+3.0
+
+julia&gt; typeof(x)
+Float64
+</code></pre>
+
+<p><strong>Overflow warning:</strong> If you assign a value that is too large for a type to store, you get overflow issues:</p>
 <pre><code class="julia">y=UInt8(12345678)
     InexactError: trunc(UInt8, 12345678)
 
@@ -807,150 +754,8 @@
 </code></pre>
 
 <p>This throws an error because Julia cannot convert a large number to a <code>UInt8</code>.</p>
-<p>The several lines below the error message are a <strong>stack trace</strong>. It shows where in your code the error occurred. This is important for debugging.</p>
-<h2 id="vectors">Vectors<a class="headerlink" href="#vectors" title="Permanent link">&para;</a></h2>
-<p>To create a vector, simply fill it with values: </p>
-<pre><code class="julia">a = [1, 2, 3]
-3-element Array{Int64,1}:
- 1
- 2
- 3
-</code></pre>
-
-<p>Vectors are simply one-dimensional <code>array</code>s. </p>
-<pre><code class="julia">julia&gt; Vector{Int} === Array{Int,1}
-true
-</code></pre>
-
-<p>There are no row vectors in Julia. A row vector is a <code>1xN</code> <code>Matrix</code>:</p>
-<pre><code class="julia">julia&gt; a = [1 2 3]
-1×3 Array{Int64,2}:
- 1  2  3
-
-julia&gt; a isa Matrix{Int}
-true
-</code></pre>
-
-<h3 id="indexing">Indexing<a class="headerlink" href="#indexing" title="Permanent link">&para;</a></h3>
-<p>To extract elements from a vector, hand it a list of indices.</p>
-<pre><code class="julia">a = [2, 3, 4, 5];
-# Note the double brackets
-a[[1, 3]]
-2-element Array{Int64,1}:
- 2
- 4
-# What we are really doing is
-idx = [1, 3];
-a[idx]
-</code></pre>
-
-<p>Then there is logical indexing:</p>
-<pre><code class="julia">a = [1, 2, 3];
-a[[true, false, true]]
-2-element Array{Int64,1}:
- 1
- 3
-</code></pre>
-
-<h3 id="ranges">Ranges<a class="headerlink" href="#ranges" title="Permanent link">&para;</a></h3>
-<p>In Matlab, <code>1:3</code> is a <code>Vector</code>, but not in Julia:</p>
-<pre><code class="julia">julia&gt; 1:3
-1:3
-
-julia&gt; typeof(1:3)
-UnitRange{Int64}
-</code></pre>
-
-<p>The main difference between a <code>Vector</code> and a <code>Range</code> is that the vector is allocated upon construction (its values are computed and stored in memory). A <code>Range</code> is an <code>Iterator</code>. You can iteratore over its elements, but they are not computed until needed. Therefore, the <code>Range</code> does not allocate memory. This is a big deal when lots of values are involved.</p>
-<p>However, a <code>Range</code> is an <code>AbstractArray</code>; so all the indexing that works on <code>Vectors</code> also works on <code>Range</code>s.</p>
-<h3 id="exercises">Exercises<a class="headerlink" href="#exercises" title="Permanent link">&para;</a></h3>
-<p>Start with <code>x = 1 : 3 : 30</code>.</p>
-<ol>
-<li>Find all even elements.</li>
-<li>Find all elements between 5 and 20.</li>
-<li>Set all even elements to their negative values.</li>
-</ol>
-<h2 id="matrices">Matrices<a class="headerlink" href="#matrices" title="Permanent link">&para;</a></h2>
-<p>A <code>Matrix</code> is a 2-dimensional array. There are also n-dimensional arrays (see below).</p>
-<p>To create a matrix, simply fill it with values. </p>
-<pre><code class="julia">julia&gt; a = [1 2 3; 4 5 6]
-2×3 Array{Int64,2}:
- 1  2  3
- 4  5  6
-</code></pre>
-
-<p>Many commands work directly on matrices. </p>
-<pre><code class="julia">julia&gt; a = [1 2 3]; b = [2; 1; 1]; a * b
-1-element Array{Int64,1}:
- 7
-julia&gt; c=b*a
-3×3 Array{Int64,2}:
- 2  4  6
- 1  2  3
- 1  2  3
-</code></pre>
-
-<p>To extract elements: </p>
-<pre><code class="julia">julia&gt; c[1,2]
-4
-
-julia&gt; c[1:2, 2:3]
-2×2 Array{Int64,2}:
- 4  6
- 2  3
-</code></pre>
-
-<p>To extract a row (but note that this produces a <code>Vector</code>):</p>
-<pre><code class="julia">julia&gt; c[1,:]
-3-element Array{Int64,1}:
- 2
- 4
- 6
-</code></pre>
-
-<p>Linear indexing works as well:</p>
-<pre><code class="julia">julia&gt; c[4]
-4
-julia&gt; c[4] == c[1,2]
-true
-</code></pre>
-
-<p>In memory, <code>Arrays</code> are stored like <code>Vectors</code>. The compiler just keeps track of how the user wants to interpret the data.</p>
-<h2 id="multi-dimensional-arrays">Multi-dimensional Arrays<a class="headerlink" href="#multi-dimensional-arrays" title="Permanent link">&para;</a></h2>
-<p>Arrays can have more than 2 dimensions. </p>
-<pre><code class="julia">julia&gt; using Random
-
-julia&gt; a = rand(4,3,2)
-4×3×2 Array{Float64,3}:
-[:, :, 1] =
- 0.146411  0.908415  0.568039
- 0.444156  0.434034  0.875361
- 0.429705  0.704086  0.71789
- 0.502228  0.124412  0.771808
-
-[:, :, 2] =
- 0.862953   0.58189    0.549077
- 0.722745   0.677342   0.330188
- 0.0543144  0.161877   0.358381
- 0.312414   0.0681076  0.822319
-</code></pre>
-
-<p>Indexing generates new arrays with potentially fewer dimensions:</p>
-<pre><code class="julia">julia&gt; a[:,1,:]
-4×2 Array{Float64,2}:
- 0.146411  0.862953
- 0.444156  0.722745
- 0.429705  0.0543144
- 0.502228  0.312414
-</code></pre>
-
-<h3 id="array-exercises">Array Exercises<a class="headerlink" href="#array-exercises" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Construct a matrix <code>A</code> with elements <code>[2,4,...,20]</code> in row 1 and <code>[1,4,7,...,28]</code> in row 2.</li>
-<li>Replace row 1 with its square.</li>
-<li>Find all columns where row 1 &gt; row 2.</li>
-<li>Let <code>x=ones(10,1)</code>. Compute <code>Ax</code>.</li>
-</ol>
+<p>The several lines below the error message are a <a href="debugging.html">stacktrace</a>. It shows where in your code the error occurred. This is important for debugging.</p>
+<p>We will talk about <a href="arrays.html">arrays</a> separately.</p>
 <h2 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h2>
 <p>In contrast to Matlab, <code>Strings</code> are not <code>Vector{Char}</code>. They are their own type.</p>
 <p>A <code>String</code> is created by providing characters inside quotes:</p>

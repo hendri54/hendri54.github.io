@@ -645,6 +645,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stacktraces" class="md-nav__link">
+    Stacktraces
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -660,7 +675,42 @@
                 
                 
                 <h1 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h1>
-<p>Some general notes and tips are <a href="../../julia_notes/debugging.html">here</a>.</p>
+<p>Some general notes and tips on debuggers are <a href="../../julia_notes/debugging.html">here</a>.</p>
+<h2 id="stacktraces">Stacktraces<a class="headerlink" href="#stacktraces" title="Permanent link">&para;</a></h2>
+<p>A stacktrace shows the stack of functions that were called to get to a particular line of code. </p>
+<p>You mostly see them where there is an error. Here is a contrived example:</p>
+<pre><code class="julia">julia&gt; foo(x) = sin(UInt8(x))
+foo (generic function with 2 methods)
+
+julia&gt; foo(1234567)
+ERROR: InexactError: trunc(UInt8, 1234567)
+Stacktrace:
+ [1] throw_inexacterror(f::Symbol, #unused#::Type{UInt8}, val::Int64)
+   @ Core ./boot.jl:602
+ [2] checked_trunc_uint
+   @ ./boot.jl:632 [inlined]
+ [3] toUInt8
+   @ ./boot.jl:694 [inlined]
+ [4] UInt8
+   @ ./boot.jl:754 [inlined]
+ [5] foo(x::Int64)
+   @ Main ./REPL[16]:1
+ [6] top-level scope
+   @ REPL[17]:1
+</code></pre>
+
+<p>Stacktraces are often very long and look confusing. There are 2 key lines:</p>
+<ol>
+<li><code>ERROR: Inexacterror: ...</code>: this tells you what went wrong.</li>
+<li><code>[5] foo(x::Int64)</code>: this is the line of your code that caused the error.</li>
+</ol>
+<p>Entries <code>[1]</code> to <code>[4]</code> are <code>Base</code> code that you did not write. This will generally be correct and is often irrelevant. </p>
+<p>The key is to patiently parse the stacktrace until you understand what actually went wrong. </p>
+<ul>
+<li><code>InexactError</code> tells you that something was truncated. </li>
+<li>It even tells you the instruction that went wrong: <code>trunc(Uint8, 1234567)</code>.</li>
+<li>In words this says: You told me to convert a big <code>Int64</code> to a <code>UInt8</code>. This caused an overflow.</li>
+</ul>
 <hr />
                 
               
