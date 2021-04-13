@@ -15,7 +15,7 @@
     
     
       
-        <title>Object Oriented Programming (OOP) # - Lutz Hendricks</title>
+        <title>Object Oriented Programming (OOP) - Lutz Hendricks</title>
       
     
     
@@ -82,7 +82,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Object Oriented Programming (OOP) #
+              Object Oriented Programming (OOP)
             
           </span>
         </div>
@@ -686,6 +686,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#oop-in-julia" class="md-nav__link">
+    OOP in Julia
+  </a>
+  
+    <nav class="md-nav" aria-label="OOP in Julia">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-utility-function_1" class="md-nav__link">
+    Example: Utility Function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-do-we-care" class="md-nav__link">
+    Why do we care?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     References
   </a>
@@ -731,8 +758,70 @@
 <h2 id="drawbacks">Drawbacks<a class="headerlink" href="#drawbacks" title="Permanent link">&para;</a></h2>
 <p>Some view OOP as misguided. The focus should be on algorithms or interfaces, not objects.</p>
 <p>I don't think there is a right answer. </p>
-<p>Some code "naturally" structures itself around objects. Example: Utility functions, their parameters, and the obvious methods (computing utility, marginal utility, ...).</p>
+<p>Some code "naturally" structures itself around objects. </p>
+<p>Example: Utility functions, their parameters, and the obvious methods (computing utility, marginal utility, ...).</p>
 <p>Other code "naturally" structures itself around algorithms. This is particularly true for "lower level" tasks, such as sorting.</p>
+<h2 id="oop-in-julia">OOP in Julia<a class="headerlink" href="#oop-in-julia" title="Permanent link">&para;</a></h2>
+<p>Julia is not an OOP language. There is no <a href="https://en.wikipedia.org/wiki/Object-oriented_programming#Composition,_inheritance,_and_delegation">inheritance</a>.</p>
+<p>But it is easy to create user defined types that store their persistent state and to define methods that "belong" to those types.</p>
+<h3 id="example-utility-function_1">Example: Utility Function<a class="headerlink" href="#example-utility-function_1" title="Permanent link">&para;</a></h3>
+<pre><code class="julia">struct CRRA{T}
+  sigma :: T
+end
+
+utility(u :: CRRA{T}, c) where T = 
+  (c .^ (one(T) - u.sigma)) ./ (one(T) - u.sigma);
+
+marginal_utility(u :: CRRA{T}, c) where T = 
+  c .^  (-u.sigma);
+</code></pre>
+
+<pre><code class="julia">julia&gt; u = CRRA(2.0)
+CRRA{Float64}(2.0)
+
+julia&gt; utility(u, [2.0, 3.0])
+2-element Vector{Float64}:
+ -0.5
+ -0.3333333333333333
+</code></pre>
+
+<h2 id="why-do-we-care">Why do we care?<a class="headerlink" href="#why-do-we-care" title="Permanent link">&para;</a></h2>
+<p>When we solve structural models, OOP is a natural approach.</p>
+<p>Example:</p>
+<pre><code class="julia">julia&gt; abstract type AbstractUtility{T} end
+
+julia&gt; struct CRRA{T} &lt;: AbstractUtility{T}
+           σ :: T
+       end
+
+julia&gt; abstract type AbstractProductionFunction{T} end
+
+julia&gt; struct CobbDouglas{T} &lt;: AbstractProductionFunction{T}
+           α :: T
+           tfp :: T
+       end
+
+julia&gt; struct Model{T}
+           util :: AbstractUtility{T}
+           prodFct :: AbstractProductionFunction{T}
+       end
+
+julia&gt; m = Model(CRRA(2.0), CobbDouglas(0.3, 1.5))
+Model{Float64}(CRRA{Float64}(2.0), CobbDouglas{Float64}(0.3, 1.5))
+</code></pre>
+
+<p>Now we change our mind and go for exponential utility:</p>
+<pre><code class="julia">julia&gt; struct ExponentialUtil{T} &lt;: AbstractUtility{T}
+           μ :: T
+       end
+
+julia&gt; m = Model(ExponentialUtil(0.7), CobbDouglas(0.3, 1.5))
+Model{Float64}(ExponentialUtil{Float64}(0.7), CobbDouglas{Float64}(0.3, 1.5))
+</code></pre>
+
+<p>As long as <code>utility(u, c)</code> is defined for each utility function, nothing in our code changes when we replace one utility function with another.</p>
+<p>And the model automatically keeps track of the parameters that actually matter in this model version.</p>
+<p>Models become like Legos.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <p>Matlab documentation on <a href="http://www.mathworks.com/help/matlab/object-oriented-programming.html">object oriented programming</a>.</p>
 <hr />

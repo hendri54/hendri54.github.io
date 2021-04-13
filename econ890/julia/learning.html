@@ -15,7 +15,7 @@
     
     
       
-        <title>Debugging - Lutz Hendricks</title>
+        <title>Learning Julia - Lutz Hendricks</title>
       
     
     
@@ -54,7 +54,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#debugging" class="md-skip">
+        <a href="#learning-julia" class="md-skip">
           Skip to content
         </a>
       
@@ -82,7 +82,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Debugging
+              Learning Julia
             
           </span>
         </div>
@@ -645,55 +645,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#stacktraces" class="md-nav__link">
-    Stacktraces
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common-mistakes" class="md-nav__link">
-    Common mistakes
-  </a>
-  
-    <nav class="md-nav" aria-label="Common mistakes">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#passing-arguments-in-the-wrong-order" class="md-nav__link">
-    Passing arguments in the wrong order.
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reusing-variable-names" class="md-nav__link">
-    Reusing variable names.
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#indexing-problems" class="md-nav__link">
-    Indexing problems.
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -708,77 +659,14 @@
                   
                 
                 
-                <h1 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">&para;</a></h1>
-<p>Some general notes and tips on debuggers are <a href="../../julia_notes/debugging.html">here</a>.</p>
-<h2 id="stacktraces">Stacktraces<a class="headerlink" href="#stacktraces" title="Permanent link">&para;</a></h2>
-<p>A stacktrace shows the stack of functions that were called to get to a particular line of code. </p>
-<p>You mostly see them where there is an error. Here is a contrived example:</p>
-<pre><code class="julia">julia&gt; foo(x) = sin(UInt8(x))
-foo (generic function with 2 methods)
-
-julia&gt; foo(1234567)
-ERROR: InexactError: trunc(UInt8, 1234567)
-Stacktrace:
- [1] throw_inexacterror(f::Symbol, #unused#::Type{UInt8}, val::Int64)
-   @ Core ./boot.jl:602
- [2] checked_trunc_uint
-   @ ./boot.jl:632 [inlined]
- [3] toUInt8
-   @ ./boot.jl:694 [inlined]
- [4] UInt8
-   @ ./boot.jl:754 [inlined]
- [5] foo(x::Int64)
-   @ Main ./REPL[16]:1
- [6] top-level scope
-   @ REPL[17]:1
-</code></pre>
-
-<p>Stacktraces are often very long and look confusing. There are 2 key lines:</p>
-<ol>
-<li><code>ERROR: Inexacterror: ...</code>: this tells you what went wrong.</li>
-<li><code>[5] foo(x::Int64)</code>: this is the line of your code that caused the error.</li>
-</ol>
-<p>Entries <code>[1]</code> to <code>[4]</code> are <code>Base</code> code that you did not write. This will generally be correct and is often irrelevant. </p>
-<p>The key is to patiently parse the stacktrace until you understand what actually went wrong. </p>
+                <h1 id="learning-julia">Learning Julia<a class="headerlink" href="#learning-julia" title="Permanent link">&para;</a></h1>
+<p>The <a href="https://docs.julialang.org/en/v1/">documentation</a> is a must-read.</p>
+<p>It is long and probably hard to understand the first time around. Like with all complex material, read it again and again.</p>
+<p><a href="https://discourse.julialang.org">The Julia Discourse</a> is a great place to ask questions and get expert answers. </p>
 <ul>
-<li><code>InexactError</code> tells you that something was truncated. </li>
-<li>It even tells you the instruction that went wrong: <code>trunc(Uint8, 1234567)</code>.</li>
-<li>In words this says: You told me to convert a big <code>Int64</code> to a <code>UInt8</code>. This caused an overflow.</li>
+<li>Be sure to first read the <a href="https://discourse.julialang.org/t/psa-make-it-easier-to-help-you/14757">PSA</a>.</li>
+<li>Skimming the replies of experienced people is a great way of discovering language features and packages that you did not know about.</li>
 </ul>
-<h2 id="common-mistakes">Common mistakes<a class="headerlink" href="#common-mistakes" title="Permanent link">&para;</a></h2>
-<h3 id="passing-arguments-in-the-wrong-order">Passing arguments in the wrong order.<a class="headerlink" href="#passing-arguments-in-the-wrong-order" title="Permanent link">&para;</a></h3>
-<p>Often functions have lots of input arguments. This is generally a sign of poor design, but sometimes hard to avoid in economic applications.</p>
-<p>It is easy to confuse the order and write <code>myfun(b,a)</code> instead of <code>myfun(a,b)</code>. </p>
-<p>To avoid this: check that inputs have admissible values.</p>
-<h3 id="reusing-variable-names">Reusing variable names.<a class="headerlink" href="#reusing-variable-names" title="Permanent link">&para;</a></h3>
-<p>It is easy to use a variable name twice without noticing. This can produce tricky bugs.</p>
-<p>One way of avoiding this: keep your functions <strong>short</strong>. Some experts advocate that functions should be 4 lines of code or less. This is probably not realistic, but you get the idea.</p>
-<h3 id="indexing-problems">Indexing problems.<a class="headerlink" href="#indexing-problems" title="Permanent link">&para;</a></h3>
-<p>It is easy to make mistakes when extracting elements from matrices. This is
-especially true for code that wraps a loop into a single line of code. </p>
-<p>For example, this is easy to read:</p>
-<pre><code class="julia">for ix = 1 : nx
-  zV[ix] = xV[ix+2] + yV[nx + 2 - ix];
-end
-</code></pre>
-
-<p>This is the same thing, more compact but harder to read:</p>
-<pre><code class="julia">zV = xV[3 : nx+2] .+ yV[nx+1 : -1 : 2];
-</code></pre>
-
-<blockquote>
-<p>Tip: Write out code explicitly. Once it works, one can still make it faster
-(if that is even worthwhile).
-You can keep the slow version in a unit test.</p>
-</blockquote>
-<p>Note that vectorizing code does not improve speed in Julia (unless you exploit the parallel execution capabilities of modern CPUs).</p>
-<p>Another common indexing mistake is to use too few arguments. For example:</p>
-<pre><code class="julia">    x = rand([3,4]); 
-    y = x(3);
-</code></pre>
-
-<p>This should produce a syntax error, but it does not. Instead, it flattens x
-into a vector and then takes the 3rd element.</p>
 <hr />
                 
               

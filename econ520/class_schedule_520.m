@@ -147,6 +147,9 @@ i1 = 0;
 i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[Labor market](asad/labor_mk_sl.pdf)',  '[PP](asad/Labor_RQ.pdf)'});
 
+i1 = i1 + 1;
+topicV{i1} =  markdownLH.SubTopic({'Labor market (continued)'});
+
 % <!--- 
 % [Rising wage inequality](asad/labor_inequality_sl.pdf)
 % enable next time; take material out of inequality_sl
@@ -155,6 +158,11 @@ topicV{i1} =  markdownLH.SubTopic({'[Labor market](asad/labor_mk_sl.pdf)',  '[PP
 i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[AS-AD model](asad/asad_model_sl.pdf)',  ...
    '[PP](asad/as_ad_rq.pdf) (covers Phillips Curve)'});
+
+i1 = i1 + 1;
+topicV{i1} =  markdownLH.SubTopic({'AS-AD model (continued)'});
+i1 = i1 + 1;
+topicV{i1} =  markdownLH.SubTopic({'AS-AD model (continued)'});
 
 i1 = i1 + 1;
 topicV{i1} =  markdownLH.SubTopic({'[Inflation and unemployment](asad/infl_unempl_sl.pdf)'});
