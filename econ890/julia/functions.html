@@ -15,7 +15,7 @@
     
     
       
-        <title>Functions and Scripts - Lutz Hendricks</title>
+        <title>Functions - Lutz Hendricks</title>
       
     
     
@@ -54,7 +54,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#functions-and-scripts" class="md-skip">
+        <a href="#functions" class="md-skip">
           Skip to content
         </a>
       
@@ -82,7 +82,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Functions and Scripts
+              Functions
             
           </span>
         </div>
@@ -652,6 +652,33 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#scripts" class="md-nav__link">
+    Scripts
+  </a>
+  
+    <nav class="md-nav" aria-label="Scripts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions_1" class="md-nav__link">
+    Functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#encapsulation" class="md-nav__link">
     Encapsulation
   </a>
@@ -660,7 +687,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#example_1" class="md-nav__link">
     Example:
   </a>
   
@@ -674,20 +701,6 @@
         <li class="md-nav__item">
   <a href="#passing-by-reference" class="md-nav__link">
     Passing by reference
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#namespaces" class="md-nav__link">
-    Namespaces
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#functions-versus-scripts" class="md-nav__link">
-    Functions versus Scripts
   </a>
   
 </li>
@@ -715,16 +728,73 @@
                   
                 
                 
-                <h1 id="functions-and-scripts">Functions and Scripts<a class="headerlink" href="#functions-and-scripts" title="Permanent link">&para;</a></h1>
-<h2 id="encapsulation">Encapsulation<a class="headerlink" href="#encapsulation" title="Permanent link">&para;</a></h2>
+                <h1 id="functions">Functions<a class="headerlink" href="#functions" title="Permanent link">&para;</a></h1>
+<p>The code base for big projects is very complex -- possibly tens of thousands of lines of code.</p>
+<p>How to make this comprehensible for humans?</p>
 <p>A key idea of <a href="solid_code.html#structured-programming">structured programming</a>: </p>
 <ul>
 <li>package code into self-contained functions</li>
 <li>avoid side effects</li>
 </ul>
 <p>A function should only change the rest of the world through the outputs it explicitly returns. This is called <a href="https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)">encapsulation</a>.</p>
-<p>For this to work, all variables inside a function must be invisible to other code -- they are <strong>local</strong>.</p>
-<h3 id="example">Example:<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<p>Then we can reason about small pieces of code in isolation. We don't have to worry about what the other code does.</p>
+<blockquote>
+<p>Rule of thumb: All of your code should be inside functions.</p>
+</blockquote>
+<h2 id="scripts">Scripts<a class="headerlink" href="#scripts" title="Permanent link">&para;</a></h2>
+<p>Scripts are simply collections of commands that are run as if they were typed at the command prompt.</p>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<p>Create a file called <code>test1.jl</code> that contains</p>
+<pre><code class="julia">x = 2;
+println(&quot;We defined x to be $x&quot;);
+</code></pre>
+
+<p>Now running this file with <code>include("test1.jl")</code> is exactly the same as typing those lines in the REPL.</p>
+<pre><code class="julia">julia&gt; include(&quot;test1.jl&quot;)
+We defined x to be 2
+
+julia&gt; x
+2
+</code></pre>
+
+<p>Note that the value of <code>x</code> "leaks out" of the script -- exactly as if we had typed the code in the REPL.</p>
+<p>In computer lingo, the script runs in the <strong>global namespace</strong>.</p>
+<ul>
+<li>More precisely, everything in the script becomes a global object in the <code>Main</code> module.</li>
+<li>This is bad!</li>
+<li>Everything is visible everywhere.</li>
+</ul>
+<p>To avoid polluting the global namespace, we use functions.</p>
+<blockquote>
+<p>Rule of thumb: Always use functions, never scripts!</p>
+</blockquote>
+<h2 id="functions_1">Functions<a class="headerlink" href="#functions_1" title="Permanent link">&para;</a></h2>
+<p>Functions are similar to scripts with one crucial difference:</p>
+<ul>
+<li>All variables inside a function are <strong>private</strong>.</li>
+<li>Other functions cannot see the variables inside a function (<em>encapsulation</em>).</li>
+<li>Any variable a function should know must be passed to it as an input argument.</li>
+<li>Any variable to be retained after the function finishes must be passed out of it as a return argument. </li>
+</ul>
+<p>A function looks like this:</p>
+<pre><code class="julia">function f(x, y)
+    # Do stuff with x and y -&gt; z
+    return z
+end
+</code></pre>
+
+<p>It takes two inputs (<code>x, y</code>), hopefully without modifying them, and affects the rest of the world <strong>only</strong> through its return value <code>z</code>.</p>
+<p>A side note: Even built-in commands are often written in Julia.</p>
+<h2 id="encapsulation">Encapsulation<a class="headerlink" href="#encapsulation" title="Permanent link">&para;</a></h2>
+<p>A function creates a <strong>local scope</strong> or a <strong>namespace</strong>. </p>
+<p>Only items explicitly defined in the namespace are visible there.</p>
+<p>Note: <code>Module</code>s are another way of creating a namespace. We will talk about those soon.</p>
+<p>By default, all objects are <strong>local</strong>: they are only visible inside the current function.</p>
+<p>Some objects are explicitly declared <strong>global</strong>: they are visible everywhere (in the current <code>module</code>).</p>
+<blockquote>
+<p>Rule: Avoid globals like the plague, unless they are constants.</p>
+</blockquote>
+<h3 id="example_1">Example:<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
 <pre><code class="julia">julia&gt; function f(x)
                a = 5;
                y = x + a;
@@ -732,23 +802,30 @@
        end
 f (generic function with 1 method)
 
-julia&gt; a = 3; y = f(0)
+julia&gt; a = 3; 
+julia&gt; y = f(0)
 5
-julia&gt; a
+julia&gt; a # Calling `f` did not change `a` on the &quot;outside&quot;
 3
 # Now the converse
 julia&gt; function g(x)
-               z = x + a;
+                # Note that `a` is not defined in `g`
+            z = x + a;
        end
 g (generic function with 1 method)
 julia&gt; g(1)
-4
+4  # `g` used the `global a`
 </code></pre>
 
 <p>Note that <code>g</code> could see the variable <code>a=3</code> defined in the REPL, but not the <code>a</code> inside of <code>f</code>.</p>
 <p>Setting <code>a=3</code> in the REPL defined a <code>global</code> variable which is visible everywhere. Defining a variable inside a function produces a <code>local</code> variable instead.</p>
 <h2 id="passing-by-reference">Passing by reference<a class="headerlink" href="#passing-by-reference" title="Permanent link">&para;</a></h2>
-<p>Variables are passed into functions "by reference." This means that <strong>modifying a function argument changes its value after the function returns</strong>:</p>
+<p>What happens if we modify a function argument? Are the changes visible on the outside?</p>
+<p>In Julia, the answer is "yes" (unless an objects is <code>immutable</code>).</p>
+<p>Variables are passed into functions "by reference." </p>
+<blockquote>
+<p><strong>Modifying a function argument changes its value after the function returns</strong></p>
+</blockquote>
 <pre><code class="julia">julia&gt; function h(x)
          x[1] = 2;
          println(x);
@@ -785,7 +862,8 @@ julia&gt; z
 &quot;input&quot;
 </code></pre>
 
-<p>Generally, it is cleaner to avoid mutating arguments. When it is done, the function name should end in <code>!</code> to indicate that the function is mutating.</p>
+<p>Generally, it is cleaner to avoid mutating arguments. But this can be inefficient.</p>
+<p>When arguments are mutated, the function name should end in <code>!</code>.</p>
 <p><strong>Example</strong></p>
 <pre><code class="julia">julia&gt; x = [3,1,4,2]
 4-element Vector{Int64}:
@@ -818,56 +896,6 @@ julia&gt; x
  4
 </code></pre>
 
-<h2 id="namespaces">Namespaces<a class="headerlink" href="#namespaces" title="Permanent link">&para;</a></h2>
-<p>A <a href="https://en.wikipedia.org/wiki/Namespace">namespace</a> is a set of functions or scripts that can "see" the same objects.</p>
-<p>Example: </p>
-<ul>
-<li>In the function <code>f(x)</code> above, <code>a</code>  was in <code>f(x)</code>'s namespace, but not in <code>g(x)</code>'s.</li>
-<li>Conversely, the <code>a</code> inside <code>f(x)</code> is local and not in the REPL's namespace.</li>
-</ul>
-<p>In Julia, namespaces are created by modules. Even what you run in the REPL lives in a module called <code>Main</code>.</p>
-<pre><code class="julia">julia&gt; module Foo
-         f(x) = x ^ 2;
-       end
-Main.Foo
-
-julia&gt; f(2)
-ERROR: UndefVarError: f not defined
-Stacktrace:
- [1] top-level scope at REPL[3]:1
-
-julia&gt; using .Foo
-
-julia&gt; Foo.f(2)
-4
-</code></pre>
-
-<h2 id="functions-versus-scripts">Functions versus Scripts<a class="headerlink" href="#functions-versus-scripts" title="Permanent link">&para;</a></h2>
-<p>Scripts are simply collections of commands that are run as if they were typed at the command prompt.</p>
-<p>Scripts run in the global namespace (in <code>Main</code> or in whatever module they are in). This is, generally speaking, not good. They create side effects.</p>
-<p>Rule of thumb:</p>
-<blockquote>
-<p>Always use functions, never scripts!</p>
-</blockquote>
-<p>Functions are similar to scripts with one crucial difference:</p>
-<ul>
-<li>All variables inside a function are <strong>private</strong>.</li>
-<li>Other functions cannot see the variables inside a function (<em>encapsulation</em>).</li>
-<li>Any variable a function should know must be passed to it as an input argument.</li>
-<li>Any variable to be retained after the function finishes must be passed out of it as a return argument. </li>
-</ul>
-<p>An important principle of structured programming: </p>
-<blockquote>
-<p><strong>Package a well-defined task into a function with a simple interface.</strong></p>
-</blockquote>
-<p>A function looks like this</p>
-<pre><code class="julia">function f(x, y)
-    # Do stuff with x and y -&gt; z
-    return z
-end
-</code></pre>
-
-<p>A side note: Even built-in commands are often written in Julia.</p>
 <h2 id="global-variables">Global Variables<a class="headerlink" href="#global-variables" title="Permanent link">&para;</a></h2>
 <p>To make a variable visible from anywhere, define it as a <code>global</code>. </p>
 <blockquote>

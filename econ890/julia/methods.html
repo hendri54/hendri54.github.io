@@ -666,6 +666,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#generic-programming" class="md-nav__link">
+    Generic Programming
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#extending-existing-functions" class="md-nav__link">
     Extending existing functions
   </a>
@@ -689,7 +696,15 @@
                 
                 
                 <h1 id="methods-and-multiple-dispatch">Methods and Multiple Dispatch<a class="headerlink" href="#methods-and-multiple-dispatch" title="Permanent link">&para;</a></h1>
+<p>Now we get to one of the key distinguishing features of Julia: multiple dispatch.</p>
 <h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h2>
+<p>When we create a function, we get a strange status message:</p>
+<pre><code class="julia">julia&gt; baz(x) = 2 * x
+baz (generic function with 1 method)
+</code></pre>
+
+<p>We just created a "generic function" (we will pretty much never worry about what that means) with <strong>1 method</strong>.</p>
+<p>But now try</p>
 <pre><code class="julia">julia&gt; function foo end
 foo (generic function with 0 methods)
 </code></pre>
@@ -703,11 +718,15 @@ ERROR: MethodError: no method matching foo(::Int64)
 <p>Now let's define a <code>method</code>:</p>
 <pre><code class="julia">julia&gt; foo(x :: Int) = @show x
 foo (generic function with 1 method)
+julia&gt; foo(10)
+x = 10
 </code></pre>
 
 <p>And a second one:</p>
 <pre><code class="julia">julia&gt; foo(x :: String) = println(&quot;$x is a string&quot;)
 foo (generic function with 2 methods)
+julia&gt; foo(&quot;abc&quot;)
+abc is a string
 </code></pre>
 
 <p>What methods do we have?</p>
@@ -717,9 +736,17 @@ foo (generic function with 2 methods)
 [2] foo(x::Int64) in Main at REPL[5]:1
 </code></pre>
 
-<p>A <code>function</code> is just a name. A method specifies what to do when we call <code>foo</code> with a specific set of arguments.</p>
+<p>So what are functions and methods?</p>
+<p>A <code>function</code> is just a name. We actually cannot do anything with it.</p>
+<p>A <code>method</code> specifies what to do when we call <code>foo</code> with a specific set of arguments.</p>
+<blockquote>
+<p>Key point: <code>foo(x::Int)</code> and <code>foo(x::String)</code> are <strong>not</strong> different functions. They are <code>methods</code> of the same <code>function</code>.</p>
+</blockquote>
 <h2 id="multiple-dispatch">Multiple Dispatch<a class="headerlink" href="#multiple-dispatch" title="Permanent link">&para;</a></h2>
-<p>We can have the same function call <code>foo(x)</code> execute different code, depending on the argument type:</p>
+<p>What do <code>methods</code> do?</p>
+<blockquote>
+<p>Methods allow us to execute different code for the same function call, depending on the type of the input argument.</p>
+</blockquote>
 <pre><code class="julia">julia&gt; foo(1);
 x = 1
 
@@ -727,6 +754,20 @@ julia&gt; foo(&quot;abc&quot;);
 abc is a string
 </code></pre>
 
+<p>Why do we want this to happen?</p>
+<p>Benefit 1: We don't have to worry about name conflicts</p>
+<p>Contrast with Matlab:</p>
+<ul>
+<li>There can only be one function (and method) named <code>foo</code>. </li>
+<li>Every time to write a function, you need to create a globally unique name.</li>
+<li>This makes code reuse very difficult.</li>
+<li>If two libraries contain a function <code>foo</code>, they cannot both be used at the same time.</li>
+</ul>
+<p>Benefit 2: Generic programming</p>
+<ul>
+<li>We can write an algorithm that can handle any type of input object. </li>
+<li>See below.</li>
+</ul>
 <p>This is rather similar to <a href="oop.html">object oriented programming</a> where <code>method</code>s are owned by specific objects.</p>
 <p>The key difference is that, in Julia, this also works with multiple arguments:</p>
 <pre><code class="julia">julia&gt; foo(x,y) = @show x,y
@@ -749,6 +790,25 @@ abc is a string, but 2 can be anything
 <li>If we have two methods with the same number of arguments, the more specific one is called.</li>
 <li><code>foo(x,y)</code> is a fallback method that gets called unless a more specific method exists.</li>
 </ol>
+<h2 id="generic-programming">Generic Programming<a class="headerlink" href="#generic-programming" title="Permanent link">&para;</a></h2>
+<p>Suppose I have written a great sorting algorithm:</p>
+<pre><code class="julia">function mysort(xIn :: Vector{Int})
+  x = copy(xIn);
+  xSorted = similar(x);
+  xMax = maximum(x) + one(eltype(x));
+  for j = 1 : length(x)
+    idxMin, xMin = findmin(x);
+    xSorted[j] = xMin;
+    x[j] = xMax;
+  end
+  return xSorted
+end
+</code></pre>
+
+<p>This is, of course, a terrible algorithm, but it makes clear that I could run this algorithm on any object for which <code>maximum</code> is defined.</p>
+<p>Wouldn't it be great, if there were a way to remove the restriction that <code>xIn :: Vector{Int}</code> and apply that algorithm to any object for which <code>maximum</code> is defined?</p>
+<p>That would be especially great, if the user could defined new methods for <code>maximum</code> for any <code>DataType</code> that they might come up with. </p>
+<p>This is not only possible, it is very common in Julia.</p>
 <h2 id="extending-existing-functions">Extending existing functions<a class="headerlink" href="#extending-existing-functions" title="Permanent link">&para;</a></h2>
 <p>We can extend functions that were defined by others (in modules, including <code>Base</code>) to new data types.</p>
 <p>For example, suppose we want to be able to <code>sum</code> <code>String</code>s (this is a bad idea, but we can do it):</p>

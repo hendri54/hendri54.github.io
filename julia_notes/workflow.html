@@ -675,6 +675,11 @@
                 
                 
                 <h1 id="workflow">Workflow<a class="headerlink" href="#workflow" title="Permanent link">&para;</a></h1>
+<p>It is often useful to try something in a temporary environment. </p>
+<p><code>Pkg.activate(temp = true)</code></p>
+<p>or</p>
+<p><code>pkg&gt; activate --temp</code></p>
+<p>both generate a temporary environment in <code>/tmp</code> and activate it. Here, one can add dependencies and then simply forget the environment once done. The folder will be automatically cleaned up after some time, I believe.</p>
 <h2 id="revisejl">Revise.jl<a class="headerlink" href="#revisejl" title="Permanent link">&para;</a></h2>
 <p>Revise is essential for a smooth workflow.</p>
 <p>One limitation: <code>include</code>ing files in a model that is tracked with <code>includet</code> does not work (1.6). Example:</p>
