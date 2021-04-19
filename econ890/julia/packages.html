@@ -659,8 +659,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-registry" class="md-nav__link">
-    The Registry
+  <a href="#adding-packages" class="md-nav__link">
+    Adding packages
   </a>
   
 </li>
@@ -675,6 +675,13 @@
         <li class="md-nav__item">
   <a href="#dependency-hell" class="md-nav__link">
     Dependency Hell
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#items-that-we-cover-later" class="md-nav__link">
+    Items that we cover later
   </a>
   
 </li>
@@ -696,44 +703,61 @@
                 
                 
                 <h1 id="packages">Packages<a class="headerlink" href="#packages" title="Permanent link">&para;</a></h1>
-<p>A package is a directory with code that declares all of its dependencies. It is self-contained.</p>
-<p>A package is a type of "environment".</p>
+<p>A package is a <code>module</code> that declares all of its dependencies. It is self-contained.</p>
+<p>You encounter packages in two ways:</p>
+<ol>
+<li>when you use code written by others (as in <code>using Revise</code>)</li>
+<li>when you create your own packages.</li>
+</ol>
 <h2 id="environments">Environments<a class="headerlink" href="#environments" title="Permanent link">&para;</a></h2>
-<p>This is a key concept for Julia!</p>
-<p>At any point in time, Julia activates one directory as the active environment.</p>
-<p>This determines which packages (think code libraries) can be loaded with <code>using MyPackage</code>.</p>
-<p>To keep track of what is visible, the directory that contains a file <code>Project.toml</code> file. This file declares all of the available packages, their versions, and their locations.</p>
-<p>When you start Julia, you are in the <code>v1.5</code> environment (replace the <code>1.5</code> with the Julia version that you are using). </p>
+<p>A package is a type of "environment". This is a key concept for Julia!</p>
+<p>Suppose I want to use a package, such as <code>Revise.jl</code>. If I enter <code>using Revise</code>, how does Julia find the code?</p>
+<p>The answer is: Julia looks in <code>Project.toml</code> for the current environment.</p>
+<p>Let's start Julia and enter "package mode" by typing <code>]</code>. </p>
+<ul>
+<li>The prompt changes to <code>(@v1.6) pkg&gt;</code>.</li>
+<li>We can now enter package management commands.</li>
+</ul>
+<p>The <code>(@v1.6)</code> part of the prompt tells us that the active environment is <code>v1.6</code>, which is Julia's startup environment.</p>
+<blockquote>
 <p>Tip: keep this environment minimal. Here you just want to list packages that you use while developing your code (e.g. <code>Revise.jl</code>).</p>
+</blockquote>
+<p>At any point in time, Julia activates one directory as the active environment.</p>
+<p>Each environment is associated with a directory. It contains a file named <code>Project.toml</code>. </p>
+<p>This file declares all of the available packages, their acceptable versions, and their locations.</p>
 <p>If you look at <code>Project.toml</code>, you see something like:</p>
-<pre><code>shell&gt; cat ~/.julia/environments/v1.6/Project.toml
+<div class="highlight"><pre><span></span><code>shell&gt; cat ~/.julia/environments/v1.6/Project.toml
 [deps]
 OhMyREPL = &quot;5fb14364-9ced-5910-84b2-373655c76a03&quot;
 Revise = &quot;295af30f-e4ad-537b-8983-00126c2a3abe&quot;
-</code></pre>
+</code></pre></div>
 
 <p>Each line gives the name and UUID (a unique id) of each available package.</p>
 <p>An easier way of seeing the same info:</p>
-<pre><code class="julia">julia&gt; using Pkg
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">Pkg</span>
 
-julia&gt; Pkg.status()
-Status `~/.julia/environments/v1.5/Project.toml`
-  [5fb14364] OhMyREPL v0.5.10
-  [295af30f] Revise v3.1.12
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">Pkg</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
+<span class="n">Status</span> <span class="sb">`~/.julia/environments/v1.5/Project.toml`</span>
+  <span class="p">[</span><span class="mi">5</span><span class="n">fb14364</span><span class="p">]</span> <span class="n">OhMyREPL</span> <span class="n">v0</span><span class="o">.</span><span class="mf">5.10</span>
+  <span class="p">[</span><span class="mi">295</span><span class="n">af30f</span><span class="p">]</span> <span class="n">Revise</span> <span class="n">v3</span><span class="o">.</span><span class="mf">1.12</span>
+</code></pre></div>
 
 <p>This means that <code>using Revise</code> will make the code in <code>Revise.jl</code> available. But if I try <code>using Plots</code>, I get an error message:</p>
-<pre><code>julia&gt; using Plots
+<div class="highlight"><pre><span></span><code>julia&gt; using Plots
 ERROR: ArgumentError: Package Plots not found in current path:
 - Run `import Pkg; Pkg.add(&quot;Plots&quot;)` to install the Plots package.
-</code></pre>
+</code></pre></div>
 
 <p>This basically says: Julia cannot find an entry for <code>Plots</code> in <code>Project.toml</code>. So the code cannot be used until I run <code>Pkg.add("Plots")</code>.</p>
 <p>If you now activate a different directory using <code>Pkg.activate("/path/to/dir")</code>, <strong>additional</strong> packages become available.</p>
-<p>Note that the packages known from <code>v1.5</code> are not "forgotten." Each time I activate a new environment, packages get added to the known list of loadable packages. This is known as <strong>stacked environments</strong>. They are stacked in the sense that activating another environment retains the packages that are already activated. This is the reason why you want your <code>v.1.5</code> environment to be minimal.</p>
-<h2 id="the-registry">The Registry<a class="headerlink" href="#the-registry" title="Permanent link">&para;</a></h2>
-<p>Packages are often registered: the authors create an entry in the Julia General Registry for their package.</p>
-<p>If this is the case, <code>Pkg.add("Revise")</code> works. Julia looks up the most recent version in the registry and downloads the code from a <code>github</code> repo.</p>
+<p>Note that the packages known from <code>v1.5</code> are not "forgotten." </p>
+<p>Each time I activate a new environment, packages get added to the known list of loadable packages. </p>
+<p>This is known as <strong>stacked environments</strong>. They are stacked in the sense that activating another environment retains the packages that are already activated. </p>
+<p>This is the reason why you want your <code>v1.5</code> environment to be minimal.</p>
+<h2 id="adding-packages">Adding packages<a class="headerlink" href="#adding-packages" title="Permanent link">&para;</a></h2>
+<p>To add a package to the list of known dependencies, use <code>Pkg.add("Revise")</code>.</p>
+<p>In response, Julia looks up <code>Revise</code> in the General Registry and adds an entry for <code>Revise</code> to <code>Project.toml</code> (for the current environment).</p>
+<p>Now we can issue <code>using Revise</code>. Julia then downloads the code from the package's <code>github</code> repo.</p>
 <p>The code goes into a hidden directory in <code>.julia/packages</code>. Each version of <code>Revise</code> that you ever use gets stored there.</p>
 <p>You rarely need to worry about where this code lives.</p>
 <p>If a package is not registered, presumably because you wrote it yourself, <code>using</code> it gets a bit more complicated.</p>
@@ -755,11 +779,18 @@ ERROR: ArgumentError: Package Plots not found in current path:
 <p>Both <code>A</code> and <code>B</code> depend on <code>X</code> and <code>Y</code>, but <code>X</code> also depends on <code>Y</code>.</p>
 <p>But when different people wrote <code>A</code>, <code>B</code>, and <code>X</code> they were using different versions of <code>Y</code> (and perhaps also of <code>X</code>).</p>
 <p>How can the resulting code possibly run successfully? This problem is called "dependency hell".</p>
-<p>The solution relies on meaningful version numbers together with explicity compatibility specifications.</p>
-<p>Version numbers (at least for registered packages) have precise meaning. Minor version bumps (e.g. from <code>1.4</code> to <code>1.5</code>) are expected to be <strong>non-breaking</strong>. They can add features, but not change the existing API. This is called <a href="https://en.wikipedia.org/wiki/Software_versioning">semantic versioning</a> and it is the cornerstone of decentralized software development.</p>
+<p>The solution relies on <a href="https://semver.org/">meaningful version numbers</a> together with explicity compatibility specifications.</p>
+<p>Version numbers (at least for registered packages) have precise meaning. </p>
+<ul>
+<li>Minor version bumps (e.g. from <code>1.4</code> to <code>1.5</code>) are expected to be <strong>non-breaking</strong>. They can add features, but not change the existing API. </li>
+<li>This is called <a href="https://en.wikipedia.org/wiki/Software_versioning">semantic versioning</a> and it is the cornerstone of decentralized software development.</li>
+</ul>
 <p>Each package's <code>Project.toml</code> contains a <a href="https://pkgdocs.julialang.org/v1/compatibility/"><code>[compat]</code> section</a> that specifies the versions of all packages that are compatible.</p>
 <p>The package manager's job is to combine the <code>Project.toml</code>s of all packages used (directly or indirectly) and to figure out a combination of version numbers that satisfies all compatibility requirements.</p>
 <p>One might expect that this could never work in a project that uses dozens of packages, but, surprisingly, it generally works out just fine.</p>
+<p>The result is that basically all Julia software heavily relies on packages written by others.</p>
+<h2 id="items-that-we-cover-later">Items that we cover later<a class="headerlink" href="#items-that-we-cover-later" title="Permanent link">&para;</a></h2>
+<p><a href="">Creating packages</a></p>
 <hr />
                 
               

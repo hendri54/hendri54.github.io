@@ -645,21 +645,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#namespaces" class="md-nav__link">
-    Namespaces
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -675,29 +660,38 @@
                 
                 
                 <h1 id="modules">Modules<a class="headerlink" href="#modules" title="Permanent link">&para;</a></h1>
-<h2 id="namespaces">Namespaces<a class="headerlink" href="#namespaces" title="Permanent link">&para;</a></h2>
 <p>A <a href="https://en.wikipedia.org/wiki/Namespace">namespace</a> is a set of functions or scripts that can "see" the same objects.</p>
-<p>Example: </p>
-<ul>
-<li>In the function <code>f(x)</code> above, <code>a</code>  was in <code>f(x)</code>'s namespace, but not in <code>g(x)</code>'s.</li>
-<li>Conversely, the <code>a</code> inside <code>f(x)</code> is local and not in the REPL's namespace.</li>
-</ul>
-<p>In Julia, namespaces are created by modules. Even what you run in the REPL lives in a module called <code>Main</code>.</p>
-<pre><code class="julia">julia&gt; module Foo
-         f(x) = x ^ 2;
-       end
-Main.Foo
+<p>In Julia, namespaces are created by modules. </p>
+<p>A <code>module</code> is created by</p>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">module</span> <span class="n">Foo</span>
+            <span class="k">export</span> <span class="n">g</span>
+         <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">^</span> <span class="mi">2</span><span class="p">;</span>
+            <span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+       <span class="k">end</span>
+<span class="n">Main</span><span class="o">.</span><span class="n">Foo</span>
+</code></pre></div>
 
-julia&gt; f(2)
-ERROR: UndefVarError: f not defined
-Stacktrace:
- [1] top-level scope at REPL[3]:1
+<p>Even what you run in the REPL lives in a module called <code>Main</code>.</p>
+<p>This is why the <code>module</code> that we just created is <code>Main.Foo</code> (not just <code>Foo</code>).</p>
+<p>It is a sub-module of <code>Main</code>.</p>
+<p>To access the objects inside of <code>Foo</code> we need to import the module:</p>
+<div class="highlight"><pre><span></span><code><span class="c"># We did not import `Foo`, so we get an error.</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">ERROR</span><span class="o">:</span> <span class="kt">UndefVarError</span><span class="o">:</span> <span class="n">f</span> <span class="n">not</span> <span class="n">defined</span>
+<span class="n">Stacktrace</span><span class="o">:</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span> <span class="n">at</span> <span class="n">REPL</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">:</span><span class="mi">1</span>
 
-julia&gt; using .Foo
+<span class="c"># This imports `Foo`</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="o">.</span><span class="n">Foo</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">Foo</span><span class="o">.</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="mi">4</span>
+</code></pre></div>
 
-julia&gt; Foo.f(2)
-4
-</code></pre>
+<p>We still cannot just type <code>f(2)</code> because <code>Foo</code> did not <code>export f</code></p>
+<p>Only objects that are exported can be called without the module name as a qualifier.</p>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">g</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="mi">1</span>
+</code></pre></div>
 
 <hr />
                 

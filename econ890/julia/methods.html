@@ -666,6 +666,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#type-annotations" class="md-nav__link">
+    Type Annotations
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#generic-programming" class="md-nav__link">
     Generic Programming
   </a>
@@ -675,6 +682,13 @@
         <li class="md-nav__item">
   <a href="#extending-existing-functions" class="md-nav__link">
     Extending existing functions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#more-on-type-annotations" class="md-nav__link">
+    More on Type Annotations
   </a>
   
 </li>
@@ -736,14 +750,21 @@ abc is a string
 [2] foo(x::Int64) in Main at REPL[5]:1
 </code></pre>
 
+<p>Calling <code>foo</code> with anything other than an <code>Int</code> or <code>String</code> produces a <code>MethodError</code>.</p>
 <p>So what are functions and methods?</p>
 <p>A <code>function</code> is just a name. We actually cannot do anything with it.</p>
 <p>A <code>method</code> specifies what to do when we call <code>foo</code> with a specific set of arguments.</p>
 <blockquote>
 <p>Key point: <code>foo(x::Int)</code> and <code>foo(x::String)</code> are <strong>not</strong> different functions. They are <code>methods</code> of the same <code>function</code>.</p>
 </blockquote>
+<p>A <code>function</code> is really a way of grouping <code>method</code>s.</p>
 <h2 id="multiple-dispatch">Multiple Dispatch<a class="headerlink" href="#multiple-dispatch" title="Permanent link">&para;</a></h2>
 <p>What do <code>methods</code> do?</p>
+<p>When we call <code>foo(1)</code>, the compiler looks in the method table for a method that matches the signature <code>foo(::Int64)</code>. </p>
+<ul>
+<li>If this exists, it is compiled and run. And, yes, it is compiled only when called.</li>
+<li>If this does not exist, we get a <code>MethodError</code>.</li>
+</ul>
 <blockquote>
 <p>Methods allow us to execute different code for the same function call, depending on the type of the input argument.</p>
 </blockquote>
@@ -755,7 +776,7 @@ abc is a string
 </code></pre>
 
 <p>Why do we want this to happen?</p>
-<p>Benefit 1: We don't have to worry about name conflicts</p>
+<p>Benefit 1: We don't have to worry about <strong>name conflicts</strong></p>
 <p>Contrast with Matlab:</p>
 <ul>
 <li>There can only be one function (and method) named <code>foo</code>. </li>
@@ -763,12 +784,17 @@ abc is a string
 <li>This makes code reuse very difficult.</li>
 <li>If two libraries contain a function <code>foo</code>, they cannot both be used at the same time.</li>
 </ul>
-<p>Benefit 2: Generic programming</p>
+<p>In Julia: </p>
+<ul>
+<li>You can always create a new method <code>foo(::Int64)</code>, even if <code>foo</code> is already defined.</li>
+<li>You only get an error if the exact method <code>foo(::Int64)</code> already exists.</li>
+</ul>
+<p>Benefit 2: <strong>Generic programming</strong></p>
 <ul>
 <li>We can write an algorithm that can handle any type of input object. </li>
 <li>See below.</li>
 </ul>
-<p>This is rather similar to <a href="oop.html">object oriented programming</a> where <code>method</code>s are owned by specific objects.</p>
+<p>This is similar to <a href="oop.html">object oriented programming</a> where <code>method</code>s are owned by specific objects.</p>
 <p>The key difference is that, in Julia, this also works with multiple arguments:</p>
 <pre><code class="julia">julia&gt; foo(x,y) = @show x,y
 foo (generic function with 3 methods)
@@ -790,36 +816,54 @@ abc is a string, but 2 can be anything
 <li>If we have two methods with the same number of arguments, the more specific one is called.</li>
 <li><code>foo(x,y)</code> is a fallback method that gets called unless a more specific method exists.</li>
 </ol>
+<p>There is a famous <a href="https://www.youtube.com/watch?v=kc9HwsxE1OY">talk by Stefan Karpinski</a> called "The unreasonable effectiveness of multiple dispatch" which explains why this is so powerful.</p>
+<h2 id="type-annotations">Type Annotations<a class="headerlink" href="#type-annotations" title="Permanent link">&para;</a></h2>
+<p>What happens if we omit type annotations?</p>
+<pre><code class="julia">julia&gt; foo(x,y) = @show x,y
+foo (generic function with 1 method)
+</code></pre>
+
+<p>Julia tells us that we have one method. But actually, we have infinitely many!</p>
+<p>Try <code>foo(1, "a")</code> or <code>foo([1,2], ["a" "b"])</code>. They all work.</p>
+<p><code>foo(x,y)</code> is actually a shorthand for</p>
+<pre><code class="julia">julia&gt; foo(x :: T1, y :: T2) where {T1 &lt;: Any, T2 &lt;: Any}
+</code></pre>
+
+<p>which is the same as</p>
+<pre><code class="julia">julia&gt; foo(x :: Any, y :: Any)
+</code></pre>
+
+<p>In words, we have implicitly defined a method for <strong>any combination</strong> of types for <code>(x,y)</code>.</p>
+<p>Here is a key point for performance: Julia still <strong>specializes</strong> the code for each combination of types that we actually use. </p>
+<p>This means: When we call <code>foo(1,2)</code>, Julia compiles <code>foo(::Int64, ::Int64)</code> and calls that method.</p>
+<p>It follows that we get the same performance as if we had defined <code>foo(::Int64, ::Int64)</code> by hand.</p>
+<blockquote>
+<p>Type annotations have no effect on performance.</p>
+</blockquote>
+<p>Why then do we need them?</p>
+<ol>
+<li>
+<p>Avoiding name conflicts (again).</p>
+<ul>
+<li>Suppose you have an object for which you want to define <code>name(x)</code>.</li>
+<li>You can define <code>name(x :: MyType)</code> without worrying about name conflicts.</li>
+</ul>
+</li>
+<li>
+<p>Different code for different types.</p>
+<ul>
+<li>Consider the example of <code>show(x)</code>.</li>
+<li>Clearly, each object needs its own <code>show</code> method. </li>
+<li>There is "generic" useful way of showing an object in the REPL.</li>
+<li>This is typical for "low level" operations. For example, <code>+</code> works differently (at the hardware level) for <code>Float64</code> vs <code>UInt8</code>.</li>
+</ul>
+</li>
+</ol>
 <h2 id="generic-programming">Generic Programming<a class="headerlink" href="#generic-programming" title="Permanent link">&para;</a></h2>
-<p>Suppose I have written a great sorting algorithm:</p>
-<pre><code class="julia">function mysort(xIn :: Vector{Int})
-  x = copy(xIn);
-  xSorted = similar(x);
-  xMax = maximum(x) + one(eltype(x));
-  for j = 1 : length(x)
-    idxMin, xMin = findmin(x);
-    xSorted[j] = xMin;
-    x[j] = xMax;
-  end
-  return xSorted
-end
-</code></pre>
-
-<p>This is, of course, a terrible algorithm, but it makes clear that I could run this algorithm on any object for which <code>maximum</code> is defined.</p>
-<p>Wouldn't it be great, if there were a way to remove the restriction that <code>xIn :: Vector{Int}</code> and apply that algorithm to any object for which <code>maximum</code> is defined?</p>
-<p>That would be especially great, if the user could defined new methods for <code>maximum</code> for any <code>DataType</code> that they might come up with. </p>
-<p>This is not only possible, it is very common in Julia.</p>
-<h2 id="extending-existing-functions">Extending existing functions<a class="headerlink" href="#extending-existing-functions" title="Permanent link">&para;</a></h2>
-<p>We can extend functions that were defined by others (in modules, including <code>Base</code>) to new data types.</p>
-<p>For example, suppose we want to be able to <code>sum</code> <code>String</code>s (this is a bad idea, but we can do it):</p>
-<pre><code class="julia">julia&gt; Base.sum(x :: String, y :: String) = x * &quot; + &quot; * y
-
-julia&gt; sum(&quot;a&quot;, &quot;b&quot;)
-&quot;a + b&quot;
-</code></pre>
-
-<p>Why is this important? Mainly because it enables users to write generic algorithms that can work on any <code>DataType</code> that supports certain functions.</p>
-<p>The key example is sorting. As long as <code>isless(x,y)</code> is defined, we can <code>sort([x,y,z])</code>. Contrived example:</p>
+<p>Suppose I want to sort the <code>Vector</code> <code>x = [1, "a", 4, 2]</code>. </p>
+<p>Calling <code>sort(x)</code> gives an error: </p>
+<p><code>ERROR: MethodError: no method matching isless(::String, ::Int64)</code></p>
+<p>Now let's define that missing method and see what happens:</p>
 <pre><code class="julia">julia&gt; Base.isless(x :: String, y :: Number) = true
 
 julia&gt; sort([3,1,&quot;a&quot;,4,2])
@@ -831,7 +875,56 @@ julia&gt; sort([3,1,&quot;a&quot;,4,2])
  4
 </code></pre>
 
-<p>There is a famous <a href="https://www.youtube.com/watch?v=kc9HwsxE1OY">talk by Stefan Karpinski</a> called "The unreasonable effectiveness of multiple dispatch" which explains why this is so powerful.</p>
+<p>The sorting algorithm is <strong>generic</strong>. It works on any <code>Vector</code> as long as  <code>isless(x,y)</code> is defined.</p>
+<p>This makes the algorithm highly reusable. </p>
+<ul>
+<li>We can define a new <code>DataType</code> and apply the existing sorting algorithms.</li>
+<li>Conversely, we can write algorithms without type annotations. They will just work on any type (even if defined "after the fact") that supports a few methods.</li>
+</ul>
+<p>This is not only possible, it is very common in Julia.</p>
+<h2 id="extending-existing-functions">Extending existing functions<a class="headerlink" href="#extending-existing-functions" title="Permanent link">&para;</a></h2>
+<p>For this to work, we need to be able to extend functions that were defined by others (in modules, including <code>Base</code>) to new data types.</p>
+<p>This is exactly what we did in our sorting example:</p>
+<p>For example, suppose we want to be able to <code>sum</code> <code>String</code>s (this is a bad idea, but we can do it):</p>
+<pre><code class="julia">julia&gt; Base.isless(x :: String, y :: Number) = true
+</code></pre>
+
+<p>Note that we wrote <code>Base.isless</code>, not just <code>isless</code>. Had we written </p>
+<pre><code class="julia">julia&gt; isless(x :: String, y :: Number) = true
+</code></pre>
+
+<p>we would have defined a <strong>new function</strong> <code>Main.isless</code>, not a new method.</p>
+<p>Then calling <code>sort[1, "abc"]</code> would have failed with the same <code>MethodError</code> that we originally encountered.</p>
+<p>The reason is that <code>sort</code> lives in module <code>Base</code> (we talk soon about what modules are). Therefore, any unqualified call to <code>isless</code> translates into <code>Base.isless</code>, which is a different <strong>function</strong> (not method) from <code>Main.isless</code>.</p>
+<p>Another, less clear, way of extending an existing function:</p>
+<pre><code class="julia">julia&gt; import Base: isless
+julia&gt; isless(x :: String, y :: Number) = true
+</code></pre>
+
+<h2 id="more-on-type-annotations">More on Type Annotations<a class="headerlink" href="#more-on-type-annotations" title="Permanent link">&para;</a></h2>
+<p>We can annotate types in various ways.</p>
+<pre><code class="julia"># No annotation
+foo(x, y) == foo(x :: Any, y :: Any)
+# Give an abstract type
+# Defines one method for each concrete T &lt;: Real
+foo(x :: Real) == foo(x :: T) where T &lt;: Real
+# Concrete types
+foo(x :: Float64)
+</code></pre>
+
+<blockquote>
+<p>Again: none of this has any impact on performance.</p>
+</blockquote>
+<p>We can impose type restrictions:</p>
+<pre><code class="julia"># Force (x,y) to be the same type
+# where T is the same as `where T &lt;: Any`
+foo(x :: T, y :: T) where T
+# Now this works
+foo(1, 2)
+# and this errors
+foo(1, 2.0)
+</code></pre>
+
 <hr />
                 
               

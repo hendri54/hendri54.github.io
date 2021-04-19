@@ -645,6 +645,21 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#testing-basics" class="md-nav__link">
+    Testing basics
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -667,6 +682,19 @@
 <p>It is hard to overstate the importance of automated testing. It gives you peace of mind. When you change some code, you can simply rerun your test suite and ensure that nothing has been broken.</p>
 <p>The key is to fully automate the testing. Your project should have a single function that runs all tests in order.</p>
 <p>All programming languages have unit testing frameworks that make it easy to automate this process. Julia's is described <a href="https://docs.julialang.org/en/v1/stdlib/Test/">here</a>.</p>
+<h2 id="testing-basics">Testing basics<a class="headerlink" href="#testing-basics" title="Permanent link">&para;</a></h2>
+<p>The testing framework (and really all of Julia) is designed to work with <a href="packages.html">packages</a>.</p>
+<p>But we can explore the basics even without creating a package (yet).</p>
+<p>The key elements are:</p>
+<ol>
+<li>The <code>@test</code> macro:<ul>
+<li><code>@test 1 == 1</code> runs silently</li>
+<li><code>@test 1 == 2</code> produces an error, but tests keep running</li>
+</ul>
+</li>
+<li>The <code>@testset</code> macro groups tests for clearer reporting.</li>
+</ol>
+<p>Example: <a href="pih/testing.jl">testing.jl</a> and <a href="pih/testing_test.jl">testing_test.jl</a>.</p>
 <hr />
                 
               

@@ -700,6 +700,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#digression-parametric-types" class="md-nav__link">
+    Digression: parametric types
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -742,9 +749,9 @@
 <p>The second idea is that certain persistent data "belong to" an object. They should only be manipulated by functions that also "belong to" the object.</p>
 <p>OOP therefore bundles data (called <code>properties</code>) and functions (called <code>methods</code>) together.</p>
 <h3 id="example-utility-function">Example: Utility function<a class="headerlink" href="#example-utility-function" title="Permanent link">&para;</a></h3>
-<p>\(u(c,l) = c ^{(1-\sigma)} / (1-\sigma) + \phi \log(l)\)</p>
-<p>Persistent data include: parameters (\(\sigma, \phi\)).</p>
-<p>Methods include: compute \(u_{c}, u(c,l)\), inverse marginal utility, indifference curves.</p>
+<p><span class="arithmatex">\(u(c,l) = c ^{(1-\sigma)} / (1-\sigma) + \phi \log(l)\)</span></p>
+<p>Persistent data include: parameters (<span class="arithmatex">\(\sigma, \phi\)</span>).</p>
+<p>Methods include: compute <span class="arithmatex">\(u_{c}, u(c,l)\)</span>, inverse marginal utility, indifference curves.</p>
 <h2 id="benefits">Benefits<a class="headerlink" href="#benefits" title="Permanent link">&para;</a></h2>
 <p>There is nothing that OOP can do that could not be done without OOP. The benefits lie in code organization.</p>
 <p>The programmer sees all methods that operate on the object in one place. That makes it easier to </p>
@@ -765,63 +772,83 @@
 <p>Julia is not an OOP language. There is no <a href="https://en.wikipedia.org/wiki/Object-oriented_programming#Composition,_inheritance,_and_delegation">inheritance</a>.</p>
 <p>But it is easy to create user defined types that store their persistent state and to define methods that "belong" to those types.</p>
 <h3 id="example-utility-function_1">Example: Utility Function<a class="headerlink" href="#example-utility-function_1" title="Permanent link">&para;</a></h3>
-<pre><code class="julia">struct CRRA{T}
-  sigma :: T
-end
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">CRRA</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+  <span class="n">sigma</span> <span class="o">::</span> <span class="n">T</span>
+<span class="k">end</span>
 
-utility(u :: CRRA{T}, c) where T = 
-  (c .^ (one(T) - u.sigma)) ./ (one(T) - u.sigma);
+<span class="n">utility</span><span class="p">(</span><span class="n">u</span> <span class="o">::</span> <span class="n">CRRA</span><span class="p">{</span><span class="n">T</span><span class="p">},</span> <span class="n">c</span><span class="p">)</span> <span class="n">where</span> <span class="n">T</span> <span class="o">=</span> 
+  <span class="p">(</span><span class="n">c</span> <span class="o">.^</span> <span class="p">(</span><span class="n">one</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">-</span> <span class="n">u</span><span class="o">.</span><span class="n">sigma</span><span class="p">))</span> <span class="o">./</span> <span class="p">(</span><span class="n">one</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">-</span> <span class="n">u</span><span class="o">.</span><span class="n">sigma</span><span class="p">);</span>
 
-marginal_utility(u :: CRRA{T}, c) where T = 
-  c .^  (-u.sigma);
-</code></pre>
+<span class="n">marginal_utility</span><span class="p">(</span><span class="n">u</span> <span class="o">::</span> <span class="n">CRRA</span><span class="p">{</span><span class="n">T</span><span class="p">},</span> <span class="n">c</span><span class="p">)</span> <span class="n">where</span> <span class="n">T</span> <span class="o">=</span> 
+  <span class="n">c</span> <span class="o">.^</span>  <span class="p">(</span><span class="o">-</span><span class="n">u</span><span class="o">.</span><span class="n">sigma</span><span class="p">);</span>
+</code></pre></div>
 
-<pre><code class="julia">julia&gt; u = CRRA(2.0)
-CRRA{Float64}(2.0)
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">u</span> <span class="o">=</span> <span class="n">CRRA</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="n">CRRA</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="mf">2.0</span><span class="p">)</span>
 
-julia&gt; utility(u, [2.0, 3.0])
-2-element Vector{Float64}:
- -0.5
- -0.3333333333333333
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">utility</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">])</span>
+<span class="mi">2</span><span class="o">-</span><span class="n">element</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}</span><span class="o">:</span>
+ <span class="o">-</span><span class="mf">0.5</span>
+ <span class="o">-</span><span class="mf">0.3333333333333333</span>
+</code></pre></div>
 
+<h3 id="digression-parametric-types">Digression: parametric types<a class="headerlink" href="#digression-parametric-types" title="Permanent link">&para;</a></h3>
+<p><code>CRRA{T}</code> is a <a href="https://docs.julialang.org/en/v1/manual/types/#Parametric-Types">parametric type</a>.</p>
+<p><code>T</code> parameterizes the <code>CRRA</code> object.</p>
+<p>This is more general than hard-wiring the <code>type</code> of <code>sigma</code>, but has the same performance.</p>
+<p>Not annotating the type, as in</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">CRRA</span>
+  <span class="n">sigma</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p>would be slower (because Julia would not be able to specialize methods on the type of <code>sigma</code>).</p>
 <h2 id="why-do-we-care">Why do we care?<a class="headerlink" href="#why-do-we-care" title="Permanent link">&para;</a></h2>
 <p>When we solve structural models, OOP is a natural approach.</p>
 <p>Example:</p>
-<pre><code class="julia">julia&gt; abstract type AbstractUtility{T} end
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">abstract</span> <span class="k">type</span> <span class="n">AbstractUtility</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="k">end</span>
 
-julia&gt; struct CRRA{T} &lt;: AbstractUtility{T}
-           σ :: T
-       end
+<span class="n">julia</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">CRRA</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">AbstractUtility</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+           <span class="n">σ</span> <span class="o">::</span> <span class="n">T</span>
+       <span class="k">end</span>
 
-julia&gt; abstract type AbstractProductionFunction{T} end
+<span class="n">julia</span><span class="o">&gt;</span> <span class="k">abstract</span> <span class="k">type</span> <span class="n">AbstractProductionFunction</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="k">end</span>
 
-julia&gt; struct CobbDouglas{T} &lt;: AbstractProductionFunction{T}
-           α :: T
-           tfp :: T
-       end
+<span class="n">julia</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">CobbDouglas</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">AbstractProductionFunction</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+           <span class="n">α</span> <span class="o">::</span> <span class="n">T</span>
+           <span class="n">tfp</span> <span class="o">::</span> <span class="n">T</span>
+       <span class="k">end</span>
 
-julia&gt; struct Model{T}
-           util :: AbstractUtility{T}
-           prodFct :: AbstractProductionFunction{T}
-       end
+<span class="n">julia</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">Model</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+           <span class="n">util</span> <span class="o">::</span> <span class="n">AbstractUtility</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+           <span class="n">prodFct</span> <span class="o">::</span> <span class="n">AbstractProductionFunction</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+       <span class="k">end</span>
 
-julia&gt; m = Model(CRRA(2.0), CobbDouglas(0.3, 1.5))
-Model{Float64}(CRRA{Float64}(2.0), CobbDouglas{Float64}(0.3, 1.5))
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">m</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">CRRA</span><span class="p">(</span><span class="mf">2.0</span><span class="p">),</span> <span class="n">CobbDouglas</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">))</span>
+<span class="n">Model</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="n">CRRA</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="mf">2.0</span><span class="p">),</span> <span class="n">CobbDouglas</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">))</span>
+</code></pre></div>
 
 <p>Now we change our mind and go for exponential utility:</p>
-<pre><code class="julia">julia&gt; struct ExponentialUtil{T} &lt;: AbstractUtility{T}
-           μ :: T
-       end
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">ExponentialUtil</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">AbstractUtility</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+           <span class="n">μ</span> <span class="o">::</span> <span class="n">T</span>
+       <span class="k">end</span>
 
-julia&gt; m = Model(ExponentialUtil(0.7), CobbDouglas(0.3, 1.5))
-Model{Float64}(ExponentialUtil{Float64}(0.7), CobbDouglas{Float64}(0.3, 1.5))
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">m</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">ExponentialUtil</span><span class="p">(</span><span class="mf">0.7</span><span class="p">),</span> <span class="n">CobbDouglas</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">))</span>
+<span class="n">Model</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="n">ExponentialUtil</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="mf">0.7</span><span class="p">),</span> <span class="n">CobbDouglas</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">))</span>
+</code></pre></div>
 
 <p>As long as <code>utility(u, c)</code> is defined for each utility function, nothing in our code changes when we replace one utility function with another.</p>
 <p>And the model automatically keeps track of the parameters that actually matter in this model version.</p>
 <p>Models become like Legos.</p>
+<p>Note: <code>struct Model{T}</code> is not efficient. We should have written</p>
+<div class="highlight"><pre><span></span><code><span class="c"># Note the `T` in the parametric type definition</span>
+<span class="k">struct</span> <span class="n">Model</span><span class="p">{</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span> <span class="o">&lt;:</span> <span class="n">AbstractUtility</span><span class="p">{</span><span class="n">T</span><span class="p">},</span> <span class="n">F</span> <span class="o">&lt;:</span> <span class="n">AbstractProdFct</span><span class="p">{</span><span class="n">T</span><span class="p">}}</span>
+    <span class="n">util</span> <span class="o">::</span> <span class="n">U</span>
+    <span class="n">prodFct</span> <span class="o">::</span> <span class="n">F</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p>See notes on <a href="user_defined_types.html">parametric types</a>.</p>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <p>Matlab documentation on <a href="http://www.mathworks.com/help/matlab/object-oriented-programming.html">object oriented programming</a>.</p>
 <hr />

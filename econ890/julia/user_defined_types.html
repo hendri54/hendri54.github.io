@@ -645,6 +645,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#parametric-types" class="md-nav__link">
+    Parametric Types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mutable-types" class="md-nav__link">
+    Mutable Types
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#excercise" class="md-nav__link">
+    Excercise
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -660,67 +689,149 @@
                 
                 
                 <h1 id="user-defined-types">User Defined Types<a class="headerlink" href="#user-defined-types" title="Permanent link">&para;</a></h1>
-<p>It is very common to define new types in Julia. One reason is <a href="https://en.wikipedia.org/wiki/Multiple_dispatch">multiple dispatch</a>, which we discuss more when we talk about <a href="functions.html">functions</a>.</p>
+<p>It is very common to define new types in Julia. One reason is <a href="https://en.wikipedia.org/wiki/Multiple_dispatch">multiple dispatch</a>, which we discussed when we talked about <a href="functions.html">functions</a>.</p>
 <p><strong>Example</strong></p>
-<pre><code class="julia">julia&gt; struct Point
-    x
-    y
-end
-julia&gt; z = Point(1, 2)
-Point(1, 2)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">Point</span>
+    <span class="n">x</span>
+    <span class="n">y</span>
+<span class="k">end</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">z</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
 
 <p>We have now defined the type <code>Point</code>. By default, Julia also created a function, called a <a href="https://docs.julialang.org/en/v1/manual/constructors/#man-constructors">constructor</a> that "makes" <code>Point</code> objects:</p>
-<pre><code class="julia">julia&gt; methods(Point)
-# 1 method for type constructor:
-[1] Point(x, y) in Main at REPL[21]:2
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">methods</span><span class="p">(</span><span class="n">Point</span><span class="p">)</span>
+<span class="c"># 1 method for type constructor:</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="kp">in</span> <span class="n">Main</span> <span class="n">at</span> <span class="n">REPL</span><span class="p">[</span><span class="mi">21</span><span class="p">]</span><span class="o">:</span><span class="mi">2</span>
+</code></pre></div>
 
-<p>This says that there is a function <code>Point</code> which is the constructor for the <code>Point</code> data type.</p>
+<p>This says that there is a function <code>Point</code>, which is the constructor for the <code>Point</code> data type.</p>
 <p>We can now write functions that take <code>Point</code> arguments, such as</p>
-<pre><code class="julia">julia&gt; function sum_points(p1 :: Point, p2 :: Point)
-         return Point(p1.x + p2.x, p1.y + p2.y)
-       end
-sum_points (generic function with 1 method)
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">function</span> <span class="n">sum_points</span><span class="p">(</span><span class="n">p1</span> <span class="o">::</span> <span class="n">Point</span><span class="p">,</span> <span class="n">p2</span> <span class="o">::</span> <span class="n">Point</span><span class="p">)</span>
+         <span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">p2</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p1</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">p2</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+       <span class="k">end</span>
+<span class="n">sum_points</span> <span class="p">(</span><span class="n">generic</span> <span class="k">function</span> <span class="n">with</span> <span class="mi">1</span> <span class="n">method</span><span class="p">)</span>
 
-julia&gt; sum_points(Point(1,2), Point(2,3))
-Point(3, 5)
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">sum_points</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">Point</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
 
 <p>But it gets even better: we can "overload" an existing function like so:</p>
-<pre><code class="julia">julia&gt; function Base.sum(p1 :: Point, p2 :: Point)
-         return Point(p1.x + p2.x, p1.y + p2.y)
-       end
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">function</span> <span class="n">Base</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">p1</span> <span class="o">::</span> <span class="n">Point</span><span class="p">,</span> <span class="n">p2</span> <span class="o">::</span> <span class="n">Point</span><span class="p">)</span>
+         <span class="k">return</span> <span class="n">Point</span><span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">p2</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">p1</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">p2</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+       <span class="k">end</span>
 
-julia&gt; sum(Point(1,2), Point(2,3))
-Point(3, 5)
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">sum</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">Point</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</code></pre></div>
 
 <p>Now the "built-in" function (in module <code>Base</code>) has an additional method. Before, Julia only knew how to sum numbers (and a few other things). Now Julia knows how to sum points. </p>
 <p><strong>This means that any algorithm that makes sense and uses summation can now be applied to our new <code>Point</code> datatype.</strong></p>
 <p><strong>Example:</strong></p>
 <p>Suppose we wanted to <code>sort</code> Points. We don't have to write a new sorting function. Instead we can define </p>
-<pre><code class="julia">julia&gt; function Base.isless(p1 :: Point, p2 :: Point)
-         if p1.x &lt; p2.x
-           return true
-         elseif (p1.x == p2.x)  &amp;&amp;  (p1.y &lt; p2.y)
-           return true
-         else
-           return false
-         end
-       end
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">function</span> <span class="n">Base</span><span class="o">.</span><span class="n">isless</span><span class="p">(</span><span class="n">p1</span> <span class="o">::</span> <span class="n">Point</span><span class="p">,</span> <span class="n">p2</span> <span class="o">::</span> <span class="n">Point</span><span class="p">)</span>
+         <span class="k">if</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">p2</span><span class="o">.</span><span class="n">x</span>
+           <span class="k">return</span> <span class="kc">true</span>
+         <span class="k">elseif</span> <span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">x</span> <span class="o">==</span> <span class="n">p2</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>  <span class="o">&amp;&amp;</span>  <span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">p2</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+           <span class="k">return</span> <span class="kc">true</span>
+         <span class="k">else</span>
+           <span class="k">return</span> <span class="kc">false</span>
+         <span class="k">end</span>
+       <span class="k">end</span>
 
-julia&gt; isless(Point(1,2), Point(2,3))
-true
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">isless</span><span class="p">(</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="kc">true</span>
+</code></pre></div>
 
 <p>And, voila, we can sort <code>Vector</code>s of <code>Point</code>:</p>
-<pre><code class="julia">julia&gt; sort([Point(1,2), Point(3,4), Point(1,3)])
-3-element Vector{Point}:
- Point(1, 2)
- Point(1, 3)
- Point(3, 4)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">sort</span><span class="p">([</span><span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)])</span>
+<span class="mi">3</span><span class="o">-</span><span class="n">element</span> <span class="kt">Vector</span><span class="p">{</span><span class="n">Point</span><span class="p">}</span><span class="o">:</span>
+ <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+ <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+ <span class="n">Point</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</code></pre></div>
+
+<p>It is worth reading the documentation on <a href="https://docs.julialang.org/en/v1/manual/types/">types</a> and <a href="https://docs.julialang.org/en/v1/manual/constructors/">constructors</a>.</p>
+<h2 id="parametric-types">Parametric Types<a class="headerlink" href="#parametric-types" title="Permanent link">&para;</a></h2>
+<p>Clearly, the concept of <code>Point</code> would make sense for different types of coordinates (e.g., <code>Float64</code>, <code>Float32</code>).</p>
+<p>We can define a generic version of <code>Point</code> that works for any coordinate type:</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">Point</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+  <span class="n">x</span> <span class="o">::</span> <span class="n">T</span>
+  <span class="n">y</span> <span class="o">::</span> <span class="n">T</span>
+<span class="k">end</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">Point</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">Point</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">Point</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+<span class="n">Point</span><span class="p">{</span><span class="kt">Float64</span><span class="p">}(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+</code></pre></div>
+
+<p>This is a <strong>parametric type</strong>, parameterized by <code>T</code>.</p>
+<p>When we define <code>methods</code>, we have</p>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">function</span> <span class="n">Base</span><span class="o">.</span><span class="n">isless</span><span class="p">(</span><span class="n">p1</span> <span class="o">::</span> <span class="n">Point</span><span class="p">{</span><span class="n">T</span><span class="p">},</span> <span class="n">p2</span> <span class="o">::</span> <span class="n">Point</span><span class="p">{</span><span class="n">T</span><span class="p">})</span> <span class="n">where</span> <span class="n">T</span>
+         <span class="k">if</span> <span class="n">p1</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">p2</span><span class="o">.</span><span class="n">x</span>
+           <span class="k">return</span> <span class="kc">true</span>
+         <span class="k">elseif</span> <span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">x</span> <span class="o">==</span> <span class="n">p2</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>  <span class="o">&amp;&amp;</span>  <span class="p">(</span><span class="n">p1</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="n">p2</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+           <span class="k">return</span> <span class="kc">true</span>
+         <span class="k">else</span>
+           <span class="k">return</span> <span class="kc">false</span>
+         <span class="k">end</span>
+       <span class="k">end</span>
+</code></pre></div>
+
+<p>This defines a <code>method</code> for each parameterization of <code>Point</code>.</p>
+<p>It is probably obvious why this is essential. <code>Point</code> is a data container that is equally valid for different types of data held. We don't want to be forced to write separate code for each parametric version of <code>Point</code>.</p>
+<h2 id="mutable-types">Mutable Types<a class="headerlink" href="#mutable-types" title="Permanent link">&para;</a></h2>
+<p><code>struct Foo end</code> is <strong>immutable</strong>. Once a <code>Foo</code> is constructed, it cannot be changed.</p>
+<div class="highlight"><pre><span></span><code><span class="k">mutable</span> <span class="k">struct</span> <span class="n">Foo</span>
+    <span class="n">x</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p>is <strong>mutable</strong>. I can change its fields with <code>Foo.x = 1</code>.</p>
+<p>Benefits of immutable types:</p>
+<ol>
+<li>
+<p>Efficiency: </p>
+<ul>
+<li>The compiler can apply many optimizations based on knowing that <code>Foo.x</code> can never change.</li>
+<li>Immutable types can often be allocated on the "stack" which is much faster than on the "heap".</li>
+</ul>
+</li>
+<li>
+<p>Easier to reason about code.</p>
+</li>
+</ol>
+<h2 id="excercise">Excercise<a class="headerlink" href="#excercise" title="Permanent link">&para;</a></h2>
+<p>Construct a parametric type <code>Model</code> that contains a utility function <code>CRRA{T}</code> and a production function <code>CobbDouglas{T}</code> for <em>the same <code>T</code></em>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">abstract</span> <span class="k">type</span> <span class="n">AbstractUtility</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="k">end</span>
+
+<span class="k">struct</span> <span class="n">CRRA</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">AbstractUtility</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+    <span class="n">σ</span> <span class="o">::</span> <span class="n">T</span>
+<span class="k">end</span>
+
+<span class="k">abstract</span> <span class="k">type</span> <span class="n">AbstractProdFct</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="k">end</span>
+
+<span class="k">struct</span> <span class="n">CobbDouglas</span><span class="p">{</span><span class="n">T</span><span class="p">}</span> <span class="o">&lt;:</span> <span class="n">AbstractProdFct</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+    <span class="n">α</span> <span class="o">::</span> <span class="n">T</span>
+<span class="k">end</span>
+
+<span class="c"># Note the `T` in the parametric type definition</span>
+<span class="k">struct</span> <span class="n">Model</span><span class="p">{</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span> <span class="o">&lt;:</span> <span class="n">AbstractUtility</span><span class="p">{</span><span class="n">T</span><span class="p">},</span> <span class="n">F</span> <span class="o">&lt;:</span> <span class="n">AbstractProdFct</span><span class="p">{</span><span class="n">T</span><span class="p">}}</span>
+    <span class="n">util</span> <span class="o">::</span> <span class="n">U</span>
+    <span class="n">prodFct</span> <span class="o">::</span> <span class="n">F</span>
+<span class="k">end</span>
+
+<span class="n">m</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">CRRA</span><span class="p">(</span><span class="mf">2.0</span><span class="p">),</span> <span class="n">CobbDouglas</span><span class="p">(</span><span class="mf">0.3</span><span class="p">))</span>
+<span class="nd">@show</span> <span class="n">m</span>
+
+<span class="k">try</span>
+    <span class="n">m2</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="n">CRRA</span><span class="p">(</span><span class="kt">Float32</span><span class="p">(</span><span class="mi">2</span><span class="p">)),</span> <span class="n">CobbDouglas</span><span class="p">(</span><span class="mf">0.3</span><span class="p">))</span>
+    <span class="nd">@show</span> <span class="n">m2</span>
+<span class="k">catch</span>
+    <span class="n">println</span><span class="p">(</span><span class="s">&quot;This errors because the parametric types don&#39;t match.&quot;</span><span class="p">);</span>
+<span class="k">end</span>
+</code></pre></div>
 
 <hr />
                 
