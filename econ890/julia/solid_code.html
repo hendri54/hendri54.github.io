@@ -762,13 +762,13 @@
 <p>One key insight is that code needs to be readable and maintainable. Good code reads a lot like text.</p>
 <p>A long process is broken down into a few steps. Each step becomes a function that carries out exactly one task (ideally). </p>
 <p>Example:</p>
-<pre><code class="julia">function run_model()
-  m = initialize_model();
-  sol = solve_model(m);
-  sim = simulate_model(m, sol);
-  show_results(sim);
-end
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">function</span> <span class="n">run_model</span><span class="p">()</span>
+  <span class="n">m</span> <span class="o">=</span> <span class="n">initialize_model</span><span class="p">();</span>
+  <span class="n">sol</span> <span class="o">=</span> <span class="n">solve_model</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+  <span class="n">sim</span> <span class="o">=</span> <span class="n">simulate_model</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">sol</span><span class="p">);</span>
+  <span class="n">show_results</span><span class="p">(</span><span class="n">sim</span><span class="p">);</span>
+<span class="k">end</span>
+</code></pre></div>
 
 <p>Notes:</p>
 <ol>
@@ -790,13 +790,13 @@ end
 <p>The idea of <a href="http://www.eecs.wsu.edu/~cs150/tdd.htm">top down by stepwise refinement</a> design is to simply write out at a high level of abstraction which steps need to be taken.</p>
 <p>The top level of the code could literally look like the example above.</p>
 <p>Then each step gets refined. For example:</p>
-<pre><code class="julia">function solve_model(m)
-    sol = initialize_solution();
-    solve_household!(sol, m);
-    solve_firm!(sol, m);
-    return sol
-end
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">function</span> <span class="n">solve_model</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="n">sol</span> <span class="o">=</span> <span class="n">initialize_solution</span><span class="p">();</span>
+    <span class="n">solve_household!</span><span class="p">(</span><span class="n">sol</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span>
+    <span class="n">solve_firm!</span><span class="p">(</span><span class="n">sol</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">sol</span>
+<span class="k">end</span>
+</code></pre></div>
 
 <p>Note:</p>
 <ol>
@@ -854,11 +854,11 @@ The FAA has already spent billions of dollars on unsuccessful attempts to rewrit
 <p>When you see <code>x=zeros([5,3])</code> or <code>for i1 = 1 : 57</code> something is probably wrong.</p>
 <p>This kind of code is not maintainable. What if you want 58 values instead of 57? Do you want to go throught 10k LOC to find all occurrences of 57 that need to be replaced?</p>
 <p>It is much better to write:</p>
-<pre><code class="julia">const nTypes = 57;
-for i1 = 1 : nTypes
-  [...]
-end
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span> <span class="n">nTypes</span> <span class="o">=</span> <span class="mi">57</span><span class="p">;</span>
+<span class="k">for</span> <span class="n">i1</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">:</span> <span class="n">nTypes</span>
+  <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="k">end</span>
+</code></pre></div>
 
 <p>The Golden Rule is: Every literal must have a name. Its value is defined in one place only.</p>
 <p>Related to this: do not hard-code <em>functional forms</em>. </p>

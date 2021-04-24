@@ -806,32 +806,32 @@
 <li>One can now include each file and run the tests independently.</li>
 <li>The function provide some isolation (similar to using modules).</li>
 </ol>
-<pre><code class="julia"># runtests.jl
+<div class="highlight"><pre><span></span><code><span class="c"># runtests.jl</span>
 
-@testset &quot;All&quot; begin
-    include(&quot;test_one.jl&quot;);
-end
+<span class="nd">@testset</span> <span class="s">&quot;All&quot;</span> <span class="k">begin</span>
+    <span class="n">include</span><span class="p">(</span><span class="s">&quot;test_one.jl&quot;</span><span class="p">);</span>
+<span class="k">end</span>
 
 
-# test_one.jl
+<span class="c"># test_one.jl</span>
 
-using Test
+<span class="k">using</span> <span class="n">Test</span>
 
-function test_one()
-    @testset &quot;A&quot; begin
-        @test 1 == 1
-    end
-end
+<span class="k">function</span> <span class="n">test_one</span><span class="p">()</span>
+    <span class="nd">@testset</span> <span class="s">&quot;A&quot;</span> <span class="k">begin</span>
+        <span class="nd">@test</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">end</span>
+<span class="k">end</span>
 
-@testset &quot;One&quot; begin
-    test_one();
-end
-</code></pre>
+<span class="nd">@testset</span> <span class="s">&quot;One&quot;</span> <span class="k">begin</span>
+    <span class="n">test_one</span><span class="p">();</span>
+<span class="k">end</span>
+</code></pre></div>
 
 <p>Now <code>Pkg.test()</code> runs everything, but <code>include("test/test_one.jl")</code> only runs the subset. <code>SafeTests.jl</code> goes further by wrapping tests in modules.</p>
 <p>Test helpers can be put into a separate file and conditionally included, as in (taken from MPVerify.jl):</p>
-<pre><code class="julia">@isdefined(TestHelpers) || include(&quot;../TestHelpers.jl&quot;)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="nd">@isdefined</span><span class="p">(</span><span class="n">TestHelpers</span><span class="p">)</span> <span class="o">||</span> <span class="n">include</span><span class="p">(</span><span class="s">&quot;../TestHelpers.jl&quot;</span><span class="p">)</span>
+</code></pre></div>
 
 <p>This checks whether the module <code>TestHelpers</code> exists. But one may not need a module for the helpers.</p>
 <h3 id="module-approach">Module approach:<a class="headerlink" href="#module-approach" title="Permanent link">&para;</a></h3>
@@ -844,10 +844,10 @@ end
 </ol>
 <h2 id="test-specific-dependencies">Test specific dependencies<a class="headerlink" href="#test-specific-dependencies" title="Permanent link">&para;</a></h2>
 <p>Test dependencies now need to be added to the <code>Project.toml</code> file in <code>./test</code>:</p>
-<pre><code>pkg&gt; activate ./test
+<div class="highlight"><pre><span></span><code>pkg&gt; activate ./test
 pkg&gt; add MyPkg
 pkg&gt; activate .
-</code></pre>
+</code></pre></div>
 
 <p>All dependencies used in tests now have to be manually added. They do not "carry over" from the main package. </p>
 <p>Developing test set dependencies seems to cause problems ("error: cannot merge projects"). They need to be added.</p>

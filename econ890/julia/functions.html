@@ -745,17 +745,17 @@
 <p>Scripts are simply collections of commands that are run as if they were typed at the command prompt.</p>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
 <p>Create a file called <code>test1.jl</code> that contains</p>
-<pre><code class="julia">x = 2;
-println(&quot;We defined x to be $x&quot;);
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">println</span><span class="p">(</span><span class="s">&quot;We defined x to be </span><span class="si">$x</span><span class="s">&quot;</span><span class="p">);</span>
+</code></pre></div>
 
 <p>Now running this file with <code>include("test1.jl")</code> is exactly the same as typing those lines in the REPL.</p>
-<pre><code class="julia">julia&gt; include(&quot;test1.jl&quot;)
-We defined x to be 2
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">include</span><span class="p">(</span><span class="s">&quot;test1.jl&quot;</span><span class="p">)</span>
+<span class="n">We</span> <span class="n">defined</span> <span class="n">x</span> <span class="n">to</span> <span class="n">be</span> <span class="mi">2</span>
 
-julia&gt; x
-2
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span>
+<span class="mi">2</span>
+</code></pre></div>
 
 <p>Note that the value of <code>x</code> "leaks out" of the script -- exactly as if we had typed the code in the REPL.</p>
 <p>In computer lingo, the script runs in the <strong>global namespace</strong>.</p>
@@ -777,11 +777,11 @@ julia&gt; x
 <li>Any variable to be retained after the function finishes must be passed out of it as a return argument. </li>
 </ul>
 <p>A function looks like this:</p>
-<pre><code class="julia">function f(x, y)
-    # Do stuff with x and y -&gt; z
-    return z
-end
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">function</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="c"># Do stuff with x and y -&gt; z</span>
+    <span class="k">return</span> <span class="n">z</span>
+<span class="k">end</span>
+</code></pre></div>
 
 <p>It takes two inputs (<code>x, y</code>), hopefully without modifying them, and affects the rest of the world <strong>only</strong> through its return value <code>z</code>.</p>
 <p>A side note: Even built-in commands are often written in Julia.</p>
@@ -795,27 +795,27 @@ end
 <p>Rule: Avoid globals like the plague, unless they are constants.</p>
 </blockquote>
 <h3 id="example_1">Example:<a class="headerlink" href="#example_1" title="Permanent link">&para;</a></h3>
-<pre><code class="julia">julia&gt; function f(x)
-               a = 5;
-               y = x + a;
-               return y
-       end
-f (generic function with 1 method)
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">function</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+               <span class="n">a</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+               <span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">a</span><span class="p">;</span>
+               <span class="k">return</span> <span class="n">y</span>
+       <span class="k">end</span>
+<span class="n">f</span> <span class="p">(</span><span class="n">generic</span> <span class="k">function</span> <span class="n">with</span> <span class="mi">1</span> <span class="n">method</span><span class="p">)</span>
 
-julia&gt; a = 3; 
-julia&gt; y = f(0)
-5
-julia&gt; a # Calling `f` did not change `a` on the &quot;outside&quot;
-3
-# Now the converse
-julia&gt; function g(x)
-                # Note that `a` is not defined in `g`
-            z = x + a;
-       end
-g (generic function with 1 method)
-julia&gt; g(1)
-4  # `g` used the `global a`
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> 
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">y</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="mi">5</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span> <span class="c"># Calling `f` did not change `a` on the &quot;outside&quot;</span>
+<span class="mi">3</span>
+<span class="c"># Now the converse</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="k">function</span> <span class="n">g</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                <span class="c"># Note that `a` is not defined in `g`</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">a</span><span class="p">;</span>
+       <span class="k">end</span>
+<span class="n">g</span> <span class="p">(</span><span class="n">generic</span> <span class="k">function</span> <span class="n">with</span> <span class="mi">1</span> <span class="n">method</span><span class="p">)</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">g</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="mi">4</span>  <span class="c"># `g` used the `global a`</span>
+</code></pre></div>
 
 <p>Note that <code>g</code> could see the variable <code>a=3</code> defined in the REPL, but not the <code>a</code> inside of <code>f</code>.</p>
 <p>Setting <code>a=3</code> in the REPL defined a <code>global</code> variable which is visible everywhere. Defining a variable inside a function produces a <code>local</code> variable instead.</p>
@@ -826,75 +826,75 @@ julia&gt; g(1)
 <blockquote>
 <p><strong>Modifying a function argument changes its value after the function returns</strong></p>
 </blockquote>
-<pre><code class="julia">julia&gt; function h(x)
-         x[1] = 2;
-         println(x);
-         return nothing
-       end
-h (generic function with 1 method)
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">function</span> <span class="n">h</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+         <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+         <span class="n">println</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+         <span class="k">return</span> <span class="nb">nothing</span>
+       <span class="k">end</span>
+<span class="n">h</span> <span class="p">(</span><span class="n">generic</span> <span class="k">function</span> <span class="n">with</span> <span class="mi">1</span> <span class="n">method</span><span class="p">)</span>
 
-julia&gt; z = [1,2];
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">z</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">];</span>
 
-julia&gt; h(z)
-[2, 2]
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">h</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 
-julia&gt; z
-2-element Array{Int64,1}:
- 2
- 2
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">z</span>
+<span class="mi">2</span><span class="o">-</span><span class="n">element</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span><span class="o">:</span>
+ <span class="mi">2</span>
+ <span class="mi">2</span>
+</code></pre></div>
 
 <p>But note that this does not happen when the argument is <strong>immutable</strong>.</p>
-<pre><code class="julia">julia&gt; function h2(x)
-         x = 19;
-         @show x;
-         return nothing
-       end
-h2 (generic function with 1 method)
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">function</span> <span class="n">h2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+         <span class="n">x</span> <span class="o">=</span> <span class="mi">19</span><span class="p">;</span>
+         <span class="nd">@show</span> <span class="n">x</span><span class="p">;</span>
+         <span class="k">return</span> <span class="nb">nothing</span>
+       <span class="k">end</span>
+<span class="n">h2</span> <span class="p">(</span><span class="n">generic</span> <span class="k">function</span> <span class="n">with</span> <span class="mi">1</span> <span class="n">method</span><span class="p">)</span>
 
-julia&gt; z = &quot;input&quot;
-&quot;input&quot;
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">z</span> <span class="o">=</span> <span class="s">&quot;input&quot;</span>
+<span class="s">&quot;input&quot;</span>
 
-julia&gt; h2(z)
-x = 19
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">h2</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">19</span>
 
-julia&gt; z
-&quot;input&quot;
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">z</span>
+<span class="s">&quot;input&quot;</span>
+</code></pre></div>
 
 <p>Generally, it is cleaner to avoid mutating arguments. But this can be inefficient.</p>
 <p>When arguments are mutated, the function name should end in <code>!</code>.</p>
 <p><strong>Example</strong></p>
-<pre><code class="julia">julia&gt; x = [3,1,4,2]
-4-element Vector{Int64}:
- 3
- 1
- 4
- 2
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="mi">4</span><span class="o">-</span><span class="n">element</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}</span><span class="o">:</span>
+ <span class="mi">3</span>
+ <span class="mi">1</span>
+ <span class="mi">4</span>
+ <span class="mi">2</span>
 
-julia&gt; sort(x)
-4-element Vector{Int64}:
- 1
- 2
- 3
- 4
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">sort</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="mi">4</span><span class="o">-</span><span class="n">element</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}</span><span class="o">:</span>
+ <span class="mi">1</span>
+ <span class="mi">2</span>
+ <span class="mi">3</span>
+ <span class="mi">4</span>
 
-julia&gt; x
-4-element Vector{Int64}:
- 3
- 1
- 4
- 2
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span>
+<span class="mi">4</span><span class="o">-</span><span class="n">element</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}</span><span class="o">:</span>
+ <span class="mi">3</span>
+ <span class="mi">1</span>
+ <span class="mi">4</span>
+ <span class="mi">2</span>
 
-julia&gt; sort!(x);
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">sort!</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
 
-julia&gt; x
-4-element Vector{Int64}:
- 1
- 2
- 3
- 4
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span>
+<span class="mi">4</span><span class="o">-</span><span class="n">element</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}</span><span class="o">:</span>
+ <span class="mi">1</span>
+ <span class="mi">2</span>
+ <span class="mi">3</span>
+ <span class="mi">4</span>
+</code></pre></div>
 
 <h2 id="global-variables">Global Variables<a class="headerlink" href="#global-variables" title="Permanent link">&para;</a></h2>
 <p>To make a variable visible from anywhere, define it as a <code>global</code>. </p>

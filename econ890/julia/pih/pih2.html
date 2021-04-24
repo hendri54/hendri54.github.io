@@ -713,20 +713,20 @@
 <p>Note: If we were a bit more serious, we would think about embedding all of this into a bigger set of utility functions that depend on multiple arguments.</p>
 <p>Let's start with log utility.</p>
 <p>Log has no parameters, so we have </p>
-<pre><code class="julia">struct UtilityLog end
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">UtilityLog</span> <span class="k">end</span>
+</code></pre></div>
 
 <p>But for CRRA we have</p>
-<pre><code class="julia">struct UtilityCRRA
-  sigma :: Float64
-end
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">UtilityCRRA</span>
+  <span class="n">sigma</span> <span class="o">::</span> <span class="kt">Float64</span>
+<span class="k">end</span>
+</code></pre></div>
 
 <p>Note: We generally would not want to hard-wire that <code>sigma</code> is a <code>Float64</code>. More generic would be a <a href="https://docs.julialang.org/en/v1/manual/types/#Parametric-Types">parametric type</a>:</p>
-<pre><code class="julia">struct UtilityCRRA{T}
-  sigma :: T
-end
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">UtilityCRRA</span><span class="p">{</span><span class="n">T</span><span class="p">}</span>
+  <span class="n">sigma</span> <span class="o">::</span> <span class="n">T</span>
+<span class="k">end</span>
+</code></pre></div>
 
 <p>But we keep things simple for now.</p>
 <p>Since we are packaging the code, we should really put it into a module (or better: a package). But we defer this as well for later.</p>
@@ -738,15 +738,15 @@ end
 </blockquote>
 <h2 id="making-a-model">Making a Model<a class="headerlink" href="#making-a-model" title="Permanent link">&para;</a></h2>
 <p>Now we easily build a <code>Model</code> from its parts.</p>
-<pre><code class="julia">struct Model
-    Y :: Float64
-    R :: Float64
-    T :: Int
-    beta :: Float64
-    u :: AbstractUtility
-end
-m = Model(10.0, 1.04, 30, 0.98, UtilityLog());
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">Model</span>
+    <span class="n">Y</span> <span class="o">::</span> <span class="kt">Float64</span>
+    <span class="n">R</span> <span class="o">::</span> <span class="kt">Float64</span>
+    <span class="n">T</span> <span class="o">::</span> <span class="kt">Int</span>
+    <span class="n">beta</span> <span class="o">::</span> <span class="kt">Float64</span>
+    <span class="n">u</span> <span class="o">::</span> <span class="n">AbstractUtility</span>
+<span class="k">end</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">Model</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">1.04</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mf">0.98</span><span class="p">,</span> <span class="n">UtilityLog</span><span class="p">());</span>
+</code></pre></div>
 
 <p>Note:</p>
 <ul>

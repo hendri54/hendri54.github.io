@@ -698,25 +698,25 @@
 <p>At the terminal, type <code>julia</code> to start a Julia session. You will see the REPL, which is similar to Matlab's command line.</p>
 <p>At the REPL, you can type any Julia command and see the results displayed. Note the REPL inputs (and all Julia commands) are case sensitive.</p>
 <p><code>?</code> switches to REPL <strong>help mode</strong>. For example, <code>?abs</code> will give help on the <code>abs</code> function:</p>
-<pre><code class="julia">?abs
+<div class="highlight"><pre><span></span><code><span class="o">?</span><span class="n">abs</span>
 
-abs(x)
+<span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-The absolute value of `x`.
+<span class="n">The</span> <span class="n">absolute</span> <span class="n">value</span> <span class="n">of</span> <span class="sb">`x`</span><span class="o">.</span>
 
-When `abs` is applied to signed integers, overflow may occur, resulting in the return of a negative value. This overflow occurs only when `abs` is applied to the minimum representable value of a signed integer. That is, when `x == typemin(typeof(x))`, `abs(x) == x &lt; 0`, not `-x` as might be expected.
+<span class="n">When</span> <span class="sb">`abs`</span> <span class="n">is</span> <span class="n">applied</span> <span class="n">to</span> <span class="n">signed</span> <span class="n">integers</span><span class="p">,</span> <span class="n">overflow</span> <span class="n">may</span> <span class="n">occur</span><span class="p">,</span> <span class="n">resulting</span> <span class="kp">in</span> <span class="n">the</span> <span class="k">return</span> <span class="n">of</span> <span class="n">a</span> <span class="n">negative</span> <span class="n">value</span><span class="o">.</span> <span class="n">This</span> <span class="n">overflow</span> <span class="n">occurs</span> <span class="n">only</span> <span class="n">when</span> <span class="sb">`abs`</span> <span class="n">is</span> <span class="n">applied</span> <span class="n">to</span> <span class="n">the</span> <span class="n">minimum</span> <span class="n">representable</span> <span class="n">value</span> <span class="n">of</span> <span class="n">a</span> <span class="n">signed</span> <span class="n">integer</span><span class="o">.</span> <span class="n">That</span> <span class="n">is</span><span class="p">,</span> <span class="n">when</span> <span class="sb">`x == typemin(typeof(x))`</span><span class="p">,</span> <span class="sb">`abs(x) == x &lt; 0`</span><span class="p">,</span> <span class="n">not</span> <span class="sb">`-x`</span> <span class="n">as</span> <span class="n">might</span> <span class="n">be</span> <span class="n">expected</span><span class="o">.</span>
 
-# Examples
-[...]
-</code></pre>
+<span class="c"># Examples</span>
+<span class="p">[</span><span class="o">...</span><span class="p">]</span>
+</code></pre></div>
 
 <p>Hint: A documentation browser, such as <a href="https://kapeli.com/dash">Dash</a> makes life a lot easier.</p>
 <h1 id="after-installation">After Installation<a class="headerlink" href="#after-installation" title="Permanent link">&para;</a></h1>
 <p>Once Julia is installed and running, it is useful to install a few helper packages. In the REPL, type</p>
-<pre><code>using Pkg;
+<div class="highlight"><pre><span></span><code>using Pkg;
 Pkg.add(&quot;OhMyREPL&quot;);
 Pkg.add(&quot;Revise&quot;);
-</code></pre>
+</code></pre></div>
 
 <p>This will take some time to execute.</p>
 <p><code>OhMyREPL</code> formats REPL output.</p>
@@ -724,9 +724,9 @@ Pkg.add(&quot;Revise&quot;);
 <p>After making changes to installed packages, you should always restart the REPL. Ctrl-D quits the REPL.</p>
 <p>Edit "~/.julia/config/startup.jl" and add the line <code>using OhMyREPL, Revise</code>. This ensures that those packages are used every time you start Julia.</p>
 <p>Hint: Set the <code>JULIA_EDITOR</code> <a href="https://docs.julialang.org/en/v1/manual/environment-variables/">environment variable</a> to point to your editor. For VSCode:</p>
-<pre><code class="julia">julia&gt; ENV[&quot;JULIA_EDITOR&quot;]
-&quot;/usr/local/bin/code&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="nb">ENV</span><span class="p">[</span><span class="s">&quot;JULIA_EDITOR&quot;</span><span class="p">]</span>
+<span class="s">&quot;/usr/local/bin/code&quot;</span>
+</code></pre></div>
 
 <p>This allows you to open files by either clicking on file paths in the REPL (if your terminal supports this) or by typing <code>edit(path/to/file.jl)</code>.</p>
 <p>To check that everything worked correctly, start Julia and type <code>Revise</code> at the REPL prompt. Make sure this does not give an error message.</p>

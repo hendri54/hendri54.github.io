@@ -836,74 +836,74 @@
 <p>One good piece of advice: ensure that methods are generally defined on the abstract type, so that all concrete types have the same interface (kind of the point of having an abstract type).</p>
 <h3 id="macro-for-common-fields">Macro for common fields<a class="headerlink" href="#macro-for-common-fields" title="Permanent link">&para;</a></h3>
 <p><a href="https://discourse.julialang.org/t/julia-learning-macros-metaprogramming/45753/3">A macro</a> that lets users define a set of common fields for a set of structs:</p>
-<pre><code class="julia">macro def(name, definition)
-    return quote
-        macro $(esc(name))()
-            esc($(Expr(:quote, definition)))
-        end
-    end
-end
+<div class="highlight"><pre><span></span><code><span class="k">macro</span> <span class="n">def</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">definition</span><span class="p">)</span>
+    <span class="k">return</span> <span class="k">quote</span>
+        <span class="k">macro</span> <span class="o">$</span><span class="p">(</span><span class="n">esc</span><span class="p">(</span><span class="n">name</span><span class="p">))()</span>
+            <span class="n">esc</span><span class="p">(</span><span class="o">$</span><span class="p">(</span><span class="kt">Expr</span><span class="p">(</span><span class="o">:</span><span class="k">quote</span><span class="p">,</span> <span class="n">definition</span><span class="p">)))</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span>
 
-@def commonfields begin
-    #Data
-    X #Feature vectors
-    y #Labels (-1,1)
-    nSamples::Int64 # Number of data points
-    nFeatures::Int64 # Number of features
-end
+<span class="nd">@def</span> <span class="n">commonfields</span> <span class="k">begin</span>
+    <span class="c">#Data</span>
+    <span class="n">X</span> <span class="c">#Feature vectors</span>
+    <span class="n">y</span> <span class="c">#Labels (-1,1)</span>
+    <span class="n">nSamples</span><span class="o">::</span><span class="kt">Int64</span> <span class="c"># Number of data points</span>
+    <span class="n">nFeatures</span><span class="o">::</span><span class="kt">Int64</span> <span class="c"># Number of features</span>
+<span class="k">end</span>
 
-struct Foo
-    @commonfields
-    z
-end
-</code></pre>
+<span class="k">struct</span> <span class="n">Foo</span>
+    <span class="nd">@commonfields</span>
+    <span class="n">z</span>
+<span class="k">end</span>
+</code></pre></div>
 
 <p>But this does not work with default values. </p>
 <h3 id="common-fields-with-default-values">Common fields with default values<a class="headerlink" href="#common-fields-with-default-values" title="Permanent link">&para;</a></h3>
-<pre><code class="julia">mutable struct Foo
-    x
-    y
-    z
+<div class="highlight"><pre><span></span><code><span class="k">mutable</span> <span class="k">struct</span> <span class="n">Foo</span>
+    <span class="n">x</span>
+    <span class="n">y</span>
+    <span class="n">z</span>
 
-    Foo() = new();
-end
+    <span class="n">Foo</span><span class="p">()</span> <span class="o">=</span> <span class="n">new</span><span class="p">();</span>
+<span class="k">end</span>
 
-# Need at least one positional argument. Otherwise stack overflow.
-function Foo(z :: Integer; kwargs...)
-    f = Foo();
-    set_common_fields!(f);
-    set_kw_args!(f; kwargs...);
-    f.z = z;
-    return f
-end
+<span class="c"># Need at least one positional argument. Otherwise stack overflow.</span>
+<span class="k">function</span> <span class="n">Foo</span><span class="p">(</span><span class="n">z</span> <span class="o">::</span> <span class="kt">Integer</span><span class="p">;</span> <span class="n">kwargs</span><span class="o">...</span><span class="p">)</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">Foo</span><span class="p">();</span>
+    <span class="n">set_common_fields!</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">set_kw_args!</span><span class="p">(</span><span class="n">f</span><span class="p">;</span> <span class="n">kwargs</span><span class="o">...</span><span class="p">);</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">f</span>
+<span class="k">end</span>
 
 
-function set_common_fields!(f :: Foo)
-    f.x = 1;
-    f.y = 2;
-end
+<span class="k">function</span> <span class="n">set_common_fields!</span><span class="p">(</span><span class="n">f</span> <span class="o">::</span> <span class="n">Foo</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="k">end</span>
 
-function set_kw_args!(f :: Foo; kwargs...)
-    for kw in kwargs
-        setfield!(f, kw[1], kw[2])
-    end
-end
+<span class="k">function</span> <span class="n">set_kw_args!</span><span class="p">(</span><span class="n">f</span> <span class="o">::</span> <span class="n">Foo</span><span class="p">;</span> <span class="n">kwargs</span><span class="o">...</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">kw</span> <span class="kp">in</span> <span class="n">kwargs</span>
+        <span class="n">setfield!</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">kw</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">kw</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="k">end</span>
+<span class="k">end</span>
 
-julia&gt; Foo(3)
-Foo(1, 2, 3)
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">Foo</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">Foo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
 
 <h3 id="common-fields-in-sub-struct">Common fields in sub-struct<a class="headerlink" href="#common-fields-in-sub-struct" title="Permanent link">&para;</a></h3>
 <p>An alternative is to store common fields in a sub-struct. Passing methods through to these fields can be automated using <code>@forward</code> in <code>Lazy.jl</code>. </p>
-<pre><code class="julia">using Lazy
-struct Foo
-  x
-end
-@forward Foo.x (Base.show, Base.isempty)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">using</span> <span class="n">Lazy</span>
+<span class="k">struct</span> <span class="n">Foo</span>
+  <span class="n">x</span>
+<span class="k">end</span>
+<span class="nd">@forward</span> <span class="n">Foo</span><span class="o">.</span><span class="n">x</span> <span class="p">(</span><span class="n">Base</span><span class="o">.</span><span class="n">show</span><span class="p">,</span> <span class="n">Base</span><span class="o">.</span><span class="n">isempty</span><span class="p">)</span>
+</code></pre></div>
 
 <p>The tricky part is to modify these fields. One possible solution:</p>
-<pre><code>Base.@kwdef mutable struct FooCommon
+<div class="highlight"><pre><span></span><code>Base.@kwdef mutable struct FooCommon
     x = 1
     y = 2
 end
@@ -935,24 +935,24 @@ function set_field!(f :: Foo, fName :: Symbol, fValue)
         setfield!(f.fc, fName, fValue);
     end
 end
-</code></pre>
+</code></pre></div>
 
 <h2 id="user-defined-types-15">User Defined Types (1.5)<a class="headerlink" href="#user-defined-types-15" title="Permanent link">&para;</a></h2>
 <p><a href="https://kristofferc.github.io/LazilyInitializedFields.jl/">LazyInitializedFields.jl</a> is a nice way of handling partially initialized struct fields.</p>
 <h2 id="properties-and-fields">Properties and fields<a class="headerlink" href="#properties-and-fields" title="Permanent link">&para;</a></h2>
 <p><code>getfield</code> is a "built-in" function that always points to a <code>struct</code> field directly. Example:</p>
-<pre><code class="julia">struct A
-  x :: Dict{Symbol,Int}
-  y :: Int
-end
-a = A(Dict([:a =&gt; 1]), 2);
-getfield(a, :x) isa Dict{Symbol, Int}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">A</span>
+  <span class="n">x</span> <span class="o">::</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">Symbol</span><span class="p">,</span><span class="kt">Int</span><span class="p">}</span>
+  <span class="n">y</span> <span class="o">::</span> <span class="kt">Int</span>
+<span class="k">end</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">A</span><span class="p">(</span><span class="kt">Dict</span><span class="p">([</span><span class="o">:</span><span class="n">a</span> <span class="o">=&gt;</span> <span class="mi">1</span><span class="p">]),</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">getfield</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">:</span><span class="n">x</span><span class="p">)</span> <span class="kp">isa</span> <span class="kt">Dict</span><span class="p">{</span><span class="kt">Symbol</span><span class="p">,</span> <span class="kt">Int</span><span class="p">}</span>
+</code></pre></div>
 
 <p><code>getproperty</code> is generically the same as <code>getfield</code>. But note that <code>propertynames(A)</code> spits out additional hidden properties, not just <code>:x, :y</code>.</p>
 <p>Users can overload <code>getproperty</code> to point to something more useful than the direct fields of the <code>struct</code>:</p>
-<pre><code class="julia">Base.getproperty(a :: A, n :: Symbol) = getfield(a, :x)[n];
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">Base</span><span class="o">.</span><span class="n">getproperty</span><span class="p">(</span><span class="n">a</span> <span class="o">::</span> <span class="n">A</span><span class="p">,</span> <span class="n">n</span> <span class="o">::</span> <span class="kt">Symbol</span><span class="p">)</span> <span class="o">=</span> <span class="n">getfield</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">:</span><span class="n">x</span><span class="p">)[</span><span class="n">n</span><span class="p">];</span>
+</code></pre></div>
 
 <p>Then also overload <code>propertynames</code> so that functions that rely on the public properties of <code>A</code> work.</p>
 <hr />

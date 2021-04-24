@@ -677,9 +677,10 @@
                 <h1 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h1>
 <p>The golden rule:</p>
 <blockquote>
-<p>When you write a function, write a test function to go with it.</p>
+<p>When you write a function, write a set of tests to go with it.</p>
 </blockquote>
-<p>It is hard to overstate the importance of automated testing. It gives you peace of mind. When you change some code, you can simply rerun your test suite and ensure that nothing has been broken.</p>
+<p>It is hard to overstate the importance of automated testing. It gives you peace of mind. </p>
+<p>When you change some code, you can simply rerun your test suite and ensure that nothing has been broken.</p>
 <p>The key is to fully automate the testing. Your project should have a single function that runs all tests in order.</p>
 <p>All programming languages have unit testing frameworks that make it easy to automate this process. Julia's is described <a href="https://docs.julialang.org/en/v1/stdlib/Test/">here</a>.</p>
 <h2 id="testing-basics">Testing basics<a class="headerlink" href="#testing-basics" title="Permanent link">&para;</a></h2>
@@ -694,7 +695,7 @@
 </li>
 <li>The <code>@testset</code> macro groups tests for clearer reporting.</li>
 </ol>
-<p>Example: <a href="pih/testing.jl">testing.jl</a> and <a href="pih/testing_test.jl">testing_test.jl</a>.</p>
+<p>Example: <a href="examples/testing.jl">testing.jl</a> and <a href="examples/testing_test.jl">testing_test.jl</a>.</p>
 <hr />
                 
               

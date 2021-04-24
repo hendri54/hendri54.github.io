@@ -791,21 +791,21 @@
 </ol>
 <h3 id="pkgtemplatesjl">PkgTemplates.jl<a class="headerlink" href="#pkgtemplatesjl" title="Permanent link">&para;</a></h3>
 <p>The typical flow would be:</p>
-<pre><code class="julia">using PkgTemplates
-gitIgnore = [&quot;*.jl.cov&quot;, &quot;*.jl.*.cov&quot;, &quot;*.jl.mem&quot;, &quot;/deps/deps.jl&quot;, &quot;/docs/build&quot;];
-t = Template(;
-    dir = joinpath(homedir(), &quot;Documents&quot;, &quot;julia&quot;),
-    plugins = [
-        Documenter{GitHubActions},
-        Git(; jl = false, ignore = gitIgnore),
-        !CompatHelper,
-        !AppVeyor,
-        !TravisCI,
-        !TagBot
-        ]);
+<div class="highlight"><pre><span></span><code><span class="k">using</span> <span class="n">PkgTemplates</span>
+<span class="n">gitIgnore</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;*.jl.cov&quot;</span><span class="p">,</span> <span class="s">&quot;*.jl.*.cov&quot;</span><span class="p">,</span> <span class="s">&quot;*.jl.mem&quot;</span><span class="p">,</span> <span class="s">&quot;/deps/deps.jl&quot;</span><span class="p">,</span> <span class="s">&quot;/docs/build&quot;</span><span class="p">];</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(;</span>
+    <span class="n">dir</span> <span class="o">=</span> <span class="n">joinpath</span><span class="p">(</span><span class="n">homedir</span><span class="p">(),</span> <span class="s">&quot;Documents&quot;</span><span class="p">,</span> <span class="s">&quot;julia&quot;</span><span class="p">),</span>
+    <span class="n">plugins</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">Documenter</span><span class="p">{</span><span class="n">GitHubActions</span><span class="p">},</span>
+        <span class="n">Git</span><span class="p">(;</span> <span class="n">jl</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="n">ignore</span> <span class="o">=</span> <span class="n">gitIgnore</span><span class="p">),</span>
+        <span class="o">!</span><span class="n">CompatHelper</span><span class="p">,</span>
+        <span class="o">!</span><span class="n">AppVeyor</span><span class="p">,</span>
+        <span class="o">!</span><span class="n">TravisCI</span><span class="p">,</span>
+        <span class="o">!</span><span class="n">TagBot</span>
+        <span class="p">]);</span>
 
-t(&quot;MyPkg&quot;);
-</code></pre>
+<span class="n">t</span><span class="p">(</span><span class="s">&quot;MyPkg&quot;</span><span class="p">);</span>
+</code></pre></div>
 
 <p>Note that <code>dir</code> points to the parent directory of the new packages to be created.</p>
 <p>Even if one does not want to deploy documentation, the <code>Documenter</code> plugin is needed to create the barebones file structure. </p>

@@ -733,75 +733,75 @@
 <h2 id="vectors">Vectors<a class="headerlink" href="#vectors" title="Permanent link">&para;</a></h2>
 <p>A <code>Vector</code> is just what you think it is: a 1-dimensional array. In Julia, these are always column vectors (sort of always).</p>
 <p>To create a vector, simply fill it with values: </p>
-<pre><code class="julia">a = [1, 2, 3]
-3-element Array{Int64,1}:
- 1
- 2
- 3
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="mi">3</span><span class="o">-</span><span class="n">element</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span><span class="o">:</span>
+ <span class="mi">1</span>
+ <span class="mi">2</span>
+ <span class="mi">3</span>
+</code></pre></div>
 
 <p>Note that the return values is a one-dimensional <code>array</code>. <code>Vector</code> is simply an alias for this. </p>
-<pre><code class="julia">julia&gt; Vector{Int} === Array{Int,1}
-true
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Int</span><span class="p">}</span> <span class="o">===</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Int</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span>
+<span class="kc">true</span>
+</code></pre></div>
 
 <p>There are no row vectors in Julia. A row vector is a <code>1xN</code> <code>Matrix</code>:</p>
-<pre><code class="julia">julia&gt; a = [1 2 3]
-1×3 Array{Int64,2}:
- 1  2  3
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">]</span>
+<span class="mi">1</span><span class="n">×3</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">2</span><span class="p">}</span><span class="o">:</span>
+ <span class="mi">1</span>  <span class="mi">2</span>  <span class="mi">3</span>
 
-julia&gt; a isa Matrix{Int}
-true
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span> <span class="kp">isa</span> <span class="kt">Matrix</span><span class="p">{</span><span class="kt">Int</span><span class="p">}</span>
+<span class="kc">true</span>
+</code></pre></div>
 
 <h3 id="indexing">Indexing<a class="headerlink" href="#indexing" title="Permanent link">&para;</a></h3>
 <p>To extract elements from a vector, hand it a list of indices.</p>
-<pre><code class="julia">julia&gt; a = [2, 3, 4, 5];
-julia&gt; a[1]
-2
-# Note the double brackets
-julia&gt; a[[1, 3]]
-2-element Array{Int64,1}:
- 2
- 4
-# What we are really doing is
-idx = [1, 3];
-a[idx]
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">];</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="mi">2</span>
+<span class="c"># Note the double brackets</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+<span class="mi">2</span><span class="o">-</span><span class="n">element</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span><span class="o">:</span>
+ <span class="mi">2</span>
+ <span class="mi">4</span>
+<span class="c"># What we are really doing is</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="n">a</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+</code></pre></div>
 
 <p>Then there is logical indexing:</p>
-<pre><code class="julia">a = [1, 2, 3];
-a[[true, false, true]]
-2-element Array{Int64,1}:
- 1
- 3
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">];</span>
+<span class="n">a</span><span class="p">[[</span><span class="kc">true</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">]]</span>
+<span class="mi">2</span><span class="o">-</span><span class="n">element</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span><span class="o">:</span>
+ <span class="mi">1</span>
+ <span class="mi">3</span>
+</code></pre></div>
 
 <p>Arrays are "mutable", meaning that the elements can be changed "in-place":</p>
-<pre><code class="julia">julia&gt; a = [1,2,3]
-3-element Vector{Int64}:
- 1
- 2
- 3
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="mi">3</span><span class="o">-</span><span class="n">element</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}</span><span class="o">:</span>
+ <span class="mi">1</span>
+ <span class="mi">2</span>
+ <span class="mi">3</span>
 
-julia&gt; a[2] = 22
-22
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">22</span>
+<span class="mi">22</span>
 
-julia&gt; a
-3-element Vector{Int64}:
-  1
- 22
-  3
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span>
+<span class="mi">3</span><span class="o">-</span><span class="n">element</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}</span><span class="o">:</span>
+  <span class="mi">1</span>
+ <span class="mi">22</span>
+  <span class="mi">3</span>
+</code></pre></div>
 
 <h3 id="ranges">Ranges<a class="headerlink" href="#ranges" title="Permanent link">&para;</a></h3>
 <p>In Matlab, <code>1:3</code> is a <code>Vector</code>, but not in Julia:</p>
-<pre><code class="julia">julia&gt; 1:3
-1:3
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="mi">1</span><span class="o">:</span><span class="mi">3</span>
+<span class="mi">1</span><span class="o">:</span><span class="mi">3</span>
 
-julia&gt; typeof(1:3)
-UnitRange{Int64}
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">typeof</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">3</span><span class="p">)</span>
+<span class="kt">UnitRange</span><span class="p">{</span><span class="kt">Int64</span><span class="p">}</span>
+</code></pre></div>
 
 <p>The main difference between a <code>Vector</code> and a <code>Range</code> is that the vector is allocated upon construction (its values are computed and stored in memory). </p>
 <p>A <code>Range</code> is an <a href="https://docs.julialang.org/en/v1/base/collections/#lib-collections-iteration"><code>Iterator</code></a>. You can iteratore over its elements, but they are not computed until needed. Therefore, the <code>Range</code> does not allocate memory. This is a big deal when lots of values are involved.</p>
@@ -817,76 +817,76 @@ UnitRange{Int64}
 <h2 id="matrices">Matrices<a class="headerlink" href="#matrices" title="Permanent link">&para;</a></h2>
 <p>A <code>Matrix</code> is a 2-dimensional array. There are also n-dimensional arrays (see below).</p>
 <p>To create a matrix, simply fill it with values. </p>
-<pre><code class="julia">julia&gt; a = [1 2 3; 4 5 6]
-2×3 Array{Int64,2}:
- 1  2  3
- 4  5  6
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">;</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span><span class="p">]</span>
+<span class="mi">2</span><span class="n">×3</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">2</span><span class="p">}</span><span class="o">:</span>
+ <span class="mi">1</span>  <span class="mi">2</span>  <span class="mi">3</span>
+ <span class="mi">4</span>  <span class="mi">5</span>  <span class="mi">6</span>
+</code></pre></div>
 
 <p>Many commands work directly on matrices. </p>
-<pre><code class="julia">julia&gt; a = [1 2 3]; b = [2; 1; 1]; a * b
-1-element Array{Int64,1}:
- 7
-julia&gt; c=b*a
-3×3 Array{Int64,2}:
- 2  4  6
- 1  2  3
- 1  2  3
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">];</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">;</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">1</span><span class="p">];</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+<span class="mi">1</span><span class="o">-</span><span class="n">element</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span><span class="o">:</span>
+ <span class="mi">7</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">c</span><span class="o">=</span><span class="n">b</span><span class="o">*</span><span class="n">a</span>
+<span class="mi">3</span><span class="n">×3</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">2</span><span class="p">}</span><span class="o">:</span>
+ <span class="mi">2</span>  <span class="mi">4</span>  <span class="mi">6</span>
+ <span class="mi">1</span>  <span class="mi">2</span>  <span class="mi">3</span>
+ <span class="mi">1</span>  <span class="mi">2</span>  <span class="mi">3</span>
+</code></pre></div>
 
 <p>To extract elements: </p>
-<pre><code class="julia">julia&gt; c[1,2]
-4
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="mi">4</span>
 
-julia&gt; c[1:2, 2:3]
-2×2 Array{Int64,2}:
- 4  6
- 2  3
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="o">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="mi">2</span><span class="n">×2</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">2</span><span class="p">}</span><span class="o">:</span>
+ <span class="mi">4</span>  <span class="mi">6</span>
+ <span class="mi">2</span>  <span class="mi">3</span>
+</code></pre></div>
 
 <p>To extract a row (but note that this produces a <code>Vector</code>):</p>
-<pre><code class="julia">julia&gt; c[1,:]
-3-element Array{Int64,1}:
- 2
- 4
- 6
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">]</span>
+<span class="mi">3</span><span class="o">-</span><span class="n">element</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Int64</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span><span class="o">:</span>
+ <span class="mi">2</span>
+ <span class="mi">4</span>
+ <span class="mi">6</span>
+</code></pre></div>
 
 <p>Linear indexing works as well:</p>
-<pre><code class="julia">julia&gt; c[4]
-4
-julia&gt; c[4] == c[1,2]
-true
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="mi">4</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">==</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="kc">true</span>
+</code></pre></div>
 
 <p>In memory, <code>Arrays</code> are stored like <code>Vectors</code>. The compiler just keeps track of how the user wants to interpret the data.</p>
 <h2 id="multi-dimensional-arrays">Multi-dimensional Arrays<a class="headerlink" href="#multi-dimensional-arrays" title="Permanent link">&para;</a></h2>
 <p>Arrays can have more than 2 dimensions. </p>
-<pre><code class="julia">julia&gt; using Random
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">Random</span>
 
-julia&gt; a = rand(4,3,2)
-4×3×2 Array{Float64,3}:
-[:, :, 1] =
- 0.146411  0.908415  0.568039
- 0.444156  0.434034  0.875361
- 0.429705  0.704086  0.71789
- 0.502228  0.124412  0.771808
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">rand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="mi">4</span><span class="n">×3×2</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">3</span><span class="p">}</span><span class="o">:</span>
+<span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="o">:</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span>
+ <span class="mf">0.146411</span>  <span class="mf">0.908415</span>  <span class="mf">0.568039</span>
+ <span class="mf">0.444156</span>  <span class="mf">0.434034</span>  <span class="mf">0.875361</span>
+ <span class="mf">0.429705</span>  <span class="mf">0.704086</span>  <span class="mf">0.71789</span>
+ <span class="mf">0.502228</span>  <span class="mf">0.124412</span>  <span class="mf">0.771808</span>
 
-[:, :, 2] =
- 0.862953   0.58189    0.549077
- 0.722745   0.677342   0.330188
- 0.0543144  0.161877   0.358381
- 0.312414   0.0681076  0.822319
-</code></pre>
+<span class="p">[</span><span class="o">:</span><span class="p">,</span> <span class="o">:</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span>
+ <span class="mf">0.862953</span>   <span class="mf">0.58189</span>    <span class="mf">0.549077</span>
+ <span class="mf">0.722745</span>   <span class="mf">0.677342</span>   <span class="mf">0.330188</span>
+ <span class="mf">0.0543144</span>  <span class="mf">0.161877</span>   <span class="mf">0.358381</span>
+ <span class="mf">0.312414</span>   <span class="mf">0.0681076</span>  <span class="mf">0.822319</span>
+</code></pre></div>
 
 <p>Indexing generates new arrays with potentially fewer dimensions:</p>
-<pre><code class="julia">julia&gt; a[:,1,:]
-4×2 Array{Float64,2}:
- 0.146411  0.862953
- 0.444156  0.722745
- 0.429705  0.0543144
- 0.502228  0.312414
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="o">:</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">:</span><span class="p">]</span>
+<span class="mi">4</span><span class="n">×2</span> <span class="kt">Array</span><span class="p">{</span><span class="kt">Float64</span><span class="p">,</span><span class="mi">2</span><span class="p">}</span><span class="o">:</span>
+ <span class="mf">0.146411</span>  <span class="mf">0.862953</span>
+ <span class="mf">0.444156</span>  <span class="mf">0.722745</span>
+ <span class="mf">0.429705</span>  <span class="mf">0.0543144</span>
+ <span class="mf">0.502228</span>  <span class="mf">0.312414</span>
+</code></pre></div>
 
 <h3 id="array-exercises">Array Exercises<a class="headerlink" href="#array-exercises" title="Permanent link">&para;</a></h3>
 <ol>

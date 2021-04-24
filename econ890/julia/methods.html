@@ -670,6 +670,19 @@
     Type Annotations
   </a>
   
+    <nav class="md-nav" aria-label="Type Annotations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -713,42 +726,42 @@
 <p>Now we get to one of the key distinguishing features of Julia: multiple dispatch.</p>
 <h2 id="methods">Methods<a class="headerlink" href="#methods" title="Permanent link">&para;</a></h2>
 <p>When we create a function, we get a strange status message:</p>
-<pre><code class="julia">julia&gt; baz(x) = 2 * x
-baz (generic function with 1 method)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">baz</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">x</span>
+<span class="n">baz</span> <span class="p">(</span><span class="n">generic</span> <span class="k">function</span> <span class="n">with</span> <span class="mi">1</span> <span class="n">method</span><span class="p">)</span>
+</code></pre></div>
 
 <p>We just created a "generic function" (we will pretty much never worry about what that means) with <strong>1 method</strong>.</p>
 <p>But now try</p>
-<pre><code class="julia">julia&gt; function foo end
-foo (generic function with 0 methods)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">function</span> <span class="n">foo</span> <span class="k">end</span>
+<span class="n">foo</span> <span class="p">(</span><span class="n">generic</span> <span class="k">function</span> <span class="n">with</span> <span class="mi">0</span> <span class="n">methods</span><span class="p">)</span>
+</code></pre></div>
 
 <p>We just created a function <code>foo</code> with <code>0 methods</code>. What does this mean?</p>
 <p>If we try to call <code>foo</code>, we get a <code>MethodError</code>:</p>
-<pre><code class="julia">julia&gt; foo(1)
-ERROR: MethodError: no method matching foo(::Int64)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ERROR</span><span class="o">:</span> <span class="kt">MethodError</span><span class="o">:</span> <span class="n">no</span> <span class="n">method</span> <span class="n">matching</span> <span class="n">foo</span><span class="p">(</span><span class="o">::</span><span class="kt">Int64</span><span class="p">)</span>
+</code></pre></div>
 
 <p>Now let's define a <code>method</code>:</p>
-<pre><code class="julia">julia&gt; foo(x :: Int) = @show x
-foo (generic function with 1 method)
-julia&gt; foo(10)
-x = 10
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="n">x</span> <span class="o">::</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">=</span> <span class="nd">@show</span> <span class="n">x</span>
+<span class="n">foo</span> <span class="p">(</span><span class="n">generic</span> <span class="k">function</span> <span class="n">with</span> <span class="mi">1</span> <span class="n">method</span><span class="p">)</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+</code></pre></div>
 
 <p>And a second one:</p>
-<pre><code class="julia">julia&gt; foo(x :: String) = println(&quot;$x is a string&quot;)
-foo (generic function with 2 methods)
-julia&gt; foo(&quot;abc&quot;)
-abc is a string
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="n">x</span> <span class="o">::</span> <span class="n">String</span><span class="p">)</span> <span class="o">=</span> <span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="si">$x</span><span class="s"> is a string&quot;</span><span class="p">)</span>
+<span class="n">foo</span> <span class="p">(</span><span class="n">generic</span> <span class="k">function</span> <span class="n">with</span> <span class="mi">2</span> <span class="n">methods</span><span class="p">)</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">)</span>
+<span class="n">abc</span> <span class="n">is</span> <span class="n">a</span> <span class="n">string</span>
+</code></pre></div>
 
 <p>What methods do we have?</p>
-<pre><code class="julia">julia&gt; methods(foo)
-# 2 methods for generic function &quot;foo&quot;:
-[1] foo(x::String) in Main at REPL[4]:1
-[2] foo(x::Int64) in Main at REPL[5]:1
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">methods</span><span class="p">(</span><span class="n">foo</span><span class="p">)</span>
+<span class="c"># 2 methods for generic function &quot;foo&quot;:</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="n">String</span><span class="p">)</span> <span class="kp">in</span> <span class="n">Main</span> <span class="n">at</span> <span class="n">REPL</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">:</span><span class="mi">1</span>
+<span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="o">::</span><span class="kt">Int64</span><span class="p">)</span> <span class="kp">in</span> <span class="n">Main</span> <span class="n">at</span> <span class="n">REPL</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">:</span><span class="mi">1</span>
+</code></pre></div>
 
 <p>Calling <code>foo</code> with anything other than an <code>Int</code> or <code>String</code> produces a <code>MethodError</code>.</p>
 <p>So what are functions and methods?</p>
@@ -768,12 +781,12 @@ abc is a string
 <blockquote>
 <p>Methods allow us to execute different code for the same function call, depending on the type of the input argument.</p>
 </blockquote>
-<pre><code class="julia">julia&gt; foo(1);
-x = 1
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
 
-julia&gt; foo(&quot;abc&quot;);
-abc is a string
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">);</span>
+<span class="n">abc</span> <span class="n">is</span> <span class="n">a</span> <span class="n">string</span>
+</code></pre></div>
 
 <p>Why do we want this to happen?</p>
 <p>Benefit 1: We don't have to worry about <strong>name conflicts</strong></p>
@@ -796,19 +809,19 @@ abc is a string
 </ul>
 <p>This is similar to <a href="oop.html">object oriented programming</a> where <code>method</code>s are owned by specific objects.</p>
 <p>The key difference is that, in Julia, this also works with multiple arguments:</p>
-<pre><code class="julia">julia&gt; foo(x,y) = @show x,y
-foo (generic function with 3 methods)
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="nd">@show</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span>
+<span class="n">foo</span> <span class="p">(</span><span class="n">generic</span> <span class="k">function</span> <span class="n">with</span> <span class="mi">3</span> <span class="n">methods</span><span class="p">)</span>
 
-julia&gt; foo(x :: String, y) = println(&quot;$x is a string, but $y can be anything&quot;)
-foo (generic function with 4 methods)
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="n">x</span> <span class="o">::</span> <span class="n">String</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">println</span><span class="p">(</span><span class="s">&quot;</span><span class="si">$x</span><span class="s"> is a string, but </span><span class="si">$y</span><span class="s"> can be anything&quot;</span><span class="p">)</span>
+<span class="n">foo</span> <span class="p">(</span><span class="n">generic</span> <span class="k">function</span> <span class="n">with</span> <span class="mi">4</span> <span class="n">methods</span><span class="p">)</span>
 
-julia&gt; foo(1,2)
-(x, y) = (1, 2)
-(1, 2)
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 
-julia&gt; foo(&quot;abc&quot;, 2);
-abc is a string, but 2 can be anything
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="s">&quot;abc&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="n">abc</span> <span class="n">is</span> <span class="n">a</span> <span class="n">string</span><span class="p">,</span> <span class="n">but</span> <span class="mi">2</span> <span class="n">can</span> <span class="n">be</span> <span class="n">anything</span>
+</code></pre></div>
 
 <p><strong>Notes:</strong></p>
 <ol>
@@ -819,19 +832,19 @@ abc is a string, but 2 can be anything
 <p>There is a famous <a href="https://www.youtube.com/watch?v=kc9HwsxE1OY">talk by Stefan Karpinski</a> called "The unreasonable effectiveness of multiple dispatch" which explains why this is so powerful.</p>
 <h2 id="type-annotations">Type Annotations<a class="headerlink" href="#type-annotations" title="Permanent link">&para;</a></h2>
 <p>What happens if we omit type annotations?</p>
-<pre><code class="julia">julia&gt; foo(x,y) = @show x,y
-foo (generic function with 1 method)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="nd">@show</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span>
+<span class="n">foo</span> <span class="p">(</span><span class="n">generic</span> <span class="k">function</span> <span class="n">with</span> <span class="mi">1</span> <span class="n">method</span><span class="p">)</span>
+</code></pre></div>
 
 <p>Julia tells us that we have one method. But actually, we have infinitely many!</p>
 <p>Try <code>foo(1, "a")</code> or <code>foo([1,2], ["a" "b"])</code>. They all work.</p>
 <p><code>foo(x,y)</code> is actually a shorthand for</p>
-<pre><code class="julia">julia&gt; foo(x :: T1, y :: T2) where {T1 &lt;: Any, T2 &lt;: Any}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="n">x</span> <span class="o">::</span> <span class="n">T1</span><span class="p">,</span> <span class="n">y</span> <span class="o">::</span> <span class="n">T2</span><span class="p">)</span> <span class="n">where</span> <span class="p">{</span><span class="n">T1</span> <span class="o">&lt;:</span> <span class="kt">Any</span><span class="p">,</span> <span class="n">T2</span> <span class="o">&lt;:</span> <span class="kt">Any</span><span class="p">}</span>
+</code></pre></div>
 
 <p>which is the same as</p>
-<pre><code class="julia">julia&gt; foo(x :: Any, y :: Any)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">(</span><span class="n">x</span> <span class="o">::</span> <span class="kt">Any</span><span class="p">,</span> <span class="n">y</span> <span class="o">::</span> <span class="kt">Any</span><span class="p">)</span>
+</code></pre></div>
 
 <p>In words, we have implicitly defined a method for <strong>any combination</strong> of types for <code>(x,y)</code>.</p>
 <p>Here is a key point for performance: Julia still <strong>specializes</strong> the code for each combination of types that we actually use. </p>
@@ -859,21 +872,31 @@ foo (generic function with 1 method)
 </ul>
 </li>
 </ol>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<p>Write a function <code>myshow(x)</code> that prints that value of <code>x</code> with a little type annotation:</p>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">myshow</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="s">&quot;Int64 1&quot;</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">myshow</span><span class="p">(</span><span class="mf">1.2345</span><span class="p">)</span>  <span class="c"># Note the rounding!</span>
+<span class="s">&quot;Float64 1.2&quot;</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">myshow</span><span class="p">(</span><span class="s">&quot;any other type&quot;</span><span class="p">)</span>
+<span class="s">&quot;I do not know this type: String&quot;</span>
+</code></pre></div>
+
 <h2 id="generic-programming">Generic Programming<a class="headerlink" href="#generic-programming" title="Permanent link">&para;</a></h2>
 <p>Suppose I want to sort the <code>Vector</code> <code>x = [1, "a", 4, 2]</code>. </p>
 <p>Calling <code>sort(x)</code> gives an error: </p>
 <p><code>ERROR: MethodError: no method matching isless(::String, ::Int64)</code></p>
 <p>Now let's define that missing method and see what happens:</p>
-<pre><code class="julia">julia&gt; Base.isless(x :: String, y :: Number) = true
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">Base</span><span class="o">.</span><span class="n">isless</span><span class="p">(</span><span class="n">x</span> <span class="o">::</span> <span class="n">String</span><span class="p">,</span> <span class="n">y</span> <span class="o">::</span> <span class="kt">Number</span><span class="p">)</span> <span class="o">=</span> <span class="kc">true</span>
 
-julia&gt; sort([3,1,&quot;a&quot;,4,2])
-5-element Vector{Any}:
-  &quot;a&quot;
- 1
- 2
- 3
- 4
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">sort</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="mi">5</span><span class="o">-</span><span class="n">element</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Any</span><span class="p">}</span><span class="o">:</span>
+  <span class="s">&quot;a&quot;</span>
+ <span class="mi">1</span>
+ <span class="mi">2</span>
+ <span class="mi">3</span>
+ <span class="mi">4</span>
+</code></pre></div>
 
 <p>The sorting algorithm is <strong>generic</strong>. It works on any <code>Vector</code> as long as  <code>isless(x,y)</code> is defined.</p>
 <p>This makes the algorithm highly reusable. </p>
@@ -886,44 +909,44 @@ julia&gt; sort([3,1,&quot;a&quot;,4,2])
 <p>For this to work, we need to be able to extend functions that were defined by others (in modules, including <code>Base</code>) to new data types.</p>
 <p>This is exactly what we did in our sorting example:</p>
 <p>For example, suppose we want to be able to <code>sum</code> <code>String</code>s (this is a bad idea, but we can do it):</p>
-<pre><code class="julia">julia&gt; Base.isless(x :: String, y :: Number) = true
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">Base</span><span class="o">.</span><span class="n">isless</span><span class="p">(</span><span class="n">x</span> <span class="o">::</span> <span class="n">String</span><span class="p">,</span> <span class="n">y</span> <span class="o">::</span> <span class="kt">Number</span><span class="p">)</span> <span class="o">=</span> <span class="kc">true</span>
+</code></pre></div>
 
 <p>Note that we wrote <code>Base.isless</code>, not just <code>isless</code>. Had we written </p>
-<pre><code class="julia">julia&gt; isless(x :: String, y :: Number) = true
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">isless</span><span class="p">(</span><span class="n">x</span> <span class="o">::</span> <span class="n">String</span><span class="p">,</span> <span class="n">y</span> <span class="o">::</span> <span class="kt">Number</span><span class="p">)</span> <span class="o">=</span> <span class="kc">true</span>
+</code></pre></div>
 
 <p>we would have defined a <strong>new function</strong> <code>Main.isless</code>, not a new method.</p>
 <p>Then calling <code>sort[1, "abc"]</code> would have failed with the same <code>MethodError</code> that we originally encountered.</p>
 <p>The reason is that <code>sort</code> lives in module <code>Base</code> (we talk soon about what modules are). Therefore, any unqualified call to <code>isless</code> translates into <code>Base.isless</code>, which is a different <strong>function</strong> (not method) from <code>Main.isless</code>.</p>
 <p>Another, less clear, way of extending an existing function:</p>
-<pre><code class="julia">julia&gt; import Base: isless
-julia&gt; isless(x :: String, y :: Number) = true
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">import</span> <span class="n">Base</span><span class="o">:</span> <span class="n">isless</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">isless</span><span class="p">(</span><span class="n">x</span> <span class="o">::</span> <span class="n">String</span><span class="p">,</span> <span class="n">y</span> <span class="o">::</span> <span class="kt">Number</span><span class="p">)</span> <span class="o">=</span> <span class="kc">true</span>
+</code></pre></div>
 
 <h2 id="more-on-type-annotations">More on Type Annotations<a class="headerlink" href="#more-on-type-annotations" title="Permanent link">&para;</a></h2>
 <p>We can annotate types in various ways.</p>
-<pre><code class="julia"># No annotation
-foo(x, y) == foo(x :: Any, y :: Any)
-# Give an abstract type
-# Defines one method for each concrete T &lt;: Real
-foo(x :: Real) == foo(x :: T) where T &lt;: Real
-# Concrete types
-foo(x :: Float64)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c"># No annotation</span>
+<span class="n">foo</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">==</span> <span class="n">foo</span><span class="p">(</span><span class="n">x</span> <span class="o">::</span> <span class="kt">Any</span><span class="p">,</span> <span class="n">y</span> <span class="o">::</span> <span class="kt">Any</span><span class="p">)</span>
+<span class="c"># Give an abstract type</span>
+<span class="c"># Defines one method for each concrete T &lt;: Real</span>
+<span class="n">foo</span><span class="p">(</span><span class="n">x</span> <span class="o">::</span> <span class="kt">Real</span><span class="p">)</span> <span class="o">==</span> <span class="n">foo</span><span class="p">(</span><span class="n">x</span> <span class="o">::</span> <span class="n">T</span><span class="p">)</span> <span class="n">where</span> <span class="n">T</span> <span class="o">&lt;:</span> <span class="kt">Real</span>
+<span class="c"># Concrete types</span>
+<span class="n">foo</span><span class="p">(</span><span class="n">x</span> <span class="o">::</span> <span class="kt">Float64</span><span class="p">)</span>
+</code></pre></div>
 
 <blockquote>
 <p>Again: none of this has any impact on performance.</p>
 </blockquote>
 <p>We can impose type restrictions:</p>
-<pre><code class="julia"># Force (x,y) to be the same type
-# where T is the same as `where T &lt;: Any`
-foo(x :: T, y :: T) where T
-# Now this works
-foo(1, 2)
-# and this errors
-foo(1, 2.0)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="c"># Force (x,y) to be the same type</span>
+<span class="c"># where T is the same as `where T &lt;: Any`</span>
+<span class="n">foo</span><span class="p">(</span><span class="n">x</span> <span class="o">::</span> <span class="n">T</span><span class="p">,</span> <span class="n">y</span> <span class="o">::</span> <span class="n">T</span><span class="p">)</span> <span class="n">where</span> <span class="n">T</span>
+<span class="c"># Now this works</span>
+<span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c"># and this errors</span>
+<span class="n">foo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
+</code></pre></div>
 
 <hr />
                 

@@ -683,17 +683,17 @@
 <h2 id="revisejl">Revise.jl<a class="headerlink" href="#revisejl" title="Permanent link">&para;</a></h2>
 <p>Revise is essential for a smooth workflow.</p>
 <p>One limitation: <code>include</code>ing files in a model that is tracked with <code>includet</code> does not work (1.6). Example:</p>
-<pre><code class="julia"># Foo.jl
-module Foo
-    include(&quot;foo2.jl&quot;)
-end
+<div class="highlight"><pre><span></span><code><span class="c"># Foo.jl</span>
+<span class="k">module</span> <span class="n">Foo</span>
+    <span class="n">include</span><span class="p">(</span><span class="s">&quot;foo2.jl&quot;</span><span class="p">)</span>
+<span class="k">end</span>
 
-# foo2.jl
-foo() = println(&quot;This is foo&quot;)
+<span class="c"># foo2.jl</span>
+<span class="n">foo</span><span class="p">()</span> <span class="o">=</span> <span class="n">println</span><span class="p">(</span><span class="s">&quot;This is foo&quot;</span><span class="p">)</span>
 
-# REPL
-includet(&quot;Foo.jl&quot;)
-</code></pre>
+<span class="c"># REPL</span>
+<span class="n">includet</span><span class="p">(</span><span class="s">&quot;Foo.jl&quot;</span><span class="p">)</span>
+</code></pre></div>
 
 <p>produces a <code>MethodError</code> that is hard to make sense of.</p>
 <p>Once code gets complicated enough that files include other files, it is best to make a package.</p>

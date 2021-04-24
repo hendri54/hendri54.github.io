@@ -1,6 +1,35 @@
 abstract type AbstractUtility end
 
-# Euler equation deviation. Generic!
+## ----------  Generic
+# Here we define and document the interface that is common 
+# to all concrete types
+
+"""
+    utility(u, c)
+
+Utility level.
+
+This is a generic documentation that applies to all concrete types.
+But there is no generic implementation, hence no function body (no methods yet).
+"""
+function utility end
+
+"""
+    marg_utility(u, c)
+
+Marginal utility.
+"""
+function marg_utility end
+
+"""
+	euler_dev(u, cV, betaR)
+
+Euler equation deviation. Generic!
+Returns u'(c) / u'(c') - \beta R
+
+This is a generic function with an implementation that is common to all concrete types.
+So it has a function body.
+"""
 function euler_dev(
     u :: AbstractUtility, 
     cV :: AbstractVector{Float64}, 

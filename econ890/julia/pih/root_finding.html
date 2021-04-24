@@ -686,36 +686,36 @@
 <p>For this type of problem, we use code packaged into reusable libraries, called "packages". See <a href="../packages.html">the Section on Packages</a>.</p>
 <p>In this case, we will use <a href="https://github.com/JuliaMath/Roots.jl">Roots.jl</a>.</p>
 <p>Before we can use <code>Roots</code>, we need to add it as a dependency to the current <a href="../packages.html">environment</a>:</p>
-<pre><code class="julia">julia&gt; cd(&quot;/Users/lutz/Documents/data/web/professional/docs/econ890/julia/&quot;)
-(@v1.5) pkg&gt; activate .
- Activating new environment at `~/Documents/data/web/professional/docs/econ890/julia/Project.toml`
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">cd</span><span class="p">(</span><span class="s">&quot;/Users/lutz/Documents/data/web/professional/docs/econ890/julia/&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="nd">@v1</span><span class="o">.</span><span class="mi">5</span><span class="p">)</span> <span class="n">pkg</span><span class="o">&gt;</span> <span class="n">activate</span> <span class="o">.</span>
+ <span class="n">Activating</span> <span class="n">new</span> <span class="n">environment</span> <span class="n">at</span> <span class="sb">`~/Documents/data/web/professional/docs/econ890/julia/Project.toml`</span>
+</code></pre></div>
 
 <p>We have now activated the environment described by <code>Project.toml</code> in this directory.</p>
 <p>To get the <code>Pkg</code> commands to work, type <code>]</code> and the <code>pkg&gt;</code> prompt appears. Backspace backs out of the <code>Pkg</code> mode in the REPL.</p>
 <p>To see which packages are already contained in the enviroment:</p>
-<pre><code class="julia">(julia) pkg&gt; st
-Status `~/Documents/data/web/professional/docs/econ890/julia/Project.toml` (empty project)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">julia</span><span class="p">)</span> <span class="n">pkg</span><span class="o">&gt;</span> <span class="n">st</span>
+<span class="n">Status</span> <span class="sb">`~/Documents/data/web/professional/docs/econ890/julia/Project.toml`</span> <span class="p">(</span><span class="n">empty</span> <span class="n">project</span><span class="p">)</span>
+</code></pre></div>
 
 <p>This makes sense; we have not added any packages yet. But keep in mind that everything we activated before (including all packages in your <code>v1.5</code> environment are still available). Let's add <code>Roots</code>:</p>
-<pre><code class="julia">(julia) pkg&gt; add Roots
-   Updating registry at `~/.julia/registries/General`
-######################################################################## 100.0%
-   Updating registry at `~/.julia/registries/registryLH`
-   Updating git-repo `https://github.com/hendri54/registryLH`
-  Resolving package versions...
-Updating `~/Documents/data/web/professional/docs/econ890/julia/Project.toml`
-  [f2b01f46] + Roots v1.0.8
-Updating `~/Documents/data/web/professional/docs/econ890/julia/Manifest.toml`
-  [f2b01f46] + Roots v1.0.8
-  [de0858da] + Printf
-  [4ec0a83e] + Unicode
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">julia</span><span class="p">)</span> <span class="n">pkg</span><span class="o">&gt;</span> <span class="n">add</span> <span class="n">Roots</span>
+   <span class="n">Updating</span> <span class="n">registry</span> <span class="n">at</span> <span class="sb">`~/.julia/registries/General`</span>
+<span class="c">######################################################################## 100.0%</span>
+   <span class="n">Updating</span> <span class="n">registry</span> <span class="n">at</span> <span class="sb">`~/.julia/registries/registryLH`</span>
+   <span class="n">Updating</span> <span class="n">git</span><span class="o">-</span><span class="n">repo</span> <span class="sb">`https://github.com/hendri54/registryLH`</span>
+  <span class="n">Resolving</span> <span class="n">package</span> <span class="n">versions</span><span class="o">...</span>
+<span class="n">Updating</span> <span class="sb">`~/Documents/data/web/professional/docs/econ890/julia/Project.toml`</span>
+  <span class="p">[</span><span class="n">f2b01f46</span><span class="p">]</span> <span class="o">+</span> <span class="n">Roots</span> <span class="n">v1</span><span class="o">.</span><span class="mf">0.8</span>
+<span class="n">Updating</span> <span class="sb">`~/Documents/data/web/professional/docs/econ890/julia/Manifest.toml`</span>
+  <span class="p">[</span><span class="n">f2b01f46</span><span class="p">]</span> <span class="o">+</span> <span class="n">Roots</span> <span class="n">v1</span><span class="o">.</span><span class="mf">0.8</span>
+  <span class="p">[</span><span class="n">de0858da</span><span class="p">]</span> <span class="o">+</span> <span class="n">Printf</span>
+  <span class="p">[</span><span class="mi">4</span><span class="n">ec0a83e</span><span class="p">]</span> <span class="o">+</span> <span class="n">Unicode</span>
 
-(julia) pkg&gt; st
-Status `~/Documents/data/web/professional/docs/econ890/julia/Project.toml`
-  [f2b01f46] Roots v1.0.8
-</code></pre>
+<span class="p">(</span><span class="n">julia</span><span class="p">)</span> <span class="n">pkg</span><span class="o">&gt;</span> <span class="n">st</span>
+<span class="n">Status</span> <span class="sb">`~/Documents/data/web/professional/docs/econ890/julia/Project.toml`</span>
+  <span class="p">[</span><span class="n">f2b01f46</span><span class="p">]</span> <span class="n">Roots</span> <span class="n">v1</span><span class="o">.</span><span class="mf">0.8</span>
+</code></pre></div>
 
 <p>Now <code>using Roots</code> works.</p>
 <p><code>Roots</code> is a registered package, so it can be installed with <code>pkg&gt; add Roots</code>. The package manager looks up where to find the files for <code>Roots</code> in the General Registry and downloads them.</p>
@@ -723,7 +723,7 @@ Status `~/Documents/data/web/professional/docs/econ890/julia/Project.toml`
 <p>But: Only one version of a package can be loaded at any given time. This can lead to interesting problems...</p>
 <p>Note that all of the dependencies of <code>Roots</code> were also installed automatically (in this case, <code>Printf</code> and <code>Unicode</code>).</p>
 <p>Now we can use all functions that were <a href="https://docs.julialang.org/en/v1/base/base/#export">exported</a> by <code>Roots.jl</code>. For example:</p>
-<pre><code>help?&gt; find_zero
+<div class="highlight"><pre><span></span><code>help?&gt; find_zero
 search: find_zero find_zeros find_zero!
 
   find_zero(fs, x0, M, [N::AbstractBracketing]; kwargs...)
@@ -735,44 +735,44 @@ julia&gt; f(x) = exp(x) - x^4;
 
 julia&gt; find_zero(f, (8, 9), Bisection())
 8.6131694564414
-</code></pre>
+</code></pre></div>
 
 <h2 id="closures">Closures<a class="headerlink" href="#closures" title="Permanent link">&para;</a></h2>
 <p>We encounter a common problem: <code>find_zero</code> expects a one-argument function <code>f(x)</code>. But the function that we use takes 2 arguments: a model and <span class="arithmatex">\(c_T\)</span>. This type of problem is solved using a <a href="https://en.wikipedia.org/wiki/Closure_(computer_programming)">closure</a>.</p>
 <p>A closure is a function that "captures" some of the variables in the calling namespace. Example:</p>
-<pre><code class="julia">julia&gt; function foo()
-         x = 1;
-         g(y) = x + y;
-         @show g(2)
-         x = 2;
-         @show g(2)
-       end
-foo (generic function with 1 method)
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">function</span> <span class="n">foo</span><span class="p">()</span>
+         <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+         <span class="n">g</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+         <span class="nd">@show</span> <span class="n">g</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+         <span class="n">x</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+         <span class="nd">@show</span> <span class="n">g</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+       <span class="k">end</span>
+<span class="n">foo</span> <span class="p">(</span><span class="n">generic</span> <span class="k">function</span> <span class="n">with</span> <span class="mi">1</span> <span class="n">method</span><span class="p">)</span>
 
-julia&gt; foo()
-g(2) = 3
-g(2) = 4
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">foo</span><span class="p">()</span>
+<span class="n">g</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">g</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">4</span>
+</code></pre></div>
 
 <p>Note that <code>g</code> has "captured" the variable <code>x</code> from <code>foo</code>. <code>g</code> behaves as if there were an implicit second argument.</p>
 <h2 id="anonymous-functions">Anonymous functions<a class="headerlink" href="#anonymous-functions" title="Permanent link">&para;</a></h2>
 <p>When closures are used, they often remain unnamed. Example:</p>
-<pre><code class="julia">julia&gt; findfirst(x -&gt; x &gt; 2, 1:10)
-3
-# This is the same as
-julia&gt; f(x) = x &gt; 2;
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">findfirst</span><span class="p">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="p">)</span>
+<span class="mi">3</span>
+<span class="c"># This is the same as</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">;</span>
 
-julia&gt; findfirst(f, 1:10)
-3
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">findfirst</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="p">)</span>
+<span class="mi">3</span>
+</code></pre></div>
 
 <p>But note:</p>
-<pre><code class="julia">julia&gt; [x -&gt; x^2  for x in (1,2,3)]
-3-element Array{var&quot;#9#11&quot;,1}:
- #9 (generic function with 1 method)
- #9 (generic function with 1 method)
- #9 (generic function with 1 method)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="p">[</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span>  <span class="k">for</span> <span class="n">x</span> <span class="kp">in</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)]</span>
+<span class="mi">3</span><span class="o">-</span><span class="n">element</span> <span class="kt">Array</span><span class="p">{</span><span class="n">var</span><span class="s">&quot;#9#11&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">}</span><span class="o">:</span>
+ <span class="c">#9 (generic function with 1 method)</span>
+ <span class="c">#9 (generic function with 1 method)</span>
+ <span class="c">#9 (generic function with 1 method)</span>
+</code></pre></div>
 
 <hr />
                 

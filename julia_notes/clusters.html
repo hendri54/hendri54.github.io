@@ -687,10 +687,9 @@
 <li>Once: make Julia available on the cluster with <code>module add julia</code> or <code>module add julia/1.5.3</code> if you want a specific version.</li>
 <li>Then run <code>julia "/full/path/to/Test3.jl"</code></li>
 </ul>
-<p>Now we know that things run on the cluster and it's time to submit a batch file:</p>
-<pre><code>sbatch -p general -N 1 -J &quot;test_job&quot; -t 3-00 --mem 16384 -n 1 --mail-type=end --mail-user=lhendri@email.unc.edu -o &quot;test1.out&quot; --wrap=&quot;julia /full/path/to/Test3.jl&quot;
-</code></pre>
-
+<p>Now we know that things run on the cluster and it's time to submit a batch file:
+<div class="highlight"><pre><span></span><code>sbatch -p general -N 1 -J &quot;test_job&quot; -t 3-00 --mem 16384 -n 1 --mail-type=end --mail-user=lhendri@email.unc.edu -o &quot;test1.out&quot; --wrap=&quot;julia /full/path/to/Test3.jl&quot;
+</code></pre></div></p>
 <h1 id="slurm">Slurm<a class="headerlink" href="#slurm" title="Permanent link">&para;</a></h1>
 <h2 id="submitting-jobs">Submitting jobs<a class="headerlink" href="#submitting-jobs" title="Permanent link">&para;</a></h2>
 <p>The usual way of submitting jobs consists of writing an sbatch file and then submitting it using the <code>sbatch</code> command.</p>
@@ -722,13 +721,13 @@
 <p>Submitting a job is (almost) equivalent to <code>julia batch.jl</code> from the terminal.</p>
 <p>Note: cd() does not work in these command files. To include a file, provide a full path.</p>
 <p>If you only use registered packages, life is easy. Your code would simply say:</p>
-<pre><code>using Pkg
+<div class="highlight"><pre><span></span><code>using Pkg
 # This needs to be done only once, but it does not hurt
 Pkg.add(MyPackage)
 # Make sure all required packages are downloaded
 Pkg.instantiate()
 MyPackage.run()
-</code></pre>
+</code></pre></div>
 
 <p>If the code for MyPackage has been copied to the remote, then</p>
 <p><code>julia --project="/path/to/MyPackage" --startup-file=no batch.jl</code> activates MyPackage and runs <code>batch.jl</code>. The <code>--project</code> option is equivalent to Pkg.activate.</p>
@@ -747,10 +746,9 @@ MyPackage.run()
 <p>Developing MyPackage in a blank folder does not work (for reasons I do not understand). It results in errors indicating that dependencies of MyPackage could not be found.</p>
 <p>This approach requires you to keep track of all unregistered dependencies and where they are located on the remote machine. My way of doing this is contained in <code>PackageTools.jl</code> in the shared repo (this is not a package b/c its very purpose is to facilitate loading of unregistered packages). But the easier way is to create a private registry and register all dependencies.</p>
 <h1 id="file-transfer">File Transfer<a class="headerlink" href="#file-transfer" title="Permanent link">&para;</a></h1>
-<p>A reliable command line transfer option is <code>rsync</code> (on mac / linux). The command would be something like</p>
-<pre><code>rsync -atuzv &quot;/someDirectory/sourceDir/&quot; &quot;username@longleaf.unc.edu:someDirectorySourceDir&quot;
-</code></pre>
-
+<p>A reliable command line transfer option is <code>rsync</code> (on mac / linux). The command would be something like
+<div class="highlight"><pre><span></span><code>rsync -atuzv &quot;/someDirectory/sourceDir/&quot; &quot;username@longleaf.unc.edu:someDirectorySourceDir&quot;
+</code></pre></div></p>
 <p>Notes: </p>
 <ul>
 <li>The source dir should end in “/”; the target dir should not.</li>

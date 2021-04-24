@@ -656,6 +656,26 @@
     Environments
   </a>
   
+    <nav class="md-nav" aria-label="Environments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activating-an-environment" class="md-nav__link">
+    Activating an environment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stacked-environments" class="md-nav__link">
+    Stacked environments
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -703,45 +723,56 @@
                 
                 
                 <h1 id="packages">Packages<a class="headerlink" href="#packages" title="Permanent link">&para;</a></h1>
-<p>A package is a <code>module</code> that declares all of its dependencies. It is self-contained.</p>
+<p>A package is a basically a directory that</p>
+<ul>
+<li>contains a <code>module</code> </li>
+<li>declares all of its dependencies</li>
+</ul>
+<p>The idea is to make code <strong>reusable</strong>: we can copy the package directory to another computer and run it there.</p>
 <p>You encounter packages in two ways:</p>
 <ol>
 <li>when you use code written by others (as in <code>using Revise</code>)</li>
-<li>when you create your own packages.</li>
+<li>when you write your own code; because Julia really wants you to wrap it in packages.</li>
 </ol>
 <h2 id="environments">Environments<a class="headerlink" href="#environments" title="Permanent link">&para;</a></h2>
-<p>A package is a type of "environment". This is a key concept for Julia!</p>
-<p>Suppose I want to use a package, such as <code>Revise.jl</code>. If I enter <code>using Revise</code>, how does Julia find the code?</p>
-<p>The answer is: Julia looks in <code>Project.toml</code> for the current environment.</p>
-<p>Let's start Julia and enter "package mode" by typing <code>]</code>. </p>
+<p>If a block of related code were totally self-contained, life would be easy. Reusing code would be a simple as copying a directory full of <code>.jl</code> files. This is how languages without dependency management (such as <code>Matlab</code>) work.</p>
+<p>But writing self-contained packages would be very hard. Imagine having to code random number generation each time you want to draw some random numbers.</p>
+<p>So we want to be able to use packages that use other packages that use other packages...</p>
+<p>To do so, our code needs to declare what other code (packages) is needed to run it. These are <strong>dependencies</strong>.</p>
+<p>In Julia, dependencies are declared in <code>Project.toml</code> files. They basically contain a list of packages, their versions, and the locations of their code.</p>
+<p>But which <code>Project.toml</code> should Julia use when you type <code>using Revise</code>?</p>
+<p>The short (not quite accurate) answer is: Julia looks for <code>Project.toml</code> is the current <strong>environment</strong>.</p>
 <ul>
-<li>The prompt changes to <code>(@v1.6) pkg&gt;</code>.</li>
-<li>We can now enter package management commands.</li>
+<li>The longer (more accurate) answer is that Julia also looks in all the directories listed in the <code>DEPOT_PATH</code> environment variable.</li>
+<li>My recommendation is never to touch it and never to worry about it.</li>
 </ul>
-<p>The <code>(@v1.6)</code> part of the prompt tells us that the active environment is <code>v1.6</code>, which is Julia's startup environment.</p>
-<blockquote>
-<p>Tip: keep this environment minimal. Here you just want to list packages that you use while developing your code (e.g. <code>Revise.jl</code>).</p>
-</blockquote>
-<p>At any point in time, Julia activates one directory as the active environment.</p>
-<p>Each environment is associated with a directory. It contains a file named <code>Project.toml</code>. </p>
-<p>This file declares all of the available packages, their acceptable versions, and their locations.</p>
-<p>If you look at <code>Project.toml</code>, you see something like:</p>
-<div class="highlight"><pre><span></span><code>shell&gt; cat ~/.julia/environments/v1.6/Project.toml
-[deps]
-OhMyREPL = &quot;5fb14364-9ced-5910-84b2-373655c76a03&quot;
-Revise = &quot;295af30f-e4ad-537b-8983-00126c2a3abe&quot;
-</code></pre></div>
-
-<p>Each line gives the name and UUID (a unique id) of each available package.</p>
-<p>An easier way of seeing the same info:</p>
+<p>At any point in time, exactly one directory is "activated" as the current environment. To see which one, type <code>] st</code>. This does two things:</p>
+<ol>
+<li>the <code>]</code> switches the REPL to <strong>package mode</strong>.<ol>
+<li>the prompt changes to <code>(@v1.6) pkg&gt;</code></li>
+<li>the <code>(@v1.6)</code> part of the prompt tells us that the active environment is <code>v1.6</code>, which is Julia's startup environment</li>
+<li>the <code>pkg&gt;</code> part reminds you that your commands are interpreted as package commands, not regular REPL commands.</li>
+</ol>
+</li>
+<li>the <code>st</code> is short for <code>status</code>.</li>
+</ol>
+<p>The same info can be displayed by issuing <code>Pkg</code> commands directly:</p>
 <div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">Pkg</span>
-
 <span class="n">julia</span><span class="o">&gt;</span> <span class="n">Pkg</span><span class="o">.</span><span class="n">status</span><span class="p">()</span>
 <span class="n">Status</span> <span class="sb">`~/.julia/environments/v1.5/Project.toml`</span>
   <span class="p">[</span><span class="mi">5</span><span class="n">fb14364</span><span class="p">]</span> <span class="n">OhMyREPL</span> <span class="n">v0</span><span class="o">.</span><span class="mf">5.10</span>
   <span class="p">[</span><span class="mi">295</span><span class="n">af30f</span><span class="p">]</span> <span class="n">Revise</span> <span class="n">v3</span><span class="o">.</span><span class="mf">1.12</span>
 </code></pre></div>
 
+<p>Or you can look at <code>Project.toml</code> directly:</p>
+<div class="highlight"><pre><span></span><code># To switch to shell prompt, type `;`
+shell&gt; cat ~/.julia/environments/v1.6/Project.toml
+[deps]
+OhMyREPL = &quot;5fb14364-9ced-5910-84b2-373655c76a03&quot;
+Revise = &quot;295af30f-e4ad-537b-8983-00126c2a3abe&quot;
+</code></pre></div>
+
+<p>Each line gives the name and UUID (a unique id) of each available package.</p>
 <p>This means that <code>using Revise</code> will make the code in <code>Revise.jl</code> available. But if I try <code>using Plots</code>, I get an error message:</p>
 <div class="highlight"><pre><span></span><code>julia&gt; using Plots
 ERROR: ArgumentError: Package Plots not found in current path:
@@ -749,18 +780,58 @@ ERROR: ArgumentError: Package Plots not found in current path:
 </code></pre></div>
 
 <p>This basically says: Julia cannot find an entry for <code>Plots</code> in <code>Project.toml</code>. So the code cannot be used until I run <code>Pkg.add("Plots")</code>.</p>
-<p>If you now activate a different directory using <code>Pkg.activate("/path/to/dir")</code>, <strong>additional</strong> packages become available.</p>
-<p>Note that the packages known from <code>v1.5</code> are not "forgotten." </p>
+<blockquote>
+<p>Tip: keep the startup environment minimal. Here you just want to list packages that you use while developing your code (e.g. <code>Revise.jl</code>).</p>
+</blockquote>
+<h3 id="activating-an-environment">Activating an environment<a class="headerlink" href="#activating-an-environment" title="Permanent link">&para;</a></h3>
+<p><code>Pkg.activate("/path/to/dir")</code> activates this directory as the current environment.</p>
+<p>Equivalently, we can use</p>
+<div class="highlight"><pre><span></span><code><span class="n">cd</span><span class="p">(</span><span class="s">&quot;/path/to/dir&quot;</span><span class="p">);</span>
+<span class="p">]</span> <span class="n">activate</span> <span class="o">.</span>
+</code></pre></div>
+
+<p>The <code>.</code> always means "the current directory".</p>
+<p>Note: The current directory (set using <code>cd</code>) and the active environment need not be the same.</p>
+<blockquote>
+<p>Exercise:
+Create a directory for the code that you will write in this class.
+Make this the current environment.</p>
+</blockquote>
+<h3 id="stacked-environments">Stacked environments<a class="headerlink" href="#stacked-environments" title="Permanent link">&para;</a></h3>
+<p>If you activate a different directory using <code>Pkg.activate("/path/to/dir")</code>, <strong>additional</strong> packages become available.</p>
+<p>Note that the packages known from <code>v1.6</code> are not "forgotten." </p>
 <p>Each time I activate a new environment, packages get added to the known list of loadable packages. </p>
 <p>This is known as <strong>stacked environments</strong>. They are stacked in the sense that activating another environment retains the packages that are already activated. </p>
 <p>This is the reason why you want your <code>v1.5</code> environment to be minimal.</p>
+<p>This can lead to great confusion. E.g.: You try to update to a new version of a package, but it does not work because the old one was already loaded in the previous environment.</p>
 <h2 id="adding-packages">Adding packages<a class="headerlink" href="#adding-packages" title="Permanent link">&para;</a></h2>
-<p>To add a package to the list of known dependencies, use <code>Pkg.add("Revise")</code>.</p>
+<p>To add a <strong>registered</strong> package to the list of known dependencies, use <code>Pkg.add("Revise")</code>.</p>
 <p>In response, Julia looks up <code>Revise</code> in the General Registry and adds an entry for <code>Revise</code> to <code>Project.toml</code> (for the current environment).</p>
-<p>Now we can issue <code>using Revise</code>. Julia then downloads the code from the package's <code>github</code> repo.</p>
-<p>The code goes into a hidden directory in <code>.julia/packages</code>. Each version of <code>Revise</code> that you ever use gets stored there.</p>
-<p>You rarely need to worry about where this code lives.</p>
-<p>If a package is not registered, presumably because you wrote it yourself, <code>using</code> it gets a bit more complicated.</p>
+<p>Now we can issue <code>using Revise</code>. Julia then </p>
+<ul>
+<li>downloads the code from the package's <code>github</code> repo.</li>
+<li>copies the code into a hidden directory in <code>.julia/packages</code>. <ul>
+<li>Each version of <code>Revise</code> that you ever use gets stored there. </li>
+<li>You rarely need to worry about where this code lives.</li>
+</ul>
+</li>
+<li>precompiles <code>Revise</code></li>
+</ul>
+<p><strong>Exercise:</strong></p>
+<ol>
+<li>After activating the <code>Econ890</code> environment, add the package <code>DataFrames</code></li>
+<li>Check that <code>using DataFrames</code> works</li>
+<li>Check that <code>DataFrames</code> is listed as a dependency in <code>Project.toml</code></li>
+<li>Type <code>] st -m</code> to see all the dependencies that you just added!</li>
+<li>Remove <code>DataFrames</code> by typing <code>] rm DataFrames</code></li>
+<li>Check that <code>DataFrames</code> and all its dependencies have disappeared</li>
+<li>But note that <code>using DataFrames</code> still works (because it is already loaded)</li>
+<li>To really get rid of it, restart the REPL</li>
+</ol>
+<blockquote>
+<p>Tip: After updating package info, it is usually a good idea to restart the REPL.</p>
+</blockquote>
+<p>If a package is <strong>not registered</strong>, presumably because you wrote it yourself, <code>using</code> it gets a bit more complicated.</p>
 <p>A good approach is to create your own local registry (using <a href="https://github.com/GunnarFarneback/LocalRegistry.jl">LocalRegistry.jl</a>). Then your not officially registered packages are treated like registered ones.</p>
 <p>For starter purposes, the alternative is to <code>develop</code> your packages instead with <code>Pkg.develop(/path/to/MyPackage)</code>. </p>
 <p>What does this do? It simply adds an entry in <code>Project.toml</code> that links the package name <code>MyPackage</code> to the directory where the code can be found.</p>

@@ -690,20 +690,20 @@
                 
                 <h1 id="variables-and-types">Variables and Types<a class="headerlink" href="#variables-and-types" title="Permanent link">&para;</a></h1>
 <p>When you issue an assignment statement, such as</p>
-<pre><code class="julia">x = 2
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">x</span> <span class="o">=</span> <span class="mi">2</span>
+</code></pre></div>
 
 <p>you create a variable called <code>x</code>. What does this actually mean?</p>
 <p>Julia creates a place in memory where the value <code>2</code> is stored. It then creates a "binding" so that the symbol <code>:x</code> from now on points to that location in memory. (This is actually not the way it works for scalar real numbers, but we will set this detail aside right now.)</p>
 <p>The memory location now has a <code>type</code>. In this case, it is <code>Int64</code>:</p>
-<pre><code class="julia">typeof(x)
-    Int64
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="kt">Int64</span>
+</code></pre></div>
 
 <p>Julia is <strong>dynamically typed</strong>. This means that I can change the type of <code>x</code> by simply reassigning a new value or by converting the value to a different type:</p>
-<pre><code class="julia">x=Float64(x)
-    2.0
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">x</span><span class="o">=</span><span class="kt">Float64</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="mf">2.0</span>
+</code></pre></div>
 
 <p>Doing this kind of thing is generally a bad idea, but it is legal. It is a bad idea because it confuses the reader of the code and the compiler.</p>
 <p>Important types include:</p>
@@ -717,9 +717,9 @@
 <h2 id="supertypes-and-subtypes">Supertypes and Subtypes<a class="headerlink" href="#supertypes-and-subtypes" title="Permanent link">&para;</a></h2>
 <p>One <code>DataType</code> is <code>Number</code>. This includes integers, floating point numbers, etc.</p>
 <p>Types come in hierarchies. For example:</p>
-<pre><code class="julia">Base.show_supertypes(Int64)
-    Int64 &lt;: Signed &lt;: Integer &lt;: Real &lt;: Number &lt;: Any
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">Base</span><span class="o">.</span><span class="n">show_supertypes</span><span class="p">(</span><span class="kt">Int64</span><span class="p">)</span>
+    <span class="kt">Int64</span> <span class="o">&lt;:</span> <span class="kt">Signed</span> <span class="o">&lt;:</span> <span class="kt">Integer</span> <span class="o">&lt;:</span> <span class="kt">Real</span> <span class="o">&lt;:</span> <span class="kt">Number</span> <span class="o">&lt;:</span> <span class="kt">Any</span>
+</code></pre></div>
 
 <p>shows that <code>Int64</code> is a subtype of <code>Signed</code> etc. </p>
 <p>Only the "lowest" types in the hierarchy are <strong>concrete types</strong> that can actually be assigned values. The higher up types are <strong>abstract</strong>. They only exist to make a type hierarchy. </p>
@@ -727,31 +727,31 @@
 <h2 id="scalar-numbers">Scalar Numbers<a class="headerlink" href="#scalar-numbers" title="Permanent link">&para;</a></h2>
 <p>The main <code>Number</code> types that we care about are integers and floats. Integers come in various flavors depending on how many digits they can store and whether or not they are signed. The default is <code>Int64</code> which stores 64 bits and is signed. <code>UInt8</code> requires only 8 bits, but it cannot store large values.</p>
 <p>Julia knows standard operators on numbers and is smart enough to convert types as needed:</p>
-<pre><code class="julia">julia&gt; x= 1 + 2.0
-3.0
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">x</span><span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="mf">2.0</span>
+<span class="mf">3.0</span>
 
-julia&gt; typeof(x)
-Float64
-</code></pre>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">typeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="kt">Float64</span>
+</code></pre></div>
 
 <p><strong>Overflow warning:</strong> If you assign a value that is too large for a type to store, you get overflow issues:</p>
-<pre><code class="julia">y=UInt8(12345678)
-    InexactError: trunc(UInt8, 12345678)
+<div class="highlight"><pre><span></span><code><span class="n">y</span><span class="o">=</span><span class="kt">UInt8</span><span class="p">(</span><span class="mi">12345678</span><span class="p">)</span>
+    <span class="kt">InexactError</span><span class="o">:</span> <span class="n">trunc</span><span class="p">(</span><span class="kt">UInt8</span><span class="p">,</span> <span class="mi">12345678</span><span class="p">)</span>
 
-    Stacktrace:
+    <span class="n">Stacktrace</span><span class="o">:</span>
 
-     [1] throw_inexacterror(::Symbol, ::Type{UInt8}, ::Int64) at ./boot.jl:558
+     <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">throw_inexacterror</span><span class="p">(</span><span class="o">::</span><span class="kt">Symbol</span><span class="p">,</span> <span class="o">::</span><span class="kt">Type</span><span class="p">{</span><span class="kt">UInt8</span><span class="p">},</span> <span class="o">::</span><span class="kt">Int64</span><span class="p">)</span> <span class="n">at</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="o">:</span><span class="mi">558</span>
 
-     [2] checked_trunc_uint at ./boot.jl:588 [inlined]
+     <span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="n">checked_trunc_uint</span> <span class="n">at</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="o">:</span><span class="mi">588</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
 
-     [3] toUInt8 at ./boot.jl:650 [inlined]
+     <span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="n">toUInt8</span> <span class="n">at</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="o">:</span><span class="mi">650</span> <span class="p">[</span><span class="n">inlined</span><span class="p">]</span>
 
-     [4] UInt8(::Int64) at ./boot.jl:710
+     <span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="kt">UInt8</span><span class="p">(</span><span class="o">::</span><span class="kt">Int64</span><span class="p">)</span> <span class="n">at</span> <span class="o">./</span><span class="n">boot</span><span class="o">.</span><span class="n">jl</span><span class="o">:</span><span class="mi">710</span>
 
-     [5] top-level scope at In[5]:1
+     <span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="n">top</span><span class="o">-</span><span class="n">level</span> <span class="n">scope</span> <span class="n">at</span> <span class="n">In</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">:</span><span class="mi">1</span>
 
-     [6] include_string(::Function, ::Module, ::String, ::String) at ./loading.jl:1091
-</code></pre>
+     <span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="n">include_string</span><span class="p">(</span><span class="o">::</span><span class="kt">Function</span><span class="p">,</span> <span class="o">::</span><span class="kt">Module</span><span class="p">,</span> <span class="o">::</span><span class="n">String</span><span class="p">,</span> <span class="o">::</span><span class="n">String</span><span class="p">)</span> <span class="n">at</span> <span class="o">./</span><span class="n">loading</span><span class="o">.</span><span class="n">jl</span><span class="o">:</span><span class="mi">1091</span>
+</code></pre></div>
 
 <p>This throws an error because Julia cannot convert a large number to a <code>UInt8</code>.</p>
 <p>The several lines below the error message are a <a href="debugging.html">stacktrace</a>. It shows where in your code the error occurred. This is important for debugging.</p>
@@ -759,13 +759,13 @@ Float64
 <h2 id="strings">Strings<a class="headerlink" href="#strings" title="Permanent link">&para;</a></h2>
 <p>In contrast to Matlab, <code>Strings</code> are not <code>Vector{Char}</code>. They are their own type.</p>
 <p>A <code>String</code> is created by providing characters inside quotes:</p>
-<pre><code class="julia">a = &quot;This is a string&quot;
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="s">&quot;This is a string&quot;</span>
+</code></pre></div>
 
 <p>But strings can be indexed like character vectors:</p>
-<pre><code class="julia">julia&gt; a[4]
-'s': ASCII/Unicode U+0073 (category Ll: Letter, lowercase)
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="sc">&#39;s&#39;</span><span class="o">:</span> <span class="n">ASCII</span><span class="o">/</span><span class="n">Unicode</span> <span class="n">U</span><span class="o">+</span><span class="mi">0073</span> <span class="p">(</span><span class="n">category</span> <span class="n">Ll</span><span class="o">:</span> <span class="n">Letter</span><span class="p">,</span> <span class="n">lowercase</span><span class="p">)</span>
+</code></pre></div>
 
 <hr />
                 

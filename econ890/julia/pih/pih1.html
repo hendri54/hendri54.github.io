@@ -749,12 +749,12 @@ Y=\sum_t R^{1-t} c_t = c_1 \sum_t [g(c)/R]^{1-t}
 <p>But let's pretend this were not the case (we cannot try any old utility function because we have baked into our solution that consumption growth is a constant).</p>
 <p>This simple change requires that we hunt through all of our code to find which lines depend on the functional form for utility.</p>
 <p>Once we have found all of those, we need to replace each with</p>
-<pre><code class="julia">if logUtility
-    # use the log expression
-else
-    # use the CRRA expression
-end
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">logUtility</span>
+    <span class="c"># use the log expression</span>
+<span class="k">else</span>
+    <span class="c"># use the CRRA expression</span>
+<span class="k">end</span>
+</code></pre></div>
 
 <p>And then we have to keep track of the fact that each utility function requires its own set of parameters.</p>
 <p>Those parameters have to be passed from one function to the next all throughout the code.</p>
