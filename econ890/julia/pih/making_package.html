@@ -15,7 +15,7 @@
     
     
       
-        <title>Permanent Income Model 3: Shooting - Lutz Hendricks</title>
+        <title>Making a package - Lutz Hendricks</title>
       
     
     
@@ -54,7 +54,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#permanent-income-model-3-shooting" class="md-skip">
+        <a href="#making-a-package" class="md-skip">
           Skip to content
         </a>
       
@@ -82,7 +82,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Permanent Income Model 3: Shooting
+              Making a package
             
           </span>
         </div>
@@ -652,15 +652,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#algorithm-shooting" class="md-nav__link">
-    Algorithm: Shooting
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#interpolation" class="md-nav__link">
-    Interpolation
+  <a href="#generating-the-package" class="md-nav__link">
+    Generating the package
   </a>
   
 </li>
@@ -681,38 +674,74 @@
                   
                 
                 
-                <h1 id="permanent-income-model-3-shooting">Permanent Income Model 3: Shooting<a class="headerlink" href="#permanent-income-model-3-shooting" title="Permanent link">&para;</a></h1>
-<p>Generalize the model to non-homothetic preferences.</p>
-<p>Now <span class="arithmatex">\(g(c)\)</span> depends on <span class="arithmatex">\(c\)</span>. There is no closed-form solution.</p>
-<h2 id="algorithm-shooting">Algorithm: Shooting<a class="headerlink" href="#algorithm-shooting" title="Permanent link">&para;</a></h2>
-<p>Search over values for <span class="arithmatex">\(c_{T}\)</span>. For each:</p>
-<ul>
-<li>Compute <span class="arithmatex">\(c_t\)</span> from the Euler equation (backwards).</li>
-<li>Compute the present value of consumption.</li>
-<li>Check the lifetime budget constraint.</li>
-</ul>
-<h2 id="interpolation">Interpolation<a class="headerlink" href="#interpolation" title="Permanent link">&para;</a></h2>
-<p>A simple way of finding the optimal <span class="arithmatex">\(c_T\)</span>:</p>
-<ul>
-<li>Compute the present value of consumption on a grid of <span class="arithmatex">\(c_T\)</span>.</li>
-<li>Interpolate between grid points to find the value that satisfies the budget constraint.</li>
-</ul>
-<blockquote>
-<p>Exercise: write this code - and don't forget the tests</p>
-</blockquote>
-<p>In <a href="pih2.jl">my solution</a>, the interpolation is simply hand coded. Usually, one would use a package for this (such as <a href="https://github.com/JuliaMath/Interpolations.jl">Interpolations.jl</a>).</p>
-<p>Interpolation is, of course, inefficient. We need to compute a large number of grid points for <span class="arithmatex">\(c_T\)</span>.</p>
-<p>A better solution is to use a numerical optimizer. </p>
-<p>Solving this model is an example of root finding. We are looking for the solution to <span class="arithmatex">\(f(c_T)=0\)</span>.</p>
-<p>There are various libraries that offer algorithms for root finding and for the more common problem of minimizing a function.</p>
-<p>Using these libraries requires that we install <a href="../packages.html">packages</a>. In this case, we will use <a href="https://github.com/JuliaMath/Roots.jl">Roots.jl</a>.</p>
-<p>See <a href="root_finding.html">root finding</a>.</p>
-<p><code>find_zero</code> finds the root of a function <code>f(x)</code>. This is what we will use.</p>
-<blockquote>
-<p>Excercise: write this code.
-<a href="pih2.jl">My solution</a> with <a href="pih2_test.jl">test</a></p>
-</blockquote>
-<hr />
+                <h1 id="making-a-package">Making a package<a class="headerlink" href="#making-a-package" title="Permanent link">&para;</a></h1>
+<p>Now that our code is getting more complex, it is time to make it into a <a href="../packages.html">package</a>. </p>
+<p>We start by making <code>module UtilityFunctions</code> into a package, so we can reuse it more easily.</p>
+<p>Since we plan to put this up on <code>github</code> (for you to download), the package name must be unique (in my github repo, at least). So we will name all of the packages that we create for this class with an <code>890</code> suffix.</p>
+<p>Generic instructions for creating packages are <a href="../../../julia_notes/packages.html">here</a>.</p>
+<p>It is helpful to have a <code>github</code> account and put your packages there. But you can skip this step for the purposes of this class. </p>
+<p>Disclaimer: I have not tried to create a package without <code>github</code> info!</p>
+<h2 id="generating-the-package">Generating the package<a class="headerlink" href="#generating-the-package" title="Permanent link">&para;</a></h2>
+<p>The most common approach is <code>PkgTemplates</code>. It works like this:</p>
+<p>In your base environment: <code>pkg&gt; add PkgTemplates</code>. This is now always available.</p>
+<p>Now let's generate a <code>UtilityFunctions890</code> package.</p>
+<ol>
+<li><code>cd</code> to the directory where all of your <code>Econ890</code> code lives. </li>
+<li>Make a template.</li>
+<li>Create the package.</li>
+<li>Add the source code and tests.</li>
+<li>Add dependencies.</li>
+<li>Run tests.</li>
+</ol>
+<p>Details for my case:</p>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">econDir</span> <span class="o">=</span> <span class="s">&quot;/Users/lutz/Documents/julia/Econ890&quot;</span><span class="p">;</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">cd</span><span class="p">(</span><span class="n">econDir</span><span class="p">);</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">PkgTemplates</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(;</span> <span class="n">dir</span> <span class="o">=</span> <span class="n">econDir</span><span class="p">,</span>
+               <span class="n">plugins</span> <span class="o">=</span> <span class="p">[</span>
+                       <span class="n">Documenter</span><span class="p">{</span><span class="n">GitHubActions</span><span class="p">},</span>
+                       <span class="n">Git</span><span class="p">(;</span> <span class="n">jl</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="n">ignore</span> <span class="o">=</span> <span class="n">gitIgnore</span><span class="p">),</span>
+                       <span class="o">!</span><span class="n">CompatHelper</span><span class="p">,</span>
+                       <span class="o">!</span><span class="n">AppVeyor</span><span class="p">,</span>
+                       <span class="o">!</span><span class="n">TravisCI</span><span class="p">,</span>
+                       <span class="o">!</span><span class="n">TagBot</span>
+                       <span class="p">]);</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">t</span><span class="p">(</span><span class="s">&quot;UtilityFunctions890&quot;</span><span class="p">)</span>
+
+<span class="p">[</span> <span class="n">Info</span><span class="o">:</span> <span class="n">Running</span> <span class="n">prehooks</span>
+<span class="p">[</span> <span class="n">Info</span><span class="o">:</span> <span class="n">Running</span> <span class="n">hooks</span>
+  <span class="n">Activating</span> <span class="n">environment</span> <span class="n">at</span> <span class="sb">`~/Documents/julia/Econ890/UtilityFunctions/Project.toml`</span>
+    <span class="n">Updating</span> <span class="n">registry</span> <span class="n">at</span> <span class="sb">`~/.julia/registries/General`</span>
+    <span class="n">Updating</span> <span class="n">registry</span> <span class="n">at</span> <span class="sb">`~/.julia/registries/registryLH`</span>
+    <span class="n">Updating</span> <span class="n">git</span><span class="o">-</span><span class="n">repo</span> <span class="sb">`https://github.com/hendri54/registryLH`</span>
+  <span class="n">No</span> <span class="n">Changes</span> <span class="n">to</span> <span class="sb">`~/Documents/julia/Econ890/UtilityFunctions/Project.toml`</span>
+  <span class="n">No</span> <span class="n">Changes</span> <span class="n">to</span> <span class="sb">`~/Documents/julia/Econ890/UtilityFunctions/Manifest.toml`</span>
+<span class="n">Precompiling</span> <span class="n">project</span><span class="o">...</span>
+  <span class="mi">1</span> <span class="n">dependency</span> <span class="n">successfully</span> <span class="n">precompiled</span> <span class="kp">in</span> <span class="mi">1</span> <span class="n">seconds</span>
+  <span class="n">Activating</span> <span class="n">environment</span> <span class="n">at</span> <span class="sb">`~/.julia/environments/v1.6/Project.toml`</span>
+<span class="p">[</span> <span class="n">Info</span><span class="o">:</span> <span class="n">Running</span> <span class="n">posthooks</span>
+<span class="p">[</span> <span class="n">Info</span><span class="o">:</span> <span class="n">New</span> <span class="n">package</span> <span class="n">is</span> <span class="n">at</span> <span class="o">/</span><span class="n">Users</span><span class="o">/</span><span class="n">lutz</span><span class="o">/</span><span class="n">Documents</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">Econ890</span><span class="o">/</span><span class="n">UtilityFunctions</span>
+</code></pre></div>
+
+<p>The package has now been created.</p>
+<p>Check that you have a new folder <code>UtilityFunctions890</code> with sub-folders <code>src</code> and <code>test</code>.</p>
+<p>After creating the package, copy the contents of <code>utility.jl</code> into <code>UtilityFunctions890.jl</code>.</p>
+<p>Copy the tests into <code>test/runtests.jl</code>.</p>
+<p>We now need to modify those files a little to reflect the fact that the <code>module UtilityFunctions890</code> is now a package. In this case, all we need to do is remove the lines</p>
+<div class="highlight"><pre><span></span><code><span class="c"># This is one reason why packages work better.</span>
+<span class="n">include</span><span class="p">(</span><span class="s">&quot;utility.jl&quot;</span><span class="p">);</span>
+<span class="k">using</span> <span class="o">.</span><span class="n">UtilityFunctions</span>
+</code></pre></div>
+
+<p>in the <code>runtests.jl</code> file.</p>
+<p>Add dependencies (e.g., <code>Pkg.add("Random")</code>) until <code>] test</code> works:</p>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">Pkg</span><span class="o">.</span><span class="n">activate</span><span class="p">(</span><span class="s">&quot;UtilityFunctions890&quot;</span><span class="p">)</span>
+  <span class="n">Activating</span> <span class="n">environment</span> <span class="n">at</span> <span class="sb">`~/Documents/julia/Econ890/UtilityFunctions890/Project.toml`</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">Pkg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="s">&quot;Random&quot;</span><span class="p">)</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">UtiltyFunctions890</span>
+</code></pre></div>
+
+<p>Now run the tests: <code>pkg&gt; test</code>. And Bob is your uncle.</p>
                 
               
               

@@ -691,6 +691,19 @@
     Writing the solution code
   </a>
   
+    <nav class="md-nav" aria-label="Writing the solution code">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#exercise-write-this-code" class="md-nav__link">
+    Exercise: write this code.
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -714,14 +727,13 @@
 <p>This is not efficient in this case, but gets us started on methods for the more general Huggett model.</p>
 <h2 id="the-math">The math<a class="headerlink" href="#the-math" title="Permanent link">&para;</a></h2>
 <p>Bellman equation:</p>
-<div class="arithmatex">\[V(k,t)=\max_{k'} U(w+rk-k') + \beta V(k',t+1)\]</div>
+<p><span class="arithmatex">\(V(k,t)=\max_{k'} U(w+rk-k') + \beta V(k',t+1)\)</span></p>
 <p>with first order condition</p>
-<div class="arithmatex">\[U'(w+rk-k')=\beta V_{k}(k',t+1)\]</div>
+<p><span class="arithmatex">\(U'(w+rk-k')=\beta V_{k}(k',t+1)\)</span></p>
 <p>and envelope condition</p>
-<div class="arithmatex">\[V_{k}(k,t) = r U'(w + rk - k')\]</div>
+<p><span class="arithmatex">\(V_{k}(k,t) = r U'(w + rk - k')\)</span></p>
 <h2 id="value-function-iteration">Value Function Iteration<a class="headerlink" href="#value-function-iteration" title="Permanent link">&para;</a></h2>
-<p>Start at <span class="arithmatex">\(t = T\)</span> with </p>
-<div class="arithmatex">\[V(k,T) = U(w+rk)\]</div>
+<p>Start at <span class="arithmatex">\(t = T\)</span> with <span class="arithmatex">\(V(k,T) = U(w+rk)\)</span>.</p>
 <p>Set up a grid for <span class="arithmatex">\(k\)</span>.</p>
 <p>For each <span class="arithmatex">\(k\)</span> on the grid:</p>
 <ul>
@@ -737,9 +749,9 @@
 <li>it involves a numerical maximization for each <span class="arithmatex">\(k\)</span> grid point</li>
 <li>it is much easier (numerically) to find a root than to maximize a function</li>
 </ul>
+<p>Therefore, we switch to finding roots of the Euler equation instead.</p>
 <h2 id="approximate-v_kkt">Approximate <span class="arithmatex">\(V_{k}(k,t)\)</span><a class="headerlink" href="#approximate-v_kkt" title="Permanent link">&para;</a></h2>
-<p>Start at <span class="arithmatex">\(t=T\)</span> with </p>
-<div class="arithmatex">\[V_{k}(k,T)=U'(w+rk-k')\]</div>
+<p>Start at <span class="arithmatex">\(t=T\)</span> with <span class="arithmatex">\(V_{k}(k,T)=U'(w+rk-k')\)</span>.</p>
 <p>Set up a grid for <span class="arithmatex">\(k\)</span>.</p>
 <p>For each <span class="arithmatex">\(k\)</span> on the grid:</p>
 <ul>
@@ -757,37 +769,37 @@
 <li>Find the root of the corresponding deviation: <span class="arithmatex">\(k'=G(k,t)\)</span>.</li>
 <li>Use this to compute <span class="arithmatex">\(V_{k}(k,t)\)</span> on the grid.</li>
 </ul>
+<p>This is a viable algorithm, but we will implement something different.</p>
 <h2 id="policy-function-iteration">Policy Function Iteration<a class="headerlink" href="#policy-function-iteration" title="Permanent link">&para;</a></h2>
-<p>We don't really care about <span class="arithmatex">\(V\)</span> or <span class="arithmatex">\(V_{k}\)</span>. All we need is <span class="arithmatex">\(k'=G(k,t)\)</span>.</p>
-<p>So we approximate this directly.</p>
+<p>We don't really care about value functions per se (<span class="arithmatex">\(V\)</span> or <span class="arithmatex">\(V_{k}\)</span>). </p>
+<p>We care about decision rules <span class="arithmatex">\(k'=G(k,t)\)</span>.</p>
+<p>So we approximate them directly.</p>
 <p>Start at <span class="arithmatex">\(t=T\)</span> with <span class="arithmatex">\(G(k,T) = 0\)</span>.</p>
 <p>Set up a grid for <span class="arithmatex">\(k\)</span>.</p>
 <p>For each <span class="arithmatex">\(k\)</span> on the grid:</p>
 <ul>
-<li>find the root of the Euler equation <span class="arithmatex">\(<span class="arithmatex">\(U'(w+rk-k') - \beta R U'(w'+rk'-G(k', t+1))\)</span>\)</span></li>
-<li>but better (not as non-linear): <span class="arithmatex">\(<span class="arithmatex">\(w+rk-k' - U'^{-1}(\beta R U'(w'+rk'-G(k', t+1)))\)</span>\)</span></li>
+<li>find the root of the Euler equation <span class="arithmatex">\(U'(w+rk-k') - \beta R U'(w'+rk'-G(k', t+1))\)</span></li>
+<li>but better (not as non-linear): <span class="arithmatex">\(w+rk-k' - U'^{-1}(\beta R U'(w'+rk'-G(k', t+1)))\)</span></li>
 <li>this gives <span class="arithmatex">\(k'=G(k,t)\)</span> on the <span class="arithmatex">\(k\)</span> grid.</li>
 </ul>
 <p>Again, we need to interpolate the policy function between grid points.</p>
-<p><a href="root_finding.html">Notes on root finding</a>.</p>
+<p>Recall that we already talked about <a href="root_finding.html">root finding</a>.</p>
 <p>Let's think about this problem a bit more. The expression </p>
-<div class="arithmatex">\[w+rk-k' - U'^{-1}(\beta R U'(w'+rk'-G(k', t+1)))\]</div>
+<p><span class="arithmatex">\(w+rk-k' - U'^{-1}(\beta R U'(w'+rk'-G(k', t+1)))\)</span></p>
 <p>can be thought of as <span class="arithmatex">\(D(k',k)\)</span>. We are looking for <span class="arithmatex">\(D(k',k) = 0\)</span>. The solution is <span class="arithmatex">\(G(k', t)\)</span>.</p>
 <p>Let's start from the "inside" of the problem. Suppose we have <span class="arithmatex">\(D(k', k)\)</span> on the grid, our first task is to make this a continuous function. </p>
 <p>This is done with <strong>interpolation</strong>. One approach that we used before: each time we need to get a value <span class="arithmatex">\(D(k', k)\)</span>, we call an interpolation function. </p>
 <p>But this is tedious and inelegant. The better approach is to construct a continuous function that represents <span class="arithmatex">\(D(k', k)\)</span>.</p>
 <p>One package that does this is <a href="https://juliamath.github.io/Interpolations.jl/latest/">Interpolations.jl</a>. <a href="https://julia.quantecon.org/more_julia/general_packages.html#Interpolation">QuantEcon</a> contains a nice description that we will use here.</p>
 <h2 id="making-a-package">Making a package<a class="headerlink" href="#making-a-package" title="Permanent link">&para;</a></h2>
-<p>Now that our code is getting more complex, it is time to make it into a <a href="../packages.html">package</a>. </p>
-<p>Instructions for creating packages are <a href="../../julia_notes/packages.md">here</a>.</p>
-<p>Some details:</p>
-<ol>
-<li>It is helpful to have a <code>github</code> account and put your packages there. But you can skip this step for the purposes of this class.</li>
-<li>If you have a <code>github</code> account, you create your (empty) package there and then clone it to the local machine.</li>
-<li>Then you run <code>PkgSkeleton</code> or <code>PkgTemplates</code> to fill in the required Julia bits.</li>
-</ol>
-<p>After creating this package, copy <code>utility.jl</code> and its tests to <code>src</code> and <code>test</code>, respectively.</p>
-<p>Add dependencies (e.g., <code>Pkg.add("Random")</code>) until <code>] test</code> works.</p>
+<p>Before we write the code, we should ensure that <code>UtilityFunctions</code> is nicely reusable as a package. </p>
+<p>Here are the <a href="making_package.html">instructions</a>.</p>
+<p>Once this is all done, we will set up a separate package for the policy function iteration code. Follow the same directions, but label your package <code>PihVfi890</code> (permanent income hypothesis model via value function iteration).</p>
+<p>Note that you can simply reuse the template that you generated for the <code>UtilityFunctions890</code> package. Go back to the <code>Econ890</code> directory and just type <code>t("PihVfi890")</code>. You just created a package in 10 seconds.</p>
+<p>We need to add <code>UtilityFunctions890</code> as a dependency for our new package. But it's not registered. </p>
+<p>Solution: <code>pkg&gt; dev ../UtilityFunctions890</code>. Take a look at <code>Project.toml</code> to see what we just did.</p>
+<p>This is why packages are so useful. We can now reuse <code>UtilityFunctions890</code> in all future code that we write.</p>
+<p>These packages all now live in my <a href="https://github.com/hendri54">github repo</a>.</p>
 <h2 id="writing-the-solution-code">Writing the solution code<a class="headerlink" href="#writing-the-solution-code" title="Permanent link">&para;</a></h2>
 <p>This looks complicated. So how do we make it tractable?</p>
 <p><strong>Structured programming</strong> and <strong>top down</strong> design to the rescue.</p>
@@ -800,12 +812,14 @@
 <li>Interpolate <span class="arithmatex">\(G(k, t)\)</span> to make a continuous function.</li>
 </ol>
 </li>
+<li>When all is done: check the solution.</li>
 </ol>
-<p>Now write this out in code and you have <code>solve()</code> in <code>vfi.jl</code>.</p>
+<p>That's surprisingly it. It translates fairly directly into code.</p>
+<p>Now write this out in code and you have <code>solve()</code> in <code>PihVfi890.jl</code>. </p>
 <p>Next, we fill in details.</p>
 <ol>
 <li><code>solve_last_period</code> is basically trivial.</li>
-<li><code>solve_one_period</code> just calls ...</li>
+<li><code>solve_one_period</code> just iterates over grid points and then calls ...</li>
 <li><code>solve_one_point</code> which<ol>
 <li>checks for corner solutions</li>
 <li>runs <code>find_zero</code> on <span class="arithmatex">\(D(k', k)\)</span></li>
@@ -817,9 +831,11 @@
 </ol>
 </li>
 </ol>
-<blockquote>
-<p>Exercise: write this code</p>
-</blockquote>
+<h3 id="exercise-write-this-code">Exercise: write this code.<a class="headerlink" href="#exercise-write-this-code" title="Permanent link">&para;</a></h3>
+<ul>
+<li>My solution is in the <code>PihVfi890</code> repo.</li>
+<li>Don't forget the tests!</li>
+</ul>
 <hr />
                 
               

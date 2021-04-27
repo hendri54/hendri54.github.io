@@ -729,7 +729,7 @@
 </code></pre></div>
 
 <p>But we keep things simple for now.</p>
-<p>Since we are packaging the code, we should really put it into a module (or better: a package). But we defer this as well for later.</p>
+<p>Since we are packaging the code, we will wrap it into a <code>module</code> (which we will later make into a package).</p>
 <blockquote>
 <p>Exercise: write code for the utility functions.
 <a href="utility.jl">My solution</a></p>
@@ -763,6 +763,13 @@
 <li>eventually, this should go into a package (therefore into a module)</li>
 <li>once we define <code>structs</code>, we cannot repeatedly <code>include</code> the code (invalid redefinition of the struct)</li>
 <li>the module makes sure that we don't have side-effects.</li>
+</ul>
+<p>Note:</p>
+<ul>
+<li>Tracking changes when code lives in <code>module</code>s with <code>Revise.jl</code> can be tricky.</li>
+<li>Code needs to be included with <code>includet</code> (for tracking), not with <code>include</code>.</li>
+<li>Even then <code>Revise.jl</code> struggles with nested <code>includet</code>s.</li>
+<li>Once you have <code>module</code>s, it's always best to use <code>package</code>s.</li>
 </ul>
                 
               

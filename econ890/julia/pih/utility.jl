@@ -1,8 +1,16 @@
-abstract type AbstractUtility end
+# Code for utility functions in the Permanent Income Model
+module UtilityFunctions
+
+# This is the interfaca (API) visible from outside of the module.
+export AbstractUtility, UtilityLog, UtilityCRRA
+export utility, marg_utility, inv_utility, inv_marg_utility, c_growth, euler_dev
+
 
 ## ----------  Generic
 # Here we define and document the interface that is common 
 # to all concrete types
+
+abstract type AbstractUtility end
 
 """
     utility(u, c)
@@ -17,7 +25,7 @@ function utility end
 """
     marg_utility(u, c)
 
-Marginal utility.
+Marginal utility. Also a generic documentation.
 """
 function marg_utility end
 
@@ -25,7 +33,7 @@ function marg_utility end
 	euler_dev(u, cV, betaR)
 
 Euler equation deviation. Generic!
-Returns u'(c) / u'(c') - \beta R
+Returns u'(c) / u'(c') - β R
 
 This is a generic function with an implementation that is common to all concrete types.
 So it has a function body.
@@ -67,4 +75,4 @@ inv_marg_utility(u :: UtilityCRRA, mu) = mu .^ (-1.0 / u.sigma);
 c_growth(u :: UtilityCRRA, betaR) = betaR .^ (1.0 / u.sigma);
 
 
-# -------------
+end # module

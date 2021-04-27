@@ -1,17 +1,27 @@
 # PIH model: Using a `Model` object.
 # Now packaged in a module. Otherwise reloading gives errors that structs are redefined.
 
+# We `include` the code for utility functions on the outside of the module. Why?
+# The reason is that the tests also need that code. If it is included inside of the module, 
+# the tests cannot see it.
+# But we also cannot include the same code twice. That would make two separate `UtilityFunctions` modules!
+# The clean solution: use packages. Then `using UtilityFunctions` does the trick.
+# `includet` allows `Revise.jl` to track changes. Also not needed when we use packages.
+includet("utility.jl");
+
+
 module PIH2
 
-export Model, pih2, euler_dev, cons_path
+export Model, pih2, cons_path, euler_dev
 # For solving by interpolation
 export solve_by_interpolation, solve_by_root_finding, pv_cons, present_value
 # Need to also export items from utility function.
 # Those should be in their own module, but we kept it "simple".
-export AbstractUtility, UtilityLog, UtilityCRRA
+# export AbstractUtility, UtilityLog, UtilityCRRA
 
-# Code for utility functions
-include("utility.jl");
+# `UtilityFunctions` is now a sub-module of `Main`. Again: once we use packages, all these
+# problems go away.
+using Main.UtilityFunctions
 
 struct Model
     Y :: Float64
@@ -26,12 +36,33 @@ betar(m :: Model) = m.beta * m.R;
 # g + g^2 + ... + g^(T-1)
 pvfactor(g, T) = (g ^ T - 1.0) / (g - 1.0);
 
+"""
+    present_value(xV, R)
+
+Present value of a stream `xV` discounted by gross interest rate `R`.
+First term is not discounted.
+"""
 present_value(xV, R) = sum(xV ./ (R .^ (0 : (length(xV)-1))));
 
-euler_dev(m :: Model, ctV) = euler_dev(m.u, ctV, betar(m));
+"""
+    euler_dev(m :: Model, ctV)
+
+Euler equation deviation. Simple wrapper around the same function from `UtilityFunctions`.
+For convenience.
+
+Note: 
+
+* PIH2.euler_dev and UtilityFunctions.euler_dev are now *different functions*, NOT methods of the same function.
+* We could have written `UtilityFunctions.euler_dev(m :: Model, ctV) = [...]` to define a new `method` instead.
+"""
+euler_dev(m :: Model, ctV) = UtilityFunctions.euler_dev(m.u, ctV, betar(m));
 
 
-# This solves for c(t)
+"""
+    pih2(m :: Model)
+
+Solves for c(t)
+"""
 function pih2(m :: Model)
     g = c_growth(m.u, betar(m));
     c1 = m.Y / pvfactor(g / m.R, m.T);
@@ -43,20 +74,39 @@ end
 
 ## --------  Solve by interpolation and shooting
 
+"""
+    cons_path(m, cT)
+
+Solve for consumption path given `c(T)` (terminal consumption).
+Useful for shooting algorithm.
+"""
 function cons_path(m :: Model, cT :: Float64)
+    # Precompute for efficiency.
+    cGrowth = c_growth(m.u, betar(m));
     ctV = zeros(m.T);
     ctV[m.T] = cT;
     for t = m.T : -1 : 2
-        ctV[t-1] = ctV[t] / c_growth(m.u, betar(m));
+        ctV[t-1] = ctV[t] / cGrowth;
     end
     return ctV
 end
 
+"""
+    pv_cons(m, cT)
+
+Present value of consumption path.
+"""
 function pv_cons(m :: Model, cT :: Float64)
     ctV = cons_path(m, cT);
     pv = present_value(ctV, m.R);
 end
 
+"""
+    solve_by_interpolation(m)
+
+Solve model by interpolation. Iterating over guesses for `c(T)`.
+Interpolation is done "by hand" for simplicity.
+"""
 function solve_by_interpolation(m)
     n = 100;
     cGridV = LinRange(0.01 * m.Y, 0.5 * m.Y, n);
@@ -75,6 +125,8 @@ function solve_by_interpolation(m)
     return ctV
 end
 
+
+# Hand-rolled interpolation function. For simplicity. Not efficient.
 function interpolate(xV, yV, x0)
     idx = findfirst(xV .> x0) - 1;
     @assert idx > 0
@@ -89,6 +141,11 @@ end
 # But I want to make clear what we are adding to the project as we develop it step by step.
 using Roots
 
+"""
+    solve_by_root_finding(m)
+
+Solve model using root finding.
+"""
 function solve_by_root_finding(m)
     # This is a closure
     # The same as using the anonymous function 

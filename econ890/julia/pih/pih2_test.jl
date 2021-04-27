@@ -1,10 +1,11 @@
 ## ----------  Testing PIH2
-module PIH2Test
+
+# module PIH2Test
 
 using Test
 
-include("pih2.jl");
-using .PIH2
+includet("pih2.jl");
+using Main.PIH2, Main.UtilityFunctions
 
 # Again, in a function, so there are no side-effects.
 function pih2_test(u :: AbstractUtility)
@@ -16,8 +17,8 @@ function pih2_test(u :: AbstractUtility)
         @test ctV isa Vector{Float64}
         @test length(ctV) == m.T
 
-        # Euler equation
-        eeDevV = euler_dev(m, ctV);
+        # Euler equation. Need to qualify, because both modules export it.
+        eeDevV = PIH2.euler_dev(m, ctV);
         @test all(abs.(eeDevV .< 1e-6))
 
         # Budget constraint
@@ -43,7 +44,7 @@ function pih2_interp_test(u :: AbstractUtility)
         @test abs(pvC - m.Y) < 1e-6      
 
         # Euler equation
-        eeDevV = euler_dev(m, ctV);
+        eeDevV = PIH2.euler_dev(m, ctV);
         @test all(abs.(eeDevV .< 1e-6))
     end
 end
@@ -55,6 +56,6 @@ end
     end
 end
 
-end
+# end
 
 # -----------
