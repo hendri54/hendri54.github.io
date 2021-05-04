@@ -31,6 +31,11 @@ struct Model
     u :: AbstractUtility
 end
 
+function init_test_model()
+    m = Model(10.5, 1.05, 15, 0.97, UtilityCRRA(2.0));
+    return m
+end
+
 betar(m :: Model) = m.beta * m.R;
 
 # g + g^2 + ... + g^(T-1)
@@ -75,6 +80,49 @@ end
 ## --------  Solve by interpolation and shooting
 
 """
+    solve_by_interpolation(m)
+
+Solve model by interpolation. Iterating over guesses for `c(T)`.
+Interpolation is done "by hand" for simplicity.
+"""
+function solve_by_interpolation(m)
+    # Arbitrary grid for c(T).
+    n = 100;
+    cGridV = LinRange(0.01 * m.Y, 0.5 * m.Y, n);
+
+    # A comprehension
+    pvV = [pv_cons(m, cT)  for cT ∈ cGridV];
+    @assert ((pvV[1] < m.Y)  &&  (pvV[n] > m.Y))  "Search range too narrow";
+
+    # The comprehension is a short form of a loop
+    pv2V = zeros(n);
+    for (j, c) in enumerate(cGridV)
+        pv2V[j] = pv_cons(m, c);
+    end
+    @assert isapprox(pvV, pv2V)
+
+    # Interpolate by hand
+    cT = interpolate(pvV, cGridV, m.Y);
+    @assert cT > 0.0
+
+    # Self-test
+    @assert isapprox(pv_cons(m, cT), m.Y, rtol = 1e-4)  "B.C. violated"
+
+    ctV = cons_path(m, cT);
+    return ctV
+end
+
+"""
+    pv_cons(m, cT)
+
+Present value of consumption path.
+"""
+function pv_cons(m :: Model, cT :: Float64)
+    ctV = cons_path(m, cT);
+    pv = present_value(ctV, m.R);
+end
+
+"""
     cons_path(m, cT)
 
 Solve for consumption path given `c(T)` (terminal consumption).
@@ -91,41 +139,6 @@ function cons_path(m :: Model, cT :: Float64)
     return ctV
 end
 
-"""
-    pv_cons(m, cT)
-
-Present value of consumption path.
-"""
-function pv_cons(m :: Model, cT :: Float64)
-    ctV = cons_path(m, cT);
-    pv = present_value(ctV, m.R);
-end
-
-"""
-    solve_by_interpolation(m)
-
-Solve model by interpolation. Iterating over guesses for `c(T)`.
-Interpolation is done "by hand" for simplicity.
-"""
-function solve_by_interpolation(m)
-    n = 100;
-    cGridV = LinRange(0.01 * m.Y, 0.5 * m.Y, n);
-    # A comprehension
-    pvV = [pv_cons(m, cT)  for cT ∈ cGridV];
-    @assert ((pvV[1] < m.Y)  &&  (pvV[n] > m.Y))  "Search range too narrow";
-
-    # Interpolate by hand
-    cT = interpolate(pvV, cGridV, m.Y);
-    @assert cT > 0.0
-
-    # Self-test
-    @assert isapprox(pv_cons(m, cT), m.Y, rtol = 1e-4)  "B.C. violated"
-
-    ctV = cons_path(m, cT);
-    return ctV
-end
-
-
 # Hand-rolled interpolation function. For simplicity. Not efficient.
 function interpolate(xV, yV, x0)
     idx = findfirst(xV .> x0) - 1;
@@ -134,6 +147,7 @@ function interpolate(xV, yV, x0)
     @assert yV[idx+1] >= y >= yV[idx]
     return y
 end
+
 
 ## ----------  Root finding
 
@@ -152,6 +166,8 @@ function solve_by_root_finding(m)
     #   `cT -> budget_surplus(m, cT)`
     f(cT) = budget_surplus(m, cT);
     cT = find_zero(f, (0.01*m.Y, 0.5*m.Y), Bisection());
+    # Equivalent
+    # cT = find_zero(c -> budget_surplus(m, c), (0.01*m.Y, 0.5*m.Y), Bisection());
 
     # Self-test
     @assert isapprox(pv_cons(m, cT), m.Y, rtol = 1e-4)  "B.C. violated"

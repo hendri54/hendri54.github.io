@@ -1,7 +1,5 @@
 ## ----------  Testing PIH2
 
-# module PIH2Test
-
 using Test
 
 includet("pih2.jl");
@@ -55,7 +53,5 @@ end
         pih2_interp_test(u);
     end
 end
-
-# end
 
 # -----------

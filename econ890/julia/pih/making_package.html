@@ -697,6 +697,7 @@
 <div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="n">econDir</span> <span class="o">=</span> <span class="s">&quot;/Users/lutz/Documents/julia/Econ890&quot;</span><span class="p">;</span>
 <span class="n">julia</span><span class="o">&gt;</span> <span class="n">cd</span><span class="p">(</span><span class="n">econDir</span><span class="p">);</span>
 <span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">PkgTemplates</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">gitIgnore</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;*.jl.cov&quot;</span><span class="p">,</span> <span class="s">&quot;*.jl.*.cov&quot;</span><span class="p">,</span> <span class="s">&quot;*.jl.mem&quot;</span><span class="p">,</span> <span class="s">&quot;/deps/deps.jl&quot;</span><span class="p">,</span> <span class="s">&quot;/docs/build&quot;</span><span class="p">];</span>
 <span class="n">julia</span><span class="o">&gt;</span> <span class="n">t</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(;</span> <span class="n">dir</span> <span class="o">=</span> <span class="n">econDir</span><span class="p">,</span>
                <span class="n">plugins</span> <span class="o">=</span> <span class="p">[</span>
                        <span class="n">Documenter</span><span class="p">{</span><span class="n">GitHubActions</span><span class="p">},</span>
