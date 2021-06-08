@@ -174,12 +174,10 @@ Extracting specific elements with indices given by vectors:
 \end_layout
 
 \begin_layout Verbatim
-
 A = rand(4,3,5); 
 \end_layout
 
 \begin_layout Verbatim
-
 A[CartesianIndex.([1,2], [2,2]), 1] -> A[1,2,1] and A[2,2,1]
 \end_layout
 
@@ -188,12 +186,10 @@ Similar to using sub2ind:
 \end_layout
 
 \begin_layout Verbatim
-
 idxV = sub2ind(size(A), [1,2],[2,2],[1,1])
 \end_layout
 
 \begin_layout Verbatim
-
 A[idxV]
 \end_layout
 
@@ -559,96 +555,6 @@ round(Dates.now() - startTime, Dates.Minute)
 Debugging (1.4)
 \end_layout
 
-\begin_layout Standard
-Julia offers several debugger options that work in very different ways.
- The main trade-off is compile time versus run time.
- Debuggers that run interpreted code, such as 
-\family typewriter
-Debugger.jl
-\family default
-, compile reasonably fast but run very slowly (about 10 times slower than
- compiled code).
- Debuggers that compile debugging features into the code run at near native
- speed but are either slow to compile (
-\family typewriter
-MagneticReadHead)
-\family default
- or offer limited features (
-\family typewriter
-Infiltrator
-\family default
-).
-\end_layout
-
-\begin_layout Standard
-Common options are:
-\end_layout
-
-\begin_layout Enumerate
-
-\family typewriter
-Debugger.jl
-\family default
-: It interprets all code and can therefore offer a complete feature set.
- But it is very slow for larger projects.
- Options are available that make 
-\family typewriter
-Debugger
-\family default
- faster, but less powerful.
- The VS Code plugin gives an IDE experience.
-\end_layout
-
-\begin_layout Enumerate
-
-\family typewriter
-MagneticReadHead.jl
-\family default
-: It compiles debugging features into all code and therefore runs at near
- native speed.
- But compile times are often extremely long.
-\end_layout
-
-\begin_layout Enumerate
-
-\family typewriter
-Infiltrator.jl
-\family default
-: It compiles all code, adding only user specified breakpoints (
-\family typewriter
-@infiltrate
-\family default
-).
- Compile times and run times are good, but the user can only inspect the
- local state when a break point is reached.
- It is not possible to move around the call stack.
-\end_layout
-
-\begin_layout Enumerate
-
-\family typewriter
-Exfiltrator.jl
-\family default
-: Simply exports all local variables at the point of call to 
-\family typewriter
-Main
-\family default
-.
- The idea is that the entire local environment can be inspected at really
- no runtime or compilation cost.
- Simple and effective, but one cannot manipulate objects in the context
- of the calling module.
-\end_layout
-
-\begin_layout Standard
-There are other options that I don't know much about, such as 
-\family typewriter
-Juno
-\family default
-'s debugger.
- 
-\end_layout
-
 \begin_layout Subsection
 Debugger (1.4)
 \end_layout
@@ -751,34 +657,6 @@ break_on(:error)
 JuliaInterpreter
 \family default
  syntax can also be used to manipulate breakpoints.
-\end_layout
-
-\begin_layout Standard
-Links:
-\end_layout
-
-\begin_layout Itemize
-\begin_inset CommandInset href
-LatexCommand href
-name "A useful tutorial"
-target "http://webpages.csus.edu/fitzgerald/julia-debugger-tutorial/"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset CommandInset href
-LatexCommand href
-name "Discourse thread on debugging"
-target "https://discourse.julialang.org/t/debugger-status-and-future-plans/43638"
-literal "false"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Subsubsection

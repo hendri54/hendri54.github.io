@@ -287,6 +287,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../../../econ920/syllabus920.html" title="Econ920" class="md-nav__link">
+      Econ920
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../../graduate/graduate.html" title="Graduate notes" class="md-nav__link">
       Graduate notes
     </a>
@@ -545,6 +557,54 @@
 
 
   <li class="md-nav__item">
+    <a href="../../../julia_notes/functions.html" title="Functions" class="md-nav__link">
+      Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../julia_notes/git.html" title="Git" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../julia_notes/jupyter.html" title="Jupyter" class="md-nav__link">
+      Jupyter
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../julia_notes/miscellaneous.html" title="Miscellaneous" class="md-nav__link">
+      Miscellaneous
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../../../julia_notes/packages.html" title="Packages" class="md-nav__link">
       Packages
     </a>
@@ -593,18 +653,6 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../julia_notes/clusters.html" title="Remote clusters" class="md-nav__link">
-      Remote clusters
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="../../../julia_notes/testing.html" title="Testing" class="md-nav__link">
       Testing
     </a>
@@ -619,6 +667,18 @@
   <li class="md-nav__item">
     <a href="../../../julia_notes/types.html" title="Types" class="md-nav__link">
       Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../Workflow 'julia_notes/workflow.md'" title="None" class="md-nav__link">
+      None
     </a>
   </li>
 
@@ -650,6 +710,13 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    Goals
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#strategy-writing-the-code" class="md-nav__link">
@@ -744,11 +811,34 @@
                 
                 
                 <h1 id="solving-the-huggett-1996-model">Solving the Huggett (1996) Model<a class="headerlink" href="#solving-the-huggett-1996-model" title="Permanent link">&para;</a></h1>
-<p>First, let's review the <a href="huggett96.pdf">model setup</a>.</p>
-<p>We will make a few simplifying changes:</p>
-<ul>
-<li>no general equilibrium (which is window dressing anyway, unless we want to run counterfactuals).</li>
+<p>First, let's review the <a href="huggett1996.pdf">model setup</a>.</p>
+<h2 id="goals">Goals<a class="headerlink" href="#goals" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Code can be <strong>modified</strong> easily.<ul>
+<li>In a research project, you want to try different functional forms, calibration targets, ...</li>
+<li>Model objects are OOP objects.</li>
 </ul>
+</li>
+<li>Code can be <strong>maintained</strong> easily.<ul>
+<li>In a research project, it may take years from first submission to accepted paper.</li>
+<li>Code needs to be readable.</li>
+<li>Structure is important. It is not enough for the code to run.</li>
+<li>Small functions that do one thing.</li>
+<li>Locally trivial.</li>
+</ul>
+</li>
+<li>Code still runs in a couple of years.<ul>
+<li>This is where <strong>package management</strong> is important.</li>
+<li>Fix versions of dependencies.</li>
+</ul>
+</li>
+<li>Code is <strong>correct</strong>.<ul>
+<li>Everything needs to be tested.</li>
+<li>Tests run automatically after code is modified.</li>
+<li>For maintanability: test the small functions.</li>
+</ul>
+</li>
+</ol>
 <h2 id="strategy-writing-the-code">Strategy: Writing the Code<a class="headerlink" href="#strategy-writing-the-code" title="Permanent link">&para;</a></h2>
 <p>This will be a combination of bottom-up and top-down.</p>
 <p>Typically, we start with the model elements: demographics, preferences, ...</p>

@@ -1390,53 +1390,6 @@ CommonLH.KwArgs
  keyword arguments.
 \end_layout
 
-\begin_layout Standard
-An easy way of defining defaults is to 
-\family typewriter
-merge
-\family default
- with a named tuple:
-\end_layout
-
-\begin_layout Standard
-\begin_inset listings
-inline false
-status open
-
-\begin_layout Plain Layout
-
-function foo(; kwargs...)
-\end_layout
-
-\begin_layout Plain Layout
-
-  defaults = (x = 17, );
-\end_layout
-
-\begin_layout Plain Layout
-
-  args = merge(defaults, kwargs);
-\end_layout
-
-\begin_layout Plain Layout
-
-  println(args[:x])
-\end_layout
-
-\begin_layout Plain Layout
-
-end
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-This even works when no args are passed.
-\end_layout
-
 \begin_layout Section
 IO (1.3)
 \end_layout

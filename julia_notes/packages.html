@@ -287,6 +287,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../econ920/syllabus920.html" title="Econ920" class="md-nav__link">
+      Econ920
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../graduate/graduate.html" title="Graduate notes" class="md-nav__link">
       Graduate notes
     </a>
@@ -545,6 +557,54 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="functions.html" title="Functions" class="md-nav__link">
+      Functions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="git.html" title="Git" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="jupyter.html" title="Jupyter" class="md-nav__link">
+      Jupyter
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="miscellaneous.html" title="Miscellaneous" class="md-nav__link">
+      Miscellaneous
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -576,6 +636,13 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-packages" class="md-nav__link">
+    Why Packages?
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#creating-packages" class="md-nav__link">
@@ -667,18 +734,6 @@
 
 
   <li class="md-nav__item">
-    <a href="clusters.html" title="Remote clusters" class="md-nav__link">
-      Remote clusters
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
     <a href="testing.html" title="Testing" class="md-nav__link">
       Testing
     </a>
@@ -693,6 +748,18 @@
   <li class="md-nav__item">
     <a href="types.html" title="Types" class="md-nav__link">
       Types
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Workflow 'julia_notes/workflow.md'" title="None" class="md-nav__link">
+      None
     </a>
   </li>
 
@@ -724,6 +791,13 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-packages" class="md-nav__link">
+    Why Packages?
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#creating-packages" class="md-nav__link">
@@ -783,6 +857,15 @@
                 
                 
                 <h1 id="packages">Packages<a class="headerlink" href="#packages" title="Permanent link">&para;</a></h1>
+<h2 id="why-packages">Why Packages?<a class="headerlink" href="#why-packages" title="Permanent link">&para;</a></h2>
+<p>The alternative to creating a package is to create an environment with a bunch of <code>jl</code> files that contain a <code>module</code>.</p>
+<p>Reasons why packages are better:</p>
+<ol>
+<li><code>Revise.jl</code> has an easier time tracking code changes.</li>
+<li><code>Pkg.test</code> works.</li>
+<li>Code is easier to reuse with just a simple <code>Pkg.add</code> and <code>Pkg.develop</code> and <code>using MyPkg</code>. No need for <code>includet</code> statements.</li>
+<li>If the module is used in multiple modules in the same environment, one has to make sure that each module uses the same version of <code>MyPkg</code>. One has to avoid multiple <code>includet("MyPkg.jl")</code> which would create multiple instances of <code>MyPkg</code>.</li>
+</ol>
 <h2 id="creating-packages">Creating packages<a class="headerlink" href="#creating-packages" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Create the package locally. If using <code>PkgTemplates.jl</code>, this automatically initializes the <code>github</code> repo and sets it as the <code>origin</code> (<code>git remote add origin &lt;url&gt;</code>).</li>
@@ -849,7 +932,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="documentation.html" title="Documentation" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="miscellaneous.html" title="Miscellaneous" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -858,7 +941,7 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Documentation
+                Miscellaneous
               </div>
             </div>
           </a>
