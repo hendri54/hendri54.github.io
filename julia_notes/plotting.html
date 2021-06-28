@@ -1056,6 +1056,7 @@
 
 <p>ignores the <code>xlabel</code>.</p>
 <p><code>nothing</code> works with keyword arguments such as <code>title</code>.</p>
+<p><code>ylims</code> appears to be ignored. Need to use <code>ylims!(ax, lims)</code>. Unspecified bounds are set to <code>nothing</code> (not <code>Inf</code>).</p>
 <h3 id="themes">Themes<a class="headerlink" href="#themes" title="Permanent link">&para;</a></h3>
 <p><code>update_theme!(thm, Lines = (linewidth = 4,))</code> creates a new "section" <code>thm.Lines</code> that applies to lines.</p>
 <p><code>update_theme!(thm, Lines = (linestyle = :dash,))</code> <strong>merges</strong> the new information into the existing <code>Lines</code> section. It does not replace previous content.</p>

@@ -679,6 +679,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#compatibility" class="md-nav__link">
+    Compatibility
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pkg-errors" class="md-nav__link">
     Pkg Errors
   </a>
@@ -834,6 +841,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#compatibility" class="md-nav__link">
+    Compatibility
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pkg-errors" class="md-nav__link">
     Pkg Errors
   </a>
@@ -911,8 +925,12 @@
 <li><code>git push -u origin main</code></li>
 </ol>
 <p>Or import the package repo into Github Desktop.</p>
+<h2 id="compatibility">Compatibility<a class="headerlink" href="#compatibility" title="Permanent link">&para;</a></h2>
+<p>Enabling <code>CompatHelper</code> workflows is very helpful. Simply update <code>CompatHelper.yml</code> in the repo's <code>.github/workflows</code> directory and enable local actions in the <code>github</code> repo settings. The rest is automatic.</p>
+<p><code>CompatHelper</code> creates one PR each time a dependency experiences a breaking version bump. Rather than merging these on github, it is easier to manually edit <code>Project.toml</code> locally, test, commit, and then close the PRs.</p>
+<p>For updating <code>compat</code> entries, <code>PkgCompatUI</code> is useful. It shows available versions for all packages and indicates which ones have breaking updates.</p>
 <h2 id="pkg-errors">Pkg Errors<a class="headerlink" href="#pkg-errors" title="Permanent link">&para;</a></h2>
-<p>Occasionally, <code>Pkg</code> complains that a package is not registered. <code>]registry up</code> tends to solve that issue.</p>
+<p>Occasionally, <code>Pkg</code> complains that a package is not registered. <code>]registry up</code> tends to solve that issue. If that fails, one can alway remove the registry with <code>]registry remove General</code>. It will be automatically installed again the next time it's needed.</p>
 <hr />
                 
               

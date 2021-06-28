@@ -626,6 +626,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#hashing" class="md-nav__link">
+    Hashing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#interpolation-16" class="md-nav__link">
     Interpolation (1.6)
   </a>
@@ -655,6 +662,13 @@
         <li class="md-nav__item">
   <a href="#random-numbers-15" class="md-nav__link">
     Random numbers (1.5)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#traits" class="md-nav__link">
+    Traits
   </a>
   
 </li>
@@ -779,6 +793,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#hashing" class="md-nav__link">
+    Hashing
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#interpolation-16" class="md-nav__link">
     Interpolation (1.6)
   </a>
@@ -812,6 +833,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#traits" class="md-nav__link">
+    Traits
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -833,8 +861,17 @@
 <ul>
 <li><a href="https://www.oxinabox.net/2020/04/19/Julia-Antipatterns.html">Julia Antipatterns</a></li>
 </ul>
+<h2 id="hashing">Hashing<a class="headerlink" href="#hashing" title="Permanent link">&para;</a></h2>
+<p>For new <code>DataType</code>s, it is necessary to defined <code>hash</code>, <code>==</code>, and <code>isequal</code>. <code>hash</code> is needed for containers such as <code>Dict</code>s (it is used for <code>haskey</code>). The way this is done can be based on <a href="https://github.com/andrewcooke/AutoHashEquals.jl">AutoHashEquals.jl</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">mutable</span> <span class="k">struct</span> <span class="n">Foo</span>
+    <span class="n">a</span><span class="o">::</span><span class="kt">Int</span>
+    <span class="n">b</span>
+<span class="k">end</span>
+<span class="n">Base</span><span class="o">.</span><span class="n">hash</span><span class="p">(</span><span class="n">a</span><span class="o">::</span><span class="n">Foo</span><span class="p">,</span> <span class="n">h</span><span class="o">::</span><span class="kt">UInt</span><span class="p">)</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="n">hash</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">hash</span><span class="p">(</span><span class="o">:</span><span class="n">Foo</span><span class="p">,</span> <span class="n">h</span><span class="p">)))</span>
+</code></pre></div>
+
 <h2 id="interpolation-16">Interpolation (1.6)<a class="headerlink" href="#interpolation-16" title="Permanent link">&para;</a></h2>
-<h3 id="interpolationsjl">Interpolations.jl<a class="headerlink" href="#interpolationsjl" title="Permanent link">&para;</a></h3>
+<h3 id="interpolationsjl"><a href="https://juliamath.github.io/Interpolations.jl/stable/">Interpolations.jl</a><a class="headerlink" href="#interpolationsjl" title="Permanent link">&para;</a></h3>
 <p>An <a href="https://julia.quantecon.org/more_julia/general_packages.html#Interpolation">example from QuantEcon</a>.</p>
 <p>One limitation: multi-dimensional interpolation only works with unform grids. The inputs must be ranges.</p>
 <p>The default for extrapolation is to throw an error.</p>
@@ -890,6 +927,8 @@ julia <span class="s2">&quot;test1.jl&quot;</span>
 <h2 id="random-numbers-15">Random numbers (1.5)<a class="headerlink" href="#random-numbers-15" title="Permanent link">&para;</a></h2>
 <p>Generating reproducible random numbers across Julia versions can be done with <code>StableRNGs.jl</code>.
 This also seems to generate the same random numbers across operating systems (in my case MacOS and Linux).</p>
+<h2 id="traits">Traits<a class="headerlink" href="#traits" title="Permanent link">&para;</a></h2>
+<p>An interesting implementation is <a href="https://github.com/schlichtanders/WhereTraits.jl">WhereTraits.jl</a> which permits, for example, dispatch on functions that return <code>Bool</code>.</p>
 <hr />
                 
               
