@@ -873,6 +873,7 @@
                 <h1 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h1>
 <h2 id="profiling-15">Profiling (1.5)<a class="headerlink" href="#profiling-15" title="Permanent link">&para;</a></h2>
 <p>A <a href="https://opensourc.es/blog/benchmarking-and-profiling-julia-code/">blog post</a> on profiling and benchmarking.</p>
+<p>If the profiler shows that an assignment (e.g. <code>setindex!</code>) takes a lot of time, it may indicate dynamic dispatch on the RHS of the assignment.</p>
 <p>I find it most efficient to have a global profiling environment that <code>Pkg.add</code>s <code>Profile, BenchmarkTools, StatProfilerHTML</code>. To use it:</p>
 <div class="highlight"><pre><span></span><code>using MyPackage
 Pkg.activate(&quot;path/to/profiling&quot;)

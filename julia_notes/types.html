@@ -698,6 +698,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#broadcasting-16" class="md-nav__link">
+    Broadcasting (1.6)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#constructors-15" class="md-nav__link">
     Constructors (1.5)
   </a>
@@ -800,6 +807,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#broadcasting-16" class="md-nav__link">
+    Broadcasting (1.6)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#constructors-15" class="md-nav__link">
     Constructors (1.5)
   </a>
@@ -878,6 +892,14 @@
 <li>Possible type instability as the compiler tries to figure out the types of the custom type fields.</li>
 <li>It becomes possible to call constructors with, say, integers of all kinds without raising method errors.</li>
 </ol>
+<h2 id="broadcasting-16">Broadcasting (1.6)<a class="headerlink" href="#broadcasting-16" title="Permanent link">&para;</a></h2>
+<p>For an object that behaves like a scalar, such as</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">Foo</span>
+    <span class="n">x</span> <span class="o">::</span> <span class="kt">Int</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p>it is enough to define <code>Base.broadcastable(f :: Foo) = Ref(f)</code>.</p>
 <h2 id="constructors-15">Constructors (1.5)<a class="headerlink" href="#constructors-15" title="Permanent link">&para;</a></h2>
 <p>Constructing objects with many fields:</p>
 <ul>

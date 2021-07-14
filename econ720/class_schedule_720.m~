@@ -30,7 +30,7 @@ dueCia = 'Oct-12';
 answerIh2 = false;
 dueIh2 = 'Nov-2';
 answerRandD = false;
-dueRandD = 'Nov-16';
+dueRandD = 'Nov-2';
 answerAsset = false;
 dueAsset = 'never';
 
