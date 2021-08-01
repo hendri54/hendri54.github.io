@@ -15,7 +15,7 @@
     
     
       
-        <title>Clusters - Lutz Hendricks</title>
+        <title>Numerical Optimization - Lutz Hendricks</title>
       
     
     
@@ -54,7 +54,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#remote-clusters" class="md-skip">
+        <a href="#numerical-optimization" class="md-skip">
           Skip to content
         </a>
       
@@ -82,7 +82,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Clusters
+              Numerical Optimization
             
           </span>
         </div>
@@ -462,12 +462,10 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+  <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" checked>
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6">
     
     <label class="md-nav__link" for="nav-6">
       Julia Language
@@ -521,20 +519,11 @@
           
           
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="clusters.html" title="Clusters" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="clusters.html" title="Clusters" class="md-nav__link">
       Clusters
     </a>
-    
   </li>
 
         
@@ -716,6 +705,76 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#nlopt-12" class="md-nav__link">
+    NLopt (1.2)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#noisy-objectives" class="md-nav__link">
+    Noisy objectives
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#global-algorithms" class="md-nav__link">
+    Global algorithms
+  </a>
+  
+    <nav class="md-nav" aria-label="Global algorithms">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#controlled-random-search" class="md-nav__link">
+    Controlled Random Search
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlsl" class="md-nav__link">
+    MLSL
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tiktak" class="md-nav__link">
+    TikTak
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blackboxoptim" class="md-nav__link">
+    BlackBoxOptim
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#surrogate-optimization" class="md-nav__link">
+    Surrogate Optimization
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -730,105 +789,85 @@
                   
                 
                 
-                <h1 id="remote-clusters">Remote Clusters<a class="headerlink" href="#remote-clusters" title="Permanent link">&para;</a></h1>
-<p>See also: <a href="https://github.com/juliohm/julia-distributed-computing">The Ultimate Guide to Distributed Computing</a> with a MWE.</p>
-<h1 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">&para;</a></h1>
-<ol>
-<li>
-<p>Get an account on the cluster, such as UNC's <code>longleaf</code>.</p>
-</li>
-<li>
-<p><a href="https://www.digitalocean.com/community/articles/how-to-set-up-ssh-keys--2">Generate an <code>ssh</code> key</a>, which allows you to log on without entering passwords. </p>
-</li>
-<li>
-<p>Try this out by logging into the cluster via <code>ssh</code>. At the terminal, enter <code>ssh user@longleaf.unc.edu</code>. </p>
-</li>
-</ol>
-<h2 id="installing-julia-on-a-cluster">Installing Julia on a Cluster<a class="headerlink" href="#installing-julia-on-a-cluster" title="Permanent link">&para;</a></h2>
-<p>This is for cases where one does not want to use the version that is installed for everyone (usually because it lags behind the current version).</p>
-<p>The command line installation <a href="https://julialang.org/downloads/platform/#linux_and_freebsd">instructions for linux</a> produce a directory of the format <code>julia-1.6.1</code> with a binary of <code>bin/julia</code>.</p>
-<p>All it then takes is to replace the generic <code>julia -e</code> with <code>~/julia-1.6.1/bin/julia -e</code> in the command files called from <code>slurm</code>.</p>
-<h1 id="getting-started-with-a-test-script">Getting started with a test script<a class="headerlink" href="#getting-started-with-a-test-script" title="Permanent link">&para;</a></h1>
-<p>How to get your code to run on a typical Linux cluster?</p>
+                <h1 id="numerical-optimization">Numerical Optimization<a class="headerlink" href="#numerical-optimization" title="Permanent link">&para;</a></h1>
+<h2 id="nlopt-12">NLopt (1.2)<a class="headerlink" href="#nlopt-12" title="Permanent link">&para;</a></h2>
+<p>Objective function requires gradient as input, even if it is not used. If gradient is not provided, NLopt returns FORCED_STOP without error message.</p>
+<p>When objective function errors, return value is STOPVAL_REACHED and fVal=0.0.</p>
 <ul>
-<li>Get started by writing a simple test script (Test3.jl) so we can test running from the command line. </li>
-<li>Make sure you can run the test script locally with <code>julia “/full/path/to/Test3.jl”</code></li>
-<li>Now copy Test3.jl to a directory on the cluster and repeat the same.</li>
-<li>Once: make Julia available on the cluster with <code>module add julia</code> or <code>module add julia/1.5.3</code> if you want a specific version.</li>
-<li>Then run <code>julia "/full/path/to/Test3.jl"</code></li>
+<li>One way of diagnosing such errors: print the guess to stdout at the start of each iteration. Then the objective function can be run again from the REPL with the guesses that cause the crash.</li>
+<li>An alternative (suggested by Kristoffer Carlsson): wrap the entire objective function in try/catch. Report the error in the catch and then rethrow it.</li>
 </ul>
-<p>Now we know that things run on the cluster and it's time to submit a batch file:
-<div class="highlight"><pre><span></span><code>sbatch -p general -N 1 -J &quot;test_job&quot; -t 3-00 --mem 16384 -n 1 --mail-type=end --mail-user=lhendri@email.unc.edu -o &quot;test1.out&quot; --wrap=&quot;julia /full/path/to/Test3.jl&quot;
-</code></pre></div></p>
-<h1 id="slurm">Slurm<a class="headerlink" href="#slurm" title="Permanent link">&para;</a></h1>
-<h2 id="submitting-jobs">Submitting jobs<a class="headerlink" href="#submitting-jobs" title="Permanent link">&para;</a></h2>
-<p>The usual way of submitting jobs consists of writing an sbatch file and then submitting it using the <code>sbatch</code> command.</p>
-<p>Steps:</p>
-<ol>
-<li>Copy your code and all of its dependencies to the cluster (see below). This is not needed when all dependencies are registered.</li>
-<li>Write a Julia script that contains the startup code for the project and then runs the actual computation (call this <code>batch.jl</code>).</li>
-<li>Write a batch file that submits <code>julia batch.jl</code> as a job to the cluster's job scheduler. For UNC's longleaf cluster, this would be slurm. So you need to write <code>job.sl</code> that will be submitted using <code>sbatch job.sl</code>.</li>
-</ol>
-<p>Each line in the sbatch file looks like <code>#SBATCH -o value</code>.</p>
-<p>Options (indicated by -o) are:
-* <code>-t 03-00</code>: time in days-hours
-* <code>-N 1</code>: number of nodes
-* <code>--mem 24576</code>: memory in megabytes (per cpu)</p>
-<h2 id="status-of-running-jobs">Status of running jobs:<a class="headerlink" href="#status-of-running-jobs" title="Permanent link">&para;</a></h2>
+<h2 id="noisy-objectives">Noisy objectives<a class="headerlink" href="#noisy-objectives" title="Permanent link">&para;</a></h2>
+<p>Useful discourse threads: <a href="https://discourse.julialang.org/t/optimizing-noisy-objective/25260">here</a></p>
+<p><a href="https://www.jhuapl.edu/SPSA/">SPSA</a>:</p>
 <ul>
-<li>squeue -u <onyen></li>
-<li>squeue --job XXXX</li>
-<li><code>sacct --format="JobID,JobName%30,State,ExitCode"</code> (best typed using KeyboardMaestro)</li>
+<li>according to the author: specifically made for simulation type problems</li>
+<li>basic idea seems to approximate derivatives, but instead of perturbing each parameter one-by-one (expensive), all are perturbed in the same step.</li>
+<li>extremely easy to implement</li>
+<li>can vary the distribution of step sizes (main algorithm uses step sizes 1 or 2 times a    c( k )    ).</li>
 </ul>
-<h2 id="examining-memory-and-cpu-usage">Examining memory and cpu usage<a class="headerlink" href="#examining-memory-and-cpu-usage" title="Permanent link">&para;</a></h2>
-<p><a href="https://docs.ycrc.yale.edu/clusters-at-yale/job-scheduling/resource-usage/">Yale guide</a></p>
-<p>After jobs completed:
-- <code>seff jobid</code>
-- <code>sacct</code> with <code>MaxRSS</code> switch shows memory usage.</p>
-<h2 id="errors">Errors<a class="headerlink" href="#errors" title="Permanent link">&para;</a></h2>
-<p>From time to time, <code>github</code> asks for user credentials when trying to download private repos, even if those have been downloaded many times before. Then precompile the package from the REPL on the cluster, entering the credentials by hand. They will then be stored for some time again.</p>
-<h2 id="the-julia-script">The Julia script<a class="headerlink" href="#the-julia-script" title="Permanent link">&para;</a></h2>
-<p>Submitting a job is (almost) equivalent to <code>julia batch.jl</code> from the terminal.</p>
-<p>Note: cd() does not work in these command files. To include a file, provide a full path.</p>
-<p>If you only use registered packages, life is easy. Your code would simply say:</p>
-<div class="highlight"><pre><span></span><code>using Pkg
-# This needs to be done only once, but it does not hurt
-Pkg.add(MyPackage)
-# Make sure all required packages are downloaded
-Pkg.instantiate()
-MyPackage.run()
-</code></pre></div>
-
-<p>If the code for MyPackage has been copied to the remote, then</p>
-<p><code>julia --project="/path/to/MyPackage" --startup-file=no batch.jl</code> activates MyPackage and runs <code>batch.jl</code>. The <code>--project</code> option is equivalent to Pkg.activate.</p>
+<p>COBYLA</p>
 <ul>
-<li>Julia looks for <code>batch.jl</code> in  the <code>MyPackage</code> directory.</li>
-<li>Disabling the startup-file prevents surprises where the startup-file changes the directory before looking for batch.jl.</li>
-<li><code>~</code> is not expanded when relative paths are used.</li>
+<li>implemented in <a href="https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/">NLopt COBYLA</a></li>
+<li>uses a linear approximation of the function</li>
 </ul>
-<p>If MyPackage contains is unregistered or contains unregistered dependencies, things get more difficult. Now batch.jl must:</p>
-<ol>
-<li>Activate the package's environment.</li>
-<li>develop all unregistered dependencies. This replaces the invalid paths to directories on the local machine (e.g. /Users/lutz/julia/...) with the corresponding paths on the cluster (e.g. /nas/longleaf/...). Note: I verified that one cannot replace homedir() with ~ in Manifest.toml.</li>
-<li>using MyPackage</li>
-<li>MyPackage.run()</li>
-</ol>
-<p>Developing MyPackage in a blank folder does not work (for reasons I do not understand). It results in errors indicating that dependencies of MyPackage could not be found.</p>
-<p>This approach requires you to keep track of all unregistered dependencies and where they are located on the remote machine. My way of doing this is contained in <code>PackageTools.jl</code> in the shared repo (this is not a package b/c its very purpose is to facilitate loading of unregistered packages). But the easier way is to create a private registry and register all dependencies.</p>
-<h1 id="file-transfer">File Transfer<a class="headerlink" href="#file-transfer" title="Permanent link">&para;</a></h1>
-<p>A reliable command line transfer option is <code>rsync</code> (on mac / linux). The command would be something like
-<div class="highlight"><pre><span></span><code>rsync -atuzv &quot;/someDirectory/sourceDir/&quot; &quot;username@longleaf.unc.edu:someDirectorySourceDir&quot;
-</code></pre></div></p>
-<p>Notes: </p>
+<p>Subplex</p>
 <ul>
-<li>The source dir should end in “/”; the target dir should not.</li>
-<li>Exluding .git speeds up the transfer.</li>
-<li><code>--delete</code> ensures that no old files remain on the server.</li>
-<li>This will use <code>ssh</code> for authentication if it is set up.</li>
+<li>implemented in <a href="https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/">NLopt Sbplx</a></li>
+<li>similar to Nelder-Mead, but claims to be more robust</li>
 </ul>
-<p>An alternative is to use <code>git</code>.</p>
-<p>To transfer an individual file: <code>run(</code>scp $filename hostname:/path/to/newfile.txt')`.</p>
-<hr />
+<p>Bayesian optimization</p>
+<h2 id="global-algorithms">Global algorithms<a class="headerlink" href="#global-algorithms" title="Permanent link">&para;</a></h2>
+<p><a href="https://github.com/timholy/QuadDIRECT.jl">QuadDIRECT</a></p>
+<ul>
+<li>combines ideas of DIRECT with local search</li>
+<li>points from local search are used to form boxes for the global search</li>
+</ul>
+<p><a href="https://github.com/phrb/NODAL.jl">NODAL</a></p>
+<ul>
+<li>global optimization algorithms that can run in parallel</li>
+<li>possibly abandoned</li>
+</ul>
+<h3 id="controlled-random-search">Controlled Random Search<a class="headerlink" href="#controlled-random-search" title="Permanent link">&para;</a></h3>
+<ul>
+<li>implemented as <a href="https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/">NLopt CRS</a></li>
+<li>starts from a random population of points (default size <code>10(n+1)</code>)</li>
+<li>user can control the size of the initial population, but there are no warm starts.</li>
+<li>then evolves these using heuristic rules. Described as "randomized Nelder-Mead".</li>
+</ul>
+<h3 id="mlsl">MLSL<a class="headerlink" href="#mlsl" title="Permanent link">&para;</a></h3>
+<ul>
+<li>implemented as <a href="https://nlopt.readthedocs.io/en/latest/NLopt_Algorithms/">NLopt MLSL</a></li>
+<li>basic idea: multistart a local solver, avoiding resolving points that are close to each other</li>
+</ul>
+<h3 id="tiktak">TikTak<a class="headerlink" href="#tiktak" title="Permanent link">&para;</a></h3>
+<p>Arnoud, Antoine, Fatih Guvenen, and Tatjana Kleineberg. 2019. “Benchmarking Global Optimizers.” Working Paper 26340. National Bureau of Economic Research. https://doi.org/10.3386/w26340.</p>
+<p>A multistart algorithm that generates new starting points as convex combinations of the current best point and Sobol points.</p>
+<h3 id="blackboxoptim"><a href="https://github.com/robertfeldt/BlackBoxOptim.jl">BlackBoxOptim</a><a class="headerlink" href="#blackboxoptim" title="Permanent link">&para;</a></h3>
+<ul>
+<li>implements SPSA</li>
+<li>currently little documentation (2020-May)</li>
+<li>There is an example of distributed parallel optimization. Not clear whether multi-threaded works as well. </li>
+<li>Not clear whether / how optimization history can be saved.</li>
+</ul>
+<h2 id="surrogate-optimization">Surrogate Optimization<a class="headerlink" href="#surrogate-optimization" title="Permanent link">&para;</a></h2>
+<p>Basic idea:</p>
+<ul>
+<li>Sample a small number of points. Evaluate the objective.</li>
+<li>Fit a surrogate function to those points.</li>
+<li>Optimize this function, which is cheap to evaluate, using an algorithm that </li>
+<li>explores the global parameter space</li>
+<li>downweights points that are far from points where the true objective has been evaluated</li>
+<li>Add the optimum of the surrogate to the list of evaluated points (using the true function value).</li>
+<li>Update the surrogate model based on the new point.</li>
+<li>Repeat.</li>
+</ul>
+<p>Packages:</p>
+<ul>
+<li><a href="https://surrogates.sciml.ai/stable/">Surrogates.jl</a>: a variety of algorithms and sampling methods.</li>
+<li><a href="https://mrurq.github.io/SurrogateModelOptim.jl/stable/">SurrogateModelOptim.jl</a></li>
+</ul>
+<p>Drawback: There is no good way of running the surrogate optimization in parallel (unlike Matlab).</p>
                 
               
               
@@ -843,41 +882,6 @@ MyPackage.run()
       
         
 <footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="arrays.html" title="Arrays" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-            </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Arrays
-              </div>
-            </div>
-          </a>
-        
-        
-          <a href="debugging.html" title="Debugging" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Debugging
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
-    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
