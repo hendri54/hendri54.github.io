@@ -51,7 +51,7 @@ i1 = 0;
 
 i1 = i1 + 1;
 topicV{i1} = markdownLH.SubTopic({'Midterm: Material covered: TBA.'}, ...
-   datetime(year1, 9, 28));
+   datetime(year1, 10, 7));
 i1 = i1 + 1;
 % topicV{i1} = markdownLH.SubTopic({'Labor day'}, datetime(year1, 9, 6));
 % i1 = i1 + 1;
