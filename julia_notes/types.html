@@ -941,6 +941,22 @@
 </code></pre></div>
 
 <p>But this does not work with default values. <a href="https://discourse.julialang.org/t/add-lines-of-code-in-a-struct-definition/43297/7">Another option using <code>@eval</code></a>.</p>
+<p>A more robust implementation is <a href="https://github.com/rafaqz/Mixers.jl">Mixers.jl</a>. <code>@mix</code> is intended to create parametric types. But <code>@mix C1{} [...]</code> works as well and creates a plain vanilla type. However, the <code>@pour</code> macro is then simpler:</p>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="nd">@pour</span> <span class="n">c1</span> <span class="k">begin</span>
+   <span class="n">x</span> <span class="o">::</span> <span class="kt">Int</span>
+   <span class="n">y</span> <span class="o">::</span> <span class="kt">Float64</span>
+<span class="k">end</span>
+<span class="nd">@c1</span> <span class="p">(</span><span class="k">macro</span> <span class="n">with</span> <span class="mi">1</span> <span class="n">method</span><span class="p">)</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="k">struct</span> <span class="n">Foo</span>
+          <span class="nd">@c1</span>
+          <span class="n">z</span> <span class="o">::</span> <span class="n">String</span>
+       <span class="k">end</span>
+
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">Foo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s">&quot;abc&quot;</span><span class="p">)</span>
+<span class="n">Foo</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s">&quot;abc&quot;</span><span class="p">)</span>
+</code></pre></div>
+
 <h3 id="common-fields-with-default-values">Common fields with default values<a class="headerlink" href="#common-fields-with-default-values" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><span class="k">mutable</span> <span class="k">struct</span> <span class="n">Foo</span>
     <span class="n">x</span>
