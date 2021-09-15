@@ -633,6 +633,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#dates-16" class="md-nav__link">
+    Dates (1.6)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#enum-16" class="md-nav__link">
     Enum (1.6)
   </a>
@@ -821,6 +828,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#dates-16" class="md-nav__link">
+    Dates (1.6)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#enum-16" class="md-nav__link">
     Enum (1.6)
   </a>
@@ -905,6 +919,20 @@
 </ul>
 <h2 id="artifacts-16">Artifacts (1.6)<a class="headerlink" href="#artifacts-16" title="Permanent link">&para;</a></h2>
 <p>A useful guide: <a href="https://levelup.gitconnected.com/julia-artifacts-for-dummies-f2eef4fc193a">Artifacts for Dummies</a></p>
+<h2 id="dates-16">Dates (1.6)<a class="headerlink" href="#dates-16" title="Permanent link">&para;</a></h2>
+<p>Working with time durations seems to require converting the durations to millisecond integers first:</p>
+<div class="highlight"><pre><span></span><code><span class="n">d1</span> <span class="o">=</span> <span class="kt">DateTime</span><span class="p">(</span><span class="mi">2021</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">9</span><span class="p">);</span> <span class="n">d2</span> <span class="o">=</span> <span class="n">d1</span> <span class="o">+</span> <span class="n">Minute</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="n">Second</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">dSeconds</span> <span class="o">=</span> <span class="n">Dates</span><span class="o">.</span><span class="n">value</span><span class="p">(</span><span class="n">d2</span><span class="o">-</span><span class="n">d1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">1000</span><span class="p">;</span>
+</code></pre></div>
+
+<p>Going back to time units requires rounding because <code>Minute(dSeconds)</code> throws an <code>InexactError</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="n">dMinutes</span> <span class="o">=</span> <span class="n">Minute</span><span class="p">(</span><span class="n">round</span><span class="p">(</span><span class="n">dSeconds</span> <span class="o">/</span> <span class="mi">60</span><span class="p">));</span>
+</code></pre></div>
+
+<p>There is no formatted display of durations, only of dates:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Dates</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="s">&quot;HH:MM&quot;</span><span class="p">);</span>
+</code></pre></div>
+
 <h2 id="enum-16">Enum (1.6)<a class="headerlink" href="#enum-16" title="Permanent link">&para;</a></h2>
 <div class="highlight"><pre><span></span><code><span class="nd">@enum</span> <span class="n">Fruit</span> <span class="n">apple</span><span class="o">=</span><span class="mi">1</span> <span class="n">orange</span><span class="o">=</span><span class="mi">2</span> <span class="n">kiwi</span><span class="o">=</span><span class="mi">3</span>
 </code></pre></div>
