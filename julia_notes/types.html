@@ -765,6 +765,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#parametric-types-17" class="md-nav__link">
+    Parametric Types (1.7)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#user-defined-types-15" class="md-nav__link">
     User Defined Types (1.5)
   </a>
@@ -877,6 +884,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parametric-types-17" class="md-nav__link">
+    Parametric Types (1.7)
+  </a>
   
 </li>
       
@@ -1073,6 +1087,17 @@ end
 </code></pre></div>
 
 <p><a href="https://github.com/gcalderone/ReusePatterns.jl">ReusePatterns.jl</a> defines <code>@forward</code> which forwards <em>all</em> methods to a child object. The idea is to be able to add fields to a <code>struct</code> without losing all of the existing methods.</p>
+<h2 id="parametric-types-17">Parametric Types (1.7)<a class="headerlink" href="#parametric-types-17" title="Permanent link">&para;</a></h2>
+<p>This works:</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">Foo</span><span class="p">{</span><span class="n">T</span> <span class="o">&lt;:</span> <span class="kt">Integer</span><span class="p">}</span> <span class="k">end</span>
+<span class="n">Foo</span><span class="p">{</span><span class="kt">UInt8</span><span class="p">}()</span>
+</code></pre></div>
+
+<p>This does <strong>not</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">Foo</span><span class="p">{</span><span class="n">T</span> <span class="o">&lt;:</span> <span class="kt">Integer</span><span class="p">}</span> <span class="k">end</span>
+<span class="n">Foo</span><span class="p">{</span><span class="mi">7</span><span class="p">}()</span>  <span class="c"># error</span>
+</code></pre></div>
+
 <h2 id="user-defined-types-15">User Defined Types (1.5)<a class="headerlink" href="#user-defined-types-15" title="Permanent link">&para;</a></h2>
 <p><a href="https://kristofferc.github.io/LazilyInitializedFields.jl/">LazyInitializedFields.jl</a> is a nice way of handling partially initialized struct fields.</p>
 <h2 id="properties-and-fields">Properties and fields<a class="headerlink" href="#properties-and-fields" title="Permanent link">&para;</a></h2>

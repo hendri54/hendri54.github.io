@@ -940,9 +940,13 @@
 <h2 id="compatibility">Compatibility<a class="headerlink" href="#compatibility" title="Permanent link">&para;</a></h2>
 <p>Enabling <code>CompatHelper</code> workflows is very helpful. Simply update <code>CompatHelper.yml</code> in the repo's <code>.github/workflows</code> directory and enable local actions in the <code>github</code> repo settings. The rest is automatic.</p>
 <p><code>CompatHelper</code> creates one PR each time a dependency experiences a breaking version bump. Rather than merging these on github, it is easier to manually edit <code>Project.toml</code> locally, test, commit, and then close the PRs.</p>
-<p>For updating <code>compat</code> entries, <code>PkgCompatUI</code> is useful. It shows available versions for all packages and indicates which ones have breaking updates.</p>
+<p>For updating <code>compat</code> entries, <a href="https://github.com/GunnarFarneback/PackageCompatUI.jl">PackageCompatUI</a> is useful. The <code>compat_ui()</code> command shows available versions for all packages and indicates which ones have breaking updates.</p>
 <h2 id="pkg-errors">Pkg Errors<a class="headerlink" href="#pkg-errors" title="Permanent link">&para;</a></h2>
 <p>Occasionally, <code>Pkg</code> complains that a package is not registered. <code>]registry up</code> tends to solve that issue. If that fails, one can alway remove the registry with <code>]registry remove General</code>. It will be automatically installed again the next time it's needed.</p>
+<p>Package missing from cache: </p>
+<ul>
+<li>Remove precompile caches: <code>rm -rf ~/.julia/compiled</code></li>
+</ul>
 <hr />
                 
               

@@ -1025,9 +1025,34 @@ julia <span class="s2">&quot;test1.jl&quot;</span>
 </code></pre></div>
 
 <h2 id="random-numbers-15">Random numbers (1.5)<a class="headerlink" href="#random-numbers-15" title="Permanent link">&para;</a></h2>
-<p>Generating reproducible random numbers across Julia versions can be done with <code>StableRNGs.jl</code>.
-This also seems to generate the same random numbers across operating systems (in my case MacOS and Linux).</p>
+<p>Generating reproducible random numbers across Julia versions:</p>
+<ul>
+<li>This can be done with <code>StableRNGs.jl</code>. This also seems to generate the same random numbers across operating systems (in my case MacOS and Linux).</li>
+</ul>
+<p>Drawing integers with given probabilities:</p>
+<ul>
+<li><a href="https://juliastats.org/StatsBase.jl/stable/sampling/"><code>StatsBase.sample</code></a> does this.</li>
+</ul>
 <h2 id="traits">Traits<a class="headerlink" href="#traits" title="Permanent link">&para;</a></h2>
+<p>Traits are based on the idea that functions can be dispatched statically depending on Types. The canonical example:</p>
+<div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">Flies</span> <span class="k">end</span>
+<span class="k">struct</span> <span class="n">DoesNotFly</span> <span class="k">end</span>
+
+<span class="n">flies</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">DoesNotFly</span>
+
+<span class="k">struct</span> <span class="n">Duck</span> <span class="k">end</span>
+<span class="n">flies</span><span class="p">(</span><span class="o">::</span><span class="n">Duck</span><span class="p">)</span> <span class="o">=</span> <span class="n">Flies</span>
+
+<span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">flies</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">x</span><span class="p">)</span>
+<span class="n">f</span><span class="p">(</span><span class="o">::</span><span class="kt">Type</span><span class="p">{</span><span class="n">Flies</span><span class="p">},</span> <span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">$x</span><span class="s"> flies&quot;</span>
+<span class="n">f</span><span class="p">(</span><span class="o">::</span><span class="kt">Type</span><span class="p">{</span><span class="n">DoesNotFly</span><span class="p">},</span> <span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">$x</span><span class="s"> walks&quot;</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">Duck</span><span class="p">()</span>
+
+<span class="n">f</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>  <span class="c"># Output: &quot;Duck() flies&quot;</span>
+<span class="n">f</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>  <span class="c"># Output: &quot;7 walks&quot;</span>
+</code></pre></div>
+
 <p>An interesting implementation is <a href="https://github.com/schlichtanders/WhereTraits.jl">WhereTraits.jl</a> which permits, for example, dispatch on functions that return <code>Bool</code>.</p>
 <hr />
                 

@@ -541,6 +541,19 @@
     Updating to a new version
   </a>
   
+    <nav class="md-nav" aria-label="Updating to a new version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-a-cluster" class="md-nav__link">
+    On a cluster
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -803,6 +816,19 @@
     Updating to a new version
   </a>
   
+    <nav class="md-nav" aria-label="Updating to a new version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#on-a-cluster" class="md-nav__link">
+    On a cluster
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -852,11 +878,14 @@
 <p><code>]add OhMyREPL Revise</code></p>
 <p>The bash profile needs to be updated to point to the new version. Alternatively, create a symlink for the new version with</p>
 <div class="highlight"><pre><span></span><code>rm /usr/local/bin/julia
-ln -s /Applications/Julia-1.5.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia
+ln -s /Applications/Julia-1.7.app/Contents/Resources/julia/bin/julia /usr/local/bin/julia
 </code></pre></div>
 
+<p>With the symlink, editors also know how to find the new version.</p>
 <p>The <a href="https://github.com/abelsiqueira/jill">Jill bash script</a> automates this process. Perhaps even better, though requiring <code>python</code> is <a href="https://pypi.org/project/jill/">jill.py</a>. A simple <code>jill install stable</code> is all it takes.</p>
 <p>There is no need to copy installed packages to the new version's subdirectory. They are downloaded again as needed.</p>
+<h3 id="on-a-cluster">On a cluster<a class="headerlink" href="#on-a-cluster" title="Permanent link">&para;</a></h3>
+<p>The <a href="https://github.com/abelsiqueira/jill">Jill bash script</a> can install the current julia version. It also creates a symlink so that <code>julia-1.7</code>  starts that version.  </p>
 <h2 id="customizing-the-repl">Customizing the REPL<a class="headerlink" href="#customizing-the-repl" title="Permanent link">&para;</a></h2>
 <p>On MacOS, meta-X means Esc-X.</p>
 <p>There does not seem to be a way of binding Alt-x. </p>
