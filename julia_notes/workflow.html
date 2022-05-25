@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-5.5.12">
     
     
       
@@ -65,7 +65,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href=".." title="Lutz Hendricks" class="md-header-nav__button md-logo" aria-label="Lutz Hendricks">
+    <a href="../index.html" title="Lutz Hendricks" class="md-header-nav__button md-logo" aria-label="Lutz Hendricks">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -139,7 +139,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Lutz Hendricks" class="md-nav__button md-logo" aria-label="Lutz Hendricks">
+    <a href="../index.html" title="Lutz Hendricks" class="md-nav__button md-logo" aria-label="Lutz Hendricks">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -722,6 +722,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#repl" class="md-nav__link">
+    REPL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#revisejl" class="md-nav__link">
     Revise.jl
   </a>
@@ -764,6 +771,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#repl" class="md-nav__link">
+    REPL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#revisejl" class="md-nav__link">
     Revise.jl
   </a>
@@ -792,6 +806,16 @@
 <p>or</p>
 <p><code>pkg&gt; activate --temp</code></p>
 <p>both generate a temporary environment in <code>/tmp</code> and activate it. Here, one can add dependencies and then simply forget the environment once done. The folder will be automatically cleaned up after some time, I believe.</p>
+<h2 id="repl">REPL<a class="headerlink" href="#repl" title="Permanent link">&para;</a></h2>
+<p>Useful keyboard shortcuts</p>
+<ul>
+<li><code>^R</code>: search history while showing matching results.</li>
+<li><code>help&gt; "abc"</code>: search for string "abc" in docstrings.</li>
+<li><code>ctrl-left/right</code>: move one word (<code>meta-b/f</code> don't work on mac).</li>
+<li><code>ctrl-e</code>: end of line (<code>ctrl-a</code> does not work on mac).</li>
+</ul>
+<p>Note: On a mac, <code>Meta</code> is <code>Esc</code>.</p>
+<p>Tab completion: can indicate methods that apply. Example from the docs: <code>max([1,2], &lt;TAB&gt;)</code>.</p>
 <h2 id="revisejl">Revise.jl<a class="headerlink" href="#revisejl" title="Permanent link">&para;</a></h2>
 <p>Revise is essential for a smooth workflow.</p>
 <p>One limitation: <code>include</code>ing files in a model that is tracked with <code>includet</code> does not work (1.6). Example:</p>
@@ -863,7 +887,7 @@
     </div>
     
       <script src="../assets/javascripts/vendor.3636a4ec.min.js"></script>
-      <script src="../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching"}</script>
       
       <script>
         app = initialize({
