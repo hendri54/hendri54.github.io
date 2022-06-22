@@ -684,6 +684,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#profileview" class="md-nav__link">
+    ProfileView
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#timeroutputsjl" class="md-nav__link">
     TimerOutputs.jl
   </a>
@@ -834,6 +841,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#profileview" class="md-nav__link">
+    ProfileView
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#timeroutputsjl" class="md-nav__link">
     TimerOutputs.jl
   </a>
@@ -883,6 +897,10 @@
                 
                 
                 <h1 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h1>
+<p>Tutorials</p>
+<ul>
+<li><a href="https://viralinstruction.com/posts/optimise/">2022 practical guide</a> with links to other tutorials.</li>
+</ul>
 <h2 id="profiling-15">Profiling (1.5)<a class="headerlink" href="#profiling-15" title="Permanent link">&para;</a></h2>
 <p>A <a href="https://opensourc.es/blog/benchmarking-and-profiling-julia-code/">blog post</a> on profiling and benchmarking.</p>
 <p>If the profiler shows that an assignment (e.g. <code>setindex!</code>) takes a lot of time, it may indicate dynamic dispatch on the RHS of the assignment.</p>
@@ -905,7 +923,9 @@ include(&quot;profiling_code.jl&quot;) # for this package
 <ul>
 <li>requires Graphviz. On MacOS, install using brew install graphviz. But it has TONS of dependencies and did not install on my system. Then PProf cannot be used.</li>
 </ul>
-<h3 id="timeroutputsjl"><a href="https://github.com/KristofferC/TimerOutputs.jl||TimerOutputs.jl">TimerOutputs.jl</a><a class="headerlink" href="#timeroutputsjl" title="Permanent link">&para;</a></h3>
+<h3 id="profileview">ProfileView<a class="headerlink" href="#profileview" title="Permanent link">&para;</a></h3>
+<p>Shows a flame graph, but does not create tables with line-by-line timing (cf. StatProfilerHTML). Interesting option.</p>
+<h3 id="timeroutputsjl"><a href="https://github.com/KristofferC/TimerOutputs.jl">TimerOutputs.jl</a><a class="headerlink" href="#timeroutputsjl" title="Permanent link">&para;</a></h3>
 <ul>
 <li>can be used to time selected lines of code</li>
 <li>produces a nicely formatted table that is much easier to digest than profiler output.</li>

@@ -730,6 +730,20 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#dataframes" class="md-nav__link">
+    DataFrames
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#missing-values" class="md-nav__link">
+    Missing Values
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -756,7 +770,25 @@
 <p>Useful packages:</p>
 <ul>
 <li><a href="https://github.com/Hasnep/DataSkimmer.jl">DataSkimmer.jl</a> produces a summary of tabular data (e.g. <code>DataFrames</code>), including histogram.</li>
+<li><code>Strapping.jl</code> converts between <code>struct</code>s and tables.</li>
+<li><code>SplitApplyCombine.jl</code> contains data manipulation routines, such as <code>splitdims</code> (converting between vectors of vectors and matrices etc.), <code>group</code>, <code>innerjoin</code>. Similar to what <code>DataFrames</code> offers, but for additional data types.</li>
+<li><code>InvertedIndices.jl</code> for selecting when conditions are not true.</li>
 </ul>
+<h2 id="dataframes">DataFrames<a class="headerlink" href="#dataframes" title="Permanent link">&para;</a></h2>
+<p>Chaining transformations</p>
+<ul>
+<li>only have a single combine with multiple transformations as in </li>
+</ul>
+<p><code>combine(df, :a =&gt; sum, :b =&gt; mean)</code></p>
+<ul>
+<li>even with <code>@chain</code> from <code>Chain.jl</code> multiple <code>combine</code> in a row do not work. The result of each <code>combine</code> is fed into the next step. Which makes sense.</li>
+</ul>
+<p>Deleting columns: </p>
+<ul>
+<li>Using <code>Not</code> from <code>InvertedIndices</code>: <code>select!(df, Not(:x1));</code></li>
+</ul>
+<h2 id="missing-values">Missing Values<a class="headerlink" href="#missing-values" title="Permanent link">&para;</a></h2>
+<p><code>Missings.jl</code> has convenience functions for dealing with missing values.</p>
 <hr />
                 
               

@@ -1007,6 +1007,10 @@
 <p>One difference is that <code>bounds</code> works on <code>sitp</code> but not on <code>itp</code>.</p>
 <h2 id="latex-output-16">Latex Output (1.6)<a class="headerlink" href="#latex-output-16" title="Permanent link">&para;</a></h2>
 <p><a href="https://korsbo.github.io/Latexify.jl/stable/">Latexify.jl</a> renders various expressions as Latex equations. This is useful for automatically making expressions for functional forms. Also generates Latex tables from <code>DataFrames</code> and <code>Arrays</code>.</p>
+<p>PrettyTables.jl can be used to produce Latex tables (and human readable text tables with the same content).</p>
+<ul>
+<li>set <code>wrap_table = false</code> to avoid the <code>\begin{tabular}</code> block for a float.</li>
+</ul>
 <h2 id="logging-16">Logging (1.6)<a class="headerlink" href="#logging-16" title="Permanent link">&para;</a></h2>
 <p><code>@debug</code> can be used to generate self-test code that is only run while developing the code.</p>
 <p>Example:</p>

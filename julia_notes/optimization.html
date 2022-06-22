@@ -642,6 +642,19 @@
     NLopt (1.2)
   </a>
   
+    <nav class="md-nav" aria-label="NLopt (1.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#errors-in-objective-function" class="md-nav__link">
+    Errors in Objective Function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -823,6 +836,19 @@
     NLopt (1.2)
   </a>
   
+    <nav class="md-nav" aria-label="NLopt (1.2)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#errors-in-objective-function" class="md-nav__link">
+    Errors in Objective Function
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -899,11 +925,23 @@
                 <h1 id="numerical-optimization">Numerical Optimization<a class="headerlink" href="#numerical-optimization" title="Permanent link">&para;</a></h1>
 <h2 id="nlopt-12">NLopt (1.2)<a class="headerlink" href="#nlopt-12" title="Permanent link">&para;</a></h2>
 <p>Objective function requires gradient as input, even if it is not used. If gradient is not provided, NLopt returns FORCED_STOP without error message.</p>
+<h3 id="errors-in-objective-function">Errors in Objective Function<a class="headerlink" href="#errors-in-objective-function" title="Permanent link">&para;</a></h3>
 <p>When objective function errors, return value is STOPVAL_REACHED and fVal=0.0.</p>
-<ul>
-<li>One way of diagnosing such errors: print the guess to stdout at the start of each iteration. Then the objective function can be run again from the REPL with the guesses that cause the crash.</li>
-<li>An alternative (suggested by Kristoffer Carlsson): wrap the entire objective function in try/catch. Report the error in the catch and then rethrow it.</li>
-</ul>
+<p>One way of diagnosing such errors: print the guess to stdout at the start of each iteration. Then the objective function can be run again from the REPL with the guesses that cause the crash.</p>
+<p>An alternative (suggested by Kristoffer Carlsson): wrap the entire objective function in try/catch. Report the error in the catch and then rethrow it.</p>
+<div class="highlight"><pre><span></span><code><span class="k">function</span> <span class="n">fmin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>    
+    <span class="n">dev</span> <span class="o">=</span> <span class="k">try</span>
+        <span class="n">_fmin</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="k">catch</span> <span class="nb">e</span>
+        <span class="n">bt</span> <span class="o">=</span> <span class="n">catch_backtrace</span><span class="p">()</span>
+        <span class="n">showerror</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="nb">e</span><span class="p">,</span> <span class="n">bt</span><span class="p">)</span>
+        <span class="n">rethrow</span><span class="p">(</span><span class="nb">e</span><span class="p">)</span>
+    <span class="k">end</span>
+
+    <span class="k">return</span> <span class="n">dev</span>
+<span class="k">end</span>
+</code></pre></div>
+
 <h2 id="noisy-objectives">Noisy objectives<a class="headerlink" href="#noisy-objectives" title="Permanent link">&para;</a></h2>
 <p>Useful discourse threads: <a href="https://discourse.julialang.org/t/optimizing-noisy-objective/25260">here</a></p>
 <p><a href="https://www.jhuapl.edu/SPSA/">SPSA</a>:</p>

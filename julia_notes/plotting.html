@@ -674,11 +674,11 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#plotsjl" class="md-nav__link">
-    Plots.jl
+  <a href="#plotsjl-15" class="md-nav__link">
+    Plots.jl (1.5)
   </a>
   
-    <nav class="md-nav" aria-label="Plots.jl">
+    <nav class="md-nav" aria-label="Plots.jl (1.5)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -722,11 +722,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#makiejl" class="md-nav__link">
-    Makie.jl
+  <a href="#makiejl-17" class="md-nav__link">
+    Makie.jl (1.7)
   </a>
   
-    <nav class="md-nav" aria-label="Makie.jl">
+    <nav class="md-nav" aria-label="Makie.jl (1.7)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -753,6 +753,13 @@
           <li class="md-nav__item">
   <a href="#keyword-arguments" class="md-nav__link">
     Keyword arguments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#legends_1" class="md-nav__link">
+    Legends
   </a>
   
 </li>
@@ -860,11 +867,11 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#plotsjl" class="md-nav__link">
-    Plots.jl
+  <a href="#plotsjl-15" class="md-nav__link">
+    Plots.jl (1.5)
   </a>
   
-    <nav class="md-nav" aria-label="Plots.jl">
+    <nav class="md-nav" aria-label="Plots.jl (1.5)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -908,11 +915,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#makiejl" class="md-nav__link">
-    Makie.jl
+  <a href="#makiejl-17" class="md-nav__link">
+    Makie.jl (1.7)
   </a>
   
-    <nav class="md-nav" aria-label="Makie.jl">
+    <nav class="md-nav" aria-label="Makie.jl (1.7)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -939,6 +946,13 @@
           <li class="md-nav__item">
   <a href="#keyword-arguments" class="md-nav__link">
     Keyword arguments
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#legends_1" class="md-nav__link">
+    Legends
   </a>
   
 </li>
@@ -979,7 +993,7 @@
                 
                 
                 <h1 id="plotting">Plotting<a class="headerlink" href="#plotting" title="Permanent link">&para;</a></h1>
-<h2 id="plotsjl">Plots.jl<a class="headerlink" href="#plotsjl" title="Permanent link">&para;</a></h2>
+<h2 id="plotsjl-15">Plots.jl (1.5)<a class="headerlink" href="#plotsjl-15" title="Permanent link">&para;</a></h2>
 <p>Visually, PlotlyJS produces the most appealing plots (for me). But it does not install on my system (1.5).</p>
 <p>When a plotting related library is not found (as in “error compiling display”), try <code>]build Plots</code>. </p>
 <p>Defaults are set with the <a href="http://docs.juliaplots.org/latest/basics/">defaults</a> command.</p>
@@ -1006,7 +1020,14 @@
 </code></pre></div>
 
 <p>Now any default arguments can be overridden and <code>bar_graph</code> is called exactly as <code>bar</code> would be.</p>
-<h2 id="makiejl">Makie.jl<a class="headerlink" href="#makiejl" title="Permanent link">&para;</a></h2>
+<h2 id="makiejl-17">Makie.jl (1.7)<a class="headerlink" href="#makiejl-17" title="Permanent link">&para;</a></h2>
+<p>The general flow is:</p>
+<ul>
+<li>make a <code>Figure</code></li>
+<li>make an <code>Axis</code></li>
+<li>plot into the <code>Axis</code></li>
+</ul>
+<p>Once an <code>Axis</code> is "assigned" a <code>Figure</code>, it cannot be moved to another <code>Figure</code>. Therefore, plotting functions should take a <code>Figure</code> input argument.</p>
 <h3 id="subplots">Subplots<a class="headerlink" href="#subplots" title="Permanent link">&para;</a></h3>
 <p>It helps to write plotting functions that take a <code>Figure</code> as an input:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># Make a stand-alone figure. Could be omitted.</span>
@@ -1058,17 +1079,11 @@
 <p>Building up a grouped bar graph by plotting each series one at a time does not work. The first series bar is too wide (it covers the width of the entire group of bars). One could set it by hand, but it is not clear how.</p>
 <p><code>axislegend</code> does not work for grouped bar graphs (lacking labels).</p>
 <h3 id="keyword-arguments">Keyword arguments<a class="headerlink" href="#keyword-arguments" title="Permanent link">&para;</a></h3>
-<p>Makie ignores invalid keyword arguments. This makes it possible to "flatten" keyword arguments; i.e., one can provide that <code>Axis</code> arguments in the same list as the series arguments. For example, this works:</p>
-<div class="highlight"><pre><span></span><code><span class="n">lines</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span> <span class="n">xlabel</span> <span class="o">=</span> <span class="s">&quot;x&quot;</span><span class="p">);</span>
-</code></pre></div>
-
-<p>But</p>
-<div class="highlight"><pre><span></span><code><span class="n">lines!</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span> <span class="n">xlabel</span> <span class="o">=</span> <span class="s">&quot;x&quot;</span><span class="p">);</span>
-</code></pre></div>
-
-<p>ignores the <code>xlabel</code>.</p>
+<p>As for 0.8, CairoMakie no longer ignores invalid keyword arguments. One approach is to provide all kwargs to the main function. It then splits the args into valid args for <code>Figure</code>, <code>Axis</code>, <code>lines</code>, etc.</p>
 <p><code>nothing</code> works with keyword arguments such as <code>title</code>.</p>
 <p><code>ylims</code> appears to be ignored. Need to use <code>ylims!(ax, lims)</code>. Unspecified bounds are set to <code>nothing</code> (not <code>Inf</code>).</p>
+<h3 id="legends_1">Legends<a class="headerlink" href="#legends_1" title="Permanent link">&para;</a></h3>
+<p>A legend outside of the plot area is created by providing a new figure position (but not an <code>Axis</code>) to <code>Legend</code>, as in <code>Legend(fig[1,2], ...)</code>. The position often spans one dimension, as in <code>fig[:, 2]</code>.</p>
 <h3 id="themes">Themes<a class="headerlink" href="#themes" title="Permanent link">&para;</a></h3>
 <p><code>update_theme!(thm, Lines = (linewidth = 4,))</code> creates a new "section" <code>thm.Lines</code> that applies to lines.</p>
 <p><code>update_theme!(thm, Lines = (linestyle = :dash,))</code> <strong>merges</strong> the new information into the existing <code>Lines</code> section. It does not replace previous content.</p>
