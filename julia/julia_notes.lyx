@@ -2898,36 +2898,6 @@ push(LOAD_PATH, @__DIR__)
 Creating a package registry (1.2)
 \end_layout
 
-\begin_layout Standard
-Any registry that lives in 
-\family typewriter
-~/.julia/registries
-\family default
- is automatically used by 
-\family typewriter
-Pkg
-\family default
-.
-\end_layout
-
-\begin_layout Standard
-In principle, it is easy to create your own registry (see 
-\begin_inset CommandInset href
-LatexCommand href
-name "discourse"
-target "https://discourse.julialang.org/t/creating-a-registry/12094"
-literal "false"
-
-\end_inset
-
- for a guide).
- The key to making it practical is 
-\family typewriter
-LocalRegistry.jl
-\family default
-.
-\end_layout
-
 \begin_layout Subsubsection
 Using LocalRegistry.jl (1.3)
 \end_layout
