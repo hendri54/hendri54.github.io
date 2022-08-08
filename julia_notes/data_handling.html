@@ -891,6 +891,10 @@
 <ul>
 <li>Using <code>Not</code> from <code>InvertedIndices</code>: <code>select!(df, Not(:x1));</code></li>
 </ul>
+<p>Renaming columns:</p>
+<ul>
+<li><code>rename!(df, :old =&gt; :new)</code></li>
+</ul>
 <h3 id="grouping">Grouping<a class="headerlink" href="#grouping" title="Permanent link">&para;</a></h3>
 <p>The following gives all the rows of the original <code>DataFrame</code> for which the "keys" have the selected values:</p>
 <div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">pk1</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">pk2</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="sc">&#39;a&#39;</span><span class="o">:</span><span class="sc">&#39;z&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span> 
