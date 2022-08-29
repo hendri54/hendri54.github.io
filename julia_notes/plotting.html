@@ -801,6 +801,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#algebraofgraphics" class="md-nav__link">
+    AlgebraOfGraphics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#showing-plots-in-the-repl" class="md-nav__link">
+    Showing plots in the REPL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#saving-data-with-plots" class="md-nav__link">
     Saving data with plots
   </a>
@@ -1006,6 +1020,20 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#algebraofgraphics" class="md-nav__link">
+    AlgebraOfGraphics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#showing-plots-in-the-repl" class="md-nav__link">
+    Showing plots in the REPL
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#saving-data-with-plots" class="md-nav__link">
     Saving data with plots
   </a>
@@ -1139,6 +1167,19 @@
 </code></pre></div>
 
 <p>Errors in theme settings cause <code>merge!</code> errors when plotting that bear no obvious relationship to themes.</p>
+<h2 id="algebraofgraphics">AlgebraOfGraphics<a class="headerlink" href="#algebraofgraphics" title="Permanent link">&para;</a></h2>
+<p>Example of a weighted density plot that stacks multiple densities and groups data:</p>
+<div class="highlight"><pre><span></span><code><span class="k">using</span> <span class="n">AlgebraOfGraphics</span><span class="p">,</span> <span class="n">CairoMakie</span><span class="p">,</span> <span class="n">Random</span><span class="p">;</span>
+<span class="c"># y = weights, z = lines, grp = groups (subplots)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">randn</span><span class="p">(</span><span class="mi">5000</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">.+</span> <span class="n">rand</span><span class="p">(</span><span class="mi">5000</span><span class="p">),</span> <span class="n">z</span><span class="o">=</span><span class="n">rand</span><span class="p">([</span><span class="s">&quot;a&quot;</span><span class="p">,</span> <span class="s">&quot;b&quot;</span><span class="p">,</span> <span class="s">&quot;c&quot;</span><span class="p">],</span> <span class="mi">5000</span><span class="p">),</span> <span class="n">grp</span><span class="o">=</span><span class="n">rand</span><span class="p">([</span><span class="s">&quot;g1&quot;</span><span class="p">,</span> <span class="s">&quot;g2&quot;</span><span class="p">],</span> <span class="mi">5000</span><span class="p">));</span>
+<span class="n">specs</span> <span class="o">=</span> <span class="n">data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">*</span> <span class="n">mapping</span><span class="p">(</span><span class="o">:</span><span class="n">x</span><span class="p">,</span> <span class="n">layout</span><span class="o">=:</span><span class="n">z</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="o">:</span><span class="n">grp</span><span class="p">)</span> <span class="o">*</span> <span class="n">AlgebraOfGraphics</span><span class="o">.</span><span class="n">density</span><span class="p">(</span><span class="n">datalimits</span> <span class="o">=</span> <span class="p">((</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">),));</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">specs</span><span class="p">);</span>
+</code></pre></div>
+
+<p>Results in 3 subplots (one for each <code>z</code> value). Each subplot contains 2 density line graphs (one for each <code>grp</code> value). Legends are automatic. Dense, but very powerful.</p>
+<p>The key is to have the data in something like a <code>DataFrame</code> with all the grouping variables.</p>
+<h2 id="showing-plots-in-the-repl">Showing plots in the REPL<a class="headerlink" href="#showing-plots-in-the-repl" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.queryverse.org/2019/02/13/electrondisplay/">ElectronDisplay</a> is easy. Generate a <code>Figure</code> (<code>fig</code>) with <code>Makie</code>. Then issue <code>electrondisplay(fig)</code>.</p>
 <h2 id="saving-data-with-plots">Saving data with plots<a class="headerlink" href="#saving-data-with-plots" title="Permanent link">&para;</a></h2>
 <p>VegaLite does this natively.</p>
 <p>with Plots.jl <a href="https://discourse.julialang.org/t/how-to-save-a-plot-structure/28694">one can use</a> hdf5plot_write to write an entire plot, including the data, to an hdf5 file. </p>
