@@ -545,6 +545,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#juliaup" class="md-nav__link">
+    Juliaup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#on-a-cluster" class="md-nav__link">
     On a cluster
   </a>
@@ -856,6 +863,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#juliaup" class="md-nav__link">
+    Juliaup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#on-a-cluster" class="md-nav__link">
     On a cluster
   </a>
@@ -921,6 +935,8 @@ ln -s /Applications/Julia-1.7.app/Contents/Resources/julia/bin/julia /usr/local/
 <p>The <a href="https://github.com/abelsiqueira/jill">Jill bash script</a> automates this process. Perhaps even better, though requiring <code>python</code> is <a href="https://pypi.org/project/jill/">jill.py</a>. A simple <code>jill install stable</code> is all it takes. <code>jill install --unstable</code> gives RC versions (but not nightlies).</p>
 <p>Note: Currently (Sep-2022), <code>jill.py</code> does not install Apple Silicon versions of Julia. They can be requested via command line option (see the advanced section of the docs), but this does not work for me.</p>
 <p>There is no need to copy installed packages to the new version's subdirectory. They are downloaded again as needed.</p>
+<h3 id="juliaup">Juliaup<a class="headerlink" href="#juliaup" title="Permanent link">&para;</a></h3>
+<p>For Mac, <a href="https://github.com/JuliaLang/juliaup">juliaup</a> lists as beta, but seems to work. </p>
 <h3 id="on-a-cluster">On a cluster<a class="headerlink" href="#on-a-cluster" title="Permanent link">&para;</a></h3>
 <p>The <a href="https://github.com/abelsiqueira/jill">Jill bash script</a> can install the current julia version. It also creates a symlink so that <code>julia-1.7</code>  starts that version.  </p>
 <h2 id="customizing-the-repl">Customizing the REPL<a class="headerlink" href="#customizing-the-repl" title="Permanent link">&para;</a></h2>
