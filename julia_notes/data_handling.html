@@ -899,6 +899,10 @@
 <ul>
 <li>even with <code>@chain</code> from <code>Chain.jl</code> multiple <code>combine</code> in a row do not work. The result of each <code>combine</code> is fed into the next step. Which makes sense.</li>
 </ul>
+<p>Converting to multi-dimensional array:</p>
+<ul>
+<li><a href="https://discourse.julialang.org/t/dataframe-to-multidimensional-array/91686">Discourse thread</a></li>
+</ul>
 <p>Deleting columns: </p>
 <ul>
 <li>Using <code>Not</code> from <code>InvertedIndices</code>: <code>select!(df, Not(:x1));</code></li>
