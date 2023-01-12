@@ -789,6 +789,7 @@
 <p>Packages added to the default Julia environment (e.g., <code>v1.8</code>) are not available in Pluto. They need to be <code>import</code>ed at the start of each notebook. Best to create a startup file for that which contains a list of <code>using</code>  statements.</p>
 <p>A notebook is an environment. Packages are simply <code>import</code>ed at the start of each notebook. To use an existing environment, simply <code>cd(/path/to/package)</code> and <code>Pkg.activate(".")</code>.</p>
 <p>In practice, create a notebook for each package under development. Plus one notebook for ad hoc code experiments.</p>
+<p>Multi-threading: need to set environment variable <code>JULIA_NUM_THREADS</code> for the <a href="https://github.com/fonsp/Pluto.jl/wiki/%F0%9F%92%A1-Choosing-Pluto.jl">"worker spawned by Pluto"</a></p>
 <hr />
                 
               
