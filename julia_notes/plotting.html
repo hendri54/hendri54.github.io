@@ -754,6 +754,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#axes" class="md-nav__link">
+    Axes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#subplots" class="md-nav__link">
     Subplots
   </a>
@@ -973,6 +980,13 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#axes" class="md-nav__link">
+    Axes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#subplots" class="md-nav__link">
     Subplots
   </a>
@@ -1092,6 +1106,11 @@
 <li>plot into the <code>Axis</code></li>
 </ul>
 <p>Once an <code>Axis</code> is "assigned" a <code>Figure</code>, it cannot be moved to another <code>Figure</code>. Therefore, plotting functions should take a <code>Figure</code> input argument.</p>
+<h3 id="axes">Axes<a class="headerlink" href="#axes" title="Permanent link">&para;</a></h3>
+<p><a href="https://discourse.julialang.org/t/makie-how-to-move-xlabel-to-the-right/93793/1">Moving xlabel</a>. The idea to simply place a <code>Label</code> into a separate layout position:</p>
+<div class="highlight"><pre><span></span><code><span class="n">Label</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&quot;Test &quot;</span><span class="p">,</span> <span class="n">halign</span> <span class="o">=</span> <span class="o">:</span><span class="n">right</span><span class="p">,</span> <span class="n">tellwidth</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span>
+</code></pre></div>
+
 <h3 id="subplots">Subplots<a class="headerlink" href="#subplots" title="Permanent link">&para;</a></h3>
 <p>It helps to write plotting functions that take a <code>Figure</code> as an input:</p>
 <div class="highlight"><pre><span></span><code><span class="c"># Make a stand-alone figure. Could be omitted.</span>
