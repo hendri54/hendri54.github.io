@@ -926,6 +926,14 @@
 
 <h2 id="missing-values">Missing Values<a class="headerlink" href="#missing-values" title="Permanent link">&para;</a></h2>
 <p><code>Missings.jl</code> has convenience functions for dealing with missing values.</p>
+<p>Also useful, but more general is <a href="https://gitlab.com/aplavin/Skipper.jl">Skipper.jl</a>. Example:</p>
+<div class="highlight"><pre><span></span><code><span class="n">sa</span> <span class="o">=</span> <span class="n">skip</span><span class="p">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">isnan</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">||</span> <span class="n">isinf</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">data</span><span class="p">);</span>
+<span class="n">dataMean</span> <span class="o">=</span> <span class="n">mean</span><span class="p">(</span><span class="n">sa</span><span class="p">);</span> <span class="c"># Ignores skipped value</span>
+<span class="n">sa</span> <span class="o">.*</span> <span class="mi">2</span><span class="p">;</span> <span class="c"># Ignores skipped values</span>
+<span class="n">sa</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="c"># Uses original indices, if not skipped.</span>
+<span class="n">complement</span><span class="p">(</span><span class="n">sa</span><span class="p">)</span> <span class="o">.=</span> <span class="n">mean</span><span class="p">(</span><span class="n">sa</span><span class="p">);</span> <span class="c"># Sets skipped value</span>
+</code></pre></div>
+
 <hr />
                 
               
