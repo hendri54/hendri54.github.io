@@ -1027,10 +1027,15 @@
 <div class="highlight"><pre><span></span><code><span class="nd">@enum</span> <span class="n">Fruit</span> <span class="n">apple</span><span class="o">=</span><span class="mi">1</span> <span class="n">orange</span><span class="o">=</span><span class="mi">2</span> <span class="n">kiwi</span><span class="o">=</span><span class="mi">3</span>
 </code></pre></div>
 
-<p>The <code>type</code> is <code>Fruit</code> (concrete). So dispatch on the instances does not work. The alternative: Defint an abstract type with concrete subtypes <code>Apple &lt;: AbstractFruit</code>.</p>
+<p>The <code>type</code> is <code>Fruit</code> (concrete). So dispatch on the instances does not work. </p>
+<p>Alternatives: </p>
+<ul>
+<li>Define an abstract type with concrete subtypes <code>Apple &lt;: AbstractFruit</code>.</li>
+<li>Make parametric types <code>Fruit{:apple}</code>. Static dispatch works.</li>
+</ul>
 <p>Benefits of <code>enum</code>:</p>
 <ul>
-<li><code>Array{Fruit}</code> is more efficient than <code>Array{AbstractFruit}</code>.</li>
+<li><code>Array{Fruit}</code> is more efficient than <code>Array{AbstractFruit}</code>. But can use <code>Union{Apple, Orange, Kiwi}</code>.</li>
 </ul>
 <p>Benefits of types:</p>
 <ul>
