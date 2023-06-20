@@ -592,6 +592,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#debuggerjl" class="md-nav__link">
+    Debugger.jl
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stacktraces-18" class="md-nav__link">
     Stacktraces (1.8)
   </a>
@@ -828,6 +835,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#debuggerjl" class="md-nav__link">
+    Debugger.jl
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stacktraces-18" class="md-nav__link">
     Stacktraces (1.8)
   </a>
@@ -870,15 +884,40 @@
 <p>Debuggers that run interpreted code, such as Debugger.jl, compile reasonably fast but run very slowly (about 10 times slower than compiled code). Debuggers that compile debugging features into the code run at near native speed but are either slow to compile (MagneticReadHead) or offer limited features (Infiltrator).</p>
 <p>Common options are:</p>
 <ol>
-<li>Debugger.jl: It interprets all code and can therefore offer a complete feature set. But it is very slow for larger projects. Options are available that make Debugger faster, but less powerful. The VS Code plugin gives an IDE experience.</li>
+<li>Debugger.jl (below)</li>
 <li>MagneticReadHead.jl: It compiles debugging features into all code and therefore runs at near native speed. But compile times are often extremely long.</li>
 <li>Infiltrator.jl: It compiles all code, adding only user specified breakpoints (@infiltrate). Compile times and run times are good, but the user can only inspect the local state when a break point is reached. It is not possible to move around the call stack.</li>
 <li>Exfiltrator.jl: Simply exports all local variables at the point of call to Main. The idea is that the entire local environment can be inspected at really no runtime or compilation cost. Simple and effective, but one cannot manipulate objects in the context of the calling module.</li>
 </ol>
-<p>There are other options that I don't know much about, such as Juno's debugger. </p>
+<p>There are other options that I don't know much about. </p>
+<h2 id="debuggerjl">Debugger.jl<a class="headerlink" href="#debuggerjl" title="Permanent link">&para;</a></h2>
+<p>It interprets all code and can therefore offer a complete feature set. But it is very slow for larger projects. A key trick is to run <code>Base</code> code in compiled mode (see <a href="https://discourse.julialang.org/t/debugging-extremely-slow/53801">Discourse</a> thread):</p>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">JuliaInterpreter</span><span class="p">,</span> <span class="n">MethodAnalysis</span><span class="p">;</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">union!</span><span class="p">(</span><span class="n">JuliaInterpreter</span><span class="o">.</span><span class="n">compiled_modules</span><span class="p">,</span> <span class="n">child_modules</span><span class="p">(</span><span class="n">Base</span><span class="p">));</span>
+</code></pre></div>
+
+<p>It is also useful to add other modules to the compiled list (given that most bugs likely occur in dev'd code):</p>
+<div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">JuliaInterpreter</span>
+<span class="n">julia</span><span class="o">&gt;</span> <span class="n">push!</span><span class="p">(</span><span class="n">JuliaInterpreter</span><span class="o">.</span><span class="n">compiled_modules</span><span class="p">,</span> <span class="n">SomeoneElsesModule</span><span class="p">)</span>
+</code></pre></div>
+
+<p>It helps to package all of this into a helper function:</p>
+<div class="highlight"><pre><span></span><code><span class="k">using</span> <span class="n">Debugger</span><span class="p">,</span> <span class="n">JuliaInterpreter</span><span class="p">,</span> <span class="n">MethodAnalysis</span><span class="p">;</span>
+<span class="k">function</span> <span class="n">debug_exlusions</span><span class="p">(</span><span class="n">exclModules</span> <span class="o">=</span> <span class="nb">nothing</span><span class="p">)</span>
+   <span class="k">if</span> <span class="o">!</span><span class="n">isnothing</span><span class="p">(</span><span class="n">exclModules</span><span class="p">)</span>
+      <span class="k">for</span> <span class="n">mdl</span> <span class="kp">in</span> <span class="n">exclModules</span>
+         <span class="n">push!</span><span class="p">(</span><span class="n">JuliaInterpreter</span><span class="o">.</span><span class="n">compiled_modules</span><span class="p">,</span> <span class="n">mdl</span><span class="p">);</span>
+      <span class="k">end</span>
+   <span class="k">end</span>
+    <span class="n">union!</span><span class="p">(</span><span class="n">JuliaInterpreter</span><span class="o">.</span><span class="n">compiled_modules</span><span class="p">,</span> <span class="n">child_modules</span><span class="p">(</span><span class="n">Base</span><span class="p">))</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p>The VS Code plugin gives an IDE experience.</p>
 <h2 id="stacktraces-18">Stacktraces (1.8)<a class="headerlink" href="#stacktraces-18" title="Permanent link">&para;</a></h2>
 <p>Stacktraces can be long. <code>InteractiveErrors.jl</code> can make them easier to navigate.</p>
 <p><a href="https://github.com/BioTurboNick/AbbreviatedStackTraces.jl">AbbreviatedStackTraces.jl</a> shows only "own" code and gives much shorter stack traces.</p>
+<p>RelevanceStrackTraces.jl has a similar idea.</p>
 <hr />
                 
               

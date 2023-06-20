@@ -593,6 +593,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#categorical-data" class="md-nav__link">
+    Categorical Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#missing-values" class="md-nav__link">
     Missing Values
   </a>
@@ -854,6 +861,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#categorical-data" class="md-nav__link">
+    Categorical Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#missing-values" class="md-nav__link">
     Missing Values
   </a>
@@ -891,6 +905,7 @@
 <li><code>InvertedIndices.jl</code> for selecting when conditions are not true.</li>
 </ul>
 <h2 id="dataframes">DataFrames<a class="headerlink" href="#dataframes" title="Permanent link">&para;</a></h2>
+<p>Column names can be <code>string</code> or <code>symbol</code>. Access works with either. But in grouping expressions, one needs to pick one or the other.</p>
 <p>Chaining transformations</p>
 <ul>
 <li>only have a single combine with multiple transformations as in </li>
@@ -922,6 +937,16 @@
 <div class="highlight"><pre><span></span><code><span class="n">df</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="p">(</span><span class="n">pk1</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">1</span><span class="o">:</span><span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">pk2</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="sc">&#39;a&#39;</span><span class="o">:</span><span class="sc">&#39;z&#39;</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">value</span><span class="o">=</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span> 
 <span class="n">gdf</span> <span class="o">=</span> <span class="n">groupby</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="p">[</span><span class="o">:</span><span class="n">pk1</span><span class="p">,</span> <span class="o">:</span><span class="n">pk2</span><span class="p">]);</span>
 <span class="n">dfSub</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="sc">&#39;a&#39;</span><span class="p">)]</span>
+</code></pre></div>
+
+<h2 id="categorical-data">Categorical Data<a class="headerlink" href="#categorical-data" title="Permanent link">&para;</a></h2>
+<p>Assigning levels:</p>
+<div class="highlight"><pre><span></span><code><span class="n">xV</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
+<span class="c"># Sorting ensures that categories are sorted correctly.</span>
+<span class="n">valV</span> <span class="o">=</span> <span class="n">sort</span><span class="p">(</span><span class="n">unique</span><span class="p">(</span><span class="n">xV</span><span class="p">));</span>
+<span class="n">xV</span> <span class="o">=</span> <span class="n">categorical</span><span class="p">(</span><span class="n">xV</span><span class="p">);</span>
+<span class="c"># Note that recode takes Pairs. These are constructed with `map` and then splatted.</span>
+<span class="n">xV</span> <span class="o">=</span> <span class="n">recode</span><span class="p">(</span><span class="n">xV</span><span class="p">,</span> <span class="n">map</span><span class="p">(</span><span class="n">j</span> <span class="o">-&gt;</span> <span class="n">j</span> <span class="o">=&gt;</span> <span class="s">&quot;x</span><span class="si">$j</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">valV</span><span class="p">)</span><span class="o">...</span><span class="p">);</span>
 </code></pre></div>
 
 <h2 id="missing-values">Missing Values<a class="headerlink" href="#missing-values" title="Permanent link">&para;</a></h2>
