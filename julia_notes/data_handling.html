@@ -903,6 +903,7 @@
 <li><code>Strapping.jl</code> converts between <code>struct</code>s and tables.</li>
 <li><code>SplitApplyCombine.jl</code> contains data manipulation routines, such as <code>splitdims</code> (converting between vectors of vectors and matrices etc.), <code>group</code>, <code>innerjoin</code>. Similar to what <code>DataFrames</code> offers, but for additional data types.</li>
 <li><code>InvertedIndices.jl</code> for selecting when conditions are not true.</li>
+<li><a href="https://juliaml.github.io/TableTransforms.jl/stable/">TableTransforms.jl</a> provides data transformations (scaling, quantiles, selecting rows, etc). Idea is to construct a pipeline that can be applied to any data source that is <code>Tables.jl</code> compatible.</li>
 </ul>
 <h2 id="dataframes">DataFrames<a class="headerlink" href="#dataframes" title="Permanent link">&para;</a></h2>
 <p>Column names can be <code>string</code> or <code>symbol</code>. Access works with either. But in grouping expressions, one needs to pick one or the other.</p>
@@ -949,6 +950,7 @@
 <span class="n">xV</span> <span class="o">=</span> <span class="n">recode</span><span class="p">(</span><span class="n">xV</span><span class="p">,</span> <span class="n">map</span><span class="p">(</span><span class="n">j</span> <span class="o">-&gt;</span> <span class="n">j</span> <span class="o">=&gt;</span> <span class="s">&quot;x</span><span class="si">$j</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">valV</span><span class="p">)</span><span class="o">...</span><span class="p">);</span>
 </code></pre></div>
 
+<p><code>levelcode</code> returns the underlying Int value for each entry.</p>
 <h2 id="missing-values">Missing Values<a class="headerlink" href="#missing-values" title="Permanent link">&para;</a></h2>
 <p><code>Missings.jl</code> has convenience functions for dealing with missing values.</p>
 <p>Also useful, but more general is <a href="https://gitlab.com/aplavin/Skipper.jl">Skipper.jl</a>. Example:</p>
