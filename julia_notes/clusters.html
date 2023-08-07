@@ -829,14 +829,24 @@
 <li>squeue --job XXXX</li>
 <li><code>sacct --format="JobID,JobName%30,State,ExitCode"</code> (best typed using KeyboardMaestro)</li>
 </ul>
+<h2 id="status-of-completed-jobs">Status of completed jobs<a class="headerlink" href="#status-of-completed-jobs" title="Permanent link">&para;</a></h2>
+<p>Jobs can be <a href="https://hpc.nmsu.edu/onboarding/supercomputing/slurm/job-statistics/">retrieved by start time</a> if they no longer show up in the job list (via <code>squeue</code> or <code>sacct</code>). Example <code>sacct --starttime=2023-07-21</code>.</p>
 <h2 id="examining-memory-and-cpu-usage">Examining memory and cpu usage<a class="headerlink" href="#examining-memory-and-cpu-usage" title="Permanent link">&para;</a></h2>
 <p><a href="https://docs.ycrc.yale.edu/clusters-at-yale/job-scheduling/resource-usage/">Yale guide</a></p>
 <p>After jobs completed:
 - <code>seff jobid</code>
 - <code>sacct</code> with <code>MaxRSS</code> switch shows memory usage.</p>
+<p>[July 2023] Sometimes, jobs run out of memory on the cluster, even though they run fine on a local machine. This problem appears to occur when garbage collection does not run as needed. One <a href="https://discourse.julialang.org/t/understanding-memory-usage-in-julia/101647/19">solution</a>: trigger garbage collection manually when memory is low with</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">Sys</span><span class="o">.</span><span class="n">free_memory</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="o">^</span><span class="mi">30</span> <span class="o">&lt;</span> <span class="mf">6.0</span> <span class="c"># gigabytes</span>
+    <span class="n">GC</span><span class="o">.</span><span class="n">gc</span><span class="p">()</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p>This may trigger garbage collection all the time (at least on my local mac <code>free_memory</code> is always close to zero). And it does not help in my case.</p>
+<p>The command line option <code>--heap-size-hint=15G</code> is supposed to trigger garbage collection when about 15GB of memory are allocated. That seems to help.</p>
 <h2 id="errors">Errors<a class="headerlink" href="#errors" title="Permanent link">&para;</a></h2>
 <p>From time to time, <code>github</code> asks for user credentials when trying to download private repos, even if those have been downloaded many times before. Then precompile the package from the REPL on the cluster, entering the credentials by hand. They will then be stored for some time again.</p>
-<p>Enter the personal access token instead of the account password.</p>
+<p>Enter the personal access token instead of the account password. Sometimes (!) this must be typed into the terminal. Pasting may not work (why not?). Unfortunately, one cannot see what (if anything) has been pasted or typed. A truly moronic design.</p>
 <h2 id="the-julia-script">The Julia script<a class="headerlink" href="#the-julia-script" title="Permanent link">&para;</a></h2>
 <p>Submitting a job is (almost) equivalent to <code>julia batch.jl</code> from the terminal.</p>
 <p>Note: cd() does not work in these command files. To include a file, provide a full path.</p>

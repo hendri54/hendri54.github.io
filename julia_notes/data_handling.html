@@ -940,6 +940,11 @@
 <span class="n">dfSub</span> <span class="o">=</span> <span class="n">gdf</span><span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="sc">&#39;a&#39;</span><span class="p">)]</span>
 </code></pre></div>
 
+<p>Multiple <code>combine</code> operations in one go:</p>
+<div class="highlight"><pre><span></span><code><span class="n">weighted_sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">m</span><span class="p">)</span> <span class="o">=</span> <span class="n">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">.*</span> <span class="n">m</span><span class="p">);</span>
+<span class="n">combine</span><span class="p">(</span><span class="n">gdf2</span><span class="p">,</span> <span class="p">[[</span><span class="o">:</span><span class="n">y</span><span class="p">,</span><span class="o">:</span><span class="n">mass</span><span class="p">],</span> <span class="p">[</span><span class="o">:</span><span class="n">z</span><span class="p">,</span><span class="o">:</span><span class="n">mass</span><span class="p">]]</span> <span class="o">.=&gt;</span> <span class="n">weighted_sum</span> <span class="o">.=&gt;</span> <span class="p">[</span><span class="o">:</span><span class="n">a</span><span class="p">,</span><span class="o">:</span><span class="n">b</span><span class="p">])</span>
+</code></pre></div>
+
 <h2 id="categorical-data">Categorical Data<a class="headerlink" href="#categorical-data" title="Permanent link">&para;</a></h2>
 <p>Assigning levels:</p>
 <div class="highlight"><pre><span></span><code><span class="n">xV</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>
