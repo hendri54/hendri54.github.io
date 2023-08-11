@@ -880,6 +880,12 @@
 
 <p>Results in 3 subplots (one for each <code>z</code> value). Each subplot contains 2 density line graphs (one for each <code>grp</code> value). Legends are automatic. Dense, but very powerful.</p>
 <p>The key is to have the data in something like a <code>DataFrame</code> with all the grouping variables.</p>
+<h3 id="annotations">Annotations<a class="headerlink" href="#annotations" title="Permanent link">&para;</a></h3>
+<p>Use the <code>Text</code> visual:</p>
+<div class="highlight"><pre><span></span><code><span class="n">ptext</span> <span class="o">=</span> <span class="n">data</span><span class="p">((</span><span class="n">x</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">],</span> <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.5</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;My text&quot;</span><span class="p">]))</span> <span class="o">*</span> <span class="n">visual</span><span class="p">(</span><span class="n">Makie</span><span class="o">.</span><span class="kt">Text</span><span class="p">)</span> <span class="o">*</span> <span class="n">mapping</span><span class="p">(</span><span class="o">:</span><span class="n">x</span><span class="p">,</span> <span class="o">:</span><span class="n">y</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span> <span class="o">:</span><span class="n">label</span> <span class="o">=&gt;</span> <span class="n">verbatim</span><span class="p">);</span>
+<span class="n">draw</span><span class="p">(</span><span class="n">plt</span> <span class="o">+</span> <span class="n">ptext</span><span class="p">)</span>
+</code></pre></div>
+
 <h3 id="barplots">BarPlots<a class="headerlink" href="#barplots" title="Permanent link">&para;</a></h3>
 <p>By default, a plot with a single series results in grey bars, regardless of the theme. To match the theme color:</p>
 <div class="highlight"><pre><span></span><code><span class="n">thm</span> <span class="o">=</span> <span class="n">AlgebraOfGraphics</span><span class="o">.</span><span class="n">aog_theme</span><span class="p">();</span>
