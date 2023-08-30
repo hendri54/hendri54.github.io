@@ -578,8 +578,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-upshot" class="md-nav__link">
-    The Upshot
+  <a href="#the-upshot-17" class="md-nav__link">
+    The Upshot (1.7)
   </a>
   
 </li>
@@ -587,6 +587,13 @@
         <li class="md-nav__item">
   <a href="#the-options" class="md-nav__link">
     The Options
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#infiltratorjl-19" class="md-nav__link">
+    Infiltrator.jl (1.9)
   </a>
   
 </li>
@@ -821,8 +828,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#the-upshot" class="md-nav__link">
-    The Upshot
+  <a href="#the-upshot-17" class="md-nav__link">
+    The Upshot (1.7)
   </a>
   
 </li>
@@ -830,6 +837,13 @@
         <li class="md-nav__item">
   <a href="#the-options" class="md-nav__link">
     The Options
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#infiltratorjl-19" class="md-nav__link">
+    Infiltrator.jl (1.9)
   </a>
   
 </li>
@@ -869,7 +883,7 @@
 <li><a href="https://discourse.julialang.org/t/debugger-status-and-future-plans/43638">Discourse thread on debugging</a></li>
 <li><a href="http://webpages.csus.edu/fitzgerald/julia-debugger-tutorial/">A useful tutorial</a></li>
 </ul>
-<h2 id="the-upshot">The Upshot<a class="headerlink" href="#the-upshot" title="Permanent link">&para;</a></h2>
+<h2 id="the-upshot-17">The Upshot (1.7)<a class="headerlink" href="#the-upshot-17" title="Permanent link">&para;</a></h2>
 <p>This is a <a href="https://discourse.julialang.org/t/debugger-status-and-future-plans/43638">point of contention</a> in the Julia ecosystem. Many users think the lack of a "good" debugger is the main drawback that prevents them from using Julia.</p>
 <p>One common answer is: Yeah, debugging is kind of lousy at this point. Just write your code so you don't need a debugger much. This is pretty much what I do and I find that I don't miss the debugger much at all. Roughly, I work as follows.</p>
 <ul>
@@ -890,6 +904,17 @@
 <li>Exfiltrator.jl: Simply exports all local variables at the point of call to Main. The idea is that the entire local environment can be inspected at really no runtime or compilation cost. Simple and effective, but one cannot manipulate objects in the context of the calling module.</li>
 </ol>
 <p>There are other options that I don't know much about. </p>
+<h2 id="infiltratorjl-19">Infiltrator.jl (1.9)<a class="headerlink" href="#infiltratorjl-19" title="Permanent link">&para;</a></h2>
+<p>An <a href="https://www.juliabloggers.com/infiltrator-jl-a-no-nonsense-debugging/">easy option</a> that works quite well for me.</p>
+<p>Note the trick of catching errors:</p>
+<div class="highlight"><pre><span></span><code><span class="k">try</span>
+  <span class="c"># some code</span>
+<span class="k">catch</span> <span class="nb">e</span>
+  <span class="nd">@infiltrate</span>
+  <span class="n">rethrow</span><span class="p">(</span><span class="nb">e</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div>
+
 <h2 id="debuggerjl">Debugger.jl<a class="headerlink" href="#debuggerjl" title="Permanent link">&para;</a></h2>
 <p>It interprets all code and can therefore offer a complete feature set. But it is very slow for larger projects. A key trick is to run <code>Base</code> code in compiled mode (see <a href="https://discourse.julialang.org/t/debugging-extremely-slow/53801">Discourse</a> thread):</p>
 <div class="highlight"><pre><span></span><code><span class="n">julia</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">JuliaInterpreter</span><span class="p">,</span> <span class="n">MethodAnalysis</span><span class="p">;</span>
