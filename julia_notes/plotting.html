@@ -929,6 +929,16 @@
 </code></pre></div>
 
 <p>The <code>renamer</code> for the <code>dims</code> argument zeros out the subplot titles that would otherwise shows as <code>CartesianIndex</code>.</p>
+<p>By default, axes are linked when the y variables are the same. To link, use</p>
+<div class="highlight"><pre><span></span><code><span class="n">fig</span> <span class="o">=</span> <span class="n">draw</span><span class="p">(</span><span class="n">plt</span><span class="p">;</span> <span class="n">facet</span> <span class="o">=</span> <span class="p">(;</span> <span class="n">linkyaxes</span> <span class="o">=</span> <span class="o">:</span><span class="n">all</span><span class="p">))</span>
+</code></pre></div>
+
+<p>This suppresses the y labels for the interior axes. To make the visible again:</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span> <span class="n">g</span> <span class="kp">in</span> <span class="n">fig</span><span class="o">.</span><span class="n">grid</span>
+    <span class="n">g</span><span class="o">.</span><span class="n">axis</span><span class="o">.</span><span class="n">ylabelvisible</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+<span class="k">end</span>
+</code></pre></div>
+
 <h3 id="multiple-y-variables">Multiple y variables<a class="headerlink" href="#multiple-y-variables" title="Permanent link">&para;</a></h3>
 <p>Just create two plots  and <code>draw(plt1 + plt2)</code>.</p>
 <h3 id="theming">Theming<a class="headerlink" href="#theming" title="Permanent link">&para;</a></h3>
