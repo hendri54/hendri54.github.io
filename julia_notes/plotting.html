@@ -850,6 +850,15 @@
 <p>A legend outside of the plot area is created by providing a new figure position (but not an <code>Axis</code>) to <code>Legend</code>, as in <code>Legend(fig[1,2], ...)</code>. The position often spans one dimension, as in <code>fig[:, 2]</code>.</p>
 <h2 id="missing-values">Missing values<a class="headerlink" href="#missing-values" title="Permanent link">&para;</a></h2>
 <p><code>NaN</code> values are simply not plotted.</p>
+<h2 id="text-boxes">Text boxes<a class="headerlink" href="#text-boxes" title="Permanent link">&para;</a></h2>
+<p>One way of <a href="https://discourse.julialang.org/t/cairomakie-text-box/103783/3">adding a text box to a figure</a>:</p>
+<div class="highlight"><pre><span></span><code><span class="n">gl</span> <span class="o">=</span> <span class="n">GridLayout</span><span class="p">(</span><span class="n">fig</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="n">tellwidth</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span> <span class="n">tellheight</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+                    <span class="n">halign</span> <span class="o">=</span> <span class="o">:</span><span class="n">center</span><span class="p">,</span> <span class="n">valign</span> <span class="o">=</span> <span class="o">:</span><span class="n">top</span><span class="p">)</span>
+<span class="n">box</span> <span class="o">=</span> <span class="kt">Box</span><span class="p">(</span><span class="n">gl</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span> <span class="o">=</span> <span class="p">(</span><span class="o">:</span><span class="n">orange</span><span class="p">,</span><span class="mf">0.5</span><span class="p">),</span> <span class="n">strokecolor</span> <span class="o">=</span> <span class="o">:</span><span class="n">black</span><span class="p">)</span>
+<span class="n">lbl</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">gl</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&quot;Box text&quot;</span><span class="p">,</span> <span class="n">padding</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+</code></pre></div>
+
 <h2 id="themes">Themes<a class="headerlink" href="#themes" title="Permanent link">&para;</a></h2>
 <p><code>update_theme!(thm, Lines = (linewidth = 4,))</code> creates a new "section" <code>thm.Lines</code> that applies to lines.</p>
 <p><code>update_theme!(thm, Lines = (linestyle = :dash,))</code> <strong>merges</strong> the new information into the existing <code>Lines</code> section. It does not replace previous content.</p>
