@@ -933,6 +933,9 @@
 <p>Use a <code>renamer</code> to assign better labels to subplots:</p>
 <p><code>mapping(layout = :z =&gt; renamer(["Label $j" for j = 1 : n]...))</code></p>
 <p>Note the splatting. The <code>renamer</code> function takes pairs.</p>
+<p>See also notes on multiple y variables.</p>
+<h3 id="multiple-y-variables">Multiple y variables<a class="headerlink" href="#multiple-y-variables" title="Permanent link">&para;</a></h3>
+<p>Just create two plots  and <code>draw(plt1 + plt2)</code>.</p>
 <p>Creating a subplot with different variables in each panel:</p>
 <div class="highlight"><pre><span></span><code><span class="n">plt</span> <span class="o">=</span> <span class="n">data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span> <span class="o">*</span> <span class="n">mapping</span><span class="p">(</span><span class="o">:</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="o">:</span><span class="n">y</span><span class="p">,</span> <span class="o">:</span><span class="n">z</span><span class="p">],</span> <span class="n">layout</span> <span class="o">=</span> <span class="n">dims</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">renamer</span><span class="p">(</span><span class="n">fill</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span> <span class="o">*</span> <span class="n">visual</span><span class="p">(</span><span class="n">BarPlot</span><span class="p">)</span>
 </code></pre></div>
@@ -948,8 +951,6 @@
 <span class="k">end</span>
 </code></pre></div>
 
-<h3 id="multiple-y-variables">Multiple y variables<a class="headerlink" href="#multiple-y-variables" title="Permanent link">&para;</a></h3>
-<p>Just create two plots  and <code>draw(plt1 + plt2)</code>.</p>
 <h3 id="theming">Theming<a class="headerlink" href="#theming" title="Permanent link">&para;</a></h3>
 <p>There is no documented way of setting a theme (other than the AOG theme). However, one may plot with a theme:</p>
 <div class="highlight"><pre><span></span><code><span class="n">with_theme</span><span class="p">(</span><span class="n">theme_ggplot2</span><span class="p">(),</span> <span class="n">resolution</span> <span class="o">=</span> <span class="p">(</span><span class="mi">600</span><span class="p">,</span><span class="mi">400</span><span class="p">))</span> <span class="k">do</span>
