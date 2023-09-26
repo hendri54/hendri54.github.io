@@ -686,6 +686,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#functions-as-arguments-19" class="md-nav__link">
+    Functions as Arguments (1.9)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#profiling-15" class="md-nav__link">
     Profiling (1.5)
   </a>
@@ -862,6 +869,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#functions-as-arguments-19" class="md-nav__link">
+    Functions as Arguments (1.9)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#profiling-15" class="md-nav__link">
     Profiling (1.5)
   </a>
@@ -951,6 +965,30 @@
 <ul>
 <li><a href="https://viralinstruction.com/posts/optimise/">2022 practical guide</a> with links to other tutorials.</li>
 </ul>
+<h2 id="functions-as-arguments-19">Functions as Arguments (1.9)<a class="headerlink" href="#functions-as-arguments-19" title="Permanent link">&para;</a></h2>
+<p>When passing functions as arguments, the compiler by default fails to specialize. The result is runtime dispatch and lots of allocations. That is</p>
+<div class="highlight"><pre><span></span><code><span class="c"># This is slow</span>
+<span class="k">function</span> <span class="n">foo</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+   <span class="n">y</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+   <span class="k">for</span> <span class="n">yi</span> <span class="kp">in</span> <span class="n">y</span>
+      <span class="c"># something</span>
+   <span class="k">end</span>
+<span class="k">end</span>
+<span class="c"># This specializes and is fast</span>
+<span class="k">function</span> <span class="n">foo</span><span class="p">(</span><span class="n">f</span> <span class="o">::</span> <span class="n">F</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="n">where</span> <span class="n">F</span> <span class="o">&lt;:</span> <span class="kt">Function</span>
+   <span class="c"># same body</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p>The problem is that the type of <code>y</code> is not known at compile time (no specialization on <code>f</code>). Hence, we get runtime dispatch in the <code>for</code> loop.</p>
+<p>Note that a function barrier solves the problem:</p>
+<div class="highlight"><pre><span></span><code><span class="k">function</span> <span class="n">foo</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+  <span class="n">y</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+  <span class="n">z</span> <span class="o">=</span> <span class="n">result_of_for_loop</span><span class="p">(</span><span class="n">y</span><span class="p">);</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p>References: <a href="https://discourse.julialang.org/t/performance-issue-due-to-function-as-an-argument/104093/1">Discourse</a></p>
 <h2 id="profiling-15">Profiling (1.5)<a class="headerlink" href="#profiling-15" title="Permanent link">&para;</a></h2>
 <p>A <a href="https://opensourc.es/blog/benchmarking-and-profiling-julia-code/">blog post</a> on profiling and benchmarking.</p>
 <p>If the profiler shows that an assignment (e.g. <code>setindex!</code>) takes a lot of time, it may indicate dynamic dispatch on the RHS of the assignment.</p>
