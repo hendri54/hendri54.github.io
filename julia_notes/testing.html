@@ -962,19 +962,14 @@ pkg&gt; activate .
 <p><strong>Important note</strong>: For now (1.5) test dependencies are still considered "beta" and buggy. Do not use. Instead, use the 1.0 method of <code>extras</code> in <code>Project.toml</code>.</p>
 <h2 id="useful-packages">Useful packages<a class="headerlink" href="#useful-packages" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://github.com/JuliaTesting/Aqua.jl">Aqua.jl</a><ul>
+<li><a href="https://github.com/JuliaTesting/Aqua.jl">Aqua.jl</a></li>
 <li>checks for method ambiguities, invalid exports, stale dependencies, and more.</li>
-</ul>
-</li>
-<li>TestSetExtensions.jl<ul>
+<li>TestSetExtensions.jl</li>
 <li>mainly provides nicer display of test progress and failures</li>
-</ul>
-</li>
-<li><a href="https://computingkitchen.com/UnitTestDesign.jl/stable/">UnitTestDesign</a><ul>
+<li><a href="https://computingkitchen.com/UnitTestDesign.jl/stable/">UnitTestDesign</a></li>
 <li>generates combinations of arguments that are passed to tests</li>
 <li>the goal is to generate coverage without having to run all parameter combinations</li>
-</ul>
-</li>
+<li><a href="https://aviatesk.github.io/JET.jl/stable/optanalysis/">Jet.jl</a> can be used to test type stability (using <code>@test_opt foo()</code>).</li>
 </ul>
 <h2 id="travis-ci-12">Travis CI (1.2)<a class="headerlink" href="#travis-ci-12" title="Permanent link">&para;</a></h2>
 <p>Travis can automatically test all branches uploaded to github.</p>
