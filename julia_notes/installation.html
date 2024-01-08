@@ -924,11 +924,14 @@
 <p>It appears that the default editor is determined by the system wide file association. No need to set the JULIA_EDITOR environment variable.</p>
 <h2 id="updating-to-a-new-version">Updating to a new version<a class="headerlink" href="#updating-to-a-new-version" title="Permanent link">&para;</a></h2>
 <p>After starting the new version, basic packages need to be added so the startup code can be run (e.g., <code>OhMyREPL</code>). In my case these are:</p>
-<p><code>]add OhMyREPL Revise</code></p>
+<div class="highlight"><pre><span></span><code><span class="p">]</span><span class="n">add</span> <span class="n">OhMyREPL</span> <span class="n">Revise</span> <span class="n">BenchmarkTools</span> <span class="n">LocalRegistry</span>
+<span class="n">dev</span> <span class="o">~/</span><span class="n">Documents</span><span class="o">/</span><span class="n">julia</span><span class="o">/</span><span class="n">StartupLH</span>
+</code></pre></div>
+
 <p>There is no need to copy installed packages to the new version's subdirectory. They are downloaded again as needed.</p>
 <h3 id="juliaup">Juliaup<a class="headerlink" href="#juliaup" title="Permanent link">&para;</a></h3>
 <p>This is now the default method for managing Julia versions. For Mac, <a href="https://github.com/JuliaLang/juliaup">juliaup</a> lists as beta, but seems to work. </p>
-<p>Add a channel to the installed list: <code>juliaup add 1.9.0-rc3+0.x64.apple.darwin14</code>.</p>
+<p>Add a channel to the installed list: <code>juliaup add 1.9.0-rc3+0.x64.apple.darwin14</code>. After that, a simple <code>juliaup update</code> updates the installed channels.</p>
 <p>Then start the desired Julia version by providing the channel; as in <code>julia +rc~aarch64</code>.</p>
 <p>VSCode automatically finds the default Julia binary. The "executable path" field in the Julia extension settings should be left blank.</p>
 <h3 id="on-a-cluster">On a cluster<a class="headerlink" href="#on-a-cluster" title="Permanent link">&para;</a></h3>
