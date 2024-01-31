@@ -976,7 +976,7 @@
                 
                 <h1 id="types">Types<a class="headerlink" href="#types" title="Permanent link">&para;</a></h1>
 <p>Parametric types without the type parameter are NOT DataTypes; they are UnionAll. </p>
-<p>Example: <code>struct Foo{T} end; isa(Foo, DataType) == false;</code></p>
+<p>Example: <code>struct Foo{T} end; isa(Foo, DataType) == false;</code> But <code>isa(Foo{Int}, DataType) == true</code>.</p>
 <p>I find it easiest to write model specific code NOT using parametric types. Instead, I define type aliases for the types used in custom types (e.g., <code>Double=Float64</code>). Then I hardwire the use of Double everywhere. This removes two problems:</p>
 <ol>
 <li>Possible type instability as the compiler tries to figure out the types of the custom type fields.</li>
@@ -1153,6 +1153,7 @@ end
 
 <h2 id="user-defined-types-15">User Defined Types (1.5)<a class="headerlink" href="#user-defined-types-15" title="Permanent link">&para;</a></h2>
 <p><a href="https://kristofferc.github.io/LazilyInitializedFields.jl/">LazyInitializedFields.jl</a> is a nice way of handling partially initialized struct fields.</p>
+<p><code>AutoPrettyPrinting.jl</code> automatically prints user defined structs in human readable format.</p>
 <h2 id="properties-and-fields">Properties and fields<a class="headerlink" href="#properties-and-fields" title="Permanent link">&para;</a></h2>
 <p><code>getfield</code> is a "built-in" function that always points to a <code>struct</code> field directly. Example:</p>
 <div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="n">A</span>
