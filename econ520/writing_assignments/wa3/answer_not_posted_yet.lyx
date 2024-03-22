@@ -1,0 +1,562 @@
+#LyX file created by tex2lyx 2.3
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin /Users/lutz/Documents/data/web/professional/docs/econ520/writing_assignments/wa3/
+\textclass article
+\begin_preamble
+ % options for packages loaded elsewhere
+
+%
+\usepackage{ifxetex}
+\usepackage{ifluatex}\usepackage{fixltx2e}% provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage{textcomp}% provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+
+\urlstyle{same}  % don't use monospace font for urls
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+
+\def\fps@figure{htbp}
+
+
+
+
+
+
+\end_preamble
+\use_default_options false
+\begin_modules
+fixltx2e
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package none
+\inputencoding utf8
+\fontencoding T1
+\font_roman "lmodern" "default"
+\font_sans "default" "default"
+\font_typewriter "lmodern" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks 0
+\pdf_bookmarksnumbered 0
+\pdf_bookmarksopen 0
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks 1
+\pdf_pdfborder 1
+\pdf_colorlinks 0
+\pdf_backref section
+\pdf_pdfusetitle 0
+\papersize default
+\use_geometry false
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 0
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+hypertarget{answer-sketch-writing-assignment-3}{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Answer Sketch: Writing Assignment 3
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset CommandInset label
+LatexCommand label
+name "answer-sketch-writing-assignment-3"
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\begin_inset FormulaMacro
+\def\labelenumi {\arabic{enumi}.}
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Higher 
+\begin_inset Formula \(i^*\)
+\end_inset
+
+ shifts AD to the right. Intuition: It causes FX appreciation (due to capital outflows). A positive shock to NX.
+\end_layout
+
+\begin_deeper
+\begin_deeper
+\begin_layout Standard
+
+\begin_inset FormulaMacro
+\def\labelenumii {\arabic{enumii}.}
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Note that it would be incorrect to argue that AD shifts left because 
+\begin_inset Formula \(i \uparrow\)
+\end_inset
+
+. The change in 
+\begin_inset Formula \(i\)
+\end_inset
+
+ is an outcome, not a shock. Changing 
+\begin_inset Formula \(i\)
+\end_inset
+
+ is a move along AD, not a shift. 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+MR:
+\end_layout
+
+\begin_deeper
+\begin_deeper
+\begin_layout Standard
+
+\begin_inset FormulaMacro
+\def\labelenumii {\arabic{enumii}.}
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Y unchanged. 
+\begin_inset Formula \(P \uparrow\)
+\end_inset
+
+. Both from the diagram, which looks like a closed economy positive AD shock. 
+\end_layout
+
+\begin_layout Enumerate
+From LM: 
+\begin_inset Formula \(i \uparrow\)
+\end_inset
+
+ because 
+\begin_inset Formula \(M/P \downarrow\)
+\end_inset
+
+. 
+\end_layout
+
+\begin_layout Enumerate
+Therefore, investment falls (crowding out). 
+\end_layout
+
+\begin_layout Enumerate
+From 
+\begin_inset Formula \(Y = C + I + G + NX\)
+\end_inset
+
+ it follows that 
+\begin_inset Formula \(NX \uparrow\)
+\end_inset
+
+. 
+\begin_inset Formula \(C\)
+\end_inset
+
+ is of course unchanged. 
+\end_layout
+
+\begin_layout Enumerate
+We end up with higher 
+\begin_inset Formula \(i\)
+\end_inset
+
+, but still 
+\begin_inset Formula \(i < i^*\)
+\end_inset
+
+ (at 
+\begin_inset Formula \(i = i^*\)
+\end_inset
+
+, the dollar would be unchanged and AD would fall). 
+\end_layout
+
+\begin_layout Enumerate
+The story: capital outflows cause the dollar to appreciate. NX increase; a positive demand shock. Higher AD raises prices. Households sell bonds to get more liquidity, so that 
+\begin_inset Formula \(i \uparrow\)
+\end_inset
+
+. That crowds out investment. 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+SR:
+\end_layout
+
+\begin_deeper
+\begin_deeper
+\begin_layout Standard
+
+\begin_inset FormulaMacro
+\def\labelenumii {\arabic{enumii}.}
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Fairly similar to MR, except that now 
+\begin_inset Formula \(Y \uparrow\)
+\end_inset
+
+. Also 
+\begin_inset Formula \(P \uparrow\)
+\end_inset
+
+ from the AS/AD diagram. 
+\end_layout
+
+\begin_layout Enumerate
+Both imply 
+\begin_inset Formula \(i \uparrow\)
+\end_inset
+
+ from LM. 
+\end_layout
+
+\begin_layout Enumerate
+
+\begin_inset Formula \(C \uparrow\)
+\end_inset
+
+. 
+\end_layout
+
+\begin_layout Enumerate
+Since 
+\begin_inset Formula \(Y - C \uparrow = I + G + NX \uparrow\)
+\end_inset
+
+, the change in 
+\begin_inset Formula \(I\)
+\end_inset
+
+ is ambiguous. 
+\end_layout
+
+\begin_layout Enumerate
+The sequence of events is pretty much the same as in the MR, except that output is up (b/c price expectations have not yet adjusted). 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+If the Fed tries to avoid crowding out, it needs to expand the money supply to the point where 
+\begin_inset Formula \(i\)
+\end_inset
+
+ returns to its original value.
+\end_layout
+
+\begin_deeper
+\begin_deeper
+\begin_layout Standard
+
+\begin_inset FormulaMacro
+\def\labelenumii {\arabic{enumii}.}
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Relative to the previous cases, AD shifts out more. 
+\end_layout
+
+\begin_layout Enumerate
+In the MR 
+\begin_inset Formula \(Y,C,I\)
+\end_inset
+
+ are all unchanged, and therefore 
+\begin_inset Formula \(NX\)
+\end_inset
+
+ is unchanged. The Fed can fully neutralize the change in 
+\begin_inset Formula \(i^*\)
+\end_inset
+
+. 
+\end_layout
+
+\begin_layout Enumerate
+This works by raising domestic prices to the point where the real exchange rate is back to where it started. This neutralizes the NX shock. 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Here we encounter a logical hiccup in the model (because we did not model expectations).
+\end_layout
+
+\begin_deeper
+\begin_deeper
+\begin_layout Standard
+
+\begin_inset FormulaMacro
+\def\labelenumii {\arabic{enumii}.}
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The MR features 
+\begin_inset Formula \(i < i^*\)
+\end_inset
+
+. By UIP, investors must expect that the dollar will appreciate in the future. For this to happen, 
+\begin_inset Formula \(i\)
+\end_inset
+
+ will have to rise in the future (by UIP). In this sense, the nice MR outcome is not sustainable. 
+\end_layout
+
+\begin_layout Enumerate
+A sustainable outcome must stabilize the exchange rate eventually. That requires 
+\begin_inset Formula \(i = i^*\)
+\end_inset
+
+, suggesting that the Fed can neutralize the foreign monetary shock only for some time. 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+If the Fed tries to stabilize 
+\begin_inset Formula \(E\)
+\end_inset
+
+, it has to raise 
+\begin_inset Formula \(i\)
+\end_inset
+
+ to 
+\begin_inset Formula \(i^*\)
+\end_inset
+
+ (by UIP).
+\end_layout
+
+\begin_deeper
+\begin_deeper
+\begin_layout Standard
+
+\begin_inset FormulaMacro
+\def\labelenumii {\arabic{enumii}.}
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Now the MR outcome is 
+\begin_inset Formula \(Y, C\)
+\end_inset
+
+ unchanged. Higher 
+\begin_inset Formula \(i\)
+\end_inset
+
+ crowds out 
+\begin_inset Formula \(I\)
+\end_inset
+
+. 
+\end_layout
+
+\begin_layout Enumerate
+Higher 
+\begin_inset Formula \(i\)
+\end_inset
+
+ with unchanged 
+\begin_inset Formula \(Y\)
+\end_inset
+
+ requires that 
+\begin_inset Formula \(M/P\)
+\end_inset
+
+ falls. 
+\end_layout
+
+\begin_layout Enumerate
+UIP requires 
+\begin_inset Formula \(E = E^e\)
+\end_inset
+
+. Hence 
+\begin_inset Formula \(E\)
+\end_inset
+
+ is unchanged. 
+\end_layout
+
+\begin_layout Enumerate
+
+\begin_inset Formula \(NX\)
+\end_inset
+
+ must rise to keep AD at 
+\begin_inset Formula \(Y_n\)
+\end_inset
+
+. Hence, the real exchange rate must depreciate. 
+\end_layout
+
+\begin_layout Enumerate
+With fixed 
+\begin_inset Formula \(E\)
+\end_inset
+
+, this has to happen through falling prices. AD must have shifted 
+\emph on
+left
+\emph default
+. The Fed must 
+\emph on
+contract
+\emph default
+ the money supply. 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+So the overall conclusion is that tighter foreign monetary policy requires a domestic tightening as well.
+\end_layout
+
+\end_body
+\end_document

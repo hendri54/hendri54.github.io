@@ -1,0 +1,177 @@
+\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provides euro and other symbols
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\usepackage{hyperref}
+\hypersetup{
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+
+\date{}
+
+\begin{document}
+
+\hypertarget{answer-sketch-writing-assignment-3}{%
+\section{Answer Sketch: Writing Assignment
+3}\label{answer-sketch-writing-assignment-3}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Higher \(i^*\) shifts AD to the right. Intuition: It causes FX
+  appreciation (due to capital outflows). A positive shock to NX.
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    Note that it would be incorrect to argue that AD shifts left because
+    \(i \uparrow\). The change in \(i\) is an outcome, not a shock.
+    Changing \(i\) is a move along AD, not a shift.
+  \end{enumerate}
+\item
+  MR:
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    Y unchanged. \(P \uparrow\). Both from the diagram, which looks like
+    a closed economy positive AD shock. 
+  \item
+    From LM: \(i \uparrow\) because \(M/P \downarrow\). 
+  \item
+    Therefore, investment falls (crowding out). 
+  \item
+    From \(Y = C + I + G + NX\) it follows that \(NX \uparrow\). \(C\)
+    is of course unchanged.
+  \item
+    We end up with higher \(i\), but still \(i < i^*\) (at \(i = i^*\),
+    the dollar would be unchanged and AD would fall).
+  \item
+    The story: capital outflows cause the dollar to appreciate. NX
+    increase; a positive demand shock. Higher AD raises prices.
+    Households sell bonds to get more liquidity, so that \(i \uparrow\).
+    That crowds out investment.
+  \end{enumerate}
+\item
+  SR:
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    Fairly similar to MR, except that now \(Y \uparrow\). Also
+    \(P \uparrow\) from the AS/AD diagram.
+  \item
+    Both imply \(i \uparrow\) from LM.
+  \item
+    \(C \uparrow\).
+  \item
+    Since \(Y - C \uparrow = I + G + NX \uparrow\), the change in \(I\)
+    is ambiguous.
+  \item
+    The sequence of events is pretty much the same as in the MR, except
+    that output is up (b/c price expectations have not yet adjusted).
+  \end{enumerate}
+\item
+  If the Fed tries to avoid crowding out, it needs to expand the money
+  supply to the point where \(i\) returns to its original value.
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    Relative to the previous cases, AD shifts out more.
+  \item
+    In the MR \(Y,C,I\) are all unchanged, and therefore \(NX\) is
+    unchanged. The Fed can fully neutralize the change in \(i^*\). 
+  \item
+    This works by raising domestic prices to the point where the real
+    exchange rate is back to where it started. This neutralizes the NX
+    shock.
+  \end{enumerate}
+\item
+  Here we encounter a logical hiccup in the model (because we did not
+  model expectations).
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    The MR features \(i < i^*\). By UIP, investors must expect that the
+    dollar will appreciate in the future. For this to happen, \(i\) will
+    have to rise in the future (by UIP). In this sense, the nice MR
+    outcome is not sustainable.
+  \item
+    A sustainable outcome must stabilize the exchange rate eventually.
+    That requires \(i = i^*\), suggesting that the Fed can neutralize
+    the foreign monetary shock only for some time. 
+  \end{enumerate}
+\item
+  If the Fed tries to stabilize \(E\), it has to raise \(i\) to \(i^*\)
+  (by UIP).
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \item
+    Now the MR outcome is \(Y, C\) unchanged. Higher \(i\) crowds out
+    \(I\). 
+  \item
+    Higher \(i\) with unchanged \(Y\) requires that \(M/P\) falls.
+  \item
+    UIP requires \(E = E^e\). Hence \(E\) is unchanged.
+  \item
+    \(NX\) must rise to keep AD at \(Y_n\). Hence, the real exchange
+    rate must depreciate. 
+  \item
+    With fixed \(E\), this has to happen through falling prices. AD must
+    have shifted \emph{left}. The Fed must \emph{contract} the money
+    supply.
+  \end{enumerate}
+\end{enumerate}
+
+So the overall conclusion is that tighter foreign monetary policy
+requires a domestic tightening as well.
+
+\end{document}
