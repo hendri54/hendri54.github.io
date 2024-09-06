@@ -1,5 +1,5 @@
-#LyX 2.3 created this file. For more info see http://www.lyx.org/
-\lyxformat 544
+#LyX 2.4 created this file. For more info see https://www.lyx.org/
+\lyxformat 620
 \begin_document
 \begin_header
 \save_transient_properties true
@@ -21,13 +21,16 @@
 %TCIDATA{<META NAME="DocumentShell" CONTENT="Exams and Syllabi\SW\Assignment">}
 %TCIDATA{Language=American English}
 \setlength{\topmargin}{-1.0in}\setlength{\textheight}{9.25in}\setlength{\oddsidemargin}{0.0in}\setlength{\evensidemargin}{0.0in}\setlength{\textwidth}{6.5in}\def\labelenumi{\arabic{enumi}.}\def\theenumi{\arabic{enumi}}\def\labelenumii{(\alph{enumii})}\def\theenumii{\alph{enumii}}\def\p@enumii{\theenumi.}\def\labelenumiii{\arabic{enumiii}.}\def\theenumiii{\arabic{enumiii}}\def\p@enumiii{(\theenumi)(\theenumii)}\def\labelenumiv{\arabic{enumiv}.}\def\theenumiv{\arabic{enumiv}}\def\p@enumiv{\p@enumiii.\theenumiii}\parindent=0pt
+% Added by lyx2lyx
+\setlength{\parskip}{\smallskipamount}
+\setlength{\parindent}{0pt}
 \end_preamble
 \use_default_options false
-\maintain_unincluded_children false
+\maintain_unincluded_children no
 \language english
 \language_package default
-\inputencoding auto
-\fontencoding global
+\inputencoding auto-legacy
+\fontencoding auto
 \font_roman "default" "default"
 \font_sans "default" "default"
 \font_typewriter "default" "default"
@@ -35,7 +38,9 @@
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
-\font_osf false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
 \use_microtype false
@@ -69,15 +74,17 @@
 \suppress_date false
 \justification true
 \use_refstyle 0
+\use_formatted_ref 0
 \use_minted 0
+\use_lineno 0
 \index Index
 \shortcut idx
 \color #008000
 \end_index
 \secnumdepth 0
 \tocdepth 3
-\paragraph_separation skip
-\defskip smallskip
+\paragraph_separation indent
+\paragraph_indentation default
 \is_math_indent 0
 \math_numbering_side default
 \quotes_style english
@@ -85,11 +92,16 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle plain
+\tablestyle default
 \tracking_changes false
 \output_changes false
+\change_bars false
+\postpone_fragile_content false
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
 \end_header
 
 \begin_body
@@ -162,16 +174,23 @@ rule{5in}{0.02in}
 \end_layout
 
 \begin_layout Standard
-University of North Carolina at Chapel Hill, Department of Economics, Gardner
- Hall, Chapel Hill, NC 27599, USA.
+University of North Carolina at Chapel Hill,
+ Department of Economics,
+ Gardner Hall,
+ Chapel Hill,
+ NC 27599,
+ USA.
 \end_layout
 
 \begin_layout Standard
-hendricksl@protonmail.com - https://lhendricks.org - Phone: +1 (919) 886 6885.
+hendricksl@protonmail.com - https://lhendricks.org - Phone:
+ +1 (919) 886 6885.
 \end_layout
 
 \begin_layout Standard
-Citizenship: USA, Germany.
+Citizenship:
+ USA,
+ Germany.
 \end_layout
 
 \begin_layout Section
@@ -179,44 +198,70 @@ Employment and Affiliations
 \end_layout
 
 \begin_layout Standard
-Professor, University of North Carolina at Chapel Hill, from Fall 2022.
+Professor,
+ University of North Carolina at Chapel Hill,
+ from Fall 2022.
 \end_layout
 
 \begin_layout Standard
-Associate Professor, University of North Carolina at Chapel Hill, 2008-2022.
+Associate Professor,
+ University of North Carolina at Chapel Hill,
+ 2008-2022.
 \end_layout
 
 \begin_layout Standard
-Associate Professor, Iowa State University, Fall 2003 - Spring 2008.
+Associate Professor,
+ Iowa State University,
+ Fall 2003 - Spring 2008.
 \end_layout
 
 \begin_layout Standard
-Associate Professor, University of Sydney, May 2005 - January 2007.
+Associate Professor,
+ University of Sydney,
+ May 2005 - January 2007.
 \end_layout
 
 \begin_layout Standard
-Assistant Professor, Arizona State University, 1996 - 2003.
+Assistant Professor,
+ Arizona State University,
+ 1996 - 2003.
 \end_layout
 
 \begin_layout Standard
-Fellow, CESIfo, University of Munich, since November 2003.
+Fellow,
+ CESIfo,
+ University of Munich,
+ since November 2003.
 \end_layout
 
 \begin_layout Standard
-Research Fellow, Center for Financial Studies, Goethe University, Frankfurt,
+Research Fellow,
+ Center for Financial Studies,
+ Goethe University,
+ Frankfurt,
  since July 2003.
 \end_layout
 
 \begin_layout Standard
-Visitor, Center for Economic Studies, Munich, Summer 2003.
+Visitor,
+ Center for Economic Studies,
+ Munich,
+ Summer 2003.
 \end_layout
 
 \begin_layout Standard
-Visitor, IZA, Bonn, May - June 2002.
+Visitor,
+ IZA,
+ Bonn,
+ May - June 2002.
 \end_layout
 
 \begin_layout Standard
-Consultant, Inter-American Development Bank, Washington, DC, Summer 1992.
+Consultant,
+ Inter-American Development Bank,
+ Washington,
+ DC,
+ Summer 1992.
 \end_layout
 
 \begin_layout Section
@@ -249,32 +294,41 @@ Skilled Labor Productivity and Cross-country Income Differences.
  With Todd Schoellman
 \emph on
 .
- American Economic Journal, Macroeconomics
+ American Economic Journal,
+ Macroeconomics
 \emph default
-, 2023, 15(1), 240-68.
+,
+ 2023,
+ 15(1),
+ 240-68.
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Quotes eld
 \end_inset
 
-College Quality and Attendance Patterns: A Long-Run View.
+College Quality and Attendance Patterns:
+ A Long-Run View.
 \begin_inset Quotes erd
 \end_inset
 
  With Chris Herrington and Todd Schoellman.
  
 \emph on
-American Economic Journal, Macroeconomics
+American Economic Journal,
+ Macroeconomics
 \emph default
- 2021, 13(1): 184-215.
+ 2021,
+ 13(1):
+ 184-215.
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Quotes eld
 \end_inset
 
-Human Capital and Development Accounting: New Evidence From Immigrant Earnings.
+Human Capital and Development Accounting:
+ New Evidence From Immigrant Earnings.
 \begin_inset Quotes erd
 \end_inset
 
@@ -283,14 +337,17 @@ Human Capital and Development Accounting: New Evidence From Immigrant Earnings.
 \emph on
 Quarterly Journal of Economics
 \emph default
- 2018, 133: 665-700.
+ 2018,
+ 133:
+ 665-700.
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Quotes eld
 \end_inset
 
-The Return to College: Selection and Dropout Risk.
+The Return to College:
+ Selection and Dropout Risk.
 \begin_inset Quotes erd
 \end_inset
 
@@ -299,7 +356,9 @@ The Return to College: Selection and Dropout Risk.
 \emph on
 International Economic Review
 \emph default
- 2018, 59(3): 1077-1102.
+ 2018,
+ 59(3):
+ 1077-1102.
 \end_layout
 
 \begin_layout Enumerate
@@ -315,7 +374,8 @@ Accounting for Changing Returns to Experience.
 B.E.
  Journal of Macroeconomics
 \emph default
- (Advances) 2018, 18(1).
+ (Advances) 2018,
+ 18(1).
 \end_layout
 
 \begin_layout Enumerate
@@ -331,7 +391,9 @@ How Risky Is College Investment?
 \emph on
 Review of Economic Dynamics
 \emph default
- 2017, 26: 140-63.
+ 2017,
+ 26:
+ 140-63.
 \end_layout
 
 \begin_layout Enumerate
@@ -341,7 +403,8 @@ Review of Economic Dynamics
 \emph on
 Journal of Monetary Economics
 \emph default
- 2014, 61(3).
+ 2014,
+ 61(3).
 \end_layout
 
 \begin_layout Enumerate
@@ -350,16 +413,19 @@ Journal of Monetary Economics
 \emph on
 International Economic Review
 \emph default
- 2011, 52(1): 1-32.
+ 2011,
+ 52(1):
+ 1-32.
 \end_layout
 
 \begin_layout Enumerate
-"Cross-country Variation in Educational Attainment: Structural Change or
- Within Industry Skill Upgrading?" 
+"Cross-country Variation in Educational Attainment:
+ Structural Change or Within Industry Skill Upgrading?" 
 \emph on
 Journal of Economic Growth
 \emph default
- 2010, 15(3).
+ 2010,
+ 15(3).
 \end_layout
 
 \begin_layout Enumerate
@@ -372,9 +438,11 @@ Journal of Economic Dynamics and Control
 \emph default
  2007
 \emph on
-, 
+,
+ 
 \emph default
-31(9): 3042-68.
+31(9):
+ 3042-68.
 \end_layout
 
 \begin_layout Enumerate
@@ -389,7 +457,9 @@ Retirement wealth and lifetime earnings.”
 \emph on
 International Economic Review
 \emph default
- 2007, 48(2): 421-56.
+ 2007,
+ 48(2):
+ 421-56.
 \end_layout
 
 \begin_layout Enumerate
@@ -400,7 +470,9 @@ The Intergenerational Persistence of Lifetime Earnings.”
 \emph on
 European Economic Review
 \emph default
- 2007, 51: 125-44.
+ 2007,
+ 51:
+ 125-44.
 \end_layout
 
 \begin_layout Enumerate
@@ -415,7 +487,9 @@ Taxation and Human Capital Accumulation.”
 \shape italic
 Macroeconomic Dynamics
 \shape default
- 2004, 8(3): 310-334.
+ 2004,
+ 8(3):
+ 310-334.
 \end_layout
 
 \begin_layout Enumerate
@@ -426,15 +500,17 @@ Taxation and Human Capital With Intergenerational Persistence.”
 \shape italic
 Journal of Economic Dynamics and Control
 \shape default
- 2003, 27(9): 1639-1662.
+ 2003,
+ 27(9):
+ 1639-1662.
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Quotes grd
 \end_inset
 
-How Important is Human Capital for Development? Evidence from Immigrant
- Earnings.”
+How Important is Human Capital for Development?
+ Evidence from Immigrant Earnings.”
 \begin_inset space \space{}
 \end_inset
 
@@ -442,44 +518,56 @@ How Important is Human Capital for Development? Evidence from Immigrant
 \shape italic
 American Economic Review
 \shape default
- 2002, 92(1): 198-219.
+ 2002,
+ 92(1):
+ 198-219.
  Reprinted in 
 \shape italic
 Recent Developments in Growth Theory
 \shape default
-, ed.
+,
+ ed.
  Daron Acemoglu.
- Camberley: Edward Elgar Publishing, 2004.
+ Camberley:
+ Edward Elgar Publishing,
+ 2004.
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Quotes grd
 \end_inset
 
-How Do Taxes Affect Human Capital? The Role of Intergenerational Mobility.”
- 
+How Do Taxes Affect Human Capital?
+ The Role of Intergenerational Mobility.” 
 \shape italic
 Review of Economic Dynamics
 \shape default
- 2001, 4(3): 695-735.
+ 2001,
+ 4(3):
+ 695-735.
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Quotes grd
 \end_inset
 
-Growth, Death, and Taxes.” 
+Growth,
+ Death,
+ and Taxes.” 
 \shape italic
 Review of Economic Dynamics
 \shape default
- 2001, 4(1): 26-57.
+ 2001,
+ 4(1):
+ 26-57.
 \end_layout
 
 \begin_layout Enumerate
 \begin_inset Quotes grd
 \end_inset
 
-The Economic Performance of Immigrants: A Theory of Assortative Matching.”
+The Economic Performance of Immigrants:
+ A Theory of Assortative Matching.”
 \begin_inset space \space{}
 \end_inset
 
@@ -487,7 +575,10 @@ The Economic Performance of Immigrants: A Theory of Assortative Matching.”
 \shape italic
 International Economic Review
 \shape default
-, 2001, 42(2): 417-49.
+,
+ 2001,
+ 42(2):
+ 417-49.
 \end_layout
 
 \begin_layout Enumerate
@@ -498,7 +589,9 @@ Equipment Investment and Growth In Developing Countries.”
 \shape italic
 Journal of Development Economics
 \shape default
- 2000, 61(2): 335-364.
+ 2000,
+ 61(2):
+ 335-364.
 \end_layout
 
 \begin_layout Enumerate
@@ -509,7 +602,9 @@ Taxation and Long-Run Growth.”
 \shape italic
 Journal of Monetary Economics
 \shape default
- 1999, 43(2): 411-434.
+ 1999,
+ 43(2):
+ 411-434.
  
 \end_layout
 
@@ -522,11 +617,14 @@ Courses Taught at the University of North Carolina
 \end_layout
 
 \begin_layout Standard
-Senior Honors Thesis (Econ691H, 692H) 2017-2019.
+Senior Honors Thesis (Econ691H,
+ 692H) 2017-2019.
 \end_layout
 
 \begin_layout Standard
-Advanced Macroeconomic Theory (Econ520) 2011-2017, 2021, 2023-2024.
+Advanced Macroeconomic Theory (Econ520) 2011-2017,
+ 2021,
+ 2023-2024.
 \end_layout
 
 \begin_layout Standard
@@ -534,15 +632,25 @@ Long-run Macroeconomics (Econ490) 2011.
 \end_layout
 
 \begin_layout Standard
-Intermediate Macroeconomics (Econ420): 2009 - 2011.
+Intermediate Macroeconomics (Econ420):
+ 2009 - 2011.
 \end_layout
 
 \begin_layout Standard
-Advanced Macroeconomics (Econ720, PhD): 2008 - 2024.
+Advanced Macroeconomics (Econ720,
+ PhD):
+ 2008 - 2024.
 \end_layout
 
 \begin_layout Standard
-Macroeconomics Seminar (Econ920, PhD): 2009, 2011, 2013, 2014, 2017, 2021/22.
+Macroeconomics Seminar (Econ920,
+ PhD):
+ 2009,
+ 2011,
+ 2013,
+ 2014,
+ 2017,
+ 2021/22.
 \end_layout
 
 \begin_layout Subsubsection
@@ -550,11 +658,13 @@ Courses Taught at the University of Sydney
 \end_layout
 
 \begin_layout Standard
-Advanced Macroeconomic Analysis 2 (MA): 2005-2006.
+Advanced Macroeconomic Analysis 2 (MA):
+ 2005-2006.
 \end_layout
 
 \begin_layout Standard
-Advanced Macroeconomic Theory (honors undergraduate): 2005-2006.
+Advanced Macroeconomic Theory (honors undergraduate):
+ 2005-2006.
 \end_layout
 
 \begin_layout Subsubsection
@@ -562,19 +672,29 @@ Courses Taught at Iowa State University
 \end_layout
 
 \begin_layout Standard
-Intermediate Macroeconomics: 2004, 2007.
+Intermediate Macroeconomics:
+ 2004,
+ 2007.
 \end_layout
 
 \begin_layout Standard
-Topics in Macroeconomics: 2004, 2007.
+Topics in Macroeconomics:
+ 2004,
+ 2007.
 \end_layout
 
 \begin_layout Standard
-Macroeconomic Theory I (PhD): 2004, 2005, 2007, 2008.
+Macroeconomic Theory I (PhD):
+ 2004,
+ 2005,
+ 2007,
+ 2008.
 \end_layout
 
 \begin_layout Standard
-Advanced Macroeconomics (PhD): 2003, 2004.
+Advanced Macroeconomics (PhD):
+ 2003,
+ 2004.
 \end_layout
 
 \begin_layout Subsubsection
@@ -582,19 +702,25 @@ Courses Taught at Arizona State University
 \end_layout
 
 \begin_layout Standard
-Macroeconomic Theory I (PhD), 1998 - 2003.
+Macroeconomic Theory I (PhD),
+ 1998 - 2003.
 \end_layout
 
 \begin_layout Standard
-Global Macroeconomics (MBA), 1997, 1999 - 2003.
+Global Macroeconomics (MBA),
+ 1997,
+ 1999 - 2003.
 \end_layout
 
 \begin_layout Standard
-International Monetary Economics, Spring 1997- 2003.
+International Monetary Economics,
+ Spring 1997- 2003.
 \end_layout
 
 \begin_layout Standard
-Macroeconomics: Theory and Applications (MA), Fall 1996.
+Macroeconomics:
+ Theory and Applications (MA),
+ Fall 1996.
 \end_layout
 
 \begin_layout Subsubsection
@@ -602,29 +728,58 @@ Doctoral Dissertation Committees
 \end_layout
 
 \begin_layout Standard
-University of North Carolina: 
+University of North Carolina:
+ 
 \end_layout
 
 \begin_layout Itemize
-Chair: Mustafa Attar (PhD 2011); Teresa Perez (MA 2016); Kanat Abdulla (PhD
- 2018); Jacob Spratt (PhD 2022); Yanran Guo (Phd 2023).
+Chair:
+ Mustafa Attar (PhD 2011);
+ Teresa Perez (MA 2016);
+ Kanat Abdulla (PhD 2018);
+ Jacob Spratt (PhD 2022);
+ Yanran Guo (Phd 2023),
+ Pablo Picardo,
+ Roberto Lagos.
 \end_layout
 
 \begin_layout Itemize
-Member: Jack Cheng; Zongqiang Liao; Zubeyir Kilinc; Hakan Tasci; Racha Moussa;
- Brian Jenkins; Anthony Diercks; Huan Zhou; Sofoklis Goulas; Andrew Graczyk;
- Jennifer Rhee (PhD 2018); Alex Pearson (PhD 2018); Sid Biswas (PhD 2021);
- Calebe Figuereido (PhD 2019); Ayushi Singh (PhD 2021); Tsuyoshi Nakano;
- Jincheol Joo; SangYun Lee.
+Member:
+ Jack Cheng;
+ Zongqiang Liao;
+ Zubeyir Kilinc;
+ Hakan Tasci;
+ Racha Moussa;
+ Brian Jenkins;
+ Anthony Diercks;
+ Huan Zhou;
+ Sofoklis Goulas;
+ Andrew Graczyk;
+ Jennifer Rhee (PhD 2018);
+ Alex Pearson (PhD 2018);
+ Sid Biswas (PhD 2021);
+ Calebe Figuereido (PhD 2019);
+ Ayushi Singh (PhD 2021);
+ Tsuyoshi Nakano;
+ Jincheol Joo (PhD 2024);
+ SangYun Lee,
+ Khushboo Thakkar.
 \end_layout
 
 \begin_layout Standard
-Iowa State University: Xue Qiao; Youzhi Yang; Jing Xu; Leandro Andrian;
+Iowa State University:
+ Xue Qiao;
+ Youzhi Yang;
+ Jing Xu;
+ Leandro Andrian;
  Luisa Menapace.
 \end_layout
 
 \begin_layout Standard
-Arizona State University: Paula Vinluan; Manuel Gomez; Antonio Saravia.
+Arizona State University:
+ Paula Vinluan;
+ Manuel Gomez;
+ Antonio Saravia.
 \end_layout
 
 \begin_layout Paragraph
@@ -632,21 +787,28 @@ Other Teaching
 \end_layout
 
 \begin_layout Standard
-Jae-Yeong Song and Chunuk Park Award for Graduate Teaching: UNC 2015.
+Jae-Yeong Song and Chunuk Park Award for Graduate Teaching:
+ UNC 2015.
 \end_layout
 
 \begin_layout Standard
-MA theses supervised: Katherine Easom (2015), Abe Martin (2017), Emily Dyckman
- (2021).
+MA theses supervised:
+ Katherine Easom (2015),
+ Abe Martin (2017),
+ Emily Dyckman (2021).
 \end_layout
 
 \begin_layout Standard
-Honors theses supervised: Jay Im (2011-12), Michael Basse (2014-15), Deepak
- Venkatasubramanian (2020/21), Troy Hall (2021/22).
+Honors theses supervised:
+ Jay Im (2011-12),
+ Michael Basse (2014-15),
+ Deepak Venkatasubramanian (2020/21),
+ Troy Hall (2021/22).
 \end_layout
 
 \begin_layout Standard
-Undergraduate summer research: Avra Janz (2020).
+Undergraduate summer research:
+ Avra Janz (2020).
 \end_layout
 
 \begin_layout Section
@@ -655,33 +817,48 @@ Education
 
 \begin_layout Paragraph
 Ph.D.
- University of Pennsylvania, 1996.
+ University of Pennsylvania,
+ 1996.
 \end_layout
 
 \begin_layout Standard
-Honors: Lawrence Robbins Prize, 1992.
- Thesis: "Essays on Economic Growth."
+Honors:
+ Lawrence Robbins Prize,
+ 1992.
+ Thesis:
+ "Essays on Economic Growth."
 \end_layout
 
 \begin_layout Paragraph
 Diplom-Volkswirt.
- Universität zu Köln, 1992.
+ Universität zu Köln,
+ 1992.
 \end_layout
 
 \begin_layout Standard
-Major: Economics, Minor: Computer Science, June 1992.
- Thesis: "Posner's Normativer Ansatz der Ökonomischen Analyse des Rechts."
+Major:
+ Economics,
+ Minor:
+ Computer Science,
+ June 1992.
+ Thesis:
+ "Posner's Normativer Ansatz der Ökonomischen Analyse des Rechts."
 \end_layout
 
 \begin_layout Paragraph
 M.A.
- The American University, Washington, DC, 1990.
+ The American University,
+ Washington,
+ DC,
+ 1990.
 \end_layout
 
 \begin_layout Standard
-Honors: Frank A.
+Honors:
+ Frank A.
  Tamagna Award.
- Thesis: "Dynamic Effects of a Devaluation in a Monetary Approach Model."
+ Thesis:
+ "Dynamic Effects of a Devaluation in a Monetary Approach Model."
 \end_layout
 
 \begin_layout Section
@@ -730,8 +907,8 @@ Skilled Labor Productivity and Cross-country Income Differences.
 \begin_inset Quotes erd
 \end_inset
 
- Society of Economic Dynamics Annual Meeting; Human Capital Conference at
- the Federal Reserve Bank of St.
+ Society of Economic Dynamics Annual Meeting;
+ Human Capital Conference at the Federal Reserve Bank of St.
  Louis.
 \end_layout
 
@@ -747,7 +924,8 @@ Levels Accounting with Human Capital and Skill-biased Technology.
 \begin_inset Quotes erd
 \end_inset
 
- Midwest Macro Meetings, Nashville.
+ Midwest Macro Meetings,
+ Nashville.
 \end_layout
 
 \begin_layout Paragraph
@@ -758,12 +936,14 @@ Levels Accounting with Human Capital and Skill-biased Technology.
 \begin_inset Quotes eld
 \end_inset
 
-Family Background, Academic Ability, and College Decisions in the 20th Century
- U.S.
+Family Background,
+ Academic Ability,
+ and College Decisions in the 20th Century U.S.
 \begin_inset Quotes erd
 \end_inset
 
- VCU/Richmond Fed Conference on Human Capital; Midwest Macro Meetings.
+ VCU/Richmond Fed Conference on Human Capital;
+ Midwest Macro Meetings.
 \end_layout
 
 \begin_layout Paragraph
@@ -774,8 +954,9 @@ Family Background, Academic Ability, and College Decisions in the 20th Century
 \begin_inset Quotes eld
 \end_inset
 
-Family Background, Academic Ability, and College Decisions in the 20th Century
- U.S.
+Family Background,
+ Academic Ability,
+ and College Decisions in the 20th Century U.S.
 \begin_inset Quotes erd
 \end_inset
 
@@ -786,11 +967,13 @@ Family Background, Academic Ability, and College Decisions in the 20th Century
 \begin_inset Quotes eld
 \end_inset
 
-Human Capital and Development Accounting: New Evidence from Immigrant Earnings.
+Human Capital and Development Accounting:
+ New Evidence from Immigrant Earnings.
 \begin_inset Quotes erd
 \end_inset
 
- 2015 Midwest Macro Meetings, 2015 CIREQ Conference.
+ 2015 Midwest Macro Meetings,
+ 2015 CIREQ Conference.
 \end_layout
 
 \begin_layout Standard
@@ -812,11 +995,13 @@ How Risky Is College Investment?
 \begin_inset Quotes eld
 \end_inset
 
-The Return to College: Selection Bias and Dropout Risk.
+The Return to College:
+ Selection Bias and Dropout Risk.
 \begin_inset Quotes erd
 \end_inset
 
- Emory University, University of Western Ontario.
+ Emory University,
+ University of Western Ontario.
 \end_layout
 
 \begin_layout Standard
@@ -824,7 +1009,8 @@ The Return to College: Selection Bias and Dropout Risk.
 \end_inset
 
 The Evolution of U.S.
- Wages: Skill Prices versus Human Capital.
+ Wages:
+ Skill Prices versus Human Capital.
 \begin_inset Quotes erd
 \end_inset
 
@@ -858,11 +1044,13 @@ Accounting for the Evolution of U.S.
 \end_inset
 
 The Evolution of U.S.
- Wages: Skill Prices versus Human Capital.
+ Wages:
+ Skill Prices versus Human Capital.
 \begin_inset Quotes erd
 \end_inset
 
- University of Toronto; SED Meetings.
+ University of Toronto;
+ SED Meetings.
 \end_layout
 
 \begin_layout Paragraph
@@ -873,13 +1061,19 @@ The Evolution of U.S.
 \begin_inset Quotes eld
 \end_inset
 
-The Return to College: Selection Bias and Dropout Risk.
+The Return to College:
+ Selection Bias and Dropout Risk.
 \begin_inset Quotes erd
 \end_inset
 
- Indiana University, Bloomington; University of Washington, Seattle; Midwest
- Macro Meetings; Society of Economic Dynamics; Cologne Macro Workshop, CASEE
- Human Capital Conference.
+ Indiana University,
+ Bloomington;
+ University of Washington,
+ Seattle;
+ Midwest Macro Meetings;
+ Society of Economic Dynamics;
+ Cologne Macro Workshop,
+ CASEE Human Capital Conference.
 \end_layout
 
 \begin_layout Paragraph
@@ -888,8 +1082,11 @@ The Return to College: Selection Bias and Dropout Risk.
 
 \begin_layout Standard
 "Student Abilities During the Expansion of U.S.
- Education, 1950-2000." North Carolina State University; Federal Reserve
- Bank of Atlanta; Canadian Macro Study Group, University of Pittsburgh.
+ Education,
+ 1950-2000." North Carolina State University;
+ Federal Reserve Bank of Atlanta;
+ Canadian Macro Study Group,
+ University of Pittsburgh.
 \end_layout
 
 \begin_layout Subsubsection
@@ -898,7 +1095,8 @@ The Return to College: Selection Bias and Dropout Risk.
 
 \begin_layout Standard
 "Student Abilities During the Expansion of U.S.
- Education, 1950-2000." NBER Macroeconomics Across Time and Space Conference,
+ Education,
+ 1950-2000." NBER Macroeconomics Across Time and Space Conference,
  Philadelphia.
  University of Montreal.
  University of Iowa.
@@ -914,14 +1112,15 @@ The Return to College: Selection Bias and Dropout Risk.
 \end_layout
 
 \begin_layout Standard
-"Cross-country Variation in Educational Attainment: Structural Change or
- Within Industry Skill Upgrading?" Concordia University.
+"Cross-country Variation in Educational Attainment:
+ Structural Change or Within Industry Skill Upgrading?" Concordia University.
  Midwest Macro Meetings (Philadelphia).
 \end_layout
 
 \begin_layout Standard
 "Student Abilities During the Expansion of U.S.
- Education, 1950-2000." University of Georgia.
+ Education,
+ 1950-2000." University of Georgia.
  Triangle Dynamic Macro Workshop.
 \end_layout
 
@@ -931,9 +1130,14 @@ The Return to College: Selection Bias and Dropout Risk.
 
 \begin_layout Standard
 "Educational Attainment in U.S.
- Cities." Federal Reserve Bank of Richmond; NBER Economic Growth Conference;
- Federal Reserve Bank of San Francisco; Arizona State University; UNC Chapel
- Hill; NC State; Midwest Macro Meetings (Cleveland), SED Meetings (Prague),
+ Cities." Federal Reserve Bank of Richmond;
+ NBER Economic Growth Conference;
+ Federal Reserve Bank of San Francisco;
+ Arizona State University;
+ UNC Chapel Hill;
+ NC State;
+ Midwest Macro Meetings (Cleveland),
+ SED Meetings (Prague),
  University of Queensland.
 \end_layout
 
@@ -943,7 +1147,9 @@ The Return to College: Selection Bias and Dropout Risk.
 
 \begin_layout Standard
 "How Important Is Discount Rate Heterogeneity for Wealth Inequality?" SWIM,
- Auckland; SED Meetings (Vancouver), WMD Conference (Canberra).
+ Auckland;
+ SED Meetings (Vancouver),
+ WMD Conference (Canberra).
 \end_layout
 
 \begin_layout Subsubsection
@@ -960,8 +1166,8 @@ The Return to College: Selection Bias and Dropout Risk.
 \end_layout
 
 \begin_layout Standard
-"How Important Is Preference Heterogeneity for Wealth Inequality?" Deakin
- University, La Trobe University.
+"How Important Is Preference Heterogeneity for Wealth Inequality?" Deakin University,
+ La Trobe University.
 \end_layout
 
 \begin_layout Subsubsection
@@ -969,17 +1175,20 @@ The Return to College: Selection Bias and Dropout Risk.
 \end_layout
 
 \begin_layout Standard
-"Postwar Growth in Europe:" Goethe University, Frankfurt.
+"Postwar Growth in Europe:" Goethe University,
+ Frankfurt.
 \end_layout
 
 \begin_layout Standard
 "Why Does Educational Attainment Differ Across U.S.
- States?" Midwest Macro Meetings (Ames), SED Meetings (Florence).
+ States?" Midwest Macro Meetings (Ames),
+ SED Meetings (Florence).
 \end_layout
 
 \begin_layout Standard
-"Accounting for Patterns of Wealth Inequality:" University of Sydney, The
- Australian National University, CESifo Venice Summer Institute.
+"Accounting for Patterns of Wealth Inequality:" University of Sydney,
+ The Australian National University,
+ CESifo Venice Summer Institute.
 \end_layout
 
 \begin_layout Subsubsection
@@ -988,9 +1197,15 @@ The Return to College: Selection Bias and Dropout Risk.
 
 \begin_layout Standard
 "Accounting for Patterns of Wealth Inequality:" University of Dortmund,
- University of Dresden, University of Munich, University of Auckland, The
- Australian National University (RSSS), University of Melbourne, University
- of Colorado, Boulder, Federal Reserve Bank of Richmond, Emory University,
+ University of Dresden,
+ University of Munich,
+ University of Auckland,
+ The Australian National University (RSSS),
+ University of Melbourne,
+ University of Colorado,
+ Boulder,
+ Federal Reserve Bank of Richmond,
+ Emory University,
  Federal Reserve Bank of St.
  Louis.
 \end_layout
@@ -1003,7 +1218,8 @@ Intended and Accidental Bequests in a Life-cycle Economy:”
 \begin_inset space \space{}
 \end_inset
 
-North American Winter Meetings of the Econometric Society (Washington, DC).
+North American Winter Meetings of the Econometric Society (Washington,
+ DC).
 \end_layout
 
 \begin_layout Subsubsection
@@ -1011,8 +1227,8 @@ North American Winter Meetings of the Econometric Society (Washington, DC).
 \end_layout
 
 \begin_layout Standard
-"Accounting for Patterns of Wealth Inequality:" Iowa State University, Southern
- Methodist University.
+"Accounting for Patterns of Wealth Inequality:" Iowa State University,
+ Southern Methodist University.
 \end_layout
 
 \begin_layout Standard
@@ -1023,8 +1239,9 @@ Intended and Accidental Bequests in a Life-cycle Economy:”
 \begin_inset space \space{}
 \end_inset
 
-Society of Economic Dynamics Meetings (New York), Midwest Macro Conference
- (Nashville), University of Hawaii at Manoa.
+Society of Economic Dynamics Meetings (New York),
+ Midwest Macro Conference (Nashville),
+ University of Hawaii at Manoa.
 \end_layout
 
 \begin_layout Standard
@@ -1035,7 +1252,8 @@ The Intergenerational Persistence of Lifetime Earnings:”
 \begin_inset space \space{}
 \end_inset
 
-IZA – Forschungsinstitut zur Zukunft der Arbeit (Bonn, Germany).
+IZA – Forschungsinstitut zur Zukunft der Arbeit (Bonn,
+ Germany).
 \end_layout
 
 \begin_layout Subsubsection
@@ -1057,8 +1275,8 @@ University of Pennsylvania.
 \begin_inset Quotes grd
 \end_inset
 
-How Do Taxes Affect Human Capital? The Role of Intergenerational Mobility:"
- Midwest Macro Conference (Atlanta).
+How Do Taxes Affect Human Capital?
+ The Role of Intergenerational Mobility:" Midwest Macro Conference (Atlanta).
 \end_layout
 
 \begin_layout Subsubsection
@@ -1069,7 +1287,8 @@ How Do Taxes Affect Human Capital? The Role of Intergenerational Mobility:"
 \begin_inset Quotes grd
 \end_inset
 
-Cross-country Income Differences: Human Capital Gaps Or Technology Gaps?
+Cross-country Income Differences:
+ Human Capital Gaps Or Technology Gaps?
  Evidence from Immigrant Earnings.”
 \begin_inset space \space{}
 \end_inset
@@ -1085,8 +1304,8 @@ Do Redistributive Policies Promote Intergenerational Mobility?”
 \begin_inset space \space{}
 \end_inset
 
-Econometric Society World Congress (Seattle), Midwest Macro Meetings (Iowa
- City).
+Econometric Society World Congress (Seattle),
+ Midwest Macro Meetings (Iowa City).
 \end_layout
 
 \begin_layout Subsubsection
@@ -1097,17 +1316,20 @@ Econometric Society World Congress (Seattle), Midwest Macro Meetings (Iowa
 \begin_inset Quotes grd
 \end_inset
 
-Cross-country Income Differences: Human Capital Gaps Or Technology Gaps?
- Evidence from Immigrant Earnings.” University of Arizona, Midwest Macro
- Conference (Pittsburgh).
+Cross-country Income Differences:
+ Human Capital Gaps Or Technology Gaps?
+ Evidence from Immigrant Earnings.” University of Arizona,
+ Midwest Macro Conference (Pittsburgh).
 \end_layout
 
 \begin_layout Standard
 \begin_inset Quotes grd
 \end_inset
 
-Growth, Death, and Taxes.” Louisiana State University, North American Summer
- Meetings of the Econometric Society (Montreal).
+Growth,
+ Death,
+ and Taxes.” Louisiana State University,
+ North American Summer Meetings of the Econometric Society (Montreal).
 \end_layout
 
 \begin_layout Subsubsection
@@ -1118,14 +1340,20 @@ Growth, Death, and Taxes.” Louisiana State University, North American Summer
 \begin_inset Quotes grd
 \end_inset
 
-Growth, Death, and Taxes.”
+Growth,
+ Death,
+ and Taxes.”
 \begin_inset space \space{}
 \end_inset
 
-Society of Economic Dynamics (Philadelphia), ITAM, Iowa State University,
- Federal Reserve Bank of Minneapolis, Indiana University-Purdue University,
- Duke University, George Washington University, Federal Reserve Bank of
- Philadelphia.
+Society of Economic Dynamics (Philadelphia),
+ ITAM,
+ Iowa State University,
+ Federal Reserve Bank of Minneapolis,
+ Indiana University-Purdue University,
+ Duke University,
+ George Washington University,
+ Federal Reserve Bank of Philadelphia.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1148,12 +1376,12 @@ Federal Reserve Bank of Minneapolis.
 \begin_inset Quotes grd
 \end_inset
 
-Convergence and Unobserved Investment in a Calibrated OLG Model With Human
- Capital.”
+Convergence and Unobserved Investment in a Calibrated OLG Model With Human Capital.”
 \begin_inset space \space{}
 \end_inset
 
-NBER Summer Institute, Cambridge.
+NBER Summer Institute,
+ Cambridge.
 \end_layout
 
 \begin_layout Subsubsection
@@ -1168,11 +1396,16 @@ Equipment Investment and Growth in Developing Countries.”
 \begin_inset space \space{}
 \end_inset
 
-University of Miami, University of Georgia, ECARE (Bruxelles), CentER (Tilburg
- University), Humboldt University, University of Dortmund, Institute for
- International Economic Studies (Stockholm), European Meetings of the Econometri
-c Society (Istanbul), Arizona State University, CSIC – Universitat Autonoma
- Barcelona,
+University of Miami,
+ University of Georgia,
+ ECARE (Bruxelles),
+ CentER (Tilburg University),
+ Humboldt University,
+ University of Dortmund,
+ Institute for International Economic Studies (Stockholm),
+ European Meetings of the Econometric Society (Istanbul),
+ Arizona State University,
+ CSIC – Universitat Autonoma Barcelona,
 \end_layout
 
 \begin_layout Section
@@ -1180,21 +1413,29 @@ Research Grants
 \end_layout
 
 \begin_layout Standard
-Outstanding research award, University of Sydney, 2006.
+Outstanding research award,
+ University of Sydney,
+ 2006.
 \end_layout
 
 \begin_layout Standard
-SEPS Research Grant, University of Sydney, 2006: "Towards a Quantitative
- Theory of Hours Worked."
+SEPS Research Grant,
+ University of Sydney,
+ 2006:
+ "Towards a Quantitative Theory of Hours Worked."
 \end_layout
 
 \begin_layout Standard
-SEPS Research Grant, University of Sydney, 2005: "Educational Attainment
- Across Countries."
+SEPS Research Grant,
+ University of Sydney,
+ 2005:
+ "Educational Attainment Across Countries."
 \end_layout
 
 \begin_layout Standard
-ASU College of Business Dean's Award for Excellence Grant, 2002: 
+ASU College of Business Dean's Award for Excellence Grant,
+ 2002:
+ 
 \begin_inset Quotes grd
 \end_inset
 
@@ -1202,7 +1443,9 @@ A Quantitative Theory of Labor Mobility.”
 \end_layout
 
 \begin_layout Standard
-ASU College of Business Dean's Award for Excellence Grant, 2001: 
+ASU College of Business Dean's Award for Excellence Grant,
+ 2001:
+ 
 \begin_inset Quotes grd
 \end_inset
 
@@ -1214,22 +1457,25 @@ Professional Activities
 \end_layout
 
 \begin_layout Standard
-Co-Editor: Southern Economic Journal.
+Co-Editor:
+ Southern Economic Journal.
  2014-2019.
 \end_layout
 
 \begin_layout Standard
-Associate Editor: Indian Growth and Development Review.
+Associate Editor:
+ Indian Growth and Development Review.
  Since 2006.
 \end_layout
 
 \begin_layout Standard
-Program Committee: 2019 North American Meetings of the Econometric Society.
+Program Committee:
+ 2019 North American Meetings of the Econometric Society.
 \end_layout
 
 \begin_layout Standard
-Scientific Board: Turkish Economic Association's 6th International Conference
- (ICE-TEA 2018).
+Scientific Board:
+ Turkish Economic Association's 6th International Conference (ICE-TEA 2018).
 \end_layout
 
 \begin_layout Section
@@ -1237,11 +1483,13 @@ Service
 \end_layout
 
 \begin_layout Standard
-2023/24: Undergraduate curriculum committee.
+2023/24:
+ Undergraduate curriculum committee.
 \end_layout
 
 \begin_layout Standard
-2021/22: Graduate committee (chair).
+2021/22:
+ Graduate committee (chair).
  Reappointment review committee for Can Tian.
  Recruiting committee for Teaching Assistant Professor.
  Junior recruiting committee.
@@ -1249,24 +1497,29 @@ Service
 \end_layout
 
 \begin_layout Standard
-2020/21: Graduate committee.
+2020/21:
+ Graduate committee.
  Graduate admissions committee.
 \end_layout
 
 \begin_layout Standard
-2019/20: Graduate committee.
+2019/20:
+ Graduate committee.
  Graduate admissions committee.
  Recruiting committee.
  Reading committee for Stan Rabinovich.
 \end_layout
 
 \begin_layout Standard
-2018/19: Ad hoc committee evaluating fixed term faculty reappointment.
+2018/19:
+ Ad hoc committee evaluating fixed term faculty reappointment.
  
 \end_layout
 
 \begin_layout Standard
-Advisory committee: 2010-2013, 2016-19.
+Advisory committee:
+ 2010-2013,
+ 2016-19.
 \end_layout
 
 \begin_layout Standard
@@ -1274,8 +1527,7 @@ Qualifying examination committee in macroeconomics (chair since 2009).
 \end_layout
 
 \begin_layout Standard
-Coordinator for teaching in macroeconomics/international economics (since
- 2018).
+Coordinator for teaching in macroeconomics/international economics (since 2018).
 \end_layout
 
 \end_body

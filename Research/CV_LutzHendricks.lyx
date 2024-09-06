@@ -50,6 +50,8 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement class
+\float_alignment class
 \paperfontsize 11
 \spacing single
 \use_hyperref false
@@ -83,8 +85,8 @@
 \end_index
 \secnumdepth 0
 \tocdepth 3
-\paragraph_separation indent
-\paragraph_indentation default
+\paragraph_separation skip
+\defskip halfline
 \is_math_indent 0
 \math_numbering_side default
 \quotes_style english
@@ -1485,6 +1487,8 @@ Service
 \begin_layout Standard
 2023/24:
  Undergraduate curriculum committee.
+ Teaching professor search committee.
+ Reading committee for Tan Cian.
 \end_layout
 
 \begin_layout Standard
