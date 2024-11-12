@@ -1,0 +1,1898 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+
+\usepackage{amsfonts}
+
+\newcommand{\ansRule}{\hrulefill}
+\newcommand{\answr}{\vspace{6pt} \textbf{Answer} \ansRule}
+\newcommand{\answrEnd}{\ansRule \vspace{1pt}}
+
+\newcommand{\shortPts}{8}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "ae" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\branch answers
+\selected 0
+\filename_suffix 1
+\color #303030
+\end_branch
+\branch no-answers
+\selected 1
+\filename_suffix 0
+\color #303030
+\end_branch
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 3cm
+\rightmargin 2cm
+\bottommargin 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\align center
+
+\size larger
+Final Exam.
+ Econ520.
+ Spring 2024
+\end_layout
+
+\begin_layout Standard
+\align center
+Professor Lutz Hendricks
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+UNC
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0.5ex"
+width "100line%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\begin_inset VSpace medskip
+\end_inset
+
+ Instructions
+\series default
+:
+\end_layout
+
+\begin_layout Itemize
+Answer all questions.
+\end_layout
+
+\begin_layout Itemize
+Write legibly.
+\end_layout
+
+\begin_layout Itemize
+Write your answers on the question sheets.
+ Use additional pages, if needed.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Explain
+\emph default
+ your answers – do not just state them.
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+Show 
+\emph default
+your derivations – do not just state the final result.
+\end_layout
+
+\begin_layout Itemize
+Do not refer to any notes or books.
+ You may use a calculator.
+\end_layout
+
+\begin_layout Itemize
+The total time is 
+\series bold
+180
+\series default
+ minutes.
+ The total number of points is 
+\series bold
+120
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.5in
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top" width="4in">
+<column alignment="left" valignment="top" width="2.5in">
+<row>
+<cell alignment="left" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PID:
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Short Questions: Closed Economy
+\end_layout
+
+\begin_layout Standard
+Be sure to explain your answers.
+ No models are required.
+\end_layout
+
+\begin_layout Enumerate
+[10 points] New Zealand at some point required its Central Bank to achieve
+ 
+\series bold
+2 percent inflation on average
+\series default
+ over any period of several years.
+ Suppose that the Central Bank wants to stimulate output by temporarily
+ raising inflation.
+ Explain how the 2 percent requirement makes this task easier.
+ Hint: What does the requirement do to the Phillips Curve?
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Branch answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answr
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The relevant concept here is the Phillips Curve 
+\begin_inset Formula $\pi=\pi^{e}+z+m-\alpha u$
+\end_inset
+
+.
+ The Central Bank wants to move along the PC (change 
+\begin_inset Formula $\pi$
+\end_inset
+
+ to affect 
+\begin_inset Formula $u$
+\end_inset
+
+).
+ This works if the PC does not shift, i.e., if inflation expectations are
+ well anchored.
+\end_layout
+
+\begin_layout Standard
+The law could help to anchor inflation expectations at 2 percent.
+ It removes the concern that, in response to shocks, the Central Bank may
+ abandon or revise its target.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answrEnd
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch no-answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{8cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+[10 points]
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+General / fiscal
+\end_layout
+
+\end_inset
+
+ Explain why 
+\series bold
+
+\begin_inset Quotes eld
+\end_inset
+
+
+\begin_inset Formula $r$
+\end_inset
+
+ versus 
+\begin_inset Formula $g$
+\end_inset
+
+
+\begin_inset Quotes erd
+\end_inset
+
+
+\series default
+ is important for how much debt a government can afford to take on.
+ Here, 
+\begin_inset Formula $r$
+\end_inset
+
+ is the real interest rate and 
+\begin_inset Formula $g$
+\end_inset
+
+ is the growth rate of the economy.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Branch answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answr
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The main constraint on the government's ability to take on debt is the path
+ of the 
+\series bold
+ratio of interest payments to output
+\series default
+ (the tax base).
+ If interest payments grow faster than the tax base, the government will
+ eventually not be able to pay.
+\end_layout
+
+\begin_layout Standard
+The key insight is now: if the government never pays any interest (rolls
+ over all of its debts and interest into new bonds), debt grows at rate
+ 
+\begin_inset Formula $r$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Therefore, if 
+\begin_inset Formula $r>g$
+\end_inset
+
+, a government that rolls over all of its debts eventually runs out of funds.
+ Some part of the interest has to be paid out of tax revenues.
+ I.e., the government has to run primary surpluses.
+ The larger the debt, the higher the surpluses it must run (the less funds
+ are available for government consumption and transfers).
+\end_layout
+
+\begin_layout Standard
+However, if 
+\begin_inset Formula $r<g$
+\end_inset
+
+, the government can roll over all of its debts.
+ In principle, the government can take on unlimited amounts of debt because
+ it never makes any payments (that are not financed by issuing more debt).
+ In practice, the interest burden is no longer a limiting factor for how
+ much the government can borrow.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answrEnd
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch no-answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{8cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+[10 points] Divided countries are 
+\series bold
+Natural Experiments
+\series default
+ that support the importance of institutions for cross-country income difference
+s.
+ What is a natural experiment? What has to be true for causal inference
+ (institutions cause income gaps) to be valid?
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Branch answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answr
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A Natural Experiment is similar to a human controlled experiment.
+ It 
+\begin_inset Quotes eld
+\end_inset
+
+randomly
+\begin_inset Quotes erd
+\end_inset
+
+ assigns different treatments to different groups of (say) countries.
+ 
+\end_layout
+
+\begin_layout Standard
+Example: Divided countries with different institutions (North vs South Korea).
+\end_layout
+
+\begin_layout Standard
+Why useful: The challenge in establishing cause and effect is omitted variables.
+ Institutions and productivity may be correlated, but it is not clear that
+ institutions cause productivity.
+ Instead, an omitted variable may cause both.
+ Natural experiments 
+\begin_inset Quotes eld
+\end_inset
+
+solve
+\begin_inset Quotes erd
+\end_inset
+
+ this problem as long as the treatment (dividing the country) is random
+ (not related to other factors that affect productivity).
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answrEnd
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch no-answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{8cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Short Questions: Open Economy [50]
+\end_layout
+
+\begin_layout Standard
+Be sure to explain your answers.
+ No models are required.
+\end_layout
+
+\begin_layout Enumerate
+[10 points] Explain the logic of this quote: 
+\begin_inset Quotes eld
+\end_inset
+
+A current account deficit may indicate that a country offers sound investment
+ opportunities, or it may be caused by ...
+ fiscal deficits.
+\begin_inset Quotes erd
+\end_inset
+
+ (Economic Report of the President, 2013, p.
+ 213).
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Branch answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answr
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The key relationship is 
+\begin_inset Formula $NX=S^{private}+S^{public}-I$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+Given the private saving rate, a trade deficit must either mean that 
+\begin_inset Formula $S^{public}$
+\end_inset
+
+ is low (fiscal deficits) or that investment is high.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answrEnd
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch no-answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{8cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+[10 points] Comment on the following statement: 
+\begin_inset Quotes eld
+\end_inset
+
+When the U.S.
+ trade deficit rises, we lose jobs to other countries and U.S.
+ employment falls.
+\begin_inset Quotes erd
+\end_inset
+
+ Think of this as a statement about the medium run.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Branch answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answr
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The statement suffers from a logic problem: the trade deficit is itself
+ and outcome (an endogenous variable).
+ The trade deficit does not cause anything.
+ The causes of the trade deficit would be to blame.
+\end_layout
+
+\begin_layout Standard
+In addition, the statement is false.
+ Medium run employment is determined by supply factors (preferences, productivit
+y or real wages, work incentives), not by demand factors.
+ The trade deficit, by contrast, is determined by domestic saving and investment
+ (demand factors).
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answrEnd
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch no-answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{8cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+[10 points] Countries that 
+\series bold
+fix their exchange rates
+\series default
+ tend to experience volatile interest rates and inflation.
+ Explain why this happens.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Branch answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answr
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+With fixed exchange rates, any shock that affects currency demand has to
+ be offset by monetary policy.
+ For example, if the risk premium for the home currency rises, the Fed has
+ to prevent depreciation by buying dollars and raising the domestic interest
+ rate.
+ The monetary contraction causes prices to fall.
+ Similarly, any shocks to the foreign economy that cause capital flows need
+ to be offset in the same way.
+\end_layout
+
+\begin_layout Standard
+The implication is that the Fed needs to constantly adjust monetary policy,
+ which implies volatile inflation and interest rates.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answrEnd
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch no-answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{8cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+[10 points]
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+open / short / gains: 2017
+\end_layout
+
+\end_inset
+
+ Suppose you could 
+\series bold
+open up trade
+\series default
+ with one of two countries.
+ Country A is half as productive in making all goods compared with the U.S.
+ Country B is twice as productive in making good X, but three times as productiv
+e as the US in making good Y.
+ Which country would you want to be able to trade with? What would happen
+ to domestic prices and wages when trade opens?
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Branch answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answr
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is about comparative advantage.
+ Opening up trade with A would not do anything.
+ Relative prices in A are the same as relative prices in the US.
+ There would be no trade.
+ Opening up trade with B would be more beneficial (setting aside distributional
+ concerns).
+ B could export the good where it has a comparative advantage (Y).
+\end_layout
+
+\begin_layout Standard
+When trade opens, the real wage in sector X would not change.
+ Let's make good X the numeraire, so it's price is 1.
+ Good Y would then become cheaper (imported).
+ Overall real wages would rise.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answrEnd
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch no-answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{8cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+[10 points] 
+\series bold
+Dumping
+\series default
+ is not permitted under international trade rules.
+ Viewed through the lens of our two good / two country model, how would
+ foreign dumping affect the home economy? You are not expected to derive
+ the result.
+ Just talk through the intuition.
+ 
+\begin_inset Newline newline
+\end_inset
+
+In light of this finding, why do you think dumping is not permitted? Note:
+ Dumping means selling goods abroad for less than they cost at home.
+ It is essentially an export subsidy.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Branch answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answr
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From our perspective, dumping has the same effect as foreign productivity
+ growth: the price of export goods falls in the foreign country.
+ 
+\end_layout
+
+\begin_layout Standard
+If dumping affects the goods where the foreign country has comparative advantage
+, we benefit.
+ Our production does not change.
+ The domestic real wage in terms of the goods that we produce does not change
+ (it is determined by domestic productivity).
+ Dumping simply means that the same quantity of exports buys more imports.
+ 
+\end_layout
+
+\begin_layout Standard
+Why then is dumping not permitted? Dumping usually occurs in industries
+ where the foreign country does not have a comparative advantage, but wants
+ to gain one.
+ The goal is to put the foreign competitors out of business and let the
+ domestic firms learn how to produce efficiently (and to get them market
+ power).
+ This kind of dumping is not permitted because it reduces competition in
+ the long run.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answrEnd
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch no-answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{8cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Floating 
+\begin_inset Formula $E$
+\end_inset
+
+: Dumping
+\end_layout
+
+\begin_layout Standard
+Consider how foreign dumping affects the domestic economy under floating
+ exchange rates.
+ The model equations are:
+\end_layout
+
+\begin_layout Standard
+IS:
+\begin_inset Formula 
+\begin{equation}
+Y=C\left(Y-T\right)+I\left(Y,i\right)+G+NX\left(Y,Y^{*},\frac{P}{EP^{*}}\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+LM:
+\begin_inset Formula 
+\begin{equation}
+M/P=Y\times L\left(i\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+AS:
+\begin_inset Formula 
+\begin{equation}
+Y=F\left(\frac{P}{P^{e}}\frac{1}{1+m},z\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+UIP:
+\begin_inset Formula 
+\begin{equation}
+E=E^{e}\frac{1+i^{*}}{1+i}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Recall that we combine IS + LM + UIP into AD:
+\begin_inset Formula 
+\begin{equation}
+Y=C\left(Y-T\right)+I\left(Y,\hat{L}\left(\frac{M}{PY}\right)\right)+G+NX\left(Y,Y^{*},\frac{P}{E^{e}P^{*}}\frac{1+\hat{L}\left(\frac{M}{PY}\right)}{1+i^{*}}\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Questions
+\end_layout
+
+\begin_layout Enumerate
+[10 points] In an AS/AD diagram, 
+\series bold
+graph
+\series default
+ how foreign dumping affects the short-run and medium-run equilibrium.
+ Dumping may be modeled as a 
+\series bold
+drop in foreign prices
+\series default
+ 
+\begin_inset Formula $P^{*}$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+This sub-question just asks for the graph.
+ What happens 
+\begin_inset Quotes eld
+\end_inset
+
+under the hood
+\begin_inset Quotes erd
+\end_inset
+
+ is the subject of the next few sub-questions.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Be sure to explain how the curves that you draw shift and why.
+ Clearly mark the short and medium run equilibrium.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Branch answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answr
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is a standard AS/AD diagram.
+ Dumping shifts the AD curve left or down.
+ Ceteris paribus, lower foreign prices reduce 
+\begin_inset Formula $NX$
+\end_inset
+
+.
+ The SR equilibrium has lower 
+\begin_inset Formula $Y$
+\end_inset
+
+ and 
+\begin_inset Formula $P$
+\end_inset
+
+.
+ The MR equilibrium has even lower 
+\begin_inset Formula $P$
+\end_inset
+
+ but unchanged 
+\begin_inset Formula $Y=Y_{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answrEnd
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch no-answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{8cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+[13 points] Derive what happens in the 
+\series bold
+medium run
+\series default
+ to output, prices, consumption, investment, the exchange rate, and net
+ exports.
+ Be sure to follow the model's logic and support your conclusions with the
+ model equations.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Explain in words why foreign dumping worsens our trade balance.
+ How do you reconcile this finding with the notion that policies only affect
+ the trade balance if they change domestic saving or investment?
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Branch answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answr
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+MR: 
+\begin_inset Formula $Y=Y_{n}$
+\end_inset
+
+ and 
+\begin_inset Formula $P\downarrow$
+\end_inset
+
+ from the graph.
+\end_layout
+
+\begin_layout Standard
+Interest rate: 
+\begin_inset Formula $\frac{M}{PY}\uparrow=L\left(i\downarrow\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Therefore 
+\begin_inset Formula $C$
+\end_inset
+
+ unchanged, 
+\begin_inset Formula $I\uparrow$
+\end_inset
+
+ and 
+\begin_inset Formula $E\uparrow$
+\end_inset
+
+ (dollar depreciates; by UIP).
+\end_layout
+
+\begin_layout Standard
+Trade balance: 
+\begin_inset Formula $NX\downarrow$
+\end_inset
+
+ to satisfy 
+\begin_inset Formula $Y=C+I+G+NX$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+In words: the trade balance improves b/c foreign goods get cheaper in world
+ markets.
+ Some of the direct effects of the dumping are offset by changing prices
+ (
+\begin_inset Formula $P\downarrow$
+\end_inset
+
+ and 
+\begin_inset Formula $E\uparrow$
+\end_inset
+
+ counteract 
+\begin_inset Formula $P^{*}\downarrow$
+\end_inset
+
+).
+ But those equilibrium effects are not enough to fully undo the shock.
+\end_layout
+
+\begin_layout Standard
+The finding is consistent with the idea that shocks only affect the trade
+ balance if they change saving or investment.
+ Here, the shock hits investment by lowering 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ This is probably not a realistic feature of the model, but it depends on
+ how the Fed reacts.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answrEnd
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch no-answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{11cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+[7 points] Derive what happens in the 
+\series bold
+short run
+\series default
+ to the same variables.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Branch answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answr
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+SR: 
+\begin_inset Formula $Y\downarrow$
+\end_inset
+
+ and 
+\begin_inset Formula $P\downarrow$
+\end_inset
+
+ from the graph.
+\end_layout
+
+\begin_layout Standard
+Interest rate: 
+\begin_inset Formula $\frac{M}{PY}\uparrow=L\left(i\downarrow\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Therefore 
+\begin_inset Formula $I$
+\end_inset
+
+ ambiguous, 
+\begin_inset Formula $C\downarrow$
+\end_inset
+
+ , and 
+\begin_inset Formula $E\uparrow$
+\end_inset
+
+ (dollar depreciates).
+\end_layout
+
+\begin_layout Standard
+The trade balance looks ambiguous.
+ 
+\begin_inset Formula $Y=C+I+G+NX$
+\end_inset
+
+ is not conclusive.
+ And the shock pushes 
+\begin_inset Formula $NX\downarrow$
+\end_inset
+
+ while the equilibrium effects 
+\begin_inset Formula $\left(Y\downarrow,P\downarrow,E\uparrow\right)$
+\end_inset
+
+ all push the other way.
+ Of course, for the model to 
+\begin_inset Quotes eld
+\end_inset
+
+make sense,
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Formula $NX$
+\end_inset
+
+ should be down (otherwise AD would not shift left).
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answrEnd
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch no-answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{11cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+[10 points] Explain how full employment gets restored during the transition
+ from the SR to the MR.
+ Where does the additional demand come from?
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Branch answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answr
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since SR 
+\begin_inset Formula $Y<Y_{n}$
+\end_inset
+
+, price expectations start to fall.
+ That reduces wages and allows firms to reduce prices.
+\end_layout
+
+\begin_layout Standard
+Lower prices directly improve the trade balance.
+ This is the first source of additional demand.
+\end_layout
+
+\begin_layout Standard
+Lower prices also raise 
+\begin_inset Formula $M/P$
+\end_inset
+
+.
+ To clear the money market, 
+\begin_inset Formula $i$
+\end_inset
+
+ must fall.
+ (Note: strictly speaking, the change in 
+\begin_inset Formula $i$
+\end_inset
+
+ during the transition is ambiguous, but let's not get into that complication...).
+ Lower 
+\begin_inset Formula $i$
+\end_inset
+
+ causes dollar depreciation, which further improves 
+\begin_inset Formula $NX$
+\end_inset
+
+.
+ Lower 
+\begin_inset Formula $i$
+\end_inset
+
+ also crowds in investment.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+answrEnd
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Branch no-answers
+inverted 0
+status open
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{11cm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_body
+\end_document
