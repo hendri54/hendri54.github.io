@@ -699,38 +699,9 @@
       
     
     
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Regressions
-        <span class="md-nav__icon md-icon"></span>
-      </label>
-    
     <a href="regressions.html" title="Regressions" class="md-nav__link md-nav__link--active">
       Regressions
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#glm-15" class="md-nav__link">
-    GLM (1.5)
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
     
   </li>
 
@@ -805,21 +776,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#glm-15" class="md-nav__link">
-    GLM (1.5)
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -836,7 +792,19 @@
                 
                 <h1 id="regressions">Regressions<a class="headerlink" href="#regressions" title="Permanent link">&para;</a></h1>
 <p>RegressionTables.jl produces formatted regression tables.</p>
-<h2 id="glm-15">GLM (1.5)<a class="headerlink" href="#glm-15" title="Permanent link">&para;</a></h2>
+<h1 id="formula-language-111">Formula Language (1.11)<a class="headerlink" href="#formula-language-111" title="Permanent link">&para;</a></h1>
+<h2 id="constructing-a-formula-programatically">Constructing a formula programatically<a class="headerlink" href="#constructing-a-formula-programatically" title="Permanent link">&para;</a></h2>
+<p>Example: polynomial.</p>
+<div class="highlight"><pre><span></span><code>power_term(x :: AbstractTerm, j) = FunctionTerm(z -&gt; z^j, [x], :($x ^ $j));
+fmla = Term(:y) ~ ConstantTerm(1) + power_term(term(:b), 2);
+# same as
+fmla = @formula(y ~ 1 + b ^ 2)
+# Multiple powers
+pTerms = [power_term(term(:b), j) for j in 1 : 3];
+fmla2 = Term(:y) ~ ConstantTerm(1) + sum(pTerms);
+</code></pre></div>
+
+<h1 id="glm-15">GLM (1.5)<a class="headerlink" href="#glm-15" title="Permanent link">&para;</a></h1>
 <p>GLM.jl is the package to run regressions.</p>
 <p>GLM really expects the data to be provided as a <code>DataFrame</code>, but one can run
 <div class="highlight"><pre><span></span><code>m = fit(LinearModel, X, y);

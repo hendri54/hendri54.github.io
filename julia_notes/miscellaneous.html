@@ -1127,6 +1127,16 @@
 <p>PrettyTables.jl can be used to produce Latex tables (and human readable text tables with the same content).</p>
 <ul>
 <li>set <code>wrap_table = false</code> to avoid the <code>\begin{tabular}</code> block for a float.</li>
+<li>Writing Latex in cells:<ul>
+<li>Make a string, such as "$\alpha$".</li>
+<li>Wrap the entire table in <code>LatexCell.(tb)</code> when passing it to <code>pretty_table</code>. That essentially gets ignored for regular text cells, but handles Latex characters correctly.</li>
+<li>When writing the table body, create a convenience type <code>SymString = Union{String, LaTeXString}</code> with a converter <code>sym_string(x) = string(x)</code> and <code>sym_string(x :: LaTeXString) = x</code>. That way, one can convert table cells into String while preserving LaTeXStrings.</li>
+</ul>
+</li>
+</ul>
+<p>Packages for writing Latex tables:</p>
+<ul>
+<li><a href="https://www.tamaspapp.eu/LaTeXTabulars.jl/dev/">LatexTabulars</a> - simple and easy to use</li>
 </ul>
 <h2 id="logging-16">Logging (1.6)<a class="headerlink" href="#logging-16" title="Permanent link">&para;</a></h2>
 <p><code>@debug</code> can be used to generate self-test code that is only run while developing the code.</p>

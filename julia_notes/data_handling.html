@@ -933,6 +933,10 @@
 </ul>
 <h2 id="dataframes">DataFrames<a class="headerlink" href="#dataframes" title="Permanent link">&para;</a></h2>
 <p>Column names can be <code>string</code> or <code>symbol</code>. Access works with either. But in grouping expressions, one needs to pick one or the other.</p>
+<p>Examining DataFrames</p>
+<ul>
+<li><a href="https://github.com/Hasnep/DataSkimmer.jl">DataSkimmer.jl</a></li>
+</ul>
 <p>Chaining transformations</p>
 <ul>
 <li>only have a single combine with multiple transformations as in </li>
@@ -971,6 +975,23 @@
 <span class="n">combine</span><span class="p">(</span><span class="n">gdf2</span><span class="p">,</span> <span class="p">[[</span><span class="o">:</span><span class="n">y</span><span class="p">,</span><span class="o">:</span><span class="n">mass</span><span class="p">],</span> <span class="p">[</span><span class="o">:</span><span class="n">z</span><span class="p">,</span><span class="o">:</span><span class="n">mass</span><span class="p">]]</span> <span class="o">.=&gt;</span> <span class="n">weighted_sum</span> <span class="o">.=&gt;</span> <span class="p">[</span><span class="o">:</span><span class="n">a</span><span class="p">,</span><span class="o">:</span><span class="n">b</span><span class="p">])</span>
 </code></pre></div>
 
+<p>Precomputing temporary variables in groups:</p>
+<ul>
+<li>Examples: compute the weighted mean of several variables. Each requires the total mass of each group, which should be precomputed.</li>
+<li>There doesn't seem to be a good way of doing this.</li>
+<li><code>@aside</code> from <code>Chain.jl</code> is made for that purpose. But it's not clear how to access the column of the current GroupedDataFrame. <code>sum(_.mass)</code> works for a <code>DataFrame</code> but not for a <code>GroupedDataFrame</code></li>
+</ul>
+<p>Manually iterating over each GroupedDataFrame:</p>
+<div class="highlight"><pre><span></span><code><span class="n">gdf</span> <span class="o">=</span> <span class="n">groupby</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="o">:</span><span class="n">x</span><span class="p">);</span>
+<span class="n">v</span> <span class="o">=</span> <span class="kt">Vector</span><span class="p">{</span><span class="kt">Any</span><span class="p">}();</span>
+<span class="k">for</span> <span class="n">subdf</span> <span class="kp">in</span> <span class="n">gdf</span>
+  <span class="n">push!</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">subdf</span><span class="p">));</span>
+<span class="k">end</span>
+</code></pre></div>
+
+<p>This works fine. We end up with a <code>Vector</code> of whatever <code>f</code> returns (<code>NamedTuple</code>s would be logical). That <code>Vector</code> can now be assembled into a result DataFrame.</p>
+<p>The benefit: <code>f</code> can perform arbitrary calculations. No need to deal with macro issues, such as escaping variables.</p>
+<p>The drawback (according to the docs) is performance. But I have not tried it.</p>
 <h2 id="categorical-data">Categorical Data<a class="headerlink" href="#categorical-data" title="Permanent link">&para;</a></h2>
 <p>Assigning levels:</p>
 <div class="highlight"><pre><span></span><code><span class="n">xV</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">];</span>

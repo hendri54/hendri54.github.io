@@ -800,6 +800,7 @@
 </ul>
 <p>Once an <code>Axis</code> is "assigned" a <code>Figure</code>, it cannot be moved to another <code>Figure</code>. Therefore, plotting functions should take a <code>Figure</code> input argument.</p>
 <h2 id="axes">Axes<a class="headerlink" href="#axes" title="Permanent link">&para;</a></h2>
+<p>Latex in labels: just wrap in a LaTeXString.</p>
 <p><a href="https://discourse.julialang.org/t/makie-how-to-move-xlabel-to-the-right/93793/1">Moving xlabel</a>. The idea to simply place a <code>Label</code> into a separate layout position:</p>
 <div class="highlight"><pre><span></span><code><span class="n">Label</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s">&quot;Test &quot;</span><span class="p">,</span> <span class="n">halign</span> <span class="o">=</span> <span class="o">:</span><span class="n">right</span><span class="p">,</span> <span class="n">tellwidth</span> <span class="o">=</span> <span class="kc">false</span><span class="p">)</span>
 </code></pre></div>
@@ -907,6 +908,9 @@
 <span class="n">draw</span><span class="p">(</span><span class="n">plt</span> <span class="o">+</span> <span class="n">ptext</span><span class="p">)</span>
 </code></pre></div>
 
+<h3 id="axis-labels">Axis Labels<a class="headerlink" href="#axis-labels" title="Permanent link">&para;</a></h3>
+<p>Plotting multiple items with one call to <code>draw</code> (as in <code>draw(plt1 + plt2)</code>) removes axis labels. Need to set the labels "by hand":</p>
+<p><code>draw(plt1 + plt2; axis = (xlabel = "x", ))</code></p>
 <h3 id="barplots">BarPlots<a class="headerlink" href="#barplots" title="Permanent link">&para;</a></h3>
 <p>By default, a plot with a single series results in grey bars, regardless of the theme. To match the theme color:</p>
 <div class="highlight"><pre><span></span><code><span class="n">thm</span> <span class="o">=</span> <span class="n">AlgebraOfGraphics</span><span class="o">.</span><span class="n">aog_theme</span><span class="p">();</span>
@@ -940,7 +944,7 @@
 <p>For continuous variables, the default graph produces a colorbar instead of a legend. Avoid by declaring the variable governing color <code>nonnumeric</code>: </p>
 <p><code>mapping(:x, :y, color = :z =&gt; nonnumeric)</code>.</p>
 <p>Hiding the legend title <a href="https://discourse.julialang.org/t/question-about-algebraofgraphics/85481">currently does not work</a> (<code>titlevisible</code> is ignored).</p>
-<p>See <a href="https://aog.makie.org/stable/gallery/gallery/customization/legend/#Legend-tweaking">Legend tweaking</a>.</p>
+<p>See <a href="https://aog.makie.org/v0.9.3/examples/customization/legend#Legend-options">Legend tweaking</a>.</p>
 <h3 id="layouts">Layouts<a class="headerlink" href="#layouts" title="Permanent link">&para;</a></h3>
 <p>Use a <code>renamer</code> to assign better labels to subplots:</p>
 <p><code>mapping(layout = :z =&gt; renamer(["Label $j" for j = 1 : n]...))</code></p>
@@ -983,7 +987,7 @@
 <p>Visually, PlotlyJS produces the most appealing plots (for me). But it does not install on my system (1.5).</p>
 <p>When a plotting related library is not found (as in “error compiling display”), try <code>]build Plots</code>. </p>
 <p>Defaults are set with the <a href="http://docs.juliaplots.org/latest/basics/">defaults</a> command.</p>
-<h3 id="axis-labels">Axis labels<a class="headerlink" href="#axis-labels" title="Permanent link">&para;</a></h3>
+<h3 id="axis-labels_1">Axis labels<a class="headerlink" href="#axis-labels_1" title="Permanent link">&para;</a></h3>
 <p><code>bar</code> tends to have too small default margins for axis labels to show (at least in subplots). Try</p>
 <p><code>using Plots.PlotMeasures</code></p>
 <h3 id="colors">Colors<a class="headerlink" href="#colors" title="Permanent link">&para;</a></h3>
