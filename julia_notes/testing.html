@@ -856,6 +856,7 @@ pkg&gt; activate .
 <li>generates combinations of arguments that are passed to tests</li>
 <li>the goal is to generate coverage without having to run all parameter combinations</li>
 <li><a href="https://aviatesk.github.io/JET.jl/stable/optanalysis/">Jet.jl</a> can be used to test type stability (using <code>@test_opt foo()</code>).</li>
+<li>TestPicker.jl can run individual tests based on fuzzy testset search. Requires no modification of test code.</li>
 </ul>
 <h2 id="testitemsjl">TestItems.jl<a class="headerlink" href="#testitemsjl" title="Permanent link">&para;</a></h2>
 <p>Can place tests anywhere in code.</p>
@@ -865,6 +866,11 @@ pkg&gt; activate .
 <li>Put in <code>@testmodule</code> if to be run only once per test run.</li>
 <li>Need to qualify access to all objects from the <code>testmodule</code> as in <code>MyTestModule.foo</code>. Even if exported.</li>
 </ul>
+<h3 id="issues">Issues<a class="headerlink" href="#issues" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Need to add <code>using MyPackage, Test</code> to each <code>testitem</code>. Otherwise, tests cannot be run from the REPL using <code>@run_package_tests</code>. (2025)</li>
+<li>Tests stop when errors are encountered (unlike the standard <code>Pkg.test</code> framework).</li>
+</ol>
 <h1 id="travis-ci-12">Travis CI (1.2)<a class="headerlink" href="#travis-ci-12" title="Permanent link">&para;</a></h1>
 <p>Travis can automatically test all branches uploaded to github.</p>
 <p>Need to customize travis.yml to only build for the current Julia version. </p>

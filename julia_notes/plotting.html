@@ -943,8 +943,9 @@
 <h3 id="legends_1">Legends<a class="headerlink" href="#legends_1" title="Permanent link">&para;</a></h3>
 <p>For continuous variables, the default graph produces a colorbar instead of a legend. Avoid by declaring the variable governing color <code>nonnumeric</code>: </p>
 <p><code>mapping(:x, :y, color = :z =&gt; nonnumeric)</code>.</p>
-<p>Hiding the legend title <a href="https://discourse.julialang.org/t/question-about-algebraofgraphics/85481">currently does not work</a> (<code>titlevisible</code> is ignored).</p>
+<p>Hiding the legend title <a href="https://discourse.julialang.org/t/question-about-algebraofgraphics/85481">currently does not work</a> (<code>titlevisible</code> is ignored). But title <a href="https://github.com/MakieOrg/AlgebraOfGraphics.jl/issues/422">can be suppressed</a> using <code>draw(plt, scales(Color = (; label = ""))</code>.</p>
 <p>See <a href="https://aog.makie.org/v0.9.3/examples/customization/legend#Legend-options">Legend tweaking</a>.</p>
+<p>The <code>fontsize</code> is changed not with the <code>fontsize</code> argument, but with <code>labelsize</code>.</p>
 <h3 id="layouts">Layouts<a class="headerlink" href="#layouts" title="Permanent link">&para;</a></h3>
 <p>Use a <code>renamer</code> to assign better labels to subplots:</p>
 <p><code>mapping(layout = :z =&gt; renamer(["Label $j" for j = 1 : n]...))</code></p>
