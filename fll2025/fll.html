@@ -781,7 +781,7 @@
                 
                 <h1 id="fll-resources">FLL Resources<a class="headerlink" href="#fll-resources" title="Permanent link">&para;</a></h1>
 <p><a href="https://docs.google.com/spreadsheets/d/1k5mwCnkFZkZrIItrWUQ90Rhv1SQY451oTFdz3YygBRE/edit?pli=1&amp;gid=1203080413#gid=1203080413">Mr Schaefer's google sheet</a> - <a href="https://classes.veracross.com/da/course/45113/website">Veracross course page</a> - <a href="https://msfll.sites.da.org/unearthed-season-materials/">MS FLL site</a> </p>
-<p><a href="https://www.first-lego-league.org/en/2025-26-season/the-unearthed-season">FLL Unearthed site</a> - <a href="https://www.youtube.com/channel/UCEQZze95GLgAegnOOeaYQqg">Tech warriors</a> - <a href="https://www.firstlegoleague.org/season#resources">Build books</a> </p>
+<p><a href="https://www.first-lego-league.org/en/2025-26-season/the-unearthed-season">FLL Unearthed site</a> - <a href="https://www.youtube.com/channel/UCEQZze95GLgAegnOOeaYQqg">Tech warriors</a> - <a href="https://primelessons.org/en/">PrimeLessons</a> - <a href="https://www.firstlegoleague.org/season#resources">Build books</a> </p>
 <p>Robot designs:</p>
 <ul>
 <li>
@@ -836,11 +836,31 @@ Have motors pointing sideways at front of bot. Simply stick arms directly into t
 <p>Forklift attachment
 It can press levers, lift stuff, push stuff, scoop stuff (capture and drag using a wide attachment)
 Highly versatile</p>
+<h2 id="moving-wall-attachment">Moving wall attachment<a class="headerlink" href="#moving-wall-attachment" title="Permanent link">&para;</a></h2>
+<p>Can move <a href="https://www.youtube.com/watch?v=981qtBCagOI">horizontally and vertically</a> - highly versatile. Could likely complete nearly all 2025 missions. <a href="https://www.youtube.com/watch?v=UWOM32LOXvc">More compact version</a>. There are no build instructions, but one can follow along based on the video.</p>
+<p>Main downside: The attachment cannot be exchanged. It is an integral part of the robot.</p>
+<h2 id="moving-attachments">Moving attachments<a class="headerlink" href="#moving-attachments" title="Permanent link">&para;</a></h2>
+<p>At the start of the program, record the motor position.</p>
+<p>Then move the attachments by moving the motor to fixed positions. This makes the movements repeatable. The attachments can be moved to a known position, regardless of their current position after a task.</p>
 <h1 id="precise-driving">Precise driving<a class="headerlink" href="#precise-driving" title="Permanent link">&para;</a></h1>
 <p>This is key! Get that right first.</p>
-<p><strong>Use the gyroscope</strong>. Internet has code that uses gyro to drive in straight line. The robot wobbles without the gyro.</p>
+<p><strong>Use the gyroscope</strong>. Internet has code that uses gyro to drive in straight line. The robot wobbles without the gyro. See <a href="https://primelessons.org/en/ProgrammingLessons/SP3AccurateTurning.pdf">prime lessons</a>. Note that the robot tends to overshoot because it takes a bit of time to stop.</p>
+<ul>
+<li>Yaw angle ranges from -180 to +180.</li>
+</ul>
+<p>How to drive a fixed distance:</p>
+<ul>
+<li>Without gyro: Set the mapping from motor rotations to distance using the built-in block. Then just use the "move a distance" block.</li>
+<li>With gyro: Not clear how to run a loop up to a certain number of motor rotations. Need to calibrate robot to translate time and speed into distance.</li>
+</ul>
 <p>Make sure weight is distributed so the robot does not tip when starting or stopping.</p>
 <p>Can one accelerate / decelerate smoothly while driving a precise distance? Less wheel slippage.</p>
+<h3 id="to-do">To do<a class="headerlink" href="#to-do" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Drive in straight line from (x1, y1) to (x2, y2).</li>
+<li>Function: turn robot to desired angle: currently only works up to 180 degrees. Because the gyro goes only up to that value.</li>
+<li>Make a test track, so that driving code can be tested when changed.</li>
+</ul>
 <h2 id="line-detection-and-following">Line detection and following<a class="headerlink" href="#line-detection-and-following" title="Permanent link">&para;</a></h2>
 <p><a href="https://education.lego.com/en-us/lessons/prime-competition-ready/training-camp-3-react-to-lines/">Sample code</a> from Lego Ed.</p>
 <p>Can either look for color (black or white) <em>or</em> look for change in reflectivity of surface.</p>
