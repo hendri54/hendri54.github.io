@@ -847,7 +847,9 @@ Highly versatile</p>
 <p>This is key! Get that right first.</p>
 <p><strong>Use the gyroscope</strong>. Internet has code that uses gyro to drive in straight line. The robot wobbles without the gyro. See <a href="https://primelessons.org/en/ProgrammingLessons/SP3AccurateTurning.pdf">prime lessons</a>. Note that the robot tends to overshoot because it takes a bit of time to stop.</p>
 <ul>
-<li>Yaw angle ranges from -180 to +180.</li>
+<li>Yaw angle ranges from -180 to +180. Best to translate that into 0 to 360 degrees. It simplifies the math.</li>
+<li>A good strategy: Use the built-in turn function as a first pass at high speed. Then use the gyro to make the turn more precise at low speed.</li>
+<li>Note that the gyro has "drift." It may take some time for it to settle and produce a precise reading. Should wrap reading gyro into a function that repeats reading until it settles.</li>
 </ul>
 <p>How to drive a fixed distance:</p>
 <ul>
@@ -858,14 +860,17 @@ Highly versatile</p>
 <p>Can one accelerate / decelerate smoothly while driving a precise distance? Less wheel slippage.</p>
 <h3 id="to-do">To do<a class="headerlink" href="#to-do" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Drive in straight line from (x1, y1) to (x2, y2).</li>
-<li>Function: turn robot to desired angle: currently only works up to 180 degrees. Because the gyro goes only up to that value.</li>
 <li>Make a test track, so that driving code can be tested when changed.</li>
 </ul>
 <h2 id="line-detection-and-following">Line detection and following<a class="headerlink" href="#line-detection-and-following" title="Permanent link">&para;</a></h2>
-<p><a href="https://education.lego.com/en-us/lessons/prime-competition-ready/training-camp-3-react-to-lines/">Sample code</a> from Lego Ed.</p>
+<p><a href="https://education.lego.com/en-us/lessons/prime-competition-ready/training-camp-3-react-to-lines/">Sample code</a> from Lego Ed. <a href="https://primelessons.org/en/ProgrammingLessons/SP3LineFollower.pdf">Prime lessons</a> </p>
 <p>Can either look for color (black or white) <em>or</em> look for change in reflectivity of surface.</p>
 <p>With two light sensors: Start with, say, right seeing black and left seeing white. When color or right sensor switches to white, the robot has drifted left and needs to steer right.</p>
+<p>Tasks:</p>
+<ul>
+<li>Follow to end of black and white line - how?</li>
+<li>The plan: do a few tasks. Then follow the double line to the end. Reset gyro and (x,y)</li>
+</ul>
 <h2 id="driving-arcs">Driving arcs<a class="headerlink" href="#driving-arcs" title="Permanent link">&para;</a></h2>
 <p>Instead of driving + stopping + turning + driving
 why not drive in arcs?</p>
