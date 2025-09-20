@@ -819,44 +819,53 @@
 </ul>
 <p>Start the robot from a fixed position for all missions.
 Align using a wall.</p>
+<h2 id="coding-tricks-using-blocks">Coding tricks using blocks<a class="headerlink" href="#coding-tricks-using-blocks" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Functions cannot return values, but one can simulate return values and avoid side-effects by always storing output values in <code>vOut</code>. The flow is then:<ul>
+<li>Call a function that computes a value. </li>
+<li>Copy <code>vOut</code> into a variable with a name that makes sense.</li>
+</ul>
+</li>
+<li>Bool inputs<ul>
+<li>They are awkward to create when calling a function. One has to input a comparison, such as <code>0&lt;1</code> to get a <code>true</code>. Makes the code hard to read.</li>
+<li>For user-facing functions, it is generally easier to use string inputs ("left", 
+    "up", etc.)</li>
+</ul>
+</li>
+</ul>
 <h1 id="precise-driving">Precise Driving<a class="headerlink" href="#precise-driving" title="Permanent link">&para;</a></h1>
 <p>This is key! Get that right first.</p>
-<h2 id="keep-track-of-the-robot-position">Keep track of the robot position<a class="headerlink" href="#keep-track-of-the-robot-position" title="Permanent link">&para;</a></h2>
+<h2 id="principles">Principles<a class="headerlink" href="#principles" title="Permanent link">&para;</a></h2>
+<h3 id="keep-track-of-the-robot-position">Keep track of the robot position<a class="headerlink" href="#keep-track-of-the-robot-position" title="Permanent link">&para;</a></h3>
 <p>Think of the table as an (x,y) plane. The the left lower corner is point (x=0, y=0). Moving right increases <code>x</code>. Moving up increases <code>y</code>.</p>
-<p>Set up the robot in the start position. Record its (x,y) position in variables (xPos,yPos).</p>
-<p>Each time the robot moves, update the (xPos,yPos) variables. That way, you always know where the robot is on the table. Driving to any (x0,y0) on the table, such as the next mission, then simply means driving along a vector (x0-xPos, y0-yPos). Write a function for that.</p>
+<p>Set up the robot in the start position. Record its (x,y) position in variables (xPos,yPos). <strong>Each time the robot moves, update the (xPos,yPos) variables</strong>. That way, you always know where the robot is on the table. Driving to any (x0,y0) on the table, such as the next mission, then simply means driving along a vector (x0-xPos, y0-yPos). Write a function for that.</p>
+<h3 id="reset-to-known-position">Reset to known position<a class="headerlink" href="#reset-to-known-position" title="Permanent link">&para;</a></h3>
 <p>Over time, the robot position gets less and less accurate. Use the black-and-white lines on the table and the walls to recalibrate (xPos,yPos) whenever possible.</p>
-<h2 id="driving-straight">Driving straight<a class="headerlink" href="#driving-straight" title="Permanent link">&para;</a></h2>
-<p><strong>Use the gyroscope</strong>. The internet has code that uses gyro to drive in straight line. The robot wobbles without the gyro. See <a href="https://primelessons.org/en/ProgrammingLessons/SP3AccurateTurning.pdf">prime lessons</a>. Note that the robot tends to overshoot when it turns because it takes a bit of time to stop.</p>
-<p>Driving functions:</p>
+<h3 id="dont-touch-the-yaw-angle">Don't touch the yaw angle<a class="headerlink" href="#dont-touch-the-yaw-angle" title="Permanent link">&para;</a></h3>
+<p>Always set the gyro yaw angle so that <code>0</code> means the robot points "north" along the y-axis.</p>
+<p>A lot of code constantly resets the yaw angle to zero. That makes it very hard to keep track of which way the robot is pointing at any point in time. Set the yaw angle to 0 at the start and then only reset it when the robot is in a known position.</p>
+<h2 id="driving-functions">Driving functions<a class="headerlink" href="#driving-functions" title="Permanent link">&para;</a></h2>
+<h3 id="main-user-facing-functions">Main user-facing functions:<a class="headerlink" href="#main-user-facing-functions" title="Permanent link">&para;</a></h3>
 <ul>
 <li>DriveToXy`: Drive from current position to a given (x,y).<ul>
 <li>This is the main function used for driving.</li>
+<li>Turns the robot into the direction of point (x,y). Computes the distance, and drives straight using that gyro.</li>
+<li>Currently does not handle driving backwards. To do that, turn the robot in the right direction using <code>TurnToAngle</code> and then use <code>GyroDistance</code> to drive in a straight line.</li>
+</ul>
+</li>
+<li><code>GyroDistance</code>: Drive in direction of current yaw angle for a given distance.<ul>
+<li>Requires that the conversion from wheel rotations to distance is set correctly (see <code>Calibrate rotations</code> function). For medium wheels, the conversion is 17.5cm per rotation.</li>
 </ul>
 </li>
 </ul>
 <p>Helper functions:</p>
 <ul>
-<li><code>GyroStraight</code>: Drives straight in the current direction using gyro. </li>
+<li><code>GyroDistance</code>: Drives straight in the current direction using gyro. <ul>
+<li>The function can handle driving backwards (set <code>speed &lt; 0</code>).</li>
 </ul>
-<p>Tricks:</p>
-<ul>
-<li>A good strategy: Use the built-in turn function as a first pass at high speed. Then use the gyro to make the turn more precise at low speed.</li>
+</li>
 </ul>
-<p>How to drive a fixed distance:</p>
-<ul>
-<li>Without gyro: Set the mapping from motor rotations to distance using the built-in block. Then just use the "move a distance" block.</li>
-<li>With gyro: Not clear how to run a loop up to a certain number of motor rotations. Need to calibrate robot to translate time and speed into distance.</li>
-</ul>
-<h3 id="to-do">To do<a class="headerlink" href="#to-do" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Make a test track, so that driving code can be tested when changed.</li>
-<li>Can one accelerate / decelerate smoothly while driving a precise distance? Less wheel slippage.</li>
-</ul>
-<h2 id="turning">Turning<a class="headerlink" href="#turning" title="Permanent link">&para;</a></h2>
-<p>Always set the gyro yaw angle so that <code>0</code> means the robot points "north" along the y-axis.</p>
-<p>The gyro yaw angle ranges from -180 to +180. That makes the math awkward. For example, turning from +170 degrees to -170 degrees is a 20 degree right turn. It is best to always work with 0 to 360 degree angles instead. It simplifies the math.</p>
-<p>Functions for turning:</p>
+<h3 id="functions-for-turning">Functions for turning:<a class="headerlink" href="#functions-for-turning" title="Permanent link">&para;</a></h3>
 <ul>
 <li>
 <p><code>TurnToAngle</code>: Turns until the yaw (converted into 360 degrees) equals a given angle.</p>
@@ -878,17 +887,41 @@ Align using a wall.</p>
 </li>
 <li><code>AngleToDxDy</code>: Does the reverse calculation.</li>
 </ul>
+<h3 id="functions-for-line-detection">Functions for line detection<a class="headerlink" href="#functions-for-line-detection" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>LineFinder</code>: Finds either a white or a black line, using either the left or the right sensor.</li>
+<li><code>LineAlign</code>: Once a line has been found, rotate the robot until the other sensor also sees the line.</li>
+</ul>
+<h2 id="driving-straight">Driving straight<a class="headerlink" href="#driving-straight" title="Permanent link">&para;</a></h2>
+<p><strong>Use the gyroscope</strong>. The internet has code that uses gyro to drive in straight line. The robot wobbles without the gyro. See <a href="https://primelessons.org/en/ProgrammingLessons/SP3AccurateTurning.pdf">prime lessons</a>. </p>
+<p>Tricks:</p>
+<ul>
+<li>A good strategy: Use the built-in turn function as a first pass at high speed. Then use the gyro to make the turn more precise at low speed.</li>
+</ul>
+<p>How to drive a fixed distance:</p>
+<ul>
+<li>Without gyro: Set the mapping from motor rotations to distance using the built-in block. Then just use the "move a distance" block.</li>
+<li>With gyro: Not clear how to run a loop up to a certain number of motor rotations. Need to calibrate robot to translate time and speed into distance.</li>
+</ul>
+<h3 id="to-do">To do<a class="headerlink" href="#to-do" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Make a test track, so that driving code can be tested when changed.</li>
+<li>Can one accelerate / decelerate smoothly while driving a precise distance? Less wheel slippage.</li>
+</ul>
+<h2 id="turning">Turning<a class="headerlink" href="#turning" title="Permanent link">&para;</a></h2>
+<p>The gyro yaw angle ranges from -180 to +180. That makes the math awkward. For example, turning from +170 degrees to -170 degrees is a 20 degree right turn. It is best to always work with 0 to 360 degree angles instead. It simplifies the math.</p>
 <p>Note that the gyro has "drift." It may take some time for it to settle and produce a precise reading. Should wrap reading gyro into a function that repeats reading until it settles.</p>
+<p>Note that the robot tends to overshoot when it turns because it takes a bit of time to stop.</p>
 <h2 id="line-detection-and-following">Line detection and following<a class="headerlink" href="#line-detection-and-following" title="Permanent link">&para;</a></h2>
 <p><a href="https://education.lego.com/en-us/lessons/prime-competition-ready/training-camp-3-react-to-lines/">Sample code</a> from Lego Ed. <a href="https://primelessons.org/en/ProgrammingLessons/SP3LineFollower.pdf">Prime lessons</a> </p>
-<p>Can either look for color (black or white) <em>or</em> look for change in reflectivity of surface.</p>
+<p>Can either look for color (black or white) <em>or</em> look for change in reflectivity of surface. Reflectivity seems more reliable. Since most of the table is light-colored, it is usally best to look for black lines.</p>
+<p>Drive into the vicinity of the line before starting the line finder. That way, the chance that the light sensor gets confused by other colors along the way is reduced.</p>
 <p>With two light sensors: Start with, say, right seeing black and left seeing white. When color or right sensor switches to white, the robot has drifted left and needs to steer right.</p>
 <p>Tasks:</p>
 <ul>
 <li>Follow to end of black and white line - how?</li>
-<li>The plan: do a few tasks. Then follow the double line to the end. Reset gyro and (x,y)</li>
 </ul>
-<h2 id="driving-arcs">Driving arcs<a class="headerlink" href="#driving-arcs" title="Permanent link">&para;</a></h2>
+<h2 id="driving-arcs-not-implemented">Driving arcs (not implemented)<a class="headerlink" href="#driving-arcs-not-implemented" title="Permanent link">&para;</a></h2>
 <p>Instead of driving + stopping + turning + driving
 why not drive in arcs?</p>
 <p>Function: drive linear distance X in direction Y (degrees). End up with yaw of Z degrees.</p>
@@ -923,14 +956,15 @@ Highly versatile</p>
 <p>Can move <a href="https://www.youtube.com/watch?v=981qtBCagOI">horizontally and vertically</a> - highly versatile. Could likely complete nearly all 2025 missions. <a href="https://www.youtube.com/watch?v=UWOM32LOXvc">More compact version</a>. There are no build instructions, but one can follow along based on the video.</p>
 <p>Main downside: The attachment cannot be exchanged. It is an integral part of the robot.</p>
 <h2 id="moving-attachments">Moving attachments<a class="headerlink" href="#moving-attachments" title="Permanent link">&para;</a></h2>
-<p>At the start of the program, record the motor position.</p>
-<p>Then move the attachments by moving the motor to fixed positions. This makes the movements repeatable. The attachments can be moved to a known position, regardless of their current position after a task.</p>
+<p>Motor positions are absolute. They do not get set to 0 when the robot starts.</p>
+<p>During robot startup (before attachments go on), move all attachment motors to 0.</p>
+<p>Move the attachments by moving the motor to fixed positions. This makes the movements repeatable. The attachments can be moved to a known position, regardless of their current position after a task.</p>
 <p>On the current robot (coop):</p>
 <ul>
 <li>start with arm down and motor in position 0 (motor D)</li>
-<li>clockwise is up</li>
+<li>counter-clockwise is up</li>
 <li>270 is about as far up as it goes</li>
-<li>do NOT start at 0. the motor rolls over to 359.</li>
+<li>angles close to 0 tend to roll over to 359. Round those angles to 0.</li>
 </ul>
 <h1 id="archaeology-ideas">Archaeology Ideas<a class="headerlink" href="#archaeology-ideas" title="Permanent link">&para;</a></h1>
 <h2 id="sifting">Sifting<a class="headerlink" href="#sifting" title="Permanent link">&para;</a></h2>
@@ -940,6 +974,28 @@ Highly versatile</p>
 <li>Requires water to sift fine material.</li>
 <li>Requires power. Therefore often done manually.</li>
 </ul>
+<p>Pros of wet sifting:</p>
+<ul>
+<li>Separates items that stuck together. Fewer artifacts are missed.</li>
+<li>Cleans artifacts. Easier to see.</li>
+<li>Makes lumpy soil siftable.</li>
+</ul>
+<p>Cons of wet sifting:</p>
+<ul>
+<li>Water often not available. And one needs lots of it. Even recycling water cuts water use only about by half.</li>
+<li>Takes more time. Samples usually need to be dry-sifted first. Then they get lightly soaked in buckets. Only after they have been sitting for some time, can they be sifted again. Finally, samples need to get dried.</li>
+<li>Some artifacts cannot get wet.</li>
+</ul>
+<p>Possible benefits or air sifting (our proposal):</p>
+<ul>
+<li>Can separate clumped items to some extent. Because material is vigorously moved around.</li>
+<li>Not labor intensive. Can automatically sift by running sieves through the agitated material. </li>
+</ul>
+<p>Limitations:</p>
+<ul>
+<li>Fragile artifacts could be damaged. To some extent also true for conventional dry sifting.</li>
+<li>Does not work on all soils; e.g., clay.</li>
+</ul>
 <h2 id="other-ideas">Other Ideas<a class="headerlink" href="#other-ideas" title="Permanent link">&para;</a></h2>
 <p>Samples are fragile. Freeing them from the surrounding material takes a lot of time (manual labor). Could that task be partially automated?</p>
 <p>Reassembling fragments. Could that be done with 3d scans and software. Probably not a new idea. May be a newer idea: make it into a computer game.</p>
@@ -948,6 +1004,7 @@ Highly versatile</p>
 <p>Finding sites: Researchers have converted scanning of aerial images for buried sites into computer games. So far, this has only been done for photographic images, which don't work in rainforests. Applying the same idea to LiDAR would work in rainforests. But the innovation is pretty small.</p>
 <ul>
 <li>Or crowdsourcing. </li>
+<li>Someone mentioned the idea of a robot with ground-penetrating radar. <a href="https://www.niku.no/en/2024/05/technology-meets-archaeology/">That exists!</a> </li>
 </ul>
 <p>Preparing fossils. Very time consuming. Why not train a model to recognize the parts that are certainly not fossil and let a robot remove those. Leave the tricky details to humans (for now).</p>
 <p>Related idea: Robotic surgery enhances human precision by running movements (which have to be tiny) through actuators that smake the movements smaller (and could build in safeguards against cutting the wrong parts). Why not apply that to archaeology?</p>
