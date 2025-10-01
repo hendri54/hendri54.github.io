@@ -782,7 +782,7 @@
                 <h1 id="fll-resources">FLL Resources<a class="headerlink" href="#fll-resources" title="Permanent link">&para;</a></h1>
 <p><a href="https://docs.google.com/spreadsheets/d/1k5mwCnkFZkZrIItrWUQ90Rhv1SQY451oTFdz3YygBRE/edit?pli=1&amp;gid=1203080413#gid=1203080413">Mr Schaefer's google sheet</a> - <a href="https://classes.veracross.com/da/course/45113/website">Veracross course page</a> - <a href="https://msfll.sites.da.org/unearthed-season-materials/">MS FLL site</a> </p>
 <p><a href="https://www.first-lego-league.org/en/2025-26-season/the-unearthed-season">FLL Unearthed site</a> - <a href="https://www.youtube.com/channel/UCEQZze95GLgAegnOOeaYQqg">Tech warriors</a> - <a href="https://primelessons.org/en/">PrimeLessons</a> - <a href="https://www.firstlegoleague.org/season#resources">Build books</a> </p>
-<p><a href="driving.llsp3">Bock code for driving the robot</a> - <a href="python5.py">Python code for driving the robot</a> </p>
+<p><a href="driving.llsp3">Bock code for driving the robot</a> - <a href="driving5.py">Python code for driving the robot</a> </p>
 <p>Robot designs:</p>
 <ul>
 <li>
@@ -838,7 +838,7 @@ Align using a wall.</p>
 <p>In the Spike app, the python editor is a very stripped-down version of VS Code. There is no documentation, but some VS Code keyboard shortcuts work. Code navigation is poor. Best to use find.</p>
 <p>Useful: the app provides hover hints for Spike functions. Not sure that works in VS Code.</p>
 <p>Organizing code into files is possible, but very tedious. See <a href="https://primelessons.org/en/PyProgrammingLessons/SP3ImportingCustomLibrariesPython.pdf">prime lessons</a>.</p>
-<h2 id="editors">Editors<a class="headerlink" href="#editors" title="Permanent link">&para;</a></h2>
+<h2 id="editing-in-vs-code">Editing in VS Code<a class="headerlink" href="#editing-in-vs-code" title="Permanent link">&para;</a></h2>
 <p>It is possible to write the code in <strong>VS Code</strong> (but not Windsurf) with the Lego Spike extension. Somewhat tedious: One has to manually upload changes to the hub before each run.</p>
 <p>Workflow:</p>
 <ul>
@@ -846,6 +846,15 @@ Align using a wall.</p>
 <li>Upload to a slot on the hub (using the command panel).</li>
 <li>Run on the hub using either command panel or the "run" button in the extension menu bar.</li>
 <li>There is a way of placing a comment into the file to auto-run on upload.</li>
+</ul>
+<h2 id="unresolved">Unresolved<a class="headerlink" href="#unresolved" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Can one run different missions using the same code? <ul>
+<li>Since there is a lot of shared code, one has to hand-edit the code before uploading to each slot for each mission. Is that avoidable?</li>
+<li>One option would be to detect the slot while running the Python program. But that does not seem possible.</li>
+</ul>
+</li>
+<li>Error messages are usually not displayed in terminal. Serialization error. Basically means that debugging has to be done in the Spike app.</li>
 </ul>
 <h2 id="documentation-and-tutorials">Documentation and Tutorials<a class="headerlink" href="#documentation-and-tutorials" title="Permanent link">&para;</a></h2>
 <p>There is no complete documentation of the API.</p>
@@ -857,6 +866,7 @@ Align using a wall.</p>
 <p><a href="https://spike3-docs.web.app/?page=Modules">Unofficial docs</a> </p>
 </li>
 <li><a href="https://tuftsceeo.github.io/SPIKEPythonDocs/SPIKE3.html">Knowledge base as website</a> </li>
+<li><a href="https://github.com/GO-Robot-FLL/Python-for-Spike-Prime/blob/main/Main.py">Some python code for driving</a> (not very well written, IMHO) - useful for inspiration.</li>
 </ul>
 <p>For Python:</p>
 <ul>
@@ -864,6 +874,8 @@ Align using a wall.</p>
 </ul>
 <h1 id="precise-driving">Precise Driving<a class="headerlink" href="#precise-driving" title="Permanent link">&para;</a></h1>
 <p>This is key! Get that right first.</p>
+<p>Resources:</p>
+<h2 id="-medium">- <a href="https://medium.com/@rigvedepur/how-to-accurately-move-your-spike-prime-robot-25f9059ec896">Medium</a><a class="headerlink" href="#-medium" title="Permanent link">&para;</a></h2>
 <h2 id="principles">Principles<a class="headerlink" href="#principles" title="Permanent link">&para;</a></h2>
 <h3 id="keep-track-of-the-robot-position">Keep track of the robot position<a class="headerlink" href="#keep-track-of-the-robot-position" title="Permanent link">&para;</a></h3>
 <p>Think of the table as an (x,y) plane. The the left lower corner is point (x=0, y=0). Moving right increases <code>x</code>. Moving up increases <code>y</code>.</p>
@@ -978,6 +990,7 @@ Need yaw as function of distance driven </p>
 Build a complete box around the bot, so that we have attachment points at top of bot. Simply drop it on and let gravity hold it.</p>
 <p>An easy attachment: arms
 Have motors pointing sideways at front of bot. Simply stick arms directly into the rotating pieces (probably need to attach one piece to hold an axle for that?)</p>
+<p>Avoid many gears. They introduce slack.</p>
 <p>Forklift attachment
 It can press levers, lift stuff, push stuff, scoop stuff (capture and drag using a wide attachment)
 Highly versatile</p>
@@ -985,6 +998,7 @@ Highly versatile</p>
 <p>Can move <a href="https://www.youtube.com/watch?v=981qtBCagOI">horizontally and vertically</a> - highly versatile. Could likely complete nearly all 2025 missions. <a href="https://www.youtube.com/watch?v=UWOM32LOXvc">More compact version</a>. There are no build instructions, but one can follow along based on the video.</p>
 <p>Main downside: The attachment cannot be exchanged. It is an integral part of the robot.</p>
 <h2 id="moving-attachments">Moving attachments<a class="headerlink" href="#moving-attachments" title="Permanent link">&para;</a></h2>
+<p>During a run, arm positions are fully repeatable.</p>
 <p>Motor positions are absolute. They do not get set to 0 when the robot starts.</p>
 <p>During robot startup (before attachments go on), move all attachment motors to 0.</p>
 <p>Move the attachments by moving the motor to fixed positions. This makes the movements repeatable. The attachments can be moved to a known position, regardless of their current position after a task.</p>
