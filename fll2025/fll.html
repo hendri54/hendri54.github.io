@@ -818,6 +818,7 @@
 <p>Robustness</p>
 <ul>
 <li>Add wiggle to the robot position and execute a few times.</li>
+<li>Practice runs on different tables.</li>
 </ul>
 <p>Start the robot from a fixed position for all missions.
 Align using a wall.</p>
@@ -840,6 +841,7 @@ Align using a wall.</p>
 <p>In the Spike app, the python editor is a very stripped-down version of VS Code. There is no documentation, but some VS Code keyboard shortcuts work. Code navigation is poor. Best to use find.</p>
 <p>Useful: the app provides hover hints for Spike functions. Not sure that works in VS Code.</p>
 <p>Organizing code into files is possible, but very tedious. See <a href="https://primelessons.org/en/PyProgrammingLessons/SP3ImportingCustomLibrariesPython.pdf">prime lessons</a>.</p>
+<p>The code for driving, turning, line finding, and arm moving is general. It carries over from year to year. Reusing that code is key. If one starts from scratch each year, there is not enough time to do a lot of missions.</p>
 <h2 id="editing-in-vs-code">Editing in VS Code<a class="headerlink" href="#editing-in-vs-code" title="Permanent link">&para;</a></h2>
 <p>It is possible to write the code in <strong>VS Code</strong> (but not Windsurf) with the Lego Spike extension. Somewhat tedious: One has to manually upload changes to the hub before each run.</p>
 <p>Workflow:</p>
@@ -877,7 +879,9 @@ Align using a wall.</p>
 <h1 id="precise-driving">Precise Driving<a class="headerlink" href="#precise-driving" title="Permanent link">&para;</a></h1>
 <p>This is key! Get that right first.</p>
 <p>Resources:</p>
-<h2 id="-medium">- <a href="https://medium.com/@rigvedepur/how-to-accurately-move-your-spike-prime-robot-25f9059ec896">Medium</a><a class="headerlink" href="#-medium" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://medium.com/@rigvedepur/how-to-accurately-move-your-spike-prime-robot-25f9059ec896">Medium</a> </li>
+</ul>
 <h2 id="principles">Principles<a class="headerlink" href="#principles" title="Permanent link">&para;</a></h2>
 <h3 id="keep-track-of-the-robot-position">Keep track of the robot position<a class="headerlink" href="#keep-track-of-the-robot-position" title="Permanent link">&para;</a></h3>
 <p>Think of the table as an (x,y) plane. The the left lower corner is point (x=0, y=0). Moving right increases <code>x</code>. Moving up increases <code>y</code>.</p>
@@ -887,6 +891,15 @@ Align using a wall.</p>
 <h3 id="dont-touch-the-yaw-angle">Don't touch the yaw angle<a class="headerlink" href="#dont-touch-the-yaw-angle" title="Permanent link">&para;</a></h3>
 <p>Always set the gyro yaw angle so that <code>0</code> means the robot points "north" along the y-axis.</p>
 <p>A lot of code constantly resets the yaw angle to zero. That makes it very hard to keep track of which way the robot is pointing at any point in time. Set the yaw angle to 0 at the start and then only reset it when the robot is in a known position.</p>
+<h3 id="caveats">Caveats<a class="headerlink" href="#caveats" title="Permanent link">&para;</a></h3>
+<ul>
+<li>When the robot runs into a wall at speed, the next driving action is "wrong." <ul>
+<li>Reproducible example: Back the bot into a wall at speed. Then drive forward by a small distance. The robot will drive about 20 cm.</li>
+<li>Always run into walls at low speed.</li>
+</ul>
+</li>
+<li>Driving short distances with acceleration does not work. The bot drives too far.</li>
+</ul>
 <h2 id="driving-functions">Driving functions<a class="headerlink" href="#driving-functions" title="Permanent link">&para;</a></h2>
 <h3 id="main-user-facing-functions">Main user-facing functions:<a class="headerlink" href="#main-user-facing-functions" title="Permanent link">&para;</a></h3>
 <ul>
@@ -982,11 +995,30 @@ Need yaw as function of distance driven </p>
 <h2 id="robot-startup">Robot Startup<a class="headerlink" href="#robot-startup" title="Permanent link">&para;</a></h2>
 <p>Before turning it on, let the robot sit for a few seconds on a perfectly horizontal surface. Otherwise, the gyro does not initialize correctly.</p>
 <p>After booting, set yaw to 0. Then never touch it again, until it can be set based on a known position (against a wall or line).</p>
+<h1 id="strategies-for-missions">Strategies for missions<a class="headerlink" href="#strategies-for-missions" title="Permanent link">&para;</a></h1>
+<p>Most teams design <strong>an attachment for 1 or 2 missions</strong>. Then they run the robot for a few seconds and spend a lot of time swapping out attachments.</p>
+<p>That strategy can work, IF:</p>
+<ol>
+<li>The team has enough people to develop custom attachments and run tests.</li>
+<li>Each attachment does at least 2 tasks.</li>
+<li>The robot can move 2 attachments at the same time.</li>
+<li>Static attachments can be put on the robot's side at any height. The robot needs to be enclosed in a box.</li>
+<li>Attachments drop into the top of the robot using just gravity. No pushing required.</li>
+<li>The robot is aligned to the same start position for each mission using a box.</li>
+<li>It really helps to let the robot sense the attachment being used. A color sensor on top of the bot can be used for that.</li>
+</ol>
+<p>An alternative strategy is to use only 1 or 2 attachments for all missions. </p>
+<ul>
+<li>Most missions require just lifting / pushing down / pushing sideways. A simple horizontal bar with side panels can do most of those missions.</li>
+<li>Then precise driving becomes key. That is much slower than the driving for short missions (because errors must not compound). Alignment against lines is needed. But one saves a lot of time swapping out attachments.</li>
+<li>That strategy is a good one for small teams.</li>
+</ul>
 <h1 id="robot-design">Robot Design<a class="headerlink" href="#robot-design" title="Permanent link">&para;</a></h1>
 <p>The Coop bot is not a bad starting point. It is compact, can handle two attachments and light sensors, and is well balanced.</p>
 <p>The Coop bot's light sensors are partly obstructed and therefore don't work properly. The area around the light sensors needs to be redesigned. It also needs wire management.</p>
 <p>The robot should have a completely flat back side, so it can be aligned easily against a wall.</p>
 <p>Make sure weight is distributed so the robot does not tip when starting or stopping. That's a problem with the Advanced Driving Base.</p>
+<p>Attachments should drop into the top of the robot using just gravity. No pushing required. Unless only 1 attachment is used.</p>
 <h1 id="attachments">Attachments<a class="headerlink" href="#attachments" title="Permanent link">&para;</a></h1>
 <p>Mounting efficiency is key.
 Build a complete box around the bot, so that we have attachment points at top of bot. Simply drop it on and let gravity hold it.</p>
@@ -1010,6 +1042,25 @@ Highly versatile</p>
 <li>counter-clockwise is up</li>
 <li>270 is about as far up as it goes</li>
 <li>angles close to 0 tend to roll over to 359. Round those angles to 0.</li>
+</ul>
+<h1 id="challenge-project">Challenge Project<a class="headerlink" href="#challenge-project" title="Permanent link">&para;</a></h1>
+<p>Items the judges want to know about ...</p>
+<p>The process of coming up with the idea:</p>
+<ul>
+<li>How did you come up with the idea? What other ideas did you consider? Why did you dismiss them?</li>
+<li>What research did you do? Did you talk to experts?</li>
+<li>What feedback did you get on your ideas?</li>
+</ul>
+<p>How the work on developing the idea was organized:</p>
+<ul>
+<li>How did you keep track of / communicate progress?</li>
+</ul>
+<p>Robot run strategy:</p>
+<ul>
+<li>How did you come up with the list of targets? How did you organize them into runs?</li>
+<li>How was labor divided for the different runs?</li>
+<li>Which sensors are used? Why not others?</li>
+<li>How are attachments designed?</li>
 </ul>
 <h1 id="archaeology-ideas">Archaeology Ideas<a class="headerlink" href="#archaeology-ideas" title="Permanent link">&para;</a></h1>
 <h2 id="sifting">Sifting<a class="headerlink" href="#sifting" title="Permanent link">&para;</a></h2>
