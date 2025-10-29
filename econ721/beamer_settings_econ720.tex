@@ -1,0 +1,48 @@
+% Beamer settings
+
+
+\usetheme{boxes}
+% or ...
+\usecolortheme{rose}
+\setbeamercolor{math text}{fg=red!65!black}
+\setbeamertemplate{navigation symbols}{} 
+\setbeamertemplate{footline}[page number] 
+%\setbeamercovered{transparent}
+% or whatever (possibly just delete it)
+
+% Serif math fonts
+\renewcommand\mathfamilydefault{\rmdefault}
+
+% Formatted subsection number
+\newcommand{\subSecNo}{\thesection{}.\thesubsection{}. }
+
+% Format title slides this way
+\newcommand\headingSlide[1]{\begin{center}\LARGE{\thesection{}. #1}\end{center}}
+% A better name for the same
+\newcommand\sectionHeading[1]{\begin{center}\LARGE{\thesection{}. #1}\end{center}}
+
+% ******  Exams
+
+\newcommand{\answr}{\vspace{6pt} \textbf{Answer} \ansRule}
+
+\newcommand{\answrEnd}{\ansRule \vspace{1pt}}
+
+
+% ******  Colored text
+
+\newcommand{\mBlue}[1]{\textcolor{blue}{#1}}
+\newcommand{\mRed}[1]{\textcolor{red}{#1}}
+\newcommand{\mGreen}[1]{\textcolor{green}{#1}}
+
+
+% ******  Hyperlinks
+
+\definecolor{bluegray}{rgb}{0.4, 0.6, 0.8}
+\definecolor{burntumber}{rgb}{0.54, 0.2, 0.14}
+
+% Citations
+\hypersetup{citecolor=burntumber}
+% References to figures / tables
+\hypersetup{linkcolor=burntumber}
+
+
