@@ -2,7 +2,7 @@ from hub import light_matrix, port, motion_sensor
 from math import atan2, degrees, sqrt, pi, radians, cos, sin, isclose
 import runloop, motor, motor_pair, sys, time, color_sensor
 
-# General notes
+# ----------------------General notes
 #
 # The code keeps track of where the robot is at all times.
 # The globals (XPOS, YPOS) record the distance from the bottom-left
@@ -12,10 +12,17 @@ import runloop, motor, motor_pair, sys, time, color_sensor
 # The yaw sensor keeps track of the direction of the robot.
 # Yaw = 0 points "north." Yaw = 270 points "west."
 # The yaw is never reset to 0. It always points north.
+# The yaw sensor drifts. It needs to be periodically updated when the
+# direction of the robot is known, for example because it is aligned with a line.
+# The yaw is hard to reset reliably. Instead, it is better to keep track of
+# how far off the yaw is compared with the actual robot orientation. The
+# global YAW_DRIFT does that.
 #
 # Driving is done to absolute positions. `drive_to_xy` takes as
 # arguments an (x, y) target position on the table (in cm).
 # It drives to that absolute position from anywhere on the table.
+# This only works well if one has good measurement of known alignment point,
+# such as lines.
 #
 # All distances are in cm.
 # All angles are in degrees (0 to 360).
@@ -23,19 +30,27 @@ import runloop, motor, motor_pair, sys, time, color_sensor
 #
 # Key functions:
 # `gyro_straight` - drive in a straight line in a given direction for a given distance.
+# `drive_distance` - drive straight without gyro; good for short distances.
 # `turn_to_degrees` - turn the robot towards a fixed angle.
+# `turn_left` and `turn_right` - turn to a fixed angle.
 # `line_finder` - find a black-and-white line
 # `line_align` - align that bot on a line
 # `arm_up`, `arm_down` - move arm up / down to a fixed position. 0 is all the way down.
 #    180 is vertically up.
 
-# -------------------Constants
 
+# -------------------Constants
+# Some of these need to updated when robot design changes.
+
+# These constants just clarify intent of the code
 LEFT = -1
 RIGHT = 1
+LEFT_OR_RIGHT = 33
 BLACK = 11
 WHITE = 12
+BLACK_OR_WHITE = 44
 
+# Robot configuration
 DRIVE_MOTORS = motor_pair.PAIR_1
 LEFT_MOTOR = port.A
 RIGHT_MOTOR = port.E
@@ -47,7 +62,7 @@ ARM_MOTOR = port.D
 ARM_GEAR_RATIO = 1.85
 # Max arm position in degrees
 # Calibrate such that arm is vertical at 180 degrees
-MAX_ARM_POS = 220 
+MAX_ARM_POS = 220
 MIN_ARM_POS = 0
 # medium motor
 MAX_ARM_SPEED = 1100
@@ -60,17 +75,30 @@ CM_PER_ROTATION = 17.5
 # Used for spins without gyro. Width between wheels.
 TRACK = 10.2
 
-# XPOS for right start box
-RIGHT_START_XPOS = {"xpos": 165, "ypos": 10, "yaw": 0}
+# (x,y) values of right and north walls
+MAX_XPOS = 198
+MAX_YPOS = 108
+
+
+# ------------------------------Locations
+# Here we record known alignment points or
+# where the robot should stand when carrying out a task.
+
+# Right start box
+# This is a `Dict`. `RIGHT_START["xpos"]` retrieves.
+RIGHT_START = {"xpos": 165, "ypos": 10, "yaw": 0}
+
+# Left start box
+LEFT_START = {"xpos": 20, "ypos": 10, "yaw": 0}
 
 # 45 degree black-and-white line in top right corner
 TOP_RIGHT_LINE = {"xpos": 165, "ypos": 75, "yaw": 45}
 
-# Silo approach position
-SILO = {"xpos": 165, "ypos": 68, "yaw": 90}
+# Silo approach position. Facing silo pointing east.
+SILO = {"xpos": 165, "ypos": 71, "yaw": 90}
 
 
-# --------------------Globals
+# --------------------Global variables
 
 # Keep track of (x,y) position on the table
 XPOS = 0.0
@@ -88,19 +116,23 @@ RUN_START_TIME = 0
 
 # ---------------------Helpers
 
-# Are two tuples approximately equal. 
-# Uses abs tolerance by default
+# Are two tuples approximately equal?
+# Uses abs tolerance by default.
+# Example: `approx_equal((1.0, 2.0), (0.999, 2.001), abs_tol = 1e-2)
 def approx_equal(tuple1, tuple2, rel_tol = 1, abs_tol = 1e-4):
     if len(tuple1) != len(tuple2):
         return False
     return all(isclose(a, b, rel_tol=rel_tol, abs_tol=abs_tol)
             for a, b in zip(tuple1, tuple2))
 
+# Print info message in console.
 def info_msg(msg):
     print(msg)
 
+# Report whether a test passed or failed.
 def pass_fail_msg(txt, passed):
     info_msg(txt + ":" + ("passed" if passed else "failed"))
+
 
 def set_run_start_time():
     global RUN_START_TIME
@@ -114,6 +146,8 @@ def elapsed_runtime():
 def show_elapsed_time():
     info_msg("Time since start: " + str(elapsed_runtime()) + " seconds.")
 
+
+# Printing helpers
 def color_name(bw):
     if bw == BLACK:
         return "Black"
@@ -128,6 +162,8 @@ def side_name(lr):
         return "Left"
     elif lr == RIGHT:
         return "Right"
+    elif lr == LEFT_OR_RIGHT:
+        return "Left or right"
     else:
         raise ValueError("Invalid lr: " + str(lr))
 
@@ -144,15 +180,19 @@ def other_side(lr):
 
 # -----------------------Moving helpers
 
+# Return current (x, y) position
 def get_current_xy():
     global XPOS, YPOS
-    return XPOS, YPOS# should copy those +++
+    return XPOS, YPOS
 
 # How far do we have to move (dx, dy) to get to (x,y)?
+# Basically returns (x - XPOS, y - YPOS)
 def get_current_dx_dy(x, y):
     xp, yp = get_current_xy()
     return x - xp, y - yp
 
+# Record new (XPOS, YPOS). To be used when we know exactly where the
+# robot sits.
 def update_xy(x, y):
     global XPOS, YPOS
     XPOS = x
@@ -171,10 +211,22 @@ def at_xy(x, y):
     return (abs(dx) < 1) and (abs(dy) < 1)
 
 
+# Update current position and yaw from a Dict describing a position
+# Example: `update_current_pos(TOP_RIGHT_LINE)`
+async def update_current_pos(d):
+    if ("xpos" in d) and ("ypos" in d):
+        update_xy(d["xpos"], d["ypos"])
+    if "yaw" in d:
+        await update_yaw(d["yaw"])
+
+
+# Length of the vector (Pythagoras)
 def vector_length(dx, dy):
     return sqrt(dx*dx + dy*dy)
 
+
 # Convert distance in cm to motor rotations in degrees
+# Used as input for `move_for_degrees`
 def cm_to_degrees(distance_cm):
     # Add multiplier for gear ratio if needed
     return round((distance_cm/CM_PER_ROTATION) * 360)
@@ -185,6 +237,7 @@ def degrees_to_cm(deg1):
 
 
 # Speeds are always in percentage points.
+# Negative is moving backwards.
 def valid_speed(pct):
     return -100 <= pct <= 100
 
@@ -194,34 +247,28 @@ def pct_to_motor_speed(pct):
     assert valid_speed(pct)
     return round((pct / 100) * MAX_DRIVE_SPEED)
 
+# The same for the arm motor
 def pct_to_arm_speed(pct):
     assert valid_speed(pct)
     return round((pct / 100) * MAX_ARM_SPEED)
 
+
 # Drive in direction `steering` (-100 to 100) at `speed` (0 to 100)
+# Smooth acceleration: set `acceleration` to a low value, such as 300
 def drive(steering, speed, acceleration = 300):
     motor_pair.move(DRIVE_MOTORS, steering, velocity = pct_to_motor_speed(speed), acceleration = acceleration)
 
 
-# Drive straight (no gyro) for a given distance.
+# Drive straight (no gyro) for a given distance. Smooth acceleration.
 # By default: update XPOS, YPOS.
 # Returns (dx, dy) of vector driven.
-async def drive_distance(dist, speed = 50, updateXY = True):
-    yaw0 = read_yaw()
-    # if (dist > 10):
-    #    # Drive fast for part the distance
-    #    dist1 = dist - 5
+async def drive_distance(dist, speed = 50, accel = 300, decel = 300, updateXY = True):
     deg1 = cm_to_degrees(dist)
-    await motor_pair.move_for_degrees(DRIVE_MOTORS, deg1, 0, velocity = pct_to_motor_speed(speed), acceleration = 300, deceleration = 300)
-    # # Slower for the rest for smoother stopping
-    # deg2 = cm_to_degrees(dist)
-    # if speed > 30:
-    #    speed2 = speed / 2
-    # else:
-    #    speed2 = speed
-    # await motor_pair.move_for_degrees(DRIVE_MOTORS, deg2, 0, velocity = pct_to_motor_speed(speed2), acceleration = 360, deceleration = 360)
+    # print("Degrees" + str(deg1))
+    await motor_pair.move_for_degrees(DRIVE_MOTORS, deg1, 0, velocity = pct_to_motor_speed(speed), acceleration = accel, deceleration = decel)
 
     # Return dx, dy based on distance and yaw
+    yaw0 = read_yaw()
     dx, dy = angle_to_vector(yaw0, dist)
     if updateXY:
         update_dx_dy(dx, dy)
@@ -241,9 +288,10 @@ def test_moving_helpers():
 
 
 
-# ----------Turn angles
+# ------------------------Turn angles
 
 # Scale degrees into (0, 360)
+# Example: `scale_degrees(370) == 10`
 def scale_degrees(a1):
     return a1 % 360
 
@@ -280,6 +328,7 @@ def test_add_degrees():
 
 
 # Right turn angle in (0, 360) from a1 to a2
+# Example: `turn_angle_right(350, 10) == 20`
 def turn_angle_right(a1, a2):
     d1 = scale_degrees(a1)
     d2 = scale_degrees(a2)
@@ -302,6 +351,7 @@ def test_turn_angle_right():
 
 
 # Left turn angle in (0, 360) from a1 to a2
+# Example `turn_angle_left(10, 350) == 20`
 def turn_angle_left(a1, a2):
     d1 = scale_degrees(a1)
     d2 = scale_degrees(a2)
@@ -324,6 +374,8 @@ def test_turn_angle_left():
     print('Passed')
 
 
+# Should we turn left or right when turning from angle `a1` to `a2`?
+# Example: `turn_left_or_right(10, 350) == LEFT`
 def turn_left_or_right(a1, a2):
     aLeft = turn_angle_left(a1, a2)
     aRight = turn_angle_right(a1, a2)
@@ -345,6 +397,7 @@ def test_turn_left_or_right():
 
 # If the heading is curDeg degrees and we want to point in the direction of
 # tgDeg degrees, how far do we need to turn left (negative) or right (positive)?
+# Example: `turn_angle_lr(10, 350) == -20`
 def turn_angle_lr(curDeg, tgDeg):
     if abs(curDeg - tgDeg) < 1:
         return 0
@@ -369,6 +422,7 @@ def test_turn_angle_lr():
 
 # Convert a Vector (dx, dy) into degrees (0 to 360)
 # 0 degrees is "straight up" (0, 1)
+# Example: `vector_to_angle(10, 10) == 45`
 def vector_to_angle(dx, dy):
     # Use atan2(dx, dy) to make up = 0 degrees
     angle_radians = atan2(dx, dy)
@@ -386,13 +440,14 @@ def vector_to_angle(dx, dy):
 # length (float): Vector length
 # Returns:
 # tuple: (dx, dy) coordinate distances
+# Example: `angle_to_vector(45, 10) == (7, 7)`
 def angle_to_vector(deg1, dist):
     # Convert angle to radians and adjust so 0 degrees points up
     angle_rad = radians(deg1 - 90)
 
     dx = dist * cos(angle_rad)
     dy = -dist * sin(angle_rad)
-    return dx, dy    
+    return dx, dy
 
 
 def test_vector_to_angle():
@@ -405,7 +460,7 @@ def test_vector_to_angle():
     assert(vector_to_angle(10, 1) == 84)
     assert(vector_to_angle(-10, -1) == 264)
 
-    assert approx_equal(angle_to_vector(0, 10), (0, 10))    
+    assert approx_equal(angle_to_vector(0, 10), (0, 10))
     assert approx_equal(angle_to_vector(90, 0), (10, 0))
     assert approx_equal(angle_to_vector(180, 10), (0, -10))
     assert approx_equal(angle_to_vector(270, 10), (-10, 0))
@@ -416,13 +471,16 @@ def test_vector_to_angle():
 
 # -----------------------Yaw sensor
 
+# Check whether or not `deg1` is a valid degree number in (0, 360)
 def check_degrees(deg1):
     return 0 <= deg1 <= 360
 
+# Valid input for yaw?
 def check_yaw(yaw1):
     return -179 <= yaw1 <= 180
 
 # Convert yaw in (-179 to 180) into degrees (0 to 360)
+# Example: `yaw_to_degrees(-179) == 181`
 def yaw_to_degrees(yaw1):
     assert check_yaw(yaw1), "Invalid yaw: " + str(yaw1)
     if yaw1 >= 0:
@@ -431,6 +489,7 @@ def yaw_to_degrees(yaw1):
         return 360 + yaw1
 
 # The inverse of yaw_to_degrees
+# Example: `degrees_to_yaw(181) == -179`
 def degrees_to_yaw(deg1):
     assert check_degrees(deg1)
     if deg1 <= 180:
@@ -450,7 +509,7 @@ def test_yaw_to_degrees():
     assert(degrees_to_yaw(181) == -179)
 
 
-# Return yaw in degrees (0 to 360)
+# Return current yaw in degrees (0 to 360)
 # By default corrects for current yaw drift. Unless `addDrift = False`
 def read_yaw(addDrift = True):
     global YAW_DRIFT
@@ -469,10 +528,10 @@ def read_yaw(addDrift = True):
 # To be called after aligning bot, for example against a wall.
 async def update_yaw(tgDeg):
     global YAW_DRIFT
+    # Read yaw sensor value without drift correction
     curYaw = read_yaw(addDrift = False)
-    # print("curYaw: " + str(curYaw))
+    # Drift = (actual yaw) - (sensor reading)
     YAW_DRIFT = degree_diff(tgDeg, curYaw)
-    # print("drift: " + str(YAW_DRIFT))
 
 async def test_update_yaw():
     curYaw = read_yaw()
@@ -482,20 +541,24 @@ async def test_update_yaw():
     await update_yaw(curYaw)
 
 
+# Reset the yaw sensor
 # Input is in degrees (0 to 360)
 # Unreliable. Avoid. Use update_yaw instead.
 async def reset_yaw(newDeg):
+    info_msg("Resetting yaw")
     global YAW_DRIFT
     YAW_DRIFT = 0
     yaw1 = degrees_to_yaw(newDeg)
     # reset_yaw expects degrees in internal units
     motion_sensor.reset_yaw(yaw1 * -10)
     # It takes time for the yaw to become readable
-    await runloop.sleep_ms(500)
+    await runloop.sleep_ms(200)
     await runloop.until(motion_sensor.stable)
     curYaw = read_yaw()
     assert abs(curYaw - newDeg) < 3, "Yaw not correctly reset. Expecting " + str(newDeg) + "Actual: " + str(curYaw)
     await update_yaw(newDeg)
+    show_elapsed_time()
+
 
 async def test_reset_yaw():
     oldYaw = read_yaw()
@@ -530,21 +593,22 @@ def prep_turn(speed):
 # speed always positive
 # Negative deg (degrees) means turn left
 # Precise for small turn angles. Not for larger ones. (Why?)
-async def spin_turn(deg, speed = 10):
+async def spin_turn(deg, speed = 10, steering = 100):
     if abs(deg) < 1:
+        # No need to turn
         return True
     # Add a multiplier for gear ratios if you’re using gears
     spinCircumference = TRACK * pi
     motor_degrees = int((spinCircumference / CM_PER_ROTATION) * abs(deg))
+    # Speed always positive
     v = pct_to_motor_speed(abs(speed))
     if deg > 0:
         # spin clockwise
-        steering = 100
+        steer = steering
     else:
         #spin counter clockwise
-        steering = -100
-        # await motor_pair.move_for_degrees(DRIVE_MOTORS, motor_degrees, -100, velocity = v)
-    await motor_pair.move_for_degrees(DRIVE_MOTORS, motor_degrees, steering, velocity = v)
+        steer = -steering
+    await motor_pair.move_for_degrees(DRIVE_MOTORS, motor_degrees, steer, velocity = v)
 
 
 async def test_spin_turn():
@@ -569,28 +633,6 @@ async def turn_right(deg1, speed = 10):
     turnDeg = turn_angle_right(startDeg, deg1)
     await spin_turn(turnDeg, speed = speed)
 
-    # Gyro version
-    # done = False
-    # # Already turned past 360?
-    # if startDeg > deg1:
-    #    past360 = False
-    # else:
-    #    past360 = True
-
-    # v = pct_to_motor_speed(speed)
-    # motor_pair.move_tank(DRIVE_MOTORS, v, -v)
-    # while not done:
-    #    curDeg = read_yaw()
-    #    if curDeg < startDeg:
-    #        # We passed 360
-    #        past360 = True
-    #    if (curDeg >= deg1 and past360):
-    #        done = True
-    # stop_moving()
-    # Need to give yaw sensor time to be read
-    # await runloop.sleep_ms(100)
-    # return read_yaw()
-
 
 # Turn left to deg1 degrees
 async def turn_left(deg1, speed = 10):
@@ -602,32 +644,10 @@ async def turn_left(deg1, speed = 10):
     turnDeg = turn_angle_left(startDeg, deg1)
     await spin_turn(-turnDeg, speed = speed)
 
-    # done = False
-    # # Already turned past 360?
-    # if startDeg < deg1:
-    #    past360 = False
-    # else:
-    #    past360 = True
-
-    # v = pct_to_motor_speed(speed)
-    # motor_pair.move_tank(motor_pair.PAIR_1, -v, v)
-    # while not done:
-    #    curDeg = read_yaw()
-    #    if curDeg > startDeg:
-    #        # We passed 360
-    #        past360 = True
-    #    if (curDeg <= deg1 and past360):
-    #        done = True
-    # stop_moving()
-
-    # Need to give yaw sensor time to be read
-    # await runloop.sleep_ms(100)
-    # return read_yaw()
-
 
 # Turn left or right, whichever is shorter
 async def turn_to_degrees(deg1):
-    stop_moving()
+    prep_turn(10)
     curDeg = read_yaw()
     if curDeg == deg1:
         return curDeg
@@ -641,6 +661,8 @@ async def turn_to_degrees(deg1):
 
 
 # Check if robot has turned to near target angle (in degrees)
+# Turns are not precise. One should not expect to end up very close
+# to target angle.
 def check_turn(tg):
     curDeg = read_yaw()
     # Need to use left or right turn angle
@@ -685,6 +707,7 @@ async def test_turning():
 # ---------------------------------------Gyro driving
 
 # While driving, adjust direction to point to `tgDeg`
+# To be used inside the driving loop.
 def adjust_direction(tgDeg, speed):
     curDeg = read_yaw()
     # How far do we need to turn?
@@ -762,9 +785,57 @@ async def drive_to_xy(x, y, speed = 50, maxTime = 5):
     update_xy(x, y)
 
 
+
+# ------------------------Pushing aside
+# Experimental
+
+# Pushes edge of the attachment approximate to one side
+# in a straight line.
+# Just a right turn with steering.
+# The steering depends on robot and attachment geometry. Experiment.
+async def push_aside(deg, speed = 10, steering = 50):
+    await spin_turn(deg, speed = speed, steering = steering)
+
+# Can do better.
+# Start angled. Then push to straight.
+# So right motor must move back faster than left motor moves forward.
+# Run motors until angle is reached. But at different speeds.
+# Math unclear. How many degrees do the motors have to run? +++
+
+
+# Turning with less steering
+# Work in progress. Only works approximately.
+async def turn_with_steering(deg, steering, speed = 30):
+    if abs(deg) < 1:
+        # No need to turn
+        return True
+    spinDeg = round(deg * 95 / steering)
+    # Add a multiplier for gear ratios if you’re using gears
+    spinCircumference = TRACK * pi
+    motor_degrees = int((spinCircumference / CM_PER_ROTATION) * abs(spinDeg))
+    v = pct_to_motor_speed(speed)
+    if deg > 0:
+        # spin clockwise
+        steer = steering
+    else:
+        #spin counter clockwise
+        steer = -steering
+    await motor_pair.move_for_degrees(DRIVE_MOTORS, motor_degrees, steer, velocity = v)
+
+
+
+async def test_turn_with_steering():
+    await boot_robot()
+    deg1 = 180
+    steer = 40
+    await turn_with_steering(-deg1, steer, speed = -20)
+
+
 # -----------------Line Finding
 # White lines are not found reliably. Black lines are.
 
+# Return light reflected by left or right sensor.
+# Example: `light_reflected(LEFT)`
 def light_reflected(lr):
     if lr == LEFT:
         return color_sensor.reflection(LTSENSOR_LEFT)
@@ -773,12 +844,22 @@ def light_reflected(lr):
     else:
         raise ValueError("lr must be LEFT or RIGHT")
 
+# Has a white line been found?
 def white_line(lr):
-    return light_reflected(lr) > 80
+    if lr == LEFT_OR_RIGHT:
+        return (light_reflected(LEFT) > 80) or (light_reflected(RIGHT) > 80)
+    else:
+        return light_reflected(lr) > 80
 
+# Has a black line been found?
 def black_line(lr):
-    return light_reflected(lr) < 22
+    if lr == LEFT_OR_RIGHT:
+        return (light_reflected(LEFT) < 22) or (light_reflected(RIGHT) < 22)
+    else:
+        return light_reflected(lr) < 22
 
+# Has a line been found?
+# Example: `line_found(LEFT, BLACK)`
 def line_found(lr, bw):
     if bw == BLACK:
         return black_line(lr)
@@ -786,7 +867,6 @@ def line_found(lr, bw):
         return white_line(lr)
     else:
         raise ValueError("Invalid bw: " + str(bw))
-
 
 def print_lines_found():
     for lr in [LEFT, RIGHT]:
@@ -797,7 +877,7 @@ def print_lines_found():
 
 # Find a line, either with a given sensor and color.
 # Inputs are:
-# - lr: LEFT or RIGHT (sensor)
+# - lr: LEFT or RIGHT (sensor) or with either sensor
 # - bw: BLACK or WHITE (line color)
 # - steering: between -100 (left turn) and 100 (right turn)
 def line_finder(lr, bw, speed = 10, maxTime = 5, steering = 0):
@@ -844,20 +924,20 @@ def line_align_lr(lr, bw):
 # Drive to a line with an offset of (dx, dy)
 # Arrive such that the robot can be aligned
 # This is not sufficiently reliable to be used. +++
-async def drive_to_line(line1, speed = 50, dx = -5, dy = -5):
-    await drive_to_xy(line1["xpos"] + dx, line1["ypos"] + dy)
-    await turn_to_degrees(line1["yaw"])
+# async def drive_to_line(line1, speed = 50, dx = -5, dy = -5):
+#    await drive_to_xy(line1["xpos"] + dx, line1["ypos"] + dy)
+#    await turn_to_degrees(line1["yaw"])
 
 # Align on a named line.
 # This is not sufficiently reliable to be used. +++
-async def align_to_line(line1, speed = 20, dx = -5, dy = -5):
-    await drive_to_line(line1, speed = speed)
-    # Drive forward until BLACK line is found with RIGHT sensor
-    line_finder(RIGHT, BLACK)
-    # Align so that both sensors see the line
-    line_align(BLACK)
-    await update_yaw(45)
-    update_xy(line1["xpos"], line1["ypos"])
+# async def align_to_line(line1, speed = 20, dx = -5, dy = -5):
+#    await drive_to_line(line1, speed = speed)
+#    # Drive forward until BLACK line is found with RIGHT sensor
+#    line_finder(RIGHT, BLACK)
+#    # Align so that both sensors see the line
+#    line_align(BLACK)
+#    await update_yaw(45)
+#    update_xy(line1["xpos"], line1["ypos"])
 
 
 
@@ -902,21 +982,21 @@ def check_arm_pos(tgDeg):
     else:
         return True
 
-async def arm_to_degrees(deg1, speed = 50, deceleration = 1000):
+async def arm_to_degrees(deg1, speed = 50, deceleration = 3000):
     armPos = degrees_to_arm_pos(deg1)
     await motor.run_to_relative_position(ARM_MOTOR, armPos, pct_to_arm_speed(speed), deceleration = deceleration)
     return check_arm_pos(deg1)
 
 
 # Move arm up, unless it is already up
-async def arm_up(deg1, speed = 50, deceleration = 1000):
+async def arm_up(deg1, speed = 50, deceleration = 3000):
     if get_arm_pos() < deg1:
         # armPos = degrees_to_arm_pos(deg1)
         await arm_to_degrees(deg1, speed = speed, deceleration = deceleration)
         # await motor.run_to_relative_position(ARM_MOTOR, armPos, pct_to_arm_speed(speed))
 
 # Move arm down, unless it is already down
-async def arm_down(deg1, speed = 50, deceleration = 1000):
+async def arm_down(deg1, speed = 50, deceleration = 3000):
     if get_arm_pos() > deg1:
         # armPos = degrees_to_arm_pos(deg1)
         await arm_to_degrees(deg1, speed = speed, deceleration = deceleration)
@@ -924,7 +1004,15 @@ async def arm_down(deg1, speed = 50, deceleration = 1000):
 
 async def arm_vertical(speed = 80):
     global MAX_ARM_POS
-    await arm_up(MAX_ARM_POS, speed = speed)
+    await arm_up(180, speed = speed)
+
+
+# Strike down with max force
+async def strike_down(deg1):
+    if get_arm_pos() > deg1:
+        armPos = degrees_to_arm_pos(deg1)
+        await motor.run_to_relative_position(ARM_MOTOR, armPos, MAX_ARM_SPEED, acceleration = 10000, deceleration = 10000, stop = motor.COAST)
+
 
 
 # Reset arm position. Runs arm all the way up. Associates
@@ -994,10 +1082,12 @@ def config_robot():
     motor_pair.pair(DRIVE_MOTORS, LEFT_MOTOR, RIGHT_MOTOR)
 
 async def boot_robot():
+    info_msg("Booting robot.")
+    set_run_start_time()
     config_robot()
     await reset_yaw(0)
     await calibrate_arm_pos()
-    info_msg("Boot sequence complete.")
+    show_elapsed_time()
 
 
 # ----------------------Testing
@@ -1061,238 +1151,520 @@ async def test_all():
 
 
 
-# --------------------------------Mission Runs
+# --------------------------------Mission Run From Right
 
 # To be called first when a mission starts from the right start box.
 async def start_from_right():
-    global RIGHT_START_XPOS
-    update_xy(RIGHT_START_XPOS["xpos"], RIGHT_START_XPOS["ypos"])
-    await update_yaw(RIGHT_START_XPOS["yaw"])
-    set_run_start_time()
-    await calibrate_arm_pos()
+    global RIGHT_START
+    await update_current_pos(RIGHT_START)
+    # update_xy(RIGHT_START["xpos"], RIGHT_START["ypos"])
+    # await update_yaw(RIGHT_START["yaw"])
+    # set_run_start_time()# removed11/13/2025 (now in boot robot)
+    # await calibrate_arm_pos()# removed 11/13/2025 (in boot robot)
 
 
-# Drive to Silo
-async def right_start_to_silo():
-    global RIGHT_START_XPOS
-    info_msg("Driving: right start to Silo")
+# 🐋Julia rightside code -> Heavy lifting
+# start at right
+# end ready to drive to NE line between silo and balldrop
+async def start_circle():
+    info_msg("Heavy Lifting")
     await arm_vertical()
-    # Drive north
-    x0 = RIGHT_START_XPOS["xpos"]
-    y0 = SILO["ypos"]
-    await drive_to_xy(x0, y0, speed = 50)
-    # Turn to face target
-    await turn_right(90)
-    # Drive east 2cm
-    await drive_to_xy(x0 - 2, y0, speed = -20)
+
+    info_msg("Driving to heavy lifting")
+    # Move from wall
+    await drive_distance(20, speed= 80, accel = 1000, decel = 1000)
+    # Move to east wall
+    await turn_right(45, speed = 20)# was speed = 10
+    await drive_distance(35, speed = 65, accel = 1000, decel = 1000)# was speed 6011/13/2025
+    # Drive north along wall
+    await turn_left(0, speed = 20)# was speed 1011/13/2025
+    await gyro_straight(tgDeg= 0, speed= 55, dist= 45)# was speed 4611/13/2025
+    # align against target
+    await turn_left(310, speed = 20)# was speed 1011/13/2025
+    await drive_distance(4, speed= 30)# was dist 2
+    show_elapsed_time()
+
+    # Try pushing
+    # new 11/16 +++
+    # await drive_distance(8, speed = -30)
+    # await arm_down(45, speed = 100)
+    # await drive_distance(4, speed= 30)
+    # await arm_down(40)
+    # await drive_distance(6, speed = 30)
+    # await drive_distance(1, speed = -30)
+    # await arm_vertical()
+    # await drive_distance(8, speed = -30)
+    # sys.exit()
+
+    info_msg("Grabbing circle")
+    await arm_down(50)
+    # pull back
+    await drive_distance(8, speed= -30)
+    # Second grab, this time by base
+    await arm_up(85, speed = 90)# was speed = 5011/13/2025
+    await drive_distance(6, speed= 40)
+    await arm_down(20)
+    await drive_distance(5, speed= -40)
+    show_elapsed_time()
+
+    info_msg("Backing up along wall")
+    await drive_distance(3, speed= 30, accel = 1000, decel = 1000)# was just speed 2011/13/2025
+    await turn_right(0, speed = 20)# was speed = 10
+    await drive_distance(14, speed= -50, accel = 500, decel = 500)# was defaul accel11/13/2025
     show_elapsed_time()
 
 
-async def silo_action():
-    info_msg("Silo action")
-    for j in range(3):
-        await arm_down(20, speed = 100)
-        await arm_vertical()
-    show_elapsed_time()
-
-
-async def silo_to_balldrop():
-    global TOP_RIGHT_LINE, BLACK, RIGHT
-    info_msg("Driving Silo to BallDrop (top right line)")
+# start against eastwall end top right line
+async def rightwall_to_tr_line():
+    info_msg("Right wall to top right line")
     await arm_vertical()
-    # Back up from Silo
-    # await drive_to_xy(160, 65, speed = -30)
-    await turn_left(20)
-    # Drive to near the line TOP_RIGHT_LINE. Then find and align.
-    # await align_to_line(TOP_RIGHT_LINE, speed = 50)
-    line_finder(RIGHT, BLACK)
+    await turn_left(270, speed = 15)# was 270 degrees speed 1011/13/2025
+    await gyro_straight(tgDeg= 270, speed= 50, dist= 48)
+    await turn_right(65, speed = 30)# was speed = 1011/13/2025
+    line_finder(LEFT, BLACK)
     line_align(BLACK)
-    info_msg("Aligned on top-right line")
     show_elapsed_time()
-
-async def test_silo_to_balldrop():
-    info_msg("Testing driving from Silo to Balldrop (top right line)")
-    update_xy(SILO["xpos"], SILO["ypos"])
-    await update_yaw(SILO["yaw"])
-    time.sleep(0.5)
-    await silo_to_balldrop()
 
 
 # Balldrop action, starting from top right line
 async def balldrop_action():
     info_msg("Ball drop action")
+    await update_current_pos(TOP_RIGHT_LINE)
     await arm_vertical()
-    # need simpler function for driving straight short distances +++++
-    # drive_distance, but needs to update XPOS, YPOS
-    await gyro_straight(tgDeg = 45, speed = 10, dist = 1)
+    # Move a little closer to target
+    await turn_to_degrees(42)# was 4511/13/2025
+    await drive_distance(1, speed = 15)
     # Arm down to the right of lever
-    await turn_to_degrees(80)
-    await arm_down(55)
+    await turn_to_degrees(78)
+    await arm_down(75, speed = 30, deceleration = 300)# was speed 2011/13/2025
     # Push lever left
-    await turn_to_degrees(0)
-    # May have to calibrate arm position
-    await arm_vertical()
+    await turn_to_degrees(5)
     show_elapsed_time()
 
-# continue here +++++
-
-async def balldrop_to_tr_line():
+async def test_balldrop_action():
     global TOP_RIGHT_LINE
-    info_msg("Driving: BallDrop to top right line")
-    # Back up from BallDrop, behind the line
-    await arm_vertical()
-    await turn_to_degrees(45)
-    await gyro_straight(tgDeg = 45, speed = -50, dist = 10)
-    # Align again on the line
-    await align_to_line(TOP_RIGHT_LINE)
-    show_elapsed_time()
+    await boot_robot()
+    await update_current_pos(TOP_RIGHT_LINE)
+    await balldrop_action()
 
 
-async def tr_line_to_table():
-    info_msg("Driving Top Right line to table")
-    global TOP_RIGHT_LINE
-    update_xy(TOP_RIGHT_LINE["xpos"], TOP_RIGHT_LINE["ypos"])
-    await update_yaw(TOP_RIGHT_LINE["yaw"])
-    await arm_vertical()
-    # Back up 20 cm
-    await gyro_straight(tgDeg = 45, speed = -20, dist = 18)# drives too far
-    await turn_left(0)
-    await gyro_straight(355, dist = 15)
-    show_elapsed_time()
-
-
+# Starting from balldrop
 async def table_action():
-    info_msg("Table action")
-    # Arm down to the left of lever
-    await arm_down(55)
-    # Push lever right
-    await turn_right(25)
+    info_msg("Table action. Starting from balldrop.")
+    # Drive to the right of table lever
+    # await arm_up(75)
+    # await turn_to_degrees(350)
+    await drive_distance(6, speed = 10)
+    # await drive_distance(2, speed = -10)
+    # Push lever left
+    await arm_down(60, speed = 15, deceleration = 300)
+    await turn_left(320, speed = 20)# was 30011/13/2025
+    # Pull back so we can turn
+    await drive_distance(2, speed = -40, accel = 1000, decel = 1000)# was just speed = -2011/13/2025
     await arm_vertical()
-    # Back up to
-    await gyro_straight(tgDeg = 90, dist = 15, speed = -25)
-    # should perhaps raise arm and use table to align yaw +++
+    await turn_to_degrees(350)
     show_elapsed_time()
 
-# Starts aligned on TOP_RIGHT_LINE. Driving function sets coordinates.
-# Can be run without prep
-async def test_tr_line_to_table():
-    await tr_line_to_table()
+
+async def test_table_action():
+    info_msg("Test table action starting from TR line")
+    await boot_robot()
+    await update_current_pos(TOP_RIGHT_LINE)
+    await balldrop_action()
     await table_action()
-    await table_to_tr_line()
 
 
+# After table action, find the top right line again
 async def table_to_tr_line():
     info_msg("Driving: table to top right line")
     # Back away from table to a point where we can find line
-    await drive_to_xy(160, 70, speed = -30)
-    await turn_right(35)
+    await arm_vertical()
+    # Turn right. Need to make room first.
+    # await drive_distance(1, speed = -10)# removed 11/14; table action already pulls back
+    await turn_right(30)
+    # Back up and turn towards line
+    await drive_distance(10, speed=-30)
+    await turn_right(40)
     line_finder(RIGHT, BLACK)
     line_align(BLACK)
-    update_xy(TOP_RIGHT_LINE["xpos"], TOP_RIGHT_LINE["ypos"])
-    await update_yaw(TOP_RIGHT_LINE["yaw"])
+    await update_current_pos(TOP_RIGHT_LINE)
     show_elapsed_time()
 
 
-# Start position not clear +++
-# But can start on top right line
-# Then just turn to 270 degrees and drive straight for 45 cm
-async def table_to_bucket():
-    info_msg("Driving Table to Bucket")
+# Top right line to bucket and bucket action.
+async def tr_line_to_bucket():
+    info_msg("Top right line to bucket and bucket action")
+    await update_current_pos(TOP_RIGHT_LINE)
+    await arm_vertical()
     # Drive to north of bucket
-    x0 = 125
-    await drive_to_xy(x0, 90, speed = 60, maxTime = 7)
-    # Drive towards bucket
-    await drive_to_xy(x0, 75, speed = 60, maxTime = 7)
-    await arm_down(30)
+    await turn_left(290, speed = 25)
+    await drive_distance(46, speed = 60, accel = 500, decel = 500)# was default accel11/13/2025
+    # Turn south
+    await turn_left(185, speed = 20)# was default speed11/13/2025 angle 180
+    # Align and lower arm
+    await drive_distance(4, speed = 50)
+    await arm_down(55)
+    # Back away
+    await drive_distance(4, speed = -30, accel = 800, decel = 800)# was default accel11/13/2025
     await arm_vertical()
-    # Try again closer
-    await drive_to_xy(x0, 70, speed = 60, maxTime = 7)
-    await arm_down(30)
-    await arm_vertical()
-    info_msg("Done")
-
-
-async def bucket_to_north_wall():
-    info_msg("Aligning against north wall")
-    await drive_to_xy(125, 115, speed = -50)
-    # Update position facing south
-    update_xy(125, 110)
-    await update_yaw(-179)
-    info_msg("Aligned")
-
-async def north_wall_to_raise_table():
-    info_msg("North wall to raise roof")
-    await drive_to_xy(125, 85)
-    await turn_to_degrees(135)
-    await gyro_straight(135, speed = 30, dist = 20)
-
-
-# Alternative: Drive from table to raise roof
-async def table_to_raise_roof():
-    info_msg("Drive table to raise roof")
-    await turn_right(135)
-    await gyro_straight(tgDeg = 135, speed = -20, dist = 10)
-    await gyro_straight(tgDeg = 130, speed = 50, dist = 25, maxTime = 3)
     show_elapsed_time()
 
+
+async def test_tr_line_to_bucket():
+    await boot_robot()
+    await update_current_pos(TOP_RIGHT_LINE)
+    await tr_line_to_bucket()
+    await raise_roof()
+
+
+# ----------------------Updated right mission-----------------------------
+# Bucket -> raise roof -> statue tail -> mine cart -> left home
+
+# Drive from right start box to bucket.
+# Start from leftmost thick black line. End facing bucket.
+async def right_start_2_bucket():
+    info_msg("Right start to bucket.")
+    await drive_distance(80, speed= 90, accel= 3000, decel= 3000)
+    await turn_left(285, speed= 30)
+    await drive_distance(38, speed= 50, accel= 1000, decel= 1000)
+    await turn_left(182, speed= 25)
+    show_elapsed_time()
+
+async def test_right_start_2_bucket():
+    info_msg("Testing right start to bucket")
+    await boot_robot()
+    await right_start_2_bucket()
+
+# Bucket action. Starting facing bucket. Ending backed away from bucket facing south.
+async def bucket_action():
+    info_msg("Bucket action")
+    await drive_distance(5, speed = 30)
+    await arm_down(55)
+    # Back away
+    await drive_distance(2, speed = -30, accel = 1000, decel = 1000)
+    await arm_vertical()
+    show_elapsed_time()
+
+
+# Starting facing bucket
+# ends up backed away from raising roof; facing SE
+async def raise_roof():
+    info_msg("Raise roof. Starting from bucket.")
+    await arm_vertical()
+    # await drive_distance(2, speed = 20)
+    await turn_left(140, speed = 15)
+    # await drive_distance(-1)
+
+    info_msg("Pushing against bottom bar")
+    await arm_down(35, speed = 60)
+    await arm_down(24, speed = 10)
+    await drive_distance(15, speed = 45, decel = 1000)
+    # Raise arm further
+    # await drive_distance(-2, speed = 50)
+    await arm_up(60, speed = 45)
+    await drive_distance(12, speed = 50, decel = 2000)
+    # await drive_distance(5, speed = -10)
+    # await arm_up(70, speed = 20)
+    # await drive_distance(15, speed = 20)
+    # Back away
+    await drive_distance(-23, speed = 50, accel = 2000, decel = 2000)
+    await arm_vertical()
+    show_elapsed_time()
+
+
+# Drive from raising roof to back wall for alignment
+# Starting facing raise roof at about 135 degree angle
+# End up facing south approximately on black square
+async def roof_to_back_wall():
+    info_msg("Roof to back wall")
+    await arm_vertical()
+    await turn_right(177, speed = 25)# was speed 10
+    await drive_distance(25, speed= -50, accel = 2000, decel = 1000)
+    await update_yaw(179)
+    show_elapsed_time()
+
+
+
+# Drive to statue tail and hit it
+# End up behind statue, in position so one can turn left
+# towards mineshaft
+async def back_wall_to_statue_tail():
+    info_msg("Back wall to statue tail")
+    # approach statue tail directly from behind
+    await drive_distance(6, speed = 40, accel = 2000, decel = 2000)
+    await turn_right(220, speed = 25)
+    # Drive to back of statue
+    await gyro_straight(tgDeg = 220, speed = 55, dist = 34)
+    # Push down tail and pull back
+    await arm_down(20, speed = 65)
+    await drive_distance(2, speed = -10, decel = 1000)
+    await arm_down(18, speed = 65)
+    await drive_distance(10, speed = -20, decel = 3000)
+    await arm_vertical()
+    show_elapsed_time()
+
+async def test_wall_to_statue():
+    await boot_robot()
+    await update_yaw(179)
+    await back_wall_to_statue_tail()
+    await statue_tail_to_indy()
+
+
+# Ends with arm down facing Indy target
+async def statue_tail_to_indy():
+    info_msg("Driving Statue Tail to Mineshaft")
+    # Drive south -> west
+    # await drive_distance(10, speed= 80)
+    await turn_right(270, speed = 25)
+    # is that sufficiently precise?
+    await drive_distance(19, speed = 50, accel = 2000, decel = 2000)
+    # await gyro_straight(tgDeg = 270, speed = 45, dist = 18)
+    await turn_left(240, speed = 30)
+    await drive_distance(16, speed = 50, accel = 2000, decel = 2000)
+    # await gyro_straight(tgDeg = 250, speed = 35, dist = 14)
+    # Turn north
+    await arm_down(45, speed = 40)
+    await turn_right(280, speed = 30)
+    await arm_down(22, speed = 40)
+    await turn_right(355, speed = 20)
+    show_elapsed_time()
+
+
+async def indy_action():
+    info_msg("Indy action")
+    # Align against mission model to get distance right
+    await drive_distance(8, speed = 20, accel = 1000, decel = 1000)
+    # Back up
+    await drive_distance(5, speed = -20, accel = 1000, decel = 1000)
+    # Raise arm and let mine cart roll off
+    await arm_up(110, speed = 15)
+    # await drive_distance(3)
+    # await arm_up(160, speed = 10)
+    # Give the mine cart time to roll
+    # await drive_distance(2, speed = 10, accel = 1000, decel = 1000)
+    # await arm_up(140, speed = 10)
+    await runloop.sleep_ms(300)
+    # await arm_vertical()
+    # await drive_distance(5, speed = -20, accel = 3000, decel = 3000)# was default accel11/13/2025
+    show_elapsed_time()
+
+async def test_indy():
+    await boot_robot()
+    await update_yaw(140)
+    await roof_to_back_wall()
+    await back_wall_to_statue_tail()
+    await statue_tail_to_indy()
+    await indy_action()
+    # await statue_start()
+
+async def indy_to_left():
+    info_msg("Indy to left")
+    await turn_left(290, speed = 30)
+    await drive_distance(37, speed = 95, accel= 3000, decel= 3000)
+    await turn_left(190, speed = 30)
+    await drive_distance(65, speed = 95, accel = 3000, decel= 3000)
+    show_elapsed_time()
+
+async def test_indy_to_left():
+    await boot_robot()
+    await indy_to_left()
 
 
 # Run the complete mission, starting from right start box.
+# Robot set up so one can drive straight to TR line.
 async def run_from_right():
-    await start_from_right()
-    await right_start_to_silo()
+    info_msg("Starting run from right start box")
+    await right_start_2_bucket()
+    await bucket_action()
+    await raise_roof()
+    await roof_to_back_wall()
+    await back_wall_to_statue_tail()
+    await statue_tail_to_indy()
+    await indy_action()
+    await indy_to_left()
+    sys.exit()# added so that stop button need not be pressed at the end11/13/2025
+
+
+# --------------------Silo Mission--------------------------
+# Silo and 3 targets on NE side of table.
+# Start from position where silo can be struck without driving
+# Return home at the end
+async def silo_mission():
+    await boot_robot()
+    info_msg("Silo Mission start")
     await silo_action()
-    await silo_to_balldrop()
-
-    await balldrop_action()
-    await balldrop_to_tr_line()
-
-    await tr_line_to_table()
-    await table_action()
-    await table_to_tr_line()
-    return True
-
-
-    await table_to_bucket()
-    await bucket_to_north_wall()
-    await north_wall_to_raise_table()
+    await silo_to_tr_line()
+    await heavy_lifting_action()
+    await home_from_heavy_lifting()
     show_elapsed_time()
-    return True
+    sys.exit()
+
+
+async def silo_action():
+    info_msg("Silo action (no driving)")
+    for j in range(3):
+        await arm_up(170, speed = 70)
+        await runloop.sleep_ms(50)
+        await arm_down(65, speed = 85)
+    await arm_vertical()
+    show_elapsed_time()
+
+
+async def test_silo_action():
+    info_msg("Test Silo Action")
+    await boot_robot()
+    await silo_action()
+    sys.exit()
 
 
 
-# -----------------Main
+# Drive to top right line. For heavy lifting mission.
+# Start from due south of tr line in right start box
+# Be clear about how far from south wall we start +++
+# async def straight_to_tr_line():
+#    info_msg("Drive straight north to TR line.")
+#    await update_yaw(0)
+#    await arm_vertical()
+#    await gyro_straight(tgDeg = 0, dist = 35, speed = 80)
+#    # Align on top-right line
+#    line_finder(RIGHT, BLACK, speed = 10)
+#    line_align(BLACK)
+#    await update_current_pos(TOP_RIGHT_LINE)
+#    show_elapsed_time()
 
 
+# Drive from Silo (right start box) to TR line.
+async def silo_to_tr_line():
+    info_msg("Driving Silo to TR line")
+    # Drive to west of Silo
+    await drive_distance(20, speed= 60, accel= 2000, decel= 2000)
+    # Drive diagnonally around Silo
+    await turn_left(310, speed = 15)
+    await drive_distance(20, speed = 60, accel= 1000, decel= 1000)
+    # Drive north
+    await gyro_straight(tgDeg = 0, dist = 20, speed = 40)
+    # await turn_right(35, speed = 10)
+    # await gyro_straight(tgDeg= 30, dist= 10, speed = 40)
+    # Pull away from TR line for alignment
+    await turn_right(30, speed = 15)
+    # await drive_distance(10, speed = -20)
+    # Align on TR line
+    line_finder(RIGHT, BLACK)
+    line_align(BLACK)
+    await update_current_pos(TOP_RIGHT_LINE)
+    show_elapsed_time()
+
+async def test_silo_to_trline():
+    await boot_robot()
+    info_msg("Testing Silo to TR line")
+    await silo_to_tr_line()
+    show_elapsed_time()
+    sys.exit()
+
+
+# Heavy lifting from TR line.
+# Also does balldrop and table action in one movement.
+async def heavy_lifting_action():
+    info_msg("Heavy lifting action")
+    await update_current_pos(TOP_RIGHT_LINE)
+    await turn_to_degrees(41)
+    # Pull back and lower arm
+    # Arm comes to rest on back of balldrop model
+    await drive_distance(7, speed = -30, accel = 800, decel = 800)
+    await arm_down(75, speed= 20)
+    # Push arm through loop of heavy lifting
+    # Bot stops when it runs into model
+    await drive_distance(3, speed = 20, accel = 500, decel = 500)
+    # Pick up ring
+    # await arm_up(175, speed= 20)
+
+    # Try push right then left
+    await turn_right(80, speed = 35)
+    await arm_down(65, speed = 30)
+    await arm_up(95, speed = 30)
+    await runloop.sleep_ms(200)
+    await turn_left(10, speed = 30)
+    await runloop.sleep_ms(200)
+    # Back up so arm can be raised
+    await drive_distance(3, speed = -20)
+    # await turn_right(20, speed = 20)
+    # await runloop.sleep_ms(200)
+    # await turn_right(70, speed = 10)
+
+    info_msg("Table action")
+    await arm_up(180, speed = 25)
+    await turn_left(2, speed= 20)
+    await drive_distance(12, speed= 20)
+    await turn_left(310, speed= 20)
+    await drive_distance(2, speed= -70, accel = 2000, decel = 2000)
+    # await turn_left(10, speed= 20)
+    # await arm_down(70)
+    # # await drive_distance(2, -20)
+    # # await drive_distance(5, speed= 10)
+    # await turn_left(270)
+
+    # Plan: try to push ring and balls at same time
+    # - align slightly to right of ring
+    # - take out picking up action
+
+    # Bring arm back down on back of mission model
+    # await drive_distance(4, speed = -20)
+    # await arm_down(80, speed = 15)
+    # # Push lever left for balldrop
+    # await drive_distance(6, speed = 10)
+    # await turn_left(15, speed = 10)
+    # await arm_up(180, speed = 20)
+    show_elapsed_time()
+
+async def test_heavy_lifting_action():
+    info_msg("Testing Heavy Lifting Action. Starting from TR line")
+    await boot_robot()
+    await update_current_pos(TOP_RIGHT_LINE)
+    await heavy_lifting_action()
+    await home_from_heavy_lifting()
+    show_elapsed_time()
+    sys.exit()
+
+
+# Drive home after heavy lifting.
+# Starting facing balldrop. Pulled back about 10 cm.
+async def home_from_heavy_lifting():
+    info_msg("Home from heavy lifting")
+    await arm_vertical()
+    await turn_to_degrees(355)
+    # await gyro_straight(tgDeg = 355, speed = -100, dist = 65)
+    await drive_distance(80, speed = -100, accel = 3000, decel = 2000)
+    show_elapsed_time()
+
+
+
+# -----------------Main------------------------
+
+async def mission_right():
+    await boot_robot()
+    await run_from_right()
+    sys.exit()
+
+
+# Exploratory code
 async def main():
     global RIGHT, BLACK
     await boot_robot()
-
-    test_vector_to_angle()
-    # print(angle_to_vector(0, 10))
-    # print(approx_equal(angle_to_vector(0, 10), (0, 10)))
-
-    return True
-
-    # await test_turning()
-    # await test_arm_movements()
-    # await test_no_driving()
-    # await test_driving_forward()
-    # await test_driving_backward()
-    # await test_all()
-
-    # await test_silo_to_balldrop()
-    await test_tr_line_to_table()
-
-    # await run_from_right()
-
-    return True
-    # Not the best way of exiting; raises an error.
-    # But avoids having to press stop after each run.
-    # sys.exit()
+    await arm_down(20, speed= 10)
+    info_msg("Exiting")
+    sys.exit()
 
 
-runloop.run(main())
+# runloop.run(main())
+
+# runloop.run(test_silo_action())
+# runloop.run(test_heavy_lifting_action())
+
+# Slot 0
+runloop.run(silo_mission())
+
+# Slot 1
+# runloop.run(mission_right())
 
 
 # -----------------------------------------

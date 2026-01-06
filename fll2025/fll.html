@@ -15,7 +15,7 @@
     
     
       
-        <title>FLL Resources - Lutz Hendricks</title>
+        <title>First Lego League Lessons - Lutz Hendricks</title>
       
     
     
@@ -54,7 +54,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fll-resources" class="md-skip">
+        <a href="#first-lego-league-lessons" class="md-skip">
           Skip to content
         </a>
       
@@ -82,7 +82,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              FLL Resources
+              First Lego League Lessons
             
           </span>
         </div>
@@ -779,52 +779,7 @@
                   
                 
                 
-                <h1 id="fll-resources">FLL Resources<a class="headerlink" href="#fll-resources" title="Permanent link">&para;</a></h1>
-<p><a href="https://docs.google.com/spreadsheets/d/1k5mwCnkFZkZrIItrWUQ90Rhv1SQY451oTFdz3YygBRE/edit?pli=1&amp;gid=1203080413#gid=1203080413">Mr Schaefer's google sheet</a> - <a href="https://classes.veracross.com/da/course/45113/website">Veracross course page</a> - <a href="https://msfll.sites.da.org/unearthed-season-materials/">MS FLL site</a> </p>
-<p><a href="https://www.first-lego-league.org/en/2025-26-season/the-unearthed-season">FLL Unearthed site</a> - <a href="https://www.youtube.com/channel/UCEQZze95GLgAegnOOeaYQqg">Tech warriors</a> - <a href="https://primelessons.org/en/">PrimeLessons</a> - <a href="https://www.firstlegoleague.org/season#resources">Build books</a> </p>
-<p><a href="driving.llsp3">Bock code for driving the robot</a> (outdated) </p>
-<p><a href="driving.py">Python code for driving the robot</a> - driving straight, turning, arm movements, line finding.</p>
-<p><a href="https://kennyhaggard.github.io/FLL-field-mapping/introduction.html">Field mapping tool for tracing out drive paths</a> </p>
-<p>Robot designs:</p>
-<ul>
-<li><a href="https://discoveryrobots.org/fllteamresources.html">Discovery robots</a> </li>
-<li>Very simple but <a href="https://www.youtube.com/watch?v=QBqDkT-Emiw&amp;t=341s">effective base design</a> (but older robot)</li>
-<li><a href="https://flltutorials.com/en/RobotGame.html">Compact and well designed</a>. With a lift attachment, but the mounting accommodates other attachments</li>
-<li>Search for FLL masterclass on youtube</li>
-</ul>
-<h1 id="general-lessons">General Lessons<a class="headerlink" href="#general-lessons" title="Permanent link">&para;</a></h1>
-<p>Driving is key.</p>
-<ul>
-<li>The only way to get a lot of missions done is to do several in one run, using a single attachment.</li>
-<li>That only works if the driving is precise. See notes on driving below.</li>
-</ul>
-<p>Separate driving from executing mission.</p>
-<ul>
-<li>Mark where robot is supposed to stand with tape on the table</li>
-<li>Get the mission going without driving</li>
-<li>Separately add code for driving to the mark</li>
-</ul>
-<p>Robustness</p>
-<ul>
-<li>Add wiggle to the robot position and execute a few times.</li>
-<li>Practice runs on different tables.</li>
-</ul>
-<p>Start the robot from a fixed position for all missions.
-Align using a wall.</p>
-<h2 id="coding-tricks-using-blocks">Coding tricks using blocks<a class="headerlink" href="#coding-tricks-using-blocks" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Functions cannot return values, but one can simulate return values and avoid side-effects by always storing output values in <code>vOut</code>. The flow is then:<ul>
-<li>Call a function that computes a value. </li>
-<li>Copy <code>vOut</code> into a variable with a name that makes sense.</li>
-</ul>
-</li>
-<li>Bool inputs<ul>
-<li>They are awkward to create when calling a function. One has to input a comparison, such as <code>0&lt;1</code> to get a <code>true</code>. Makes the code hard to read.</li>
-<li>For user-facing functions, it is generally easier to use string inputs ("left", 
-    "up", etc.)</li>
-</ul>
-</li>
-</ul>
+                <h1 id="first-lego-league-lessons">First Lego League Lessons<a class="headerlink" href="#first-lego-league-lessons" title="Permanent link">&para;</a></h1>
 <h1 id="software-python">Software (Python)<a class="headerlink" href="#software-python" title="Permanent link">&para;</a></h1>
 <p>Python is much easier to write and organize than block. It also has more powerful functions, such as moving motors to relative positions.</p>
 <p>In the Spike app, the python editor is a very stripped-down version of VS Code. There is no documentation, but some VS Code keyboard shortcuts work. Code navigation is poor. Best to use find.</p>
@@ -844,10 +799,44 @@ Align using a wall.</p>
 <ul>
 <li>Can one run different missions using the same code? <ul>
 <li>Since there is a lot of shared code, one has to hand-edit the code before uploading to each slot for each mission. Is that avoidable?</li>
-<li>One option would be to detect the slot while running the Python program. But that does not seem possible.</li>
+<li>One option would be to detect the slot while running the Python program. But that does not seem possible. One team used a color sensor to detect which attachment was installed. That's an option. But using a sensor slot is too expensive.</li>
 </ul>
 </li>
 <li>Error messages are usually not displayed in terminal. Serialization error. Basically means that debugging has to be done in the Spike app.</li>
+<li>How to keep arm in fixed position?<ul>
+<li>There is a built-in function. But it would have to be run in parallel with other code.</li>
+<li>How to structure that? Ask Claude.</li>
+</ul>
+</li>
+</ul>
+<h2 id="ideas">Ideas<a class="headerlink" href="#ideas" title="Permanent link">&para;</a></h2>
+<h3 id="keep-track-of-robot-history">Keep track of robot history<a class="headerlink" href="#keep-track-of-robot-history" title="Permanent link">&para;</a></h3>
+<p>This is a key idea for understanding and debugging code.</p>
+<p>Is it possible to write the history of all sensors and motor positions to a file? Let's say every 1/10 of a second?</p>
+<p>How would that file be retrieved from the brick? Do we need pybricks for that?</p>
+<p>See Claude "Logging robot state data".</p>
+<p>The only solution is to print to console. If at end of run: how to interrupt run without losing log? Wrap in <code>try catch</code>?</p>
+<h3 id="general-arc-driving-function">General arc driving function<a class="headerlink" href="#general-arc-driving-function" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Directly control motor power.</li>
+<li>Constantly read wheel positions. For an arc, they should change in fixed proportion.</li>
+<li>Also constantly read gyro. <em>Keep track of gyro history.</em> While gyro changes smoothly, it is probably reliable. Then use it to adjust motor power and compensate for wheel slippage (and to stop when rotation is complete). But when gyro is not moving smoothly, ignore it and rely solely on wheel rotation.</li>
+<li>General function that stops the movement. It can handle:<ul>
+<li>Robot is lifted or bumped - hitting an obstacle.</li>
+<li>Rotation is complete - based on gyro or wheel position.</li>
+<li>Distance sensor</li>
+<li>Light sensor</li>
+</ul>
+</li>
+<li>That function could, for example, drive in an arc until the robot has turned 45 degrees. But stop if x cm from mission model or if robot hits something.</li>
+<li>Possible application<ul>
+<li>Drive towards a mission model and stop in front of it.</li>
+<li>Drive arc with stopping condition rotation, distance sensor or bump</li>
+<li>If bump: handling depends on situation.</li>
+<li>If distance sensor: turn to target angle and proceed</li>
+<li>If rotation: continue driving straight until distance sensor.</li>
+</ul>
+</li>
 </ul>
 <h2 id="documentation-and-tutorials">Documentation and Tutorials<a class="headerlink" href="#documentation-and-tutorials" title="Permanent link">&para;</a></h2>
 <p>There is no complete documentation of the API.</p>
@@ -889,7 +878,266 @@ Align using a wall.</p>
 </li>
 <li>Driving short distances with acceleration does not work. The bot drives too far.</li>
 </ul>
+<h2 id="driving-straight">Driving straight<a class="headerlink" href="#driving-straight" title="Permanent link">&para;</a></h2>
+<p><strong>Use the gyroscope</strong>. The internet has code that uses gyro to drive in straight line. The robot wobbles without the gyro. See <a href="https://primelessons.org/en/ProgrammingLessons/SP3AccurateTurning.pdf">prime lessons</a>. </p>
+<p>Tricks:</p>
+<ul>
+<li>A good strategy: Use the built-in turn function as a first pass at high speed. Then use the gyro to make the turn more precise at low speed.</li>
+</ul>
+<p>How to drive a fixed distance:</p>
+<ul>
+<li>Without gyro: Set the mapping from motor rotations to distance using the built-in block. Then just use the "move a distance" block.</li>
+<li>With gyro: Not clear how to run a loop up to a certain number of motor rotations. Need to calibrate robot to translate time and speed into distance.</li>
+</ul>
+<h3 id="to-do">To do<a class="headerlink" href="#to-do" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Make a test track, so that driving code can be tested when changed.</li>
+<li>Can one accelerate / decelerate smoothly while driving a precise distance? Less wheel slippage.</li>
+</ul>
+<h2 id="turning">Turning<a class="headerlink" href="#turning" title="Permanent link">&para;</a></h2>
+<p>The gyro yaw angle ranges from -180 to +180. That makes the math awkward. For example, turning from +170 degrees to -170 degrees is a 20 degree right turn. It is best to always work with 0 to 360 degree angles instead. It simplifies the math.</p>
+<p>Note that the gyro has "drift." It may take some time for it to settle and produce a precise reading. Should wrap reading gyro into a function that repeats reading until it settles.</p>
+<p>Note that the robot tends to overshoot when it turns because it takes a bit of time to stop.</p>
+<h3 id="to-do_1">To do<a class="headerlink" href="#to-do_1" title="Permanent link">&para;</a></h3>
+<p>Can one use gyro during turns?</p>
+<ul>
+<li>Look for existing code</li>
+<li>Test it</li>
+<li>How to detect whether gyro is reliable during the turn? Keep track of gyro history.</li>
+</ul>
+<h2 id="line-detection-and-following">Line detection and following<a class="headerlink" href="#line-detection-and-following" title="Permanent link">&para;</a></h2>
+<p><a href="https://education.lego.com/en-us/lessons/prime-competition-ready/training-camp-3-react-to-lines/">Sample code</a> from Lego Ed. <a href="https://primelessons.org/en/ProgrammingLessons/SP3LineFollower.pdf">Prime lessons</a> </p>
+<p>Can either look for color (black or white) <em>or</em> look for change in reflectivity of surface. Reflectivity seems more reliable. Since most of the table is light-colored, it is usally best to look for black lines.</p>
+<p>Drive into the vicinity of the line before starting the line finder. That way, the chance that the light sensor gets confused by other colors along the way is reduced.</p>
+<p>With two light sensors: Start with, say, right seeing black and left seeing white. When color or right sensor switches to white, the robot has drifted left and needs to steer right.</p>
+<p>Tasks:</p>
+<ul>
+<li>Follow to end of black and white line - how?</li>
+</ul>
+<h2 id="driving-arcs-not-implemented">Driving arcs (not implemented)<a class="headerlink" href="#driving-arcs-not-implemented" title="Permanent link">&para;</a></h2>
+<p>Instead of driving + stopping + turning + driving
+why not drive in arcs?</p>
+<p>Function: drive linear distance X in direction Y (degrees). End up with yaw of Z degrees.</p>
+<p>Need:
+Convert (X,Y,Z) into circle radius and distance to drive.</p>
+<p>Function: drive along a circle with radius R for distance D</p>
+<p>Approach:
+- inner wheels drive circle with radius R-W
+- outer wheels drive radius R+W
+- where 2W is the distance between wheels
+- relative length of the two diameters determines relative speed of the two wheels (rotations per second)</p>
+<p>Use gyro to make arcs precise
+Need yaw as function of distance driven </p>
+<p>All of the math can be worked out as function of radius and fraction of circle driven (terminal angle)</p>
+<h2 id="robot-startup">Robot Startup<a class="headerlink" href="#robot-startup" title="Permanent link">&para;</a></h2>
+<p>Before turning it on, let the robot sit for a few seconds on a perfectly horizontal surface. Otherwise, the gyro does not initialize correctly.</p>
+<p>After booting, set yaw to 0. Then never touch it again, until it can be set based on a known position (against a wall or line).</p>
+<h1 id="strategies-for-missions">Strategies for missions<a class="headerlink" href="#strategies-for-missions" title="Permanent link">&para;</a></h1>
+<p>Most teams design <strong>an attachment for 1 or 2 missions</strong>. Then they run the robot for a few seconds and spend a lot of time swapping out attachments.</p>
+<p>That strategy can work, IF:</p>
+<ol>
+<li>The team has enough people to develop custom attachments and run tests.</li>
+<li>Each attachment does at least 2 tasks.</li>
+<li>The robot can move 2 attachments at the same time.</li>
+<li>Static attachments can be put on the robot's side at any height. The robot needs to be enclosed in a box.</li>
+<li>Attachments drop into the top of the robot using just gravity. No pushing required.</li>
+<li>The robot is aligned to the same start position for each mission using a box.</li>
+<li>It really helps to let the robot sense the attachment being used. A color sensor on top of the bot can be used for that.</li>
+</ol>
+<p>An alternative strategy is to use only 1 or 2 attachments for all missions. </p>
+<ul>
+<li>Most missions require just lifting / pushing down / pushing sideways. A simple horizontal bar with side panels can do most of those missions.</li>
+<li>Then precise driving becomes key. That is much slower than the driving for short missions (because errors must not compound). Alignment against lines is needed. But one saves a lot of time swapping out attachments.</li>
+<li>That strategy is a good one for small teams.</li>
+</ul>
+<p>In practice, a mix of both approaches is likely optimal.</p>
+<h2 id="lessons-from-2025">Lessons from 2025<a class="headerlink" href="#lessons-from-2025" title="Permanent link">&para;</a></h2>
+<p>In 2025, we tried few runs with several missions each. Success was mixed. One wrong alignment produces cascading failures. What works on the home table, may not work on the competition table.</p>
+<p>Chaining missions is a great time saver. But then the early missions have to be very robust. The driving code has to work really well. The robot cannot drive onto mission models, which gets it out of alignment.</p>
+<p>The idea is still good. But the missions need to be designed to avoid cascading failures.</p>
+<p>Most teams try the opposite strategy: many runs with 1-2 missions each. That also does not work well. It's a lot of stress during competition. One wrong button press crashes an entire run. Changing attachments takes a lot of time. </p>
+<p>My view is that a combination approach is optimal. Chain missions when the ones at the start are reliable. Run short missions when one can get lots of points in a short period of time and when a mission requires a very specific attachment.</p>
+<h2 id="alignment">Alignment<a class="headerlink" href="#alignment" title="Permanent link">&para;</a></h2>
+<p>Jigs really help. Robot can start far foward and at an angle. </p>
+<p>Also makes it possible to align everything on a few major lines.</p>
+<h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">&para;</a></h2>
+<p>Separate driving from executing mission.</p>
+<ul>
+<li>Mark where robot is supposed to stand with tape on the table</li>
+<li>Get the mission going without driving</li>
+<li>Separately add code for driving to the mark</li>
+<li>Write a test function for each mission model.</li>
+</ul>
+<h1 id="robot-design">Robot Design<a class="headerlink" href="#robot-design" title="Permanent link">&para;</a></h1>
+<p>The Coop bot is not a bad starting point. It is compact, can handle two attachments and light sensors, and is well balanced.</p>
+<p>The Coop bot's light sensors are partly obstructed and therefore don't work properly. The area around the light sensors needs to be redesigned. It also needs wire management.</p>
+<p>The robot should have a completely flat back side, so it can be aligned easily against a wall.</p>
+<p>Make sure weight is distributed so the robot does not tip when starting or stopping. That's a problem with the Advanced Driving Base.</p>
+<p>Attachments should drop into the top of the robot using just gravity. No pushing required. Unless only 1 attachment is used.</p>
+<p>The robot "walls" should be totally straight and very close to the ground. That prevents the robot from running over anything (loose items and mission models).</p>
+<p>Use large motors to move arms. Small motors do not have enough power to move very long attachments precisely (e.g., heavy lifting).</p>
+<h2 id="a-design-idea">A design idea<a class="headerlink" href="#a-design-idea" title="Permanent link">&para;</a></h2>
+<p>Wheels in the front, inside a box.</p>
+<p>Arm motors mounted facing left and right. Attachments can be stuck directly on the axles. No slack. Each attachment.</p>
+<p>In addition, use the <em>back of the motor</em> to drive a horizontal gear. Attachments that drop in from the top can use those.</p>
+<ul>
+<li>It may be possible to operate <em>four</em> attachments at the same time.</li>
+</ul>
+<p>It is not clear that the light sensors are all that helpful. </p>
+<ul>
+<li>Without calibration, they can only see black lines. And alignment is slow.</li>
+<li>Sometimes, a dark area on the table is misinterpreted as a line.</li>
+</ul>
+<p>Distance sensor</p>
+<ul>
+<li>worth trying</li>
+<li>If it is precise enough, it could be very helpful for alignment. </li>
+<li>Perhaps one on the front and one on the side?</li>
+</ul>
+<h2 id="tools">Tools<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.bricklink.com/v2/build/studio.page">Bricklink Studio</a> is probably the standard design tool for Spike Prime.</p>
+<ul>
+<li><a href="https://www.bricklink.com/v2/build/studio.page">FLL Tutorials</a> tutorial</li>
+<li><a href="https://www.youtube.com/watch?v=ep1soVqoWtY">Droids robotics</a> video tutorial</li>
+</ul>
+<h2 id="questions">Questions<a class="headerlink" href="#questions" title="Permanent link">&para;</a></h2>
+<h1 id="attachments">Attachments<a class="headerlink" href="#attachments" title="Permanent link">&para;</a></h1>
+<p>Mounting efficiency is key.
+Build a complete box around the bot, so that we have attachment points at top of bot. Simply drop it on and let gravity hold it.</p>
+<p>An easy attachment: arms
+Have motors pointing sideways at front of bot. Simply stick arms directly into the rotating pieces (probably need to attach one piece to hold an axle for that?)</p>
+<p>Avoid many gears. They introduce slack.</p>
+<p>Look for robust ways of moving a mission model.</p>
+<ul>
+<li>2025 raise roof: reach through from the other side and pull on horizontal cross bar; or pull on edge of roof. More robust than pushing for some reason.</li>
+<li>2025 statue: pushing on tail turned out to be not robust (reason again not clear). </li>
+<li>Keep in mind that attachments can be flexible (e.g., long axles).</li>
+<li>There are even brush pieces that can slide over items and pull them.</li>
+</ul>
+<p>With long attachments, avoid turning the robot.</p>
+<ul>
+<li>The robot does not have enough power to turn precisely with a heavy attachment in front.</li>
+<li>Turns need to be very precise with long attachments. E.g., 2025 "heavy lifting."</li>
+</ul>
+<p>Forklift attachment
+It can press levers, lift stuff, push stuff, scoop stuff (capture and drag using a wide attachment)
+Highly versatile</p>
+<p>Each attachment needs a limiter. </p>
+<ul>
+<li>When arm is moved up all the way, it needs to be in a known position. A bar that limits how far the arm can move ensures that.</li>
+</ul>
+<h2 id="moving-wall-attachment">Moving wall attachment<a class="headerlink" href="#moving-wall-attachment" title="Permanent link">&para;</a></h2>
+<p>Can move <a href="https://www.youtube.com/watch?v=981qtBCagOI">horizontally and vertically</a> - highly versatile. Could likely complete nearly all 2025 missions. <a href="https://www.youtube.com/watch?v=UWOM32LOXvc">More compact version</a>. There are no build instructions, but one can follow along based on the video.</p>
+<p>Main downside: The attachment cannot be exchanged. It is an integral part of the robot.</p>
+<h1 id="moving-attachments">Moving attachments<a class="headerlink" href="#moving-attachments" title="Permanent link">&para;</a></h1>
+<p>During a run, arm positions are fully repeatable.</p>
+<p>Motor positions are absolute. They do not get set to 0 when the robot starts.</p>
+<p>During robot startup (before attachments go on), move all attachment motors to 0.</p>
+<p>Move the attachments by moving the motor to fixed positions. This makes the movements repeatable. The attachments can be moved to a known position, regardless of their current position after a task.</p>
+<p>On the current robot (coop):</p>
+<ul>
+<li>start with arm down and motor in position 0 (motor D)</li>
+<li>counter-clockwise is up</li>
+<li>270 is about as far up as it goes</li>
+<li>angles close to 0 tend to roll over to 359. Round those angles to 0.</li>
+</ul>
+<h2 id="initialize-attachments">Initialize attachments<a class="headerlink" href="#initialize-attachments" title="Permanent link">&para;</a></h2>
+<p>How to ensure that the robot knows the attachment position at the start of each run?</p>
+<ol>
+<li>Run arm against a limiter. Takes time. Have to wait for motor to stall.</li>
+<li>Start attachment in "natural" position (usually all the way down; gravity). Does not work for long attachments that stick out of the start box. They would have to be started vertically.</li>
+<li>Always run motor to position 0 at end of each run. Seems error prone. What if the run has to be interrupted? What if attachment gets stuck?</li>
+</ol>
+<p>Sources:</p>
+<ul>
+<li><a href="https://www.reddit.com/r/FLL/comments/1p0q62d/best_way_to_initialize_motors_for_attachments/">redit</a> </li>
+</ul>
+<h2 id="holding-an-arm-in-a-fixed-position">Holding an arm in a fixed position<a class="headerlink" href="#holding-an-arm-in-a-fixed-position" title="Permanent link">&para;</a></h2>
+<p>Motor commands accept a <code>stop</code> option. That is useful mainly for holding the arm in a fixed position. Example: </p>
+<ul>
+<li>We are pushing against some part of the mission model while driving. </li>
+<li><code>await run_for_degrees(ARM_MOTOR, 90, 200, stop = BRAKE)</code></li>
+<li>Now the motor is held until the next motor command is issued.</li>
+<li>One can also issue <code>motor.stop(ARM_MOTOR, stop = BRAKE)</code> after an arm movement. But that may be less reliable b/c it holds the arm wherever it happens to be.</li>
+</ul>
+<h2 id="questions_1">Questions<a class="headerlink" href="#questions_1" title="Permanent link">&para;</a></h2>
+<p>How to initialize an attachment?</p>
+<ul>
+<li>Let's say we have a simple up-down arm. It gets mounted after a run, so the motor position is random. The arm position is also somewhat random. </li>
+<li>How to ensure that the robot "knows" the arm position?</li>
+</ul>
+<h1 id="challenge-project">Challenge Project<a class="headerlink" href="#challenge-project" title="Permanent link">&para;</a></h1>
+<p>Items the judges want to know about ...</p>
+<p>The process of coming up with the idea:</p>
+<ul>
+<li>How did you come up with the idea? What other ideas did you consider? Why did you dismiss them?</li>
+<li>What research did you do? Did you talk to experts?</li>
+<li>What feedback did you get on your ideas?</li>
+</ul>
+<p>How the work on developing the idea was organized:</p>
+<ul>
+<li>How did you keep track of / communicate progress?</li>
+</ul>
+<p>Robot run strategy:</p>
+<ul>
+<li>How did you come up with the list of targets? How did you organize them into runs?</li>
+<li>How was labor divided for the different runs?</li>
+<li>Which sensors are used? Why not others?</li>
+<li>How are attachments designed?</li>
+</ul>
+<h1 id="competitions">Competitions<a class="headerlink" href="#competitions" title="Permanent link">&para;</a></h1>
+<p>Things to bring:</p>
+<ul>
+<li>Chargers for robot, laptops.</li>
+<li>Wheel wipes.</li>
+<li>Extension cord.</li>
+<li>Food and water.</li>
+<li>Printed code.</li>
+<li>Spare robot parts.</li>
+</ul>
+<p>Preparation:</p>
+<ul>
+<li>Upload current code to slots (in the right order).</li>
+</ul>
+<h2 id="judging">Judging<a class="headerlink" href="#judging" title="Permanent link">&para;</a></h2>
+<p>Students have 5 minute (each) presentations for project and robot design.</p>
+<p>Judges are looking for specific rubric items. Check the scoring guides for the current ones.</p>
+<p>Judges are looking for evidence and resources. For the code:</p>
+<ul>
+<li>What resources were used to develop code?</li>
+<li>How did code evolve?</li>
+<li>How is it structured?</li>
+<li>What makes it special / reliable?</li>
+<li>Evidence of testing: judges want to see run logs with pass / fail results and lessons learned. Those don't make much sense. But keep track of changes made each day.</li>
+<li>Same for robot: How was it designed? How did it improve over time?</li>
+<li>What is the mission strategy?</li>
+</ul>
+<h1 id="organizing-the-season">Organizing the Season<a class="headerlink" href="#organizing-the-season" title="Permanent link">&para;</a></h1>
+<p>Students need to come in prepared. If we start from scratch in September, there is not enough time to produce much without excessive help from coaches. </p>
+<p>If coaches do the work, it defeats the purpose. General driving code can be written by coaches and carry over from season to season. Students need to design and implement missions.</p>
+<p>Run a short "Intro to Python" at the start. Students need to know very little. Perhaps make an introduction video that covers:</p>
+<ol>
+<li>How to connect robot to spike.</li>
+<li>How to get basic driving code into spike.</li>
+<li>How to run something in python (<code>runloop</code>).</li>
+<li>How to implement a very simple mission with a given robot and attachment: driving straight, turning, moving arm, finding lines.</li>
+</ol>
+<h1 id="block-coding">Block Coding<a class="headerlink" href="#block-coding" title="Permanent link">&para;</a></h1>
+<ul>
+<li>Functions cannot return values, but one can simulate return values and avoid side-effects by always storing output values in <code>vOut</code>. The flow is then:<ul>
+<li>Call a function that computes a value. </li>
+<li>Copy <code>vOut</code> into a variable with a name that makes sense.</li>
+</ul>
+</li>
+<li>Bool inputs<ul>
+<li>They are awkward to create when calling a function. One has to input a comparison, such as <code>0&lt;1</code> to get a <code>true</code>. Makes the code hard to read.</li>
+<li>For user-facing functions, it is generally easier to use string inputs ("left", 
+    "up", etc.)</li>
+</ul>
+</li>
+</ul>
 <h2 id="driving-functions">Driving functions<a class="headerlink" href="#driving-functions" title="Permanent link">&para;</a></h2>
+<p>These are used in our (outdated) block code.</p>
 <h3 id="main-user-facing-functions">Main user-facing functions:<a class="headerlink" href="#main-user-facing-functions" title="Permanent link">&para;</a></h3>
 <ul>
 <li>DriveToXy`: Drive from current position to a given (x,y).<ul>
@@ -937,146 +1185,20 @@ Align using a wall.</p>
 <li><code>LineFinder</code>: Finds either a white or a black line, using either the left or the right sensor.</li>
 <li><code>LineAlign</code>: Once a line has been found, rotate the robot until the other sensor also sees the line.</li>
 </ul>
-<h2 id="driving-straight">Driving straight<a class="headerlink" href="#driving-straight" title="Permanent link">&para;</a></h2>
-<p><strong>Use the gyroscope</strong>. The internet has code that uses gyro to drive in straight line. The robot wobbles without the gyro. See <a href="https://primelessons.org/en/ProgrammingLessons/SP3AccurateTurning.pdf">prime lessons</a>. </p>
-<p>Tricks:</p>
+<h1 id="fll-resources">FLL Resources<a class="headerlink" href="#fll-resources" title="Permanent link">&para;</a></h1>
+<p><a href="https://docs.google.com/spreadsheets/d/1k5mwCnkFZkZrIItrWUQ90Rhv1SQY451oTFdz3YygBRE/edit?pli=1&amp;gid=1203080413#gid=1203080413">Mr Schaefer's google sheet</a> - <a href="https://classes.veracross.com/da/course/45113/website">Veracross course page</a> - <a href="https://msfll.sites.da.org/unearthed-season-materials/">MS FLL site</a> </p>
+<p><a href="https://www.first-lego-league.org/en/2025-26-season/the-unearthed-season">FLL Unearthed site</a> - <a href="https://www.youtube.com/channel/UCEQZze95GLgAegnOOeaYQqg">Tech warriors</a> - <a href="https://primelessons.org/en/">PrimeLessons</a> - <a href="https://www.firstlegoleague.org/season#resources">Build books</a> </p>
+<p><a href="driving.llsp3">Bock code for driving the robot</a> (outdated, messy)</p>
+<p><a href="driving.py">Python code for driving the robot</a> - driving straight, turning, arm movements, line finding. Used for 2025 state championships.</p>
+<p><a href="https://kennyhaggard.github.io/FLL-field-mapping/introduction.html">Field mapping tool for tracing out drive paths</a> </p>
+<p>Robot designs:</p>
 <ul>
-<li>A good strategy: Use the built-in turn function as a first pass at high speed. Then use the gyro to make the turn more precise at low speed.</li>
-</ul>
-<p>How to drive a fixed distance:</p>
-<ul>
-<li>Without gyro: Set the mapping from motor rotations to distance using the built-in block. Then just use the "move a distance" block.</li>
-<li>With gyro: Not clear how to run a loop up to a certain number of motor rotations. Need to calibrate robot to translate time and speed into distance.</li>
-</ul>
-<h3 id="to-do">To do<a class="headerlink" href="#to-do" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Make a test track, so that driving code can be tested when changed.</li>
-<li>Can one accelerate / decelerate smoothly while driving a precise distance? Less wheel slippage.</li>
-</ul>
-<h2 id="turning">Turning<a class="headerlink" href="#turning" title="Permanent link">&para;</a></h2>
-<p>The gyro yaw angle ranges from -180 to +180. That makes the math awkward. For example, turning from +170 degrees to -170 degrees is a 20 degree right turn. It is best to always work with 0 to 360 degree angles instead. It simplifies the math.</p>
-<p>Note that the gyro has "drift." It may take some time for it to settle and produce a precise reading. Should wrap reading gyro into a function that repeats reading until it settles.</p>
-<p>Note that the robot tends to overshoot when it turns because it takes a bit of time to stop.</p>
-<h2 id="line-detection-and-following">Line detection and following<a class="headerlink" href="#line-detection-and-following" title="Permanent link">&para;</a></h2>
-<p><a href="https://education.lego.com/en-us/lessons/prime-competition-ready/training-camp-3-react-to-lines/">Sample code</a> from Lego Ed. <a href="https://primelessons.org/en/ProgrammingLessons/SP3LineFollower.pdf">Prime lessons</a> </p>
-<p>Can either look for color (black or white) <em>or</em> look for change in reflectivity of surface. Reflectivity seems more reliable. Since most of the table is light-colored, it is usally best to look for black lines.</p>
-<p>Drive into the vicinity of the line before starting the line finder. That way, the chance that the light sensor gets confused by other colors along the way is reduced.</p>
-<p>With two light sensors: Start with, say, right seeing black and left seeing white. When color or right sensor switches to white, the robot has drifted left and needs to steer right.</p>
-<p>Tasks:</p>
-<ul>
-<li>Follow to end of black and white line - how?</li>
-</ul>
-<h2 id="driving-arcs-not-implemented">Driving arcs (not implemented)<a class="headerlink" href="#driving-arcs-not-implemented" title="Permanent link">&para;</a></h2>
-<p>Instead of driving + stopping + turning + driving
-why not drive in arcs?</p>
-<p>Function: drive linear distance X in direction Y (degrees). End up with yaw of Z degrees.</p>
-<p>Need:
-Convert (X,Y,Z) into circle radius and distance to drive.</p>
-<p>Function: drive along a circle with radius R for distance D</p>
-<p>Approach:
-- inner wheels drive circle with radius R-W
-- outer wheels drive radius R+W
-- where 2W is the distance between wheels
-- relative length of the two diameters determines relative speed of the two wheels (rotations per second)</p>
-<p>Use gyro to make arcs precise
-Need yaw as function of distance driven </p>
-<p>All of the math can be worked out as function of radius and fraction of circle driven (terminal angle)</p>
-<h2 id="robot-startup">Robot Startup<a class="headerlink" href="#robot-startup" title="Permanent link">&para;</a></h2>
-<p>Before turning it on, let the robot sit for a few seconds on a perfectly horizontal surface. Otherwise, the gyro does not initialize correctly.</p>
-<p>After booting, set yaw to 0. Then never touch it again, until it can be set based on a known position (against a wall or line).</p>
-<h1 id="strategies-for-missions">Strategies for missions<a class="headerlink" href="#strategies-for-missions" title="Permanent link">&para;</a></h1>
-<p>Most teams design <strong>an attachment for 1 or 2 missions</strong>. Then they run the robot for a few seconds and spend a lot of time swapping out attachments.</p>
-<p>That strategy can work, IF:</p>
-<ol>
-<li>The team has enough people to develop custom attachments and run tests.</li>
-<li>Each attachment does at least 2 tasks.</li>
-<li>The robot can move 2 attachments at the same time.</li>
-<li>Static attachments can be put on the robot's side at any height. The robot needs to be enclosed in a box.</li>
-<li>Attachments drop into the top of the robot using just gravity. No pushing required.</li>
-<li>The robot is aligned to the same start position for each mission using a box.</li>
-<li>It really helps to let the robot sense the attachment being used. A color sensor on top of the bot can be used for that.</li>
-</ol>
-<p>An alternative strategy is to use only 1 or 2 attachments for all missions. </p>
-<ul>
-<li>Most missions require just lifting / pushing down / pushing sideways. A simple horizontal bar with side panels can do most of those missions.</li>
-<li>Then precise driving becomes key. That is much slower than the driving for short missions (because errors must not compound). Alignment against lines is needed. But one saves a lot of time swapping out attachments.</li>
-<li>That strategy is a good one for small teams.</li>
-</ul>
-<h1 id="robot-design">Robot Design<a class="headerlink" href="#robot-design" title="Permanent link">&para;</a></h1>
-<p>The Coop bot is not a bad starting point. It is compact, can handle two attachments and light sensors, and is well balanced.</p>
-<p>The Coop bot's light sensors are partly obstructed and therefore don't work properly. The area around the light sensors needs to be redesigned. It also needs wire management.</p>
-<p>The robot should have a completely flat back side, so it can be aligned easily against a wall.</p>
-<p>Make sure weight is distributed so the robot does not tip when starting or stopping. That's a problem with the Advanced Driving Base.</p>
-<p>Attachments should drop into the top of the robot using just gravity. No pushing required. Unless only 1 attachment is used.</p>
-<h1 id="attachments">Attachments<a class="headerlink" href="#attachments" title="Permanent link">&para;</a></h1>
-<p>Mounting efficiency is key.
-Build a complete box around the bot, so that we have attachment points at top of bot. Simply drop it on and let gravity hold it.</p>
-<p>An easy attachment: arms
-Have motors pointing sideways at front of bot. Simply stick arms directly into the rotating pieces (probably need to attach one piece to hold an axle for that?)</p>
-<p>Avoid many gears. They introduce slack.</p>
-<p>Forklift attachment
-It can press levers, lift stuff, push stuff, scoop stuff (capture and drag using a wide attachment)
-Highly versatile</p>
-<h2 id="moving-wall-attachment">Moving wall attachment<a class="headerlink" href="#moving-wall-attachment" title="Permanent link">&para;</a></h2>
-<p>Can move <a href="https://www.youtube.com/watch?v=981qtBCagOI">horizontally and vertically</a> - highly versatile. Could likely complete nearly all 2025 missions. <a href="https://www.youtube.com/watch?v=UWOM32LOXvc">More compact version</a>. There are no build instructions, but one can follow along based on the video.</p>
-<p>Main downside: The attachment cannot be exchanged. It is an integral part of the robot.</p>
-<h2 id="moving-attachments">Moving attachments<a class="headerlink" href="#moving-attachments" title="Permanent link">&para;</a></h2>
-<p>During a run, arm positions are fully repeatable.</p>
-<p>Motor positions are absolute. They do not get set to 0 when the robot starts.</p>
-<p>During robot startup (before attachments go on), move all attachment motors to 0.</p>
-<p>Move the attachments by moving the motor to fixed positions. This makes the movements repeatable. The attachments can be moved to a known position, regardless of their current position after a task.</p>
-<p>On the current robot (coop):</p>
-<ul>
-<li>start with arm down and motor in position 0 (motor D)</li>
-<li>counter-clockwise is up</li>
-<li>270 is about as far up as it goes</li>
-<li>angles close to 0 tend to roll over to 359. Round those angles to 0.</li>
-</ul>
-<h1 id="challenge-project">Challenge Project<a class="headerlink" href="#challenge-project" title="Permanent link">&para;</a></h1>
-<p>Items the judges want to know about ...</p>
-<p>The process of coming up with the idea:</p>
-<ul>
-<li>How did you come up with the idea? What other ideas did you consider? Why did you dismiss them?</li>
-<li>What research did you do? Did you talk to experts?</li>
-<li>What feedback did you get on your ideas?</li>
-</ul>
-<p>How the work on developing the idea was organized:</p>
-<ul>
-<li>How did you keep track of / communicate progress?</li>
-</ul>
-<p>Robot run strategy:</p>
-<ul>
-<li>How did you come up with the list of targets? How did you organize them into runs?</li>
-<li>How was labor divided for the different runs?</li>
-<li>Which sensors are used? Why not others?</li>
-<li>How are attachments designed?</li>
-</ul>
-<h1 id="competitions">Competitions<a class="headerlink" href="#competitions" title="Permanent link">&para;</a></h1>
-<p>Things to bring:</p>
-<ul>
-<li>Chargers for robot, laptops.</li>
-<li>Wheel wipes.</li>
-<li>Extension cord.</li>
-<li>Food and water.</li>
-<li>Printed code.</li>
-<li>Spare robot parts.</li>
-</ul>
-<p>Preparation:</p>
-<ul>
-<li>Upload current code to slots (in the right order).</li>
-</ul>
-<h2 id="judging">Judging<a class="headerlink" href="#judging" title="Permanent link">&para;</a></h2>
-<p>Students have 5 minute (each) presentations for project and robot design.</p>
-<p>Judges are looking for specific rubric items. Check the scoring guides for the current ones.</p>
-<p>Judges are looking for evidence and resources. For the code:</p>
-<ul>
-<li>What resources were used to develop code?</li>
-<li>How did code evolve?</li>
-<li>How is it structured?</li>
-<li>What makes it special / reliable?</li>
-<li>Evidence of testing: judges want to see run logs with pass / fail results and lessons learned. Those don't make much sense. But keep track of changes made each day.</li>
-<li>Same for robot: How was it designed? How did it improve over time?</li>
-<li>What is the mission strategy?</li>
+<li><a href="https://discoveryrobots.org/fllteamresources.html">Discovery robots</a> </li>
+<li>Very simple but <a href="https://www.youtube.com/watch?v=QBqDkT-Emiw&amp;t=341s">effective base design</a> (but older robot)</li>
+<li><a href="https://flltutorials.com/en/RobotGame.html">Compact and well designed</a>. With a lift attachment, but the mounting accommodates other attachments</li>
+<li>Search for FLL masterclass on youtube</li>
+<li>FLLCasts has tons of robots and attachments. Subscription required, but affordable.</li>
+<li><a href="https://www.fllcasts.com/materials/3287-rollie-lego-education-spike-prime-box-robot">Rollie</a> is a good starting point</li>
 </ul>
 <h1 id="archaeology-ideas">Archaeology Ideas<a class="headerlink" href="#archaeology-ideas" title="Permanent link">&para;</a></h1>
 <h2 id="sifting">Sifting<a class="headerlink" href="#sifting" title="Permanent link">&para;</a></h2>
