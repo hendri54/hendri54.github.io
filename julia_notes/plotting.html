@@ -908,6 +908,11 @@
 <span class="n">draw</span><span class="p">(</span><span class="n">plt</span> <span class="o">+</span> <span class="n">ptext</span><span class="p">)</span>
 </code></pre></div>
 
+<p>Annotating data points:</p>
+<ul>
+<li>Can now be done with <code>annotation</code> function.</li>
+<li>Automatically avoids label overlap.</li>
+</ul>
 <h3 id="axis-labels">Axis Labels<a class="headerlink" href="#axis-labels" title="Permanent link">&para;</a></h3>
 <p>Plotting multiple items with one call to <code>draw</code> (as in <code>draw(plt1 + plt2)</code>) removes axis labels. Need to set the labels "by hand":</p>
 <p><code>draw(plt1 + plt2; axis = (xlabel = "x", ))</code></p>
