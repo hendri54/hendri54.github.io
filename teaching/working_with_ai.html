@@ -1592,10 +1592,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#skills" class="md-nav__link">
+  <a href="#prompts" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Skills
+        Prompts
       
     </span>
   </a>
@@ -1603,10 +1603,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#chat-vs-code" class="md-nav__link">
+  <a href="#skills" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Chat vs Code
+        Skills
       
     </span>
   </a>
@@ -1639,12 +1639,18 @@
 <p>To solve the limited memory problem, you do exactly what a human RA would do: you as the RA to take notes. Every time the RA reads a paper, let him write a summary to a file. Every time he summarizes literature, let him use his summaries to refresh his memory. Then write the summary to a file.</p>
 <p>That's the key point: To remember information, it needs to be written to a file.</p>
 <p>The same strategy also solves the problem that you get a new RA every day. The new RA has no clue what the previous one did, but he can read the summary files and get up to speed.</p>
+<h2 id="prompts">Prompts<a class="headerlink" href="#prompts" title="Permanent link">&para;</a></h2>
+<ul>
+<li>When asking for a careful answer, be specific. E.g., "make sure that you do [specific X]".</li>
+<li>Ask to push back. Models tend to agree with you, unless you specifically ask for a critique. </li>
+</ul>
 <h2 id="skills">Skills<a class="headerlink" href="#skills" title="Permanent link">&para;</a></h2>
 <p>Since your new RA is clueless and has no information about who you are and how you work, you need to write detailed instructions. Since you don't want to repeat yourself every time you submit a query, those instructions need to be written into files as well. In Claude Code, those instruction files are called <strong>skills</strong>. </p>
 <p>Example: You want your RA to summarize papers.
 - Make a <code>paper-summary</code> skill. That means: write a <code>SKILL.md</code> file into <code>.claude/skills/paper-summary/</code>.
 - The skill file explains in detail what the RA should do. How should the report be structured? What key information to look for? 
 - The skill also instructs the RA to write the summary into a markdown file. You specify the file name, such as "paper-dir/paper-filename-summary.md".</p>
+<h1 id="claude-code">Claude Code<a class="headerlink" href="#claude-code" title="Permanent link">&para;</a></h1>
 <h2 id="chat-vs-code">Chat vs Code<a class="headerlink" href="#chat-vs-code" title="Permanent link">&para;</a></h2>
 <p>Chats are useful for one-off conversations. 
 - You can upload files, but the chat cannot see your file system. Every time the file changes, you need to re-upload it to the same chat (or start a new one).
@@ -1653,6 +1659,16 @@
 <p>Claude Code relaxes these limitations.
 - It can see and modify files in folders that you permit it to see.
 - It can write reponses to files. Later, it can come back to those files to refresh its memory.</p>
+<p>Important gotcha: <code>CLAUDE.md</code> can only be read by Claude Code. To configure the chat, you need to put the same info into <code>Settings -&gt; Profile</code>. Keep that general info concise (is Claude's own advice).</p>
+<h2 id="mcp-servers">MCP Servers<a class="headerlink" href="#mcp-servers" title="Permanent link">&para;</a></h2>
+<p>Each time Claude executes code, it starts a new instance of the programming language. 
+For a language like Julia, this incurs a compile cost each time code is executed. 
+An MCP server can keep a Julia session running between code executions and avoid the compile time. 
+Julia packages for this purpose: <a href="https://github.com/aplavin/julia-mcp">julia-mcp</a>, Kaimon.jl, MCPServer.jl
+Installation is not at all clear...</p>
+<h1 id="useful-guides">Useful Guides<a class="headerlink" href="#useful-guides" title="Permanent link">&para;</a></h1>
+<p><a href="https://claudeblattman.com/">Claude Blattman</a> 
+<a href="https://psantanna.com/claude-code-my-workflow/">Pedro Sant'Anna</a> </p>
 
 
 
