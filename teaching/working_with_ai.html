@@ -1689,6 +1689,10 @@
 - It can write reponses to files. Later, it can come back to those files to refresh its memory.</p>
 <p>Important gotcha: <code>CLAUDE.md</code> can only be read by Claude Code. To configure the chat, you need to put the same info into <code>Settings -&gt; Profile</code>. Keep that general info concise (is Claude's own advice).</p>
 <p>Claude Code does not have a Deep Research function. One would have to write a prompt that leads to the same depth of research, but it is likely easier to just use the app.</p>
+<h2 id="language-servers">Language Servers<a class="headerlink" href="#language-servers" title="Permanent link">&para;</a></h2>
+<p>When Claude wants to write code, it has to find symbol definitions and other information. When using an editory (VS Code), a language server allows the user to navigate that kind of information (hover to see a definition, etc.).</p>
+<p>It makes Claude more efficient to provide it a language server as well. In Julia, the standard is <code>LanguageServer.jl</code> (2026). Install that in the global environment. Then install <code>ClaudeCodeJuliaLSP</code> as a Claude plugin.</p>
+<p>The instructions for that last step are not clear. Just ask Claude Code to do it.</p>
 <h2 id="mcp-servers">MCP Servers<a class="headerlink" href="#mcp-servers" title="Permanent link">&para;</a></h2>
 <p>Each time Claude executes code, it starts a new instance of the programming language. 
 For a language like Julia, this incurs a compile cost each time code is executed. 
